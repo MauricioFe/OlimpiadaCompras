@@ -24,19 +24,19 @@ namespace OlimpiadaCompras.Telas.Coordenacao
 
         private void btnSolicitarAlteracao_Click(object sender, EventArgs e)
         {
-            FrmModalSolicitacao form = new FrmModalSolicitacao();
+            FrmModalSolicitacao form = new FrmModalSolicitacao(1);
             form.ShowDialog();
         }
 
         private void btnAprovar_Click(object sender, EventArgs e)
         {
-            FrmModalSolicitacao form = new FrmModalSolicitacao();
+            FrmModalSolicitacao form = new FrmModalSolicitacao(2);
             form.ShowDialog();
         }
 
         private void btnReprvar_Click(object sender, EventArgs e)
         {
-            FrmModalSolicitacao form = new FrmModalSolicitacao();
+            FrmModalSolicitacao form = new FrmModalSolicitacao(3);
             form.ShowDialog();
         }
 
