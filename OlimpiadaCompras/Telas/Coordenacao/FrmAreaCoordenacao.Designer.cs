@@ -202,6 +202,7 @@
             this.dgvSolicitacoes.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvSolicitacoes.Size = new System.Drawing.Size(723, 516);
             this.dgvSolicitacoes.TabIndex = 1;
+            this.dgvSolicitacoes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSolicitacoes_CellClick);
             // 
             // label2
             // 
