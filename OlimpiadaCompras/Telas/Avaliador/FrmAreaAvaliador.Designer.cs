@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,20 +40,21 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnVisualizaTodas = new System.Windows.Forms.Button();
             this.btnNovaSolicitacao = new System.Windows.Forms.Button();
-            this.dgvSolicitacoes = new System.Windows.Forms.DataGridView();
+            this.dgvSolicitacoesPendentes = new System.Windows.Forms.DataGridView();
             this.codProtheus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvSolicitacoesUsuario = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btnEditar = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoesPendentes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoesUsuario)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
@@ -164,22 +165,23 @@
             this.btnNovaSolicitacao.Text = "Nova solicitação";
             this.btnNovaSolicitacao.UseVisualStyleBackColor = false;
             // 
-            // dgvSolicitacoes
+            // dgvSolicitacoesPendentes
             // 
-            this.dgvSolicitacoes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvSolicitacoesPendentes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvSolicitacoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSolicitacoes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvSolicitacoesPendentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSolicitacoesPendentes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codProtheus,
             this.Descricao,
             this.Quantidade,
             this.TipoCompra,
             this.Status});
-            this.dgvSolicitacoes.Location = new System.Drawing.Point(12, 143);
-            this.dgvSolicitacoes.Name = "dgvSolicitacoes";
-            this.dgvSolicitacoes.Size = new System.Drawing.Size(901, 191);
-            this.dgvSolicitacoes.TabIndex = 18;
+            this.dgvSolicitacoesPendentes.Location = new System.Drawing.Point(12, 143);
+            this.dgvSolicitacoesPendentes.Name = "dgvSolicitacoesPendentes";
+            this.dgvSolicitacoesPendentes.Size = new System.Drawing.Size(901, 191);
+            this.dgvSolicitacoesPendentes.TabIndex = 18;
+            this.dgvSolicitacoesPendentes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSolicitacoesPendentes_CellClick);
             // 
             // codProtheus
             // 
@@ -190,8 +192,8 @@
             // Descricao
             // 
             this.Descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Descricao.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Descricao.DefaultCellStyle = dataGridViewCellStyle9;
             this.Descricao.HeaderText = "Descrição do item";
             this.Descricao.Name = "Descricao";
             // 
@@ -210,22 +212,23 @@
             this.Status.HeaderText = "Status";
             this.Status.Name = "Status";
             // 
-            // dataGridView1
+            // dgvSolicitacoesUsuario
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvSolicitacoesUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvSolicitacoesUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSolicitacoesUsuario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 390);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(901, 191);
-            this.dataGridView1.TabIndex = 19;
+            this.dgvSolicitacoesUsuario.Location = new System.Drawing.Point(12, 390);
+            this.dgvSolicitacoesUsuario.Name = "dgvSolicitacoesUsuario";
+            this.dgvSolicitacoesUsuario.Size = new System.Drawing.Size(901, 191);
+            this.dgvSolicitacoesUsuario.TabIndex = 19;
+            this.dgvSolicitacoesUsuario.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSolicitacoesUsuario_CellClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -236,8 +239,8 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridViewTextBoxColumn2.HeaderText = "Descrição do item";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
@@ -256,13 +259,29 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "Status";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
+            // btnEditar
+            // 
+            this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(135)))), ((int)(((byte)(5)))));
+            this.btnEditar.FlatAppearance.BorderSize = 0;
+            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar.ForeColor = System.Drawing.Color.White;
+            this.btnEditar.Location = new System.Drawing.Point(569, 593);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(169, 34);
+            this.btnEditar.TabIndex = 20;
+            this.btnEditar.Text = "Editar solicitação";
+            this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
             // FrmAreaAvaliador
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(930, 646);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.dgvSolicitacoes);
+            this.Controls.Add(this.btnEditar);
+            this.Controls.Add(this.dgvSolicitacoesUsuario);
+            this.Controls.Add(this.dgvSolicitacoesPendentes);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnNovaSolicitacao);
             this.Controls.Add(this.btnVisualizaTodas);
@@ -278,8 +297,9 @@
             this.Name = "FrmAreaAvaliador";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Área do Avaliador";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.FrmAreaAvaliador_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoesPendentes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoesUsuario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,17 +317,18 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnVisualizaTodas;
         private System.Windows.Forms.Button btnNovaSolicitacao;
-        private System.Windows.Forms.DataGridView dgvSolicitacoes;
+        private System.Windows.Forms.DataGridView dgvSolicitacoesPendentes;
         private System.Windows.Forms.DataGridViewTextBoxColumn codProtheus;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoCompra;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvSolicitacoesUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.Button btnEditar;
     }
 }

@@ -65,6 +65,18 @@
     <Compile Include="Telas\Avaliador\FrmNovaSolicitacao.Designer.cs">
       <DependentUpon>FrmNovaSolicitacao.cs</DependentUpon>
     </Compile>
+    <Compile Include="Telas\Avaliador\FrmTodasSolicitacoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Avaliador\FrmTodasSolicitacoes.Designer.cs">
+      <DependentUpon>FrmTodasSolicitacoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Coordenacao\Cadastros\FrmCadastrarUsuário.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Coordenacao\Cadastros\FrmCadastrarUsuário.Designer.cs">
+      <DependentUpon>FrmCadastrarUsuário.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\Coordenacao\FrmAreaCoordenacao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +101,12 @@
     <Compile Include="Telas\Coordenacao\FrmModalSolicitacao.Designer.cs">
       <DependentUpon>FrmModalSolicitacao.cs</DependentUpon>
     </Compile>
+    <Compile Include="Telas\Avaliador\FrmEditarUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Avaliador\FrmEditarUsuarios.Designer.cs">
+      <DependentUpon>FrmEditarUsuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +123,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Avaliador\FrmNovaSolicitacao.resx">
       <DependentUpon>FrmNovaSolicitacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Avaliador\FrmTodasSolicitacoes.resx">
+      <DependentUpon>FrmTodasSolicitacoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastrarUsuário.resx">
+      <DependentUpon>FrmCadastrarUsuário.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Coordenacao\FrmEmailAutorizacao.resx">
       <DependentUpon>FrmEmailAutorizacao.cs</DependentUpon>
@@ -125,6 +149,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Avaliador\FrmEditarUsuarios.resx">
+      <DependentUpon>FrmEditarUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -155,7 +182,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Telas\Coordenacao\Cadastros\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
