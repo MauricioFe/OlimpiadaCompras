@@ -36,7 +36,11 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             }
             else if (acao == SOLICITACAO_REPROVADA)
             {
-
+                this.Dispose();
+            }
+            else
+            {
+                this.Dispose();
             }
         }
     }
