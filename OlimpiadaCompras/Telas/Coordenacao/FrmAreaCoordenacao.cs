@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OlimpiadaCompras.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,6 +28,11 @@ namespace OlimpiadaCompras
             {
                 pnlCadastros.Visible = true;
             }
+        }
+
+        private void FrmAreaCoordenacao_Load(object sender, EventArgs e)
+        {
+            dgvSolicitacoes.Rows.Add(908170, "Fresa de Topo de Metal Duro Para Desbaste Pesado Em Aco Ø16mm, Com Cobertura de Tialn, ComprimentoTotal de 100 Mm, Aresta de Corte de 34mm, 4 Navalhas Em Helice de 38°, Chanfro de 45° Nas Arestas, Si ", 2, "Material para cursos", "Em análise");
         }
     }
 }

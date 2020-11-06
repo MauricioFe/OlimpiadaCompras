@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.pnlCadastros = new System.Windows.Forms.Panel();
             this.btnCadastroOcupacoes = new System.Windows.Forms.Button();
@@ -39,20 +41,19 @@
             this.btnCadastros = new System.Windows.Forms.Button();
             this.btnRelatorios = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnGrenciarAutorizacao = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvSolicitacoes = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.codProtheus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.pnlMenu.SuspendLayout();
             this.pnlCadastros.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoes)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlMenu
@@ -62,7 +63,6 @@
             this.pnlMenu.Controls.Add(this.btnCadastros);
             this.pnlMenu.Controls.Add(this.btnRelatorios);
             this.pnlMenu.Controls.Add(this.label1);
-            this.pnlMenu.Controls.Add(this.btnGrenciarAutorizacao);
             this.pnlMenu.Location = new System.Drawing.Point(3, 3);
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(301, 605);
@@ -76,7 +76,7 @@
             this.pnlCadastros.Controls.Add(this.btnCadastroUsuarios);
             this.pnlCadastros.Controls.Add(this.btnCadastroEscolas);
             this.pnlCadastros.Controls.Add(this.btnCadastroProdutos);
-            this.pnlCadastros.Location = new System.Drawing.Point(58, 271);
+            this.pnlCadastros.Location = new System.Drawing.Point(58, 211);
             this.pnlCadastros.Name = "pnlCadastros";
             this.pnlCadastros.Size = new System.Drawing.Size(243, 220);
             this.pnlCadastros.TabIndex = 8;
@@ -151,7 +151,7 @@
             // btnCadastros
             // 
             this.btnCadastros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadastros.Location = new System.Drawing.Point(0, 211);
+            this.btnCadastros.Location = new System.Drawing.Point(0, 151);
             this.btnCadastros.Name = "btnCadastros";
             this.btnCadastros.Size = new System.Drawing.Size(301, 62);
             this.btnCadastros.TabIndex = 7;
@@ -162,7 +162,7 @@
             // btnRelatorios
             // 
             this.btnRelatorios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRelatorios.Location = new System.Drawing.Point(0, 150);
+            this.btnRelatorios.Location = new System.Drawing.Point(0, 90);
             this.btnRelatorios.Name = "btnRelatorios";
             this.btnRelatorios.Size = new System.Drawing.Size(301, 62);
             this.btnRelatorios.TabIndex = 6;
@@ -178,29 +178,70 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Logo da FIEMG";
             // 
-            // btnGrenciarAutorizacao
+            // dgvSolicitacoes
             // 
-            this.btnGrenciarAutorizacao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGrenciarAutorizacao.Location = new System.Drawing.Point(0, 89);
-            this.btnGrenciarAutorizacao.Name = "btnGrenciarAutorizacao";
-            this.btnGrenciarAutorizacao.Size = new System.Drawing.Size(301, 62);
-            this.btnGrenciarAutorizacao.TabIndex = 1;
-            this.btnGrenciarAutorizacao.Text = "Gerenciar autorização de compras";
-            this.btnGrenciarAutorizacao.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvSolicitacoes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvSolicitacoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSolicitacoes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codProtheus,
             this.Descricao,
             this.Quantidade,
             this.TipoCompra,
             this.Status});
-            this.dataGridView1.Location = new System.Drawing.Point(310, 92);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(723, 504);
-            this.dataGridView1.TabIndex = 1;
+            this.dgvSolicitacoes.Location = new System.Drawing.Point(310, 92);
+            this.dgvSolicitacoes.Name = "dgvSolicitacoes";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSolicitacoes.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvSolicitacoes.Size = new System.Drawing.Size(723, 516);
+            this.dgvSolicitacoes.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(310, 67);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(160, 22);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Lista de solicitações";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(310, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 22);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Olá Ariele";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(803, 60);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(230, 29);
+            this.textBox1.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(742, 64);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 22);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Filtrar";
             // 
             // codProtheus
             // 
@@ -210,9 +251,11 @@
             // 
             // Descricao
             // 
+            this.Descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Descricao.DefaultCellStyle = dataGridViewCellStyle1;
             this.Descricao.HeaderText = "Descrição do item";
             this.Descricao.Name = "Descricao";
-            this.Descricao.Width = 250;
             // 
             // Quantidade
             // 
@@ -230,40 +273,6 @@
             this.Status.HeaderText = "Status";
             this.Status.Name = "Status";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(310, 67);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(160, 22);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Lista de solicitações";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(310, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 22);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Olá Ariele";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(803, 60);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(230, 29);
-            this.textBox1.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(742, 64);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 22);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Filtrar";
-            // 
             // FrmAreaCoordenacao
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -273,17 +282,18 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvSolicitacoes);
             this.Controls.Add(this.pnlMenu);
             this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmAreaCoordenacao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Área da coordenação";
+            this.Load += new System.EventHandler(this.FrmAreaCoordenacao_Load);
             this.pnlMenu.ResumeLayout(false);
             this.pnlMenu.PerformLayout();
             this.pnlCadastros.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -302,16 +312,15 @@
         private System.Windows.Forms.Button btnCadastros;
         private System.Windows.Forms.Button btnRelatorios;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnGrenciarAutorizacao;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvSolicitacoes;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridViewTextBoxColumn codProtheus;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoCompra;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label4;
     }
 }
