@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 {
-    public partial class FrmCadastrarGrupos : Form
+    public partial class FrmCadastrarEscolas : Form
     {
-        public FrmCadastrarGrupos()
+        public FrmCadastrarEscolas()
         {
             InitializeComponent();
         }

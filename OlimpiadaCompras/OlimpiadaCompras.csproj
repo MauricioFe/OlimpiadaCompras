@@ -71,6 +71,12 @@
     <Compile Include="Telas\Avaliador\FrmTodasSolicitacoes.Designer.cs">
       <DependentUpon>FrmTodasSolicitacoes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Telas\Coordenacao\Cadastros\FrmCadastrarEscolas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Coordenacao\Cadastros\FrmCadastrarEscolas.Designer.cs">
+      <DependentUpon>FrmCadastrarEscolas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\Coordenacao\Cadastros\FrmCadastrarUsuário.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Avaliador\FrmTodasSolicitacoes.resx">
       <DependentUpon>FrmTodasSolicitacoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastrarEscolas.resx">
+      <DependentUpon>FrmCadastrarEscolas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastrarUsuário.resx">
       <DependentUpon>FrmCadastrarUsuário.cs</DependentUpon>

@@ -1,6 +1,6 @@
 ﻿namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 {
-    partial class FrmCadastrarUsuário
+    partial class FrmCadastrarGrupos
     {
         /// <summary>
         /// Required designer variable.
@@ -46,7 +46,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 236);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(680, 245);
+            this.dataGridView1.Size = new System.Drawing.Size(657, 245);
             this.dataGridView1.TabIndex = 0;
             // 
             // label1
@@ -120,7 +120,7 @@
             this.btnCancelar.FlatAppearance.BorderSize = 0;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.ForeColor = System.Drawing.Color.White;
-            this.btnCancelar.Location = new System.Drawing.Point(550, 487);
+            this.btnCancelar.Location = new System.Drawing.Point(528, 487);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(142, 40);
             this.btnCancelar.TabIndex = 25;
@@ -134,7 +134,7 @@
             this.btnEditar.FlatAppearance.BorderSize = 0;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.ForeColor = System.Drawing.Color.White;
-            this.btnEditar.Location = new System.Drawing.Point(402, 487);
+            this.btnEditar.Location = new System.Drawing.Point(380, 487);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(142, 40);
             this.btnEditar.TabIndex = 26;
@@ -143,9 +143,6 @@
             // 
             // FrmCadastrarUsuário
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(706, 545);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnEntrar);
@@ -156,6 +153,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.dataGridView1);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(685, 540);
             this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmCadastrarUsuário";
