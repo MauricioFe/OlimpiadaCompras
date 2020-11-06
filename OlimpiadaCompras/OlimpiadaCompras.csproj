@@ -47,6 +47,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\SolicitacaoCompra.cs" />
+    <Compile Include="Telas\Avaliador\FrmAnexarNotaFiscal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Avaliador\FrmAnexarNotaFiscal.Designer.cs">
+      <DependentUpon>FrmAnexarNotaFiscal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Avaliador\FrmAreaAvaliador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Avaliador\FrmAreaAvaliador.Designer.cs">
+      <DependentUpon>FrmAreaAvaliador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Avaliador\FrmNovaSolicitacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Avaliador\FrmNovaSolicitacao.Designer.cs">
+      <DependentUpon>FrmNovaSolicitacao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\Coordenacao\FrmAreaCoordenacao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +97,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Telas\Avaliador\FrmAnexarNotaFiscal.resx">
+      <DependentUpon>FrmAnexarNotaFiscal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Avaliador\FrmAreaAvaliador.resx">
+      <DependentUpon>FrmAreaAvaliador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Avaliador\FrmNovaSolicitacao.resx">
+      <DependentUpon>FrmNovaSolicitacao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Telas\Coordenacao\FrmEmailAutorizacao.resx">
       <DependentUpon>FrmEmailAutorizacao.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,7 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Telas\Avaliador\" />
+    <Folder Include="Telas\Coordenacao\Cadastros\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

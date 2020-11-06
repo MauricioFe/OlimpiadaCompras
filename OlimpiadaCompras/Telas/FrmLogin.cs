@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OlimpiadaCompras.Telas.Avaliador;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,9 +25,18 @@ namespace OlimpiadaCompras
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            FrmAreaCoordenacao form = new FrmAreaCoordenacao();
-            form.Show();
-            this.Hide();
+            if (txtEmail.Text == "coordenador@email.com")
+            {
+                FrmAreaCoordenacao form = new FrmAreaCoordenacao();
+                form.Show();
+                this.Hide();
+            }
+            else
+            {
+                FrmAreaAvaliador form = new FrmAreaAvaliador();
+                form.Show();
+                this.Hide();
+            }
         }
     }
 }

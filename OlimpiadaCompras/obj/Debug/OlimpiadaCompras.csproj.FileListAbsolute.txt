@@ -12,3 +12,6 @@ C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\Olimp
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmGerenciarSolicitacaoCompra.resources
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmModalSolicitacao.resources
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmEmailAutorizacao.resources
+C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmAreaAvaliador.resources
+C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmNovaSolicitacao.resources
+C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmAnexarNotaFiscal.resources
