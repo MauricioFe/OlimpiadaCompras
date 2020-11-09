@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEmailAutorizacao));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAprovar = new System.Windows.Forms.Button();
             this.btnReprvar = new System.Windows.Forms.Button();
@@ -37,7 +36,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::OlimpiadaCompras.Properties.Resources.Capturar;
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(775, 584);
