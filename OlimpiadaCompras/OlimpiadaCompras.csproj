@@ -137,6 +137,12 @@
     <Compile Include="Telas\Avaliador\FrmEditarUsuarios.Designer.cs">
       <DependentUpon>FrmEditarUsuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Telas\Coordenacao\FrmRelatorios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Coordenacao\FrmRelatorios.Designer.cs">
+      <DependentUpon>FrmRelatorios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +190,9 @@
     <EmbeddedResource Include="Telas\Coordenacao\FrmModalSolicitacao.resx">
       <DependentUpon>FrmModalSolicitacao.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Coordenacao\FrmRelatorios.resx">
+      <DependentUpon>FrmRelatorios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Telas\Form1.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Avaliador\FrmEditarUsuarios.resx">
       <DependentUpon>FrmEditarUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -217,16 +229,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\olimpiada-do-conhecimento.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\senai_logo.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\olimpiada-do-conhecimento.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

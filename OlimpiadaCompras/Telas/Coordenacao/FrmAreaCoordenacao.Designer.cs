@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.pnlCadastros = new System.Windows.Forms.Panel();
             this.btnCadastroOcupacoes = new System.Windows.Forms.Button();
@@ -50,6 +50,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.linkSair = new System.Windows.Forms.LinkLabel();
             this.pnlMenu.SuspendLayout();
             this.pnlCadastros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoes)).BeginInit();
@@ -173,6 +174,7 @@
             this.btnRelatorios.TabIndex = 6;
             this.btnRelatorios.Text = "Relatórios";
             this.btnRelatorios.UseVisualStyleBackColor = true;
+            this.btnRelatorios.Click += new System.EventHandler(this.btnRelatorios_Click);
             // 
             // label1
             // 
@@ -210,8 +212,8 @@
             // Descricao
             // 
             this.Descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Descricao.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Descricao.DefaultCellStyle = dataGridViewCellStyle2;
             this.Descricao.HeaderText = "Descrição do item";
             this.Descricao.Name = "Descricao";
             // 
@@ -271,11 +273,23 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "Filtrar";
             // 
+            // linkSair
+            // 
+            this.linkSair.AutoSize = true;
+            this.linkSair.Location = new System.Drawing.Point(986, 9);
+            this.linkSair.Name = "linkSair";
+            this.linkSair.Size = new System.Drawing.Size(39, 22);
+            this.linkSair.TabIndex = 6;
+            this.linkSair.TabStop = true;
+            this.linkSair.Text = "Sair";
+            this.linkSair.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkSair_LinkClicked);
+            // 
             // FrmAreaCoordenacao
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1037, 608);
+            this.Controls.Add(this.linkSair);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
@@ -287,6 +301,7 @@
             this.Name = "FrmAreaCoordenacao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Área da coordenação";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmAreaCoordenacao_FormClosed);
             this.Load += new System.EventHandler(this.FrmAreaCoordenacao_Load);
             this.pnlMenu.ResumeLayout(false);
             this.pnlMenu.PerformLayout();
@@ -320,5 +335,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoCompra;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
+        private System.Windows.Forms.LinkLabel linkSair;
     }
 }

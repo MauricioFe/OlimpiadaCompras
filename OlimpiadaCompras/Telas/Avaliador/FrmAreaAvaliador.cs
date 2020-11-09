@@ -55,5 +55,17 @@ namespace OlimpiadaCompras.Telas.Avaliador
             FrmEditarUsuarios form = new FrmEditarUsuarios();
             form.ShowDialog();
         }
+
+        private void linkSair_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FrmLogin form = new FrmLogin();
+            form.Show();
+            this.Dispose();
+        }
+
+        private void FrmAreaAvaliador_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

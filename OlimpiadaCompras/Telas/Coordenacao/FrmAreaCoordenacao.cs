@@ -79,5 +79,24 @@ namespace OlimpiadaCompras
             FrmCadastroEscolas form = new FrmCadastroEscolas();
             form.ShowDialog();
         }
+
+        private void btnRelatorios_Click(object sender, EventArgs e)
+        {
+            FrmRelatorios form = new FrmRelatorios();
+            form.ShowDialog();
+        }
+
+        private void linkSair_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FrmLogin form = new FrmLogin();
+            form.Show();
+            this.Dispose();
+
+        }
+
+        private void FrmAreaCoordenacao_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
