@@ -83,6 +83,24 @@
     <Compile Include="Telas\Coordenacao\Cadastros\FrmCadastrarUsuário.Designer.cs">
       <DependentUpon>FrmCadastrarUsuário.cs</DependentUpon>
     </Compile>
+    <Compile Include="Telas\Coordenacao\Cadastros\FrmCadastroGrupos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Coordenacao\Cadastros\FrmCadastroGrupos.Designer.cs">
+      <DependentUpon>FrmCadastroGrupos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Coordenacao\Cadastros\FrmCadastroProdutos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Coordenacao\Cadastros\FrmCadastroProdutos.Designer.cs">
+      <DependentUpon>FrmCadastroProdutos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Coordenacao\Cadastros\FrmCadastroTipoCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Coordenacao\Cadastros\FrmCadastroTipoCompra.Designer.cs">
+      <DependentUpon>FrmCadastroTipoCompra.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\Coordenacao\FrmAreaCoordenacao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +156,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastrarUsuário.resx">
       <DependentUpon>FrmCadastrarUsuário.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastroGrupos.resx">
+      <DependentUpon>FrmCadastroGrupos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastroProdutos.resx">
+      <DependentUpon>FrmCadastroProdutos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Coordenacao\FrmEmailAutorizacao.resx">
       <DependentUpon>FrmEmailAutorizacao.cs</DependentUpon>

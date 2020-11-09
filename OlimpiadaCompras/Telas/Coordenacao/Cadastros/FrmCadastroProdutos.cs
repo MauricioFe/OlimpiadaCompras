@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 {
-    public partial class FrmCadastrarEscolas : Form
+    public partial class FrmCadastroProdutos : Form
     {
-        public FrmCadastrarEscolas()
+        public FrmCadastroProdutos()
         {
             InitializeComponent();
-        }
-
-        private void FrmCadastrarEscolas_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
