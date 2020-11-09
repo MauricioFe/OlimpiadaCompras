@@ -32,6 +32,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'bacon|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\bacon\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -163,42 +174,6 @@
     <EmbeddedResource Include="Telas\Avaliador\FrmTodasSolicitacoes.resx">
       <DependentUpon>FrmTodasSolicitacoes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastroEscolas.resx">
-      <DependentUpon>FrmCadastroEscolas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastroUsuarios.resx">
-      <DependentUpon>FrmCadastroUsuarios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastroGrupos.resx">
-      <DependentUpon>FrmCadastroGrupos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastroOcupacoes.resx">
-      <DependentUpon>FrmCadastroOcupacoes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastroProdutos.resx">
-      <DependentUpon>FrmCadastroProdutos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastroTipoCompra.resx">
-      <DependentUpon>FrmCadastroTipoCompra.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Coordenacao\FrmEmailAutorizacao.resx">
-      <DependentUpon>FrmEmailAutorizacao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Coordenacao\FrmGerenciarSolicitacaoCompra.resx">
-      <DependentUpon>FrmGerenciarSolicitacaoCompra.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Coordenacao\FrmModalSolicitacao.resx">
-      <DependentUpon>FrmModalSolicitacao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Coordenacao\FrmRelatorios.resx">
-      <DependentUpon>FrmRelatorios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Form1.resx">
-      <DependentUpon>FrmLogin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Coordenacao\FrmAreaCoordenacao.resx">
-      <DependentUpon>FrmAreaCoordenacao.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -206,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Avaliador\FrmEditarUsuarios.resx">
       <DependentUpon>FrmEditarUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Coordenacao\FrmGerenciarSolicitacaoCompra.resx">
+      <DependentUpon>FrmGerenciarSolicitacaoCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>

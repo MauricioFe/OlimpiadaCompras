@@ -74,7 +74,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.orcamento = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox36 = new System.Windows.Forms.TextBox();
@@ -127,7 +127,7 @@
             this.produto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.orcamento.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -137,7 +137,7 @@
             // 
             this.tabControl1.Controls.Add(this.dadosGerais);
             this.tabControl1.Controls.Add(this.produto);
-            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.orcamento);
             this.tabControl1.Location = new System.Drawing.Point(1, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -591,17 +591,17 @@
             this.textBox2.Size = new System.Drawing.Size(716, 78);
             this.textBox2.TabIndex = 2;
             // 
-            // tabPage3
+            // orcamento
             // 
-            this.tabPage3.Controls.Add(this.groupBox4);
-            this.tabPage3.Controls.Add(this.groupBox5);
-            this.tabPage3.Controls.Add(this.groupBox6);
-            this.tabPage3.Location = new System.Drawing.Point(4, 31);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1073, 514);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Orçamentos";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.orcamento.Controls.Add(this.groupBox4);
+            this.orcamento.Controls.Add(this.groupBox5);
+            this.orcamento.Controls.Add(this.groupBox6);
+            this.orcamento.Location = new System.Drawing.Point(4, 31);
+            this.orcamento.Name = "orcamento";
+            this.orcamento.Size = new System.Drawing.Size(1073, 514);
+            this.orcamento.TabIndex = 2;
+            this.orcamento.Text = "Orçamentos";
+            this.orcamento.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
@@ -1003,6 +1003,7 @@
             this.btnSolicitarAlteracao.TabIndex = 37;
             this.btnSolicitarAlteracao.Text = "Solicitar alteração";
             this.btnSolicitarAlteracao.UseVisualStyleBackColor = false;
+            this.btnSolicitarAlteracao.Click += new System.EventHandler(this.btnSolicitarAlteracao_Click);
             // 
             // btnEditar
             // 
@@ -1017,6 +1018,7 @@
             this.btnEditar.TabIndex = 36;
             this.btnEditar.Text = "Editar pedido";
             this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnAprovar
             // 
@@ -1031,6 +1033,7 @@
             this.btnAprovar.TabIndex = 35;
             this.btnAprovar.Text = "Aprovar pedido";
             this.btnAprovar.UseVisualStyleBackColor = false;
+            this.btnAprovar.Click += new System.EventHandler(this.btnAprovar_Click);
             // 
             // btnReprvar
             // 
@@ -1045,6 +1048,7 @@
             this.btnReprvar.TabIndex = 34;
             this.btnReprvar.Text = "Reprovar pedido";
             this.btnReprvar.UseVisualStyleBackColor = false;
+            this.btnReprvar.Click += new System.EventHandler(this.btnReprvar_Click);
             // 
             // FrmGerenciarSolicitacaoCompra
             // 
@@ -1073,7 +1077,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
+            this.orcamento.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -1132,7 +1136,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage orcamento;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox36;

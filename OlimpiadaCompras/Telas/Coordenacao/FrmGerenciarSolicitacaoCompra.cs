@@ -42,27 +42,34 @@ namespace OlimpiadaCompras.Telas.Coordenacao
 
         private void HabilitandoEdicao()
         {
-            foreach (var item in this.Controls)
+            foreach (var item in tabControl1.Controls)
             {
-                if (item.GetType() == typeof(GroupBox))
+
+                if (item.GetType() == typeof(TabPage))
                 {
-                    GroupBox box = (GroupBox)item;
-                    foreach (var group in box.Controls)
+                    TabPage tabPage = (TabPage)item;
+                    foreach (var tab in tabPage.Controls)
                     {
-                        if (group.GetType() == typeof(TextBox))
+                        if (tab.GetType() == typeof(GroupBox))
                         {
-                            var txt = (TextBox)group;
-                            txt.Enabled = true;
+                            GroupBox box = (GroupBox)tab;
+                            foreach (var group in box.Controls)
+                            {
+                                if (group.GetType() == typeof(TextBox))
+                                {
+                                    var txt = (TextBox)group;
+                                    txt.Enabled = true;
 
 
-                        }
-                        if (group.GetType() == typeof(ComboBox))
-                        {
-                            var combo = (ComboBox)group;
-                            combo.Enabled = true;
+                                }
+                                if (group.GetType() == typeof(ComboBox))
+                                {
+                                    var combo = (ComboBox)group;
+                                    combo.Enabled = true;
+                                }
+                            }
                         }
                     }
-
                 }
             }
             button1.Visible = true;

@@ -67,5 +67,11 @@ namespace OlimpiadaCompras.Telas.Avaliador
         {
             Application.Exit();
         }
+
+        private void btnVisualizaTodas_Click(object sender, EventArgs e)
+        {
+            FrmTodasSolicitacoes form = new FrmTodasSolicitacoes();
+            form.ShowDialog();
+        }
     }
 }
