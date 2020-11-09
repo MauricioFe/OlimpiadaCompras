@@ -1,6 +1,6 @@
 ﻿namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 {
-    partial class FrmCadastrarEscolas
+    partial class FrmCadastroEscolas
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,6 +47,8 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnAdicionar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtSenha = new System.Windows.Forms.TextBox();
@@ -57,8 +59,6 @@
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Remove = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.nomeescola = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Logradouro = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -140,7 +140,6 @@
             // 
             // comboBox5
             // 
-            this.comboBox5.Enabled = false;
             this.comboBox5.FormattingEnabled = true;
             this.comboBox5.Location = new System.Drawing.Point(683, 96);
             this.comboBox5.Name = "comboBox5";
@@ -158,7 +157,6 @@
             // 
             // comboBox4
             // 
-            this.comboBox4.Enabled = false;
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Location = new System.Drawing.Point(415, 96);
             this.comboBox4.Name = "comboBox4";
@@ -167,7 +165,6 @@
             // 
             // textBox7
             // 
-            this.textBox7.Enabled = false;
             this.textBox7.Location = new System.Drawing.Point(260, 97);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(149, 29);
@@ -184,7 +181,6 @@
             // 
             // textBox6
             // 
-            this.textBox6.Enabled = false;
             this.textBox6.Location = new System.Drawing.Point(17, 97);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(237, 29);
@@ -201,7 +197,6 @@
             // 
             // textBox5
             // 
-            this.textBox5.Enabled = false;
             this.textBox5.Location = new System.Drawing.Point(441, 40);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(150, 29);
@@ -218,7 +213,6 @@
             // 
             // textBox4
             // 
-            this.textBox4.Enabled = false;
             this.textBox4.Location = new System.Drawing.Point(597, 40);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(286, 29);
@@ -249,6 +243,23 @@
             this.groupBox1.TabIndex = 50;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados dos responsáveis";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(548, 30);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 22);
+            this.label4.TabIndex = 42;
+            this.label4.Text = "Cargo";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(552, 55);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(163, 29);
+            this.textBox2.TabIndex = 41;
             // 
             // btnAdicionar
             // 
@@ -315,8 +326,8 @@
             // 
             // responsavel
             // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.responsavel.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.responsavel.DefaultCellStyle = dataGridViewCellStyle1;
             this.responsavel.HeaderText = "Nome responsável";
             this.responsavel.Name = "responsavel";
             // 
@@ -334,23 +345,6 @@
             // 
             this.Remove.HeaderText = "Remover da lista";
             this.Remove.Name = "Remove";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(548, 30);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 22);
-            this.label4.TabIndex = 42;
-            this.label4.Text = "Cargo";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(552, 55);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(163, 29);
-            this.textBox2.TabIndex = 41;
             // 
             // dataGridView2
             // 
@@ -412,7 +406,7 @@
             this.Responsável.Name = "Responsável";
             this.Responsável.Width = 130;
             // 
-            // FrmCadastrarEscolas
+            // FrmCadastroEscolas
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
@@ -438,7 +432,7 @@
             this.Controls.Add(this.textBox1);
             this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "FrmCadastrarEscolas";
+            this.Name = "FrmCadastroEscolas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmCadastrarEscolas";
             this.Load += new System.EventHandler(this.FrmCadastrarEscolas_Load);

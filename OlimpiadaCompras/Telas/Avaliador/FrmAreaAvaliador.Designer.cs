@@ -87,6 +87,7 @@
             this.label3.Size = new System.Drawing.Size(143, 22);
             this.label3.TabIndex = 8;
             this.label3.Text = "Olá, Daniel Carlos";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 

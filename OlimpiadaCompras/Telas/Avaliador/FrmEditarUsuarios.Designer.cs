@@ -1,6 +1,6 @@
 ﻿namespace OlimpiadaCompras.Telas
 {
-    partial class FrmCadastroUsuarios
+    partial class FrmEditarUsuarios
     {
         /// <summary>
         /// Required designer variable.
@@ -116,7 +116,7 @@
             this.textBox1.Size = new System.Drawing.Size(390, 33);
             this.textBox1.TabIndex = 16;
             // 
-            // FrmCadastroUsuarios
+            // FrmEditarUsuarios
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
@@ -131,9 +131,9 @@
             this.Controls.Add(this.txtEmail);
             this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "FrmCadastroUsuarios";
+            this.Name = "FrmEditarUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastro de Usuarios";
+            this.Text = "Editar Usuarios";
             this.ResumeLayout(false);
             this.PerformLayout();
 

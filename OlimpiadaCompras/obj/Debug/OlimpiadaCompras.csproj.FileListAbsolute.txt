@@ -16,5 +16,10 @@ C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\Olimp
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmNovaSolicitacao.resources
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmAnexarNotaFiscal.resources
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmTodasSolicitacoes.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastrarUsuário.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.FrmCadastroUsuarios.resources
+C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroEscolas.resources
+C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroGrupos.resources
+C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroOcupacoes.resources
+C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroProdutos.resources
+C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroTipoCompra.resources
+C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroUsuarios.resources
+C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.FrmEditarUsuarios.resources

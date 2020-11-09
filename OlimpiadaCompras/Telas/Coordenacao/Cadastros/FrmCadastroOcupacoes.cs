@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OlimpiadaCompras.Telas
+namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 {
-    public partial class FrmEditarUsuarios : Form
+    public partial class FrmCadastroOcupacoes : Form
     {
-        public FrmEditarUsuarios()
+        public FrmCadastroOcupacoes()
         {
             InitializeComponent();
+        }
+
+        private void FrmCadastroOcupacoes_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

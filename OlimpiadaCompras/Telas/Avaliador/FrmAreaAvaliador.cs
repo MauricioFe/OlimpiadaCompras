@@ -49,5 +49,11 @@ namespace OlimpiadaCompras.Telas.Avaliador
             FrmNovaSolicitacao frm = new FrmNovaSolicitacao();
             frm.ShowDialog();
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            FrmEditarUsuarios form = new FrmEditarUsuarios();
+            form.ShowDialog();
+        }
     }
 }

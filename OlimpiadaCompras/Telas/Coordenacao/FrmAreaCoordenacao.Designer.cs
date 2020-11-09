@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.pnlCadastros = new System.Windows.Forms.Panel();
             this.btnCadastroOcupacoes = new System.Windows.Forms.Button();
@@ -42,15 +41,15 @@
             this.btnRelatorios = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvSolicitacoes = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.codProtheus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.pnlMenu.SuspendLayout();
             this.pnlCadastros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoes)).BeginInit();
@@ -92,6 +91,7 @@
             this.btnCadastroOcupacoes.TabIndex = 10;
             this.btnCadastroOcupacoes.Text = "Cadastro de Ocupações";
             this.btnCadastroOcupacoes.UseVisualStyleBackColor = true;
+            this.btnCadastroOcupacoes.Click += new System.EventHandler(this.btnCadastroOcupacoes_Click);
             // 
             // btnCadastroGrupos
             // 
@@ -103,6 +103,7 @@
             this.btnCadastroGrupos.TabIndex = 9;
             this.btnCadastroGrupos.Text = "Cadastro de Grupos";
             this.btnCadastroGrupos.UseVisualStyleBackColor = true;
+            this.btnCadastroGrupos.Click += new System.EventHandler(this.btnCadastroGrupos_Click);
             // 
             // btnCadastroTipoCompra
             // 
@@ -114,6 +115,7 @@
             this.btnCadastroTipoCompra.TabIndex = 8;
             this.btnCadastroTipoCompra.Text = "Cadastro de Tipo de compra";
             this.btnCadastroTipoCompra.UseVisualStyleBackColor = true;
+            this.btnCadastroTipoCompra.Click += new System.EventHandler(this.btnCadastroTipoCompra_Click);
             // 
             // btnCadastroUsuarios
             // 
@@ -125,6 +127,7 @@
             this.btnCadastroUsuarios.TabIndex = 7;
             this.btnCadastroUsuarios.Text = "Cadastro de usuários";
             this.btnCadastroUsuarios.UseVisualStyleBackColor = true;
+            this.btnCadastroUsuarios.Click += new System.EventHandler(this.btnCadastroUsuarios_Click);
             // 
             // btnCadastroEscolas
             // 
@@ -136,6 +139,7 @@
             this.btnCadastroEscolas.TabIndex = 6;
             this.btnCadastroEscolas.Text = "Cadastro de Escolas";
             this.btnCadastroEscolas.UseVisualStyleBackColor = true;
+            this.btnCadastroEscolas.Click += new System.EventHandler(this.btnCadastroEscolas_Click);
             // 
             // btnCadastroProdutos
             // 
@@ -147,6 +151,7 @@
             this.btnCadastroProdutos.TabIndex = 5;
             this.btnCadastroProdutos.Text = "Cadastro de Produtos";
             this.btnCadastroProdutos.UseVisualStyleBackColor = true;
+            this.btnCadastroProdutos.Click += new System.EventHandler(this.btnCadastroProdutos_Click);
             // 
             // btnCadastros
             // 
@@ -192,17 +197,39 @@
             this.Status});
             this.dgvSolicitacoes.Location = new System.Drawing.Point(310, 92);
             this.dgvSolicitacoes.Name = "dgvSolicitacoes";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSolicitacoes.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvSolicitacoes.Size = new System.Drawing.Size(723, 516);
             this.dgvSolicitacoes.TabIndex = 1;
             this.dgvSolicitacoes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSolicitacoes_CellClick);
+            // 
+            // codProtheus
+            // 
+            this.codProtheus.HeaderText = "Código do protheus";
+            this.codProtheus.Name = "codProtheus";
+            this.codProtheus.Width = 150;
+            // 
+            // Descricao
+            // 
+            this.Descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Descricao.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Descricao.HeaderText = "Descrição do item";
+            this.Descricao.Name = "Descricao";
+            // 
+            // Quantidade
+            // 
+            this.Quantidade.HeaderText = "Quantidade";
+            this.Quantidade.Name = "Quantidade";
+            this.Quantidade.Width = 75;
+            // 
+            // TipoCompra
+            // 
+            this.TipoCompra.HeaderText = "Tipo de Compra";
+            this.TipoCompra.Name = "TipoCompra";
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
             // 
             // label2
             // 
@@ -243,36 +270,6 @@
             this.label4.Size = new System.Drawing.Size(55, 22);
             this.label4.TabIndex = 5;
             this.label4.Text = "Filtrar";
-            // 
-            // codProtheus
-            // 
-            this.codProtheus.HeaderText = "Código do protheus";
-            this.codProtheus.Name = "codProtheus";
-            this.codProtheus.Width = 150;
-            // 
-            // Descricao
-            // 
-            this.Descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Descricao.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Descricao.HeaderText = "Descrição do item";
-            this.Descricao.Name = "Descricao";
-            // 
-            // Quantidade
-            // 
-            this.Quantidade.HeaderText = "Quantidade";
-            this.Quantidade.Name = "Quantidade";
-            this.Quantidade.Width = 75;
-            // 
-            // TipoCompra
-            // 
-            this.TipoCompra.HeaderText = "Tipo de Compra";
-            this.TipoCompra.Name = "TipoCompra";
-            // 
-            // Status
-            // 
-            this.Status.HeaderText = "Status";
-            this.Status.Name = "Status";
             // 
             // FrmAreaCoordenacao
             // 
