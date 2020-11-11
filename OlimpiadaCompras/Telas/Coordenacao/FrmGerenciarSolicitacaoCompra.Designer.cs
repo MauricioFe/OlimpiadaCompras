@@ -119,6 +119,12 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnAprovar = new System.Windows.Forms.Button();
             this.btnReprvar = new System.Windows.Forms.Button();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.textBox22 = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.dadosGerais.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -131,6 +137,8 @@
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -455,7 +463,7 @@
             this.groupBox1.Size = new System.Drawing.Size(743, 312);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Dados do Produto";
+            this.groupBox1.Text = "Dados do Produto no orçamento";
             // 
             // button5
             // 
@@ -596,6 +604,7 @@
             this.orcamento.Controls.Add(this.groupBox4);
             this.orcamento.Controls.Add(this.groupBox5);
             this.orcamento.Controls.Add(this.groupBox6);
+            this.orcamento.Controls.Add(this.groupBox7);
             this.orcamento.Location = new System.Drawing.Point(4, 31);
             this.orcamento.Name = "orcamento";
             this.orcamento.Size = new System.Drawing.Size(1073, 514);
@@ -1050,6 +1059,57 @@
             this.btnReprvar.UseVisualStyleBackColor = false;
             this.btnReprvar.Click += new System.EventHandler(this.btnReprvar_Click);
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.textBox22);
+            this.groupBox7.Controls.Add(this.label27);
+            this.groupBox7.Controls.Add(this.dataGridView3);
+            this.groupBox7.Location = new System.Drawing.Point(180, 271);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(682, 217);
+            this.groupBox7.TabIndex = 32;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Média de preços";
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2});
+            this.dataGridView3.Location = new System.Drawing.Point(6, 28);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(668, 146);
+            this.dataGridView3.TabIndex = 0;
+            // 
+            // textBox22
+            // 
+            this.textBox22.Enabled = false;
+            this.textBox22.Location = new System.Drawing.Point(550, 180);
+            this.textBox22.Name = "textBox22";
+            this.textBox22.Size = new System.Drawing.Size(124, 29);
+            this.textBox22.TabIndex = 22;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(455, 183);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(89, 22);
+            this.label27.TabIndex = 23;
+            this.label27.Text = "Valor Final";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Unitário";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Total";
+            this.Column2.Name = "Column2";
+            // 
             // FrmGerenciarSolicitacaoCompra
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1084,6 +1144,9 @@
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1181,5 +1244,11 @@
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnAprovar;
         private System.Windows.Forms.Button btnReprvar;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.TextBox textBox22;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }

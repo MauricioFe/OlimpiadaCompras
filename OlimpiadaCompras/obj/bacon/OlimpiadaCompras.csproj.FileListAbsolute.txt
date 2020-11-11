@@ -14,3 +14,4 @@ C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\Olimp
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\bacon\OlimpiadaCompras.pdb
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\bacon\OlimpiadaCompras.Telas.Coordenacao.FrmGerenciarSolicitacaoCompra.resources
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\bacon\OlimpiadaCompras.Telas.Coordenacao.FrmEmailAutorizacao.resources
+C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\bacon\OlimpiadaCompras.csprojAssemblyReference.cache
