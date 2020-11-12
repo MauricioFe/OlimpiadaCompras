@@ -15,3 +15,20 @@ C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\Olimp
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.CoreCompileInputs.cache
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.exe
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.pdb
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.exe.config
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.exe
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.pdb
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csprojAssemblyReference.cache
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmAnexarNotaFiscal.resources
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmAreaAvaliador.resources
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmNovaSolicitacao.resources
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmTodasSolicitacoes.resources
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Properties.Resources.resources
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.FrmEditarUsuarios.resources
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmEmailAutorizacao.resources
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmGerenciarSolicitacaoCompra.resources
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.FrmLogin.resources
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.GenerateResource.cache
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.CoreCompileInputs.cache
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.exe
+C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.pdb
