@@ -182,6 +182,9 @@
     <EmbeddedResource Include="Telas\Avaliador\FrmEditarUsuarios.resx">
       <DependentUpon>FrmEditarUsuarios.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Coordenacao\FrmAreaCoordenacao.resx">
+      <DependentUpon>FrmAreaCoordenacao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Telas\Coordenacao\FrmEmailAutorizacao.resx">
       <DependentUpon>FrmEmailAutorizacao.cs</DependentUpon>
     </EmbeddedResource>

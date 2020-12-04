@@ -35,8 +35,8 @@
             this.dgvSolicitacoes = new System.Windows.Forms.DataGridView();
             this.codProtheus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ocupacao = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoes)).BeginInit();
             this.SuspendLayout();
@@ -81,17 +81,17 @@
             this.dgvSolicitacoes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codProtheus,
             this.Descricao,
-            this.Quantidade,
             this.TipoCompra,
+            this.ocupacao,
             this.Status});
-            this.dgvSolicitacoes.Location = new System.Drawing.Point(12, 54);
+            this.dgvSolicitacoes.Location = new System.Drawing.Point(16, 67);
             this.dgvSolicitacoes.Name = "dgvSolicitacoes";
-            this.dgvSolicitacoes.Size = new System.Drawing.Size(926, 402);
-            this.dgvSolicitacoes.TabIndex = 6;
+            this.dgvSolicitacoes.Size = new System.Drawing.Size(922, 389);
+            this.dgvSolicitacoes.TabIndex = 10;
             // 
             // codProtheus
             // 
-            this.codProtheus.HeaderText = "Código do protheus";
+            this.codProtheus.HeaderText = "Codigo da solicitação";
             this.codProtheus.Name = "codProtheus";
             this.codProtheus.Width = 150;
             // 
@@ -100,18 +100,18 @@
             this.Descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Descricao.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Descricao.HeaderText = "Descrição do item";
+            this.Descricao.HeaderText = "Data da solicitação";
             this.Descricao.Name = "Descricao";
-            // 
-            // Quantidade
-            // 
-            this.Quantidade.HeaderText = "Quantidade";
-            this.Quantidade.Name = "Quantidade";
             // 
             // TipoCompra
             // 
-            this.TipoCompra.HeaderText = "Tipo de Compra";
+            this.TipoCompra.HeaderText = "Usuário solicitante";
             this.TipoCompra.Name = "TipoCompra";
+            // 
+            // ocupacao
+            // 
+            this.ocupacao.HeaderText = "Ocupação";
+            this.ocupacao.Name = "ocupacao";
             // 
             // Status
             // 
@@ -123,10 +123,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(950, 468);
+            this.Controls.Add(this.dgvSolicitacoes);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dgvSolicitacoes);
             this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmTodasSolicitacoes";
@@ -146,8 +146,8 @@
         private System.Windows.Forms.DataGridView dgvSolicitacoes;
         private System.Windows.Forms.DataGridViewTextBoxColumn codProtheus;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoCompra;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ocupacao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     }
 }

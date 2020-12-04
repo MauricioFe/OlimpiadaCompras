@@ -39,18 +39,18 @@
             this.btnCadastroProdutos = new System.Windows.Forms.Button();
             this.btnCadastros = new System.Windows.Forms.Button();
             this.btnRelatorios = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.dgvSolicitacoes = new System.Windows.Forms.DataGridView();
-            this.codProtheus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.linkSair = new System.Windows.Forms.LinkLabel();
+            this.codProtheus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ocupacao = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             this.pnlMenu.SuspendLayout();
             this.pnlCadastros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoes)).BeginInit();
@@ -176,15 +176,6 @@
             this.btnRelatorios.UseVisualStyleBackColor = true;
             this.btnRelatorios.Click += new System.EventHandler(this.btnRelatorios_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(93, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 22);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Logo da FIEMG";
-            // 
             // dgvSolicitacoes
             // 
             this.dgvSolicitacoes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -194,44 +185,14 @@
             this.dgvSolicitacoes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codProtheus,
             this.Descricao,
-            this.Quantidade,
             this.TipoCompra,
+            this.ocupacao,
             this.Status});
             this.dgvSolicitacoes.Location = new System.Drawing.Point(310, 92);
             this.dgvSolicitacoes.Name = "dgvSolicitacoes";
             this.dgvSolicitacoes.Size = new System.Drawing.Size(723, 516);
             this.dgvSolicitacoes.TabIndex = 1;
             this.dgvSolicitacoes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSolicitacoes_CellClick);
-            // 
-            // codProtheus
-            // 
-            this.codProtheus.HeaderText = "Código do protheus";
-            this.codProtheus.Name = "codProtheus";
-            this.codProtheus.Width = 150;
-            // 
-            // Descricao
-            // 
-            this.Descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Descricao.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Descricao.HeaderText = "Descrição do item";
-            this.Descricao.Name = "Descricao";
-            // 
-            // Quantidade
-            // 
-            this.Quantidade.HeaderText = "Quantidade";
-            this.Quantidade.Name = "Quantidade";
-            this.Quantidade.Width = 75;
-            // 
-            // TipoCompra
-            // 
-            this.TipoCompra.HeaderText = "Tipo de Compra";
-            this.TipoCompra.Name = "TipoCompra";
-            // 
-            // Status
-            // 
-            this.Status.HeaderText = "Status";
-            this.Status.Name = "Status";
             // 
             // label2
             // 
@@ -284,6 +245,44 @@
             this.linkSair.Text = "Sair";
             this.linkSair.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkSair_LinkClicked);
             // 
+            // codProtheus
+            // 
+            this.codProtheus.HeaderText = "Codigo da solicitação";
+            this.codProtheus.Name = "codProtheus";
+            this.codProtheus.Width = 150;
+            // 
+            // Descricao
+            // 
+            this.Descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Descricao.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Descricao.HeaderText = "Data da solicitação";
+            this.Descricao.Name = "Descricao";
+            // 
+            // TipoCompra
+            // 
+            this.TipoCompra.HeaderText = "Usuário solicitante";
+            this.TipoCompra.Name = "TipoCompra";
+            // 
+            // ocupacao
+            // 
+            this.ocupacao.HeaderText = "Ocupação";
+            this.ocupacao.Name = "ocupacao";
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(93, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 22);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Brasão do estado";
+            // 
             // FrmAreaCoordenacao
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -324,17 +323,17 @@
         private System.Windows.Forms.Button btnCadastroProdutos;
         private System.Windows.Forms.Button btnCadastros;
         private System.Windows.Forms.Button btnRelatorios;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvSolicitacoes;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.LinkLabel linkSair;
         private System.Windows.Forms.DataGridViewTextBoxColumn codProtheus;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoCompra;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ocupacao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.LinkLabel linkSair;
+        private System.Windows.Forms.Label label1;
     }
 }
