@@ -75,5 +75,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             button1.Visible = true;
             btnSolicitarAlteracao.Location = new Point(btnSolicitarAlteracao.Location.X + 173, btnSolicitarAlteracao.Location.Y);
         }
+
+        private void label37_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
