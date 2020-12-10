@@ -57,7 +57,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Acompanhamento.cs" />
+    <Compile Include="Models\Escola.cs" />
+    <Compile Include="Models\Funcao.cs" />
+    <Compile Include="Models\Grupo.cs" />
+    <Compile Include="Models\Log.cs" />
+    <Compile Include="Models\Ocupacao.cs" />
+    <Compile Include="Models\OcupacaoSolicitacaoCompra.cs" />
+    <Compile Include="Models\Orcamento.cs" />
+    <Compile Include="Models\Produto.cs" />
+    <Compile Include="Models\ProdutoPedidoOrcamento.cs" />
+    <Compile Include="Models\Responsavel.cs" />
     <Compile Include="Models\SolicitacaoCompra.cs" />
+    <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\TipoCompra.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Telas\Avaliador\FrmAnexarNotaFiscal.cs">
       <SubType>Form</SubType>
     </Compile>
