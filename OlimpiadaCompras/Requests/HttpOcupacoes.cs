@@ -9,23 +9,23 @@ using System.Web.Script.Serialization;
 
 namespace OlimpiadaCompras.Requests
 {
-    public abstract class HttpProdutos
+    public abstract class HttpOcupacaos
     {
-        public static async Task<List<Produto>> GetAllProdutos(string token)
+        public static async Task<List<Ocupacao>> GetAllOcupacaos(string token)
         {
-            List<Produto> produtos = new List<Produto>();
+            List<Ocupacao> ocupacoes = new List<Ocupacao>();
             try
             {
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/produtos");
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/ocupacoes");
                     if (response.IsSuccessStatusCode)
                     {
 
-                        var produtosString = await response.Content.ReadAsStringAsync();
-                        produtos = new JavaScriptSerializer().Deserialize<List<Produto>>(produtosString);
-                        return produtos;
+                        var ocupacoesString = await response.Content.ReadAsStringAsync();
+                        ocupacoes = new JavaScriptSerializer().Deserialize<List<Ocupacao>>(ocupacoesString);
+                        return ocupacoes;
                     }
                     return null;
                 }
@@ -39,20 +39,20 @@ namespace OlimpiadaCompras.Requests
 
         }
 
-        public static async Task<Produto> GetProdutoById(long id, string token)
+        public static async Task<Ocupacao> GetOcupacaoById(long id, string token)
         {
-            Produto produto = new Produto();
+            Ocupacao ocupacao = new Ocupacao();
             try
             {
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/produtos/{id}");
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/ocupacoes/{id}");
                     if (response.IsSuccessStatusCode)
                     {
-                        var produtosString = await response.Content.ReadAsStringAsync();
-                        produto = new JavaScriptSerializer().Deserialize<Produto>(produtosString);
-                        return produto;
+                        var ocupacoesString = await response.Content.ReadAsStringAsync();
+                        ocupacao = new JavaScriptSerializer().Deserialize<Ocupacao>(ocupacoesString);
+                        return ocupacao;
                     }
                     return null;
                 }
@@ -64,20 +64,20 @@ namespace OlimpiadaCompras.Requests
                 return null;
             }
         }
-        public static async Task<List<Produto>> GetProdutosBySearch(string filtro, string token)
+        public static async Task<List<Ocupacao>> GetOcupacaosBySearch(string filtro, string token)
         {
-            List<Produto> produtos = new List<Produto>();
+            List<Ocupacao> ocupacoes = new List<Ocupacao>();
             try
             {
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/produtos/search?search={filtro}");
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/ocupacoes/search?search={filtro}");
                     if (response.IsSuccessStatusCode)
                     {
-                        var produtosString = await response.Content.ReadAsStringAsync();
-                        produtos = new JavaScriptSerializer().Deserialize<List<Produto>>(produtosString);
-                        return produtos;
+                        var ocupacoesString = await response.Content.ReadAsStringAsync();
+                        ocupacoes = new JavaScriptSerializer().Deserialize<List<Ocupacao>>(ocupacoesString);
+                        return ocupacoes;
                     }
                     return null;
                 }
@@ -89,22 +89,22 @@ namespace OlimpiadaCompras.Requests
                 return null;
             }
         }
-        public static async Task<Produto> Create(Produto produto, string token)
+        public static async Task<Ocupacao> Create(Ocupacao ocupacao, string token)
         {
-            Produto produtoCriado = new Produto();
+            Ocupacao ocupacaoCriado = new Ocupacao();
             try
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(produto);
+                    var parseJson = new JavaScriptSerializer().Serialize(ocupacao);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/produtos", content);
+                    var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/ocupacoes", content);
                     if (response.IsSuccessStatusCode)
                     {
-                        var produtosString = await response.Content.ReadAsStringAsync();
-                        produtoCriado = new JavaScriptSerializer().Deserialize<Produto>(produtosString);
-                        return produtoCriado;
+                        var ocupacoesString = await response.Content.ReadAsStringAsync();
+                        ocupacaoCriado = new JavaScriptSerializer().Deserialize<Ocupacao>(ocupacoesString);
+                        return ocupacaoCriado;
                     }
                     return null;
                 }
@@ -117,22 +117,22 @@ namespace OlimpiadaCompras.Requests
             }
 
         }
-        public static async Task<Produto> Update(Produto produto, long id, string token)
+        public static async Task<Ocupacao> Update(Ocupacao ocupacao, long id, string token)
         {
-            Produto produtoEditado = new Produto();
+            Ocupacao ocupacaoEditado = new Ocupacao();
             try
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(produto);
+                    var parseJson = new JavaScriptSerializer().Serialize(ocupacao);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/produtos/{id}", content);
+                    var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/ocupacoes/{id}", content);
                     if (response.IsSuccessStatusCode)
                     {
-                        var produtosString = await response.Content.ReadAsStringAsync();
-                        produtoEditado = new JavaScriptSerializer().Deserialize<Produto>(produtosString);
-                        return produtoEditado;
+                        var ocupacoesString = await response.Content.ReadAsStringAsync();
+                        ocupacaoEditado = new JavaScriptSerializer().Deserialize<Ocupacao>(ocupacoesString);
+                        return ocupacaoEditado;
                     }
                     return null;
                 }
@@ -151,7 +151,7 @@ namespace OlimpiadaCompras.Requests
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.DeleteAsync($"{ConstantesProjeto.URL_BASE}/api/produtos/{id}");
+                    var response = await client.DeleteAsync($"{ConstantesProjeto.URL_BASE}/api/ocupacoes/{id}");
                     if (response.IsSuccessStatusCode)
                     {
                         var result = await response.Content.ReadAsStringAsync();

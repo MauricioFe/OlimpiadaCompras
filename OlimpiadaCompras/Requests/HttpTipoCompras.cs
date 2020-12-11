@@ -9,23 +9,23 @@ using System.Web.Script.Serialization;
 
 namespace OlimpiadaCompras.Requests
 {
-    public abstract class HttpProdutos
+    public abstract class HttpTipoCompras
     {
-        public static async Task<List<Produto>> GetAllProdutos(string token)
+        public static async Task<List<TipoCompra>> GetAllTipoCompras(string token)
         {
-            List<Produto> produtos = new List<Produto>();
+            List<TipoCompra> tipoCompras = new List<TipoCompra>();
             try
             {
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/produtos");
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/tipoCompras");
                     if (response.IsSuccessStatusCode)
                     {
 
-                        var produtosString = await response.Content.ReadAsStringAsync();
-                        produtos = new JavaScriptSerializer().Deserialize<List<Produto>>(produtosString);
-                        return produtos;
+                        var tipoComprasString = await response.Content.ReadAsStringAsync();
+                        tipoCompras = new JavaScriptSerializer().Deserialize<List<TipoCompra>>(tipoComprasString);
+                        return tipoCompras;
                     }
                     return null;
                 }
@@ -39,20 +39,20 @@ namespace OlimpiadaCompras.Requests
 
         }
 
-        public static async Task<Produto> GetProdutoById(long id, string token)
+        public static async Task<TipoCompra> GetTipoCompraById(long id, string token)
         {
-            Produto produto = new Produto();
+            TipoCompra tipoCompra = new TipoCompra();
             try
             {
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/produtos/{id}");
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/tipoCompras/{id}");
                     if (response.IsSuccessStatusCode)
                     {
-                        var produtosString = await response.Content.ReadAsStringAsync();
-                        produto = new JavaScriptSerializer().Deserialize<Produto>(produtosString);
-                        return produto;
+                        var tipoComprasString = await response.Content.ReadAsStringAsync();
+                        tipoCompra = new JavaScriptSerializer().Deserialize<TipoCompra>(tipoComprasString);
+                        return tipoCompra;
                     }
                     return null;
                 }
@@ -64,20 +64,20 @@ namespace OlimpiadaCompras.Requests
                 return null;
             }
         }
-        public static async Task<List<Produto>> GetProdutosBySearch(string filtro, string token)
+        public static async Task<List<TipoCompra>> GetTipoComprasBySearch(string filtro, string token)
         {
-            List<Produto> produtos = new List<Produto>();
+            List<TipoCompra> tipoCompras = new List<TipoCompra>();
             try
             {
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/produtos/search?search={filtro}");
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/tipoCompras/search?search={filtro}");
                     if (response.IsSuccessStatusCode)
                     {
-                        var produtosString = await response.Content.ReadAsStringAsync();
-                        produtos = new JavaScriptSerializer().Deserialize<List<Produto>>(produtosString);
-                        return produtos;
+                        var tipoComprasString = await response.Content.ReadAsStringAsync();
+                        tipoCompras = new JavaScriptSerializer().Deserialize<List<TipoCompra>>(tipoComprasString);
+                        return tipoCompras;
                     }
                     return null;
                 }
@@ -89,22 +89,22 @@ namespace OlimpiadaCompras.Requests
                 return null;
             }
         }
-        public static async Task<Produto> Create(Produto produto, string token)
+        public static async Task<TipoCompra> Create(TipoCompra tipoCompra, string token)
         {
-            Produto produtoCriado = new Produto();
+            TipoCompra tipoCompraCriado = new TipoCompra();
             try
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(produto);
+                    var parseJson = new JavaScriptSerializer().Serialize(tipoCompra);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/produtos", content);
+                    var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/tipoCompras", content);
                     if (response.IsSuccessStatusCode)
                     {
-                        var produtosString = await response.Content.ReadAsStringAsync();
-                        produtoCriado = new JavaScriptSerializer().Deserialize<Produto>(produtosString);
-                        return produtoCriado;
+                        var tipoComprasString = await response.Content.ReadAsStringAsync();
+                        tipoCompraCriado = new JavaScriptSerializer().Deserialize<TipoCompra>(tipoComprasString);
+                        return tipoCompraCriado;
                     }
                     return null;
                 }
@@ -117,22 +117,22 @@ namespace OlimpiadaCompras.Requests
             }
 
         }
-        public static async Task<Produto> Update(Produto produto, long id, string token)
+        public static async Task<TipoCompra> Update(TipoCompra tipoCompra, long id, string token)
         {
-            Produto produtoEditado = new Produto();
+            TipoCompra tipoCompraEditado = new TipoCompra();
             try
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(produto);
+                    var parseJson = new JavaScriptSerializer().Serialize(tipoCompra);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/produtos/{id}", content);
+                    var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/tipoCompras/{id}", content);
                     if (response.IsSuccessStatusCode)
                     {
-                        var produtosString = await response.Content.ReadAsStringAsync();
-                        produtoEditado = new JavaScriptSerializer().Deserialize<Produto>(produtosString);
-                        return produtoEditado;
+                        var tipoComprasString = await response.Content.ReadAsStringAsync();
+                        tipoCompraEditado = new JavaScriptSerializer().Deserialize<TipoCompra>(tipoComprasString);
+                        return tipoCompraEditado;
                     }
                     return null;
                 }
@@ -151,7 +151,7 @@ namespace OlimpiadaCompras.Requests
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.DeleteAsync($"{ConstantesProjeto.URL_BASE}/api/produtos/{id}");
+                    var response = await client.DeleteAsync($"{ConstantesProjeto.URL_BASE}/api/tipoCompras/{id}");
                     if (response.IsSuccessStatusCode)
                     {
                         var result = await response.Content.ReadAsStringAsync();
