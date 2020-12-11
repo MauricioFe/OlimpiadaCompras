@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.btnEditar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnEntrar = new System.Windows.Forms.Button();
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnSalvar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCodigoProtheus = new System.Windows.Forms.TextBox();
             this.dgvGrupos = new System.Windows.Forms.DataGridView();
+            this.colCodigoProtheusGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescricaoGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIdGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtAnexo = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.colCodigoProtheusGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescricaoGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIdGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.txtFiltro = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrupos)).BeginInit();
@@ -60,32 +60,35 @@
             this.btnEditar.TabIndex = 58;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // btnCancelar
+            // btnExcluir
             // 
-            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(17)))), ((int)(((byte)(54)))));
-            this.btnCancelar.FlatAppearance.BorderSize = 0;
-            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.ForeColor = System.Drawing.Color.White;
-            this.btnCancelar.Location = new System.Drawing.Point(595, 381);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(142, 40);
-            this.btnCancelar.TabIndex = 57;
-            this.btnCancelar.Text = "Excluir";
-            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnExcluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(17)))), ((int)(((byte)(54)))));
+            this.btnExcluir.FlatAppearance.BorderSize = 0;
+            this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcluir.ForeColor = System.Drawing.Color.White;
+            this.btnExcluir.Location = new System.Drawing.Point(595, 381);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(142, 40);
+            this.btnExcluir.TabIndex = 57;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = false;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_ClickAsync);
             // 
-            // btnEntrar
+            // btnSalvar
             // 
-            this.btnEntrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(166)))), ((int)(((byte)(90)))));
-            this.btnEntrar.FlatAppearance.BorderSize = 0;
-            this.btnEntrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEntrar.ForeColor = System.Drawing.Color.White;
-            this.btnEntrar.Location = new System.Drawing.Point(595, 153);
-            this.btnEntrar.Name = "btnEntrar";
-            this.btnEntrar.Size = new System.Drawing.Size(142, 40);
-            this.btnEntrar.TabIndex = 56;
-            this.btnEntrar.Text = "Salvar";
-            this.btnEntrar.UseVisualStyleBackColor = false;
+            this.btnSalvar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(166)))), ((int)(((byte)(90)))));
+            this.btnSalvar.FlatAppearance.BorderSize = 0;
+            this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalvar.ForeColor = System.Drawing.Color.White;
+            this.btnSalvar.Location = new System.Drawing.Point(595, 153);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(142, 40);
+            this.btnSalvar.TabIndex = 56;
+            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.UseVisualStyleBackColor = false;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // label1
             // 
@@ -117,6 +120,26 @@
             this.dgvGrupos.Name = "dgvGrupos";
             this.dgvGrupos.Size = new System.Drawing.Size(669, 176);
             this.dgvGrupos.TabIndex = 50;
+            this.dgvGrupos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrupos_CellClick);
+            // 
+            // colCodigoProtheusGrupo
+            // 
+            this.colCodigoProtheusGrupo.HeaderText = "Código do Protheus";
+            this.colCodigoProtheusGrupo.Name = "colCodigoProtheusGrupo";
+            this.colCodigoProtheusGrupo.ReadOnly = true;
+            // 
+            // colDescricaoGrupo
+            // 
+            this.colDescricaoGrupo.HeaderText = "Descrição";
+            this.colDescricaoGrupo.Name = "colDescricaoGrupo";
+            this.colDescricaoGrupo.ReadOnly = true;
+            // 
+            // colIdGrupo
+            // 
+            this.colIdGrupo.HeaderText = "Id";
+            this.colIdGrupo.Name = "colIdGrupo";
+            this.colIdGrupo.ReadOnly = true;
+            this.colIdGrupo.Visible = false;
             // 
             // label2
             // 
@@ -162,25 +185,6 @@
             this.button1.Text = "Selecionar";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // colCodigoProtheusGrupo
-            // 
-            this.colCodigoProtheusGrupo.HeaderText = "Código do Protheus";
-            this.colCodigoProtheusGrupo.Name = "colCodigoProtheusGrupo";
-            this.colCodigoProtheusGrupo.ReadOnly = true;
-            // 
-            // colDescricaoGrupo
-            // 
-            this.colDescricaoGrupo.HeaderText = "Descrição";
-            this.colDescricaoGrupo.Name = "colDescricaoGrupo";
-            this.colDescricaoGrupo.ReadOnly = true;
-            // 
-            // colIdGrupo
-            // 
-            this.colIdGrupo.HeaderText = "Id";
-            this.colIdGrupo.Name = "colIdGrupo";
-            this.colIdGrupo.ReadOnly = true;
-            this.colIdGrupo.Visible = false;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -210,8 +214,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtDescricao);
             this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnEntrar);
+            this.Controls.Add(this.btnExcluir);
+            this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCodigoProtheus);
             this.Controls.Add(this.dgvGrupos);
@@ -230,8 +234,8 @@
 
         #endregion
         private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnEntrar;
+        private System.Windows.Forms.Button btnExcluir;
+        private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCodigoProtheus;
         private System.Windows.Forms.DataGridView dgvGrupos;

@@ -31,10 +31,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 
         private async void btnSalvar_ClickAsync(object sender, EventArgs e)
         {
-            await CreateUsuario();
+            await Create();
         }
 
-        private async Task CreateUsuario()
+        private async Task Create()
         {
             Usuario usuario = new Usuario();
             if (!string.IsNullOrEmpty(txtEmail.Text) && !string.IsNullOrEmpty(txtNome.Text) && !string.IsNullOrEmpty(txtSenha.Text))
@@ -98,35 +98,43 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 
         private async void btnEditar_ClickAsync(object sender, EventArgs e)
         {
-            await UpdatedUsuario(id);
+            await Update(id);
         }
 
-        private async Task UpdatedUsuario(long id)
+        private async Task Update(long id)
         {
-            if (!string.IsNullOrEmpty(txtEmail.Text) && !string.IsNullOrEmpty(txtNome.Text) && !string.IsNullOrEmpty(txtSenha.Text))
+
+            if (id != 0)
             {
-                Usuario usuarioEditado = new Usuario();
-                usuarioEditado.Email = txtEmail.Text;
-                usuarioEditado.Nome = txtEmail.Text;
-                usuarioEditado.Senha = txtEmail.Text;
-                usuarioEditado.FuncaoId = 2;
-                var usuarioCriado = await HttpUsuarios.Update(usuarioEditado, id, usuarioLogado.token);
-                if (usuarioCriado == null)
+                if (!string.IsNullOrEmpty(txtEmail.Text) && !string.IsNullOrEmpty(txtNome.Text) && !string.IsNullOrEmpty(txtSenha.Text))
                 {
-                    MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                    Usuario usuarioEditado = new Usuario();
+                    usuarioEditado.Email = txtEmail.Text;
+                    usuarioEditado.Nome = txtEmail.Text;
+                    usuarioEditado.Senha = txtEmail.Text;
+                    usuarioEditado.FuncaoId = 2;
+                    var usuarioCriado = await HttpUsuarios.Update(usuarioEditado, id, usuarioLogado.token);
+                    if (usuarioCriado == null)
+                    {
+                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                    }
+                    else
+                    {
+                        AtualizaGrid();
+                        MessageBox.Show("Usuário Editado com sucesso");
+                        txtSenha.Text = string.Empty;
+                        txtEmail.Text = string.Empty;
+                        txtNome.Text = string.Empty;
+                    }
                 }
                 else
                 {
-                    AtualizaGrid();
-                    MessageBox.Show("Usuário Editado com sucesso");
-                    txtSenha.Text = string.Empty;
-                    txtEmail.Text = string.Empty;
-                    txtNome.Text = string.Empty;
+                    MessageBox.Show("Todos os campos são obrigatórios");
                 }
             }
             else
             {
-                MessageBox.Show("Todos os campos são obrigatórios");
+                MessageBox.Show("Selecione um usuário da lista");
             }
         }
         private void dgvUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -146,6 +154,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     await HttpUsuarios.Delete(id, usuarioLogado.token);
                     AtualizaGrid();
                     MessageBox.Show("Usuário excluído com sucesso");
+                }
+                else
+                {
+                    MessageBox.Show("Selecione um usuário da lista");
                 }
             }
         }

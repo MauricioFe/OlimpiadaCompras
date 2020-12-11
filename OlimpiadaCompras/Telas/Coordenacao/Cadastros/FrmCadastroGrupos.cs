@@ -16,6 +16,8 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
     {
         private Usuario usuarioLogado;
         List<Grupo> grupos = new List<Grupo>();
+        private long id = 0;
+
         public FrmCadastroGrupos(Usuario usuario)
         {
             this.usuarioLogado = usuario;
@@ -52,6 +54,94 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
         private async void txtFiltro_TextChangedAsync(object sender, EventArgs e)
         {
             await AtualizaGridByFiltro();
+        }
+
+        private void dgvGrupos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            id = Convert.ToInt64(dgvGrupos.Rows[e.RowIndex].Cells["colIdGrupo"].Value);
+            txtCodigoProtheus.Text = dgvGrupos.Rows[e.RowIndex].Cells["colCodigoProtheusGrupo"].Value.ToString();
+            txtDescricao.Text = dgvGrupos.Rows[e.RowIndex].Cells["colDescricaoGrupo"].Value.ToString();
+        }
+
+        private async void btnSalvar_Click(object sender, EventArgs e)
+        {
+            await Create();
+        }
+        private async Task Create()
+        {
+            Grupo grupo = new Grupo();
+            if (!string.IsNullOrEmpty(txtCodigoProtheus.Text) && !string.IsNullOrEmpty(txtDescricao.Text))
+            {
+                grupo.CodigoProtheus = long.Parse(txtCodigoProtheus.Text);
+                grupo.Descricao = txtDescricao.Text;
+                var grupoCriado = await HttpGrupos.Create(grupo, usuarioLogado.token);
+                if (grupoCriado == null)
+                {
+                    MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                }
+                else
+                {
+                    AtualizaGrid();
+                    MessageBox.Show("Grupo de produto adicionado com sucesso");
+                    txtCodigoProtheus.Text = string.Empty;
+                    txtDescricao.Text = string.Empty;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Todos os campos são obrigatórios");
+            }
+        }
+        private async Task Update(long id)
+        {
+            Grupo grupo = new Grupo();
+            if (id != 0)
+            {
+
+                if (!string.IsNullOrEmpty(txtCodigoProtheus.Text) && !string.IsNullOrEmpty(txtDescricao.Text))
+                {
+                    grupo.CodigoProtheus = long.Parse(txtCodigoProtheus.Text);
+                    grupo.Descricao = txtDescricao.Text;
+                    var grupoCriado = await HttpGrupos.Update(grupo, id, usuarioLogado.token);
+                    if (grupoCriado == null)
+                    {
+                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                    }
+                    else
+                    {
+                        AtualizaGrid();
+                        MessageBox.Show("Grupo de produto editado com sucesso");
+                        txtCodigoProtheus.Text = string.Empty;
+                        txtDescricao.Text = string.Empty;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Todos os campos são obrigatórios");
+                }
+            }
+        }
+
+        private async void btnEditar_Click(object sender, EventArgs e)
+        {
+            await Update(id);
+        }
+
+        private async void btnExcluir_ClickAsync(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Você realmente deseja excluir esse registro?", "Exclusão", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (id != 0)
+                {
+                    await HttpGrupos.Delete(id, usuarioLogado.token);
+                    AtualizaGrid();
+                    MessageBox.Show("Grupo de produto excluído com sucesso");
+                }
+                else
+                {
+                    MessageBox.Show("Selecione um Grupo de produto da lista");
+                }
+            }
         }
     }
 }
