@@ -1,5 +1,5 @@
 ﻿using ApiSGCOlimpiada.Models;
-using OlimpiadaCompras.Data;
+using OlimpiadaCompras.Requests;
 using OlimpiadaCompras.Telas.Avaliador;
 using System;
 using System.Collections.Generic;

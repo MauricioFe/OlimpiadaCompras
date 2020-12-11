@@ -1,5 +1,5 @@
 ﻿using ApiSGCOlimpiada.Models;
-using OlimpiadaCompras.Data;
+using OlimpiadaCompras.Requests;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -135,6 +135,19 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
             txtNome.Text = dgvUsuarios.Rows[e.RowIndex].Cells["colNome"].Value.ToString();
             txtEmail.Text = dgvUsuarios.Rows[e.RowIndex].Cells["colEmail"].Value.ToString();
             txtSenha.Text = dgvUsuarios.Rows[e.RowIndex].Cells["ColSenha"].Value.ToString();
+        }
+
+        private async void btnExcluir_ClickAsync(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Você realmente deseja excluir esse registro?", "Exclusão", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (id != 0)
+                {
+                    await HttpUsuarios.Delete(id, usuarioLogado.token);
+                    AtualizaGrid();
+                    MessageBox.Show("Usuário excluído com sucesso");
+                }
+            }
         }
     }
 }

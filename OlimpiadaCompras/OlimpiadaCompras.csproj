@@ -58,7 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\HttpUsuarios.cs" />
+    <Compile Include="Requests\HttpUsuarios.cs" />
     <Compile Include="ConstantesProjeto.cs" />
     <Compile Include="Models\Acompanhamento.cs" />
     <Compile Include="Models\Escola.cs" />

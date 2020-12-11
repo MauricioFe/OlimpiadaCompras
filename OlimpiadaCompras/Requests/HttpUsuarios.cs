@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
-namespace OlimpiadaCompras.Data
+namespace OlimpiadaCompras.Requests
 {
     public abstract class HttpUsuarios
     {
