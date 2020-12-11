@@ -39,7 +39,7 @@ namespace OlimpiadaCompras.Data
 
         }
 
-        public static async Task<Usuario> GetUsuarioById(int id, string token)
+        public static async Task<Usuario> GetUsuarioById(long id, string token)
         {
             Usuario usuario = new Usuario();
             try
@@ -144,7 +144,7 @@ namespace OlimpiadaCompras.Data
             }
 
         }
-        public static async Task<Usuario> Update(Usuario usuario, int id, string token)
+        public static async Task<Usuario> Update(Usuario usuario, long id, string token)
         {
             Usuario usuarioEditado = new Usuario();
             try
@@ -171,7 +171,7 @@ namespace OlimpiadaCompras.Data
             }
 
         }
-        public static async Task<bool> Delete(int id, string token)
+        public static async Task<bool> Delete(long id, string token)
         {
             try
             {
