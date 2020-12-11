@@ -116,7 +116,7 @@ namespace OlimpiadaCompras.Data
             }
 
         }
-        public static async Task<Usuario> Create(Usuario usuario)
+        public static async Task<Usuario> Create(Usuario usuario, string token)
         {
             Usuario usuarioCriado = new Usuario();
             try
@@ -125,7 +125,7 @@ namespace OlimpiadaCompras.Data
                 {
                     var parseJson = new JavaScriptSerializer().Serialize(usuario);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
-                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + usuario.token);
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/usuarios", content);
                     if (response.IsSuccessStatusCode)
                     {
@@ -144,7 +144,7 @@ namespace OlimpiadaCompras.Data
             }
 
         }
-        public static async Task<Usuario> Update(Usuario usuario, int id)
+        public static async Task<Usuario> Update(Usuario usuario, int id, string token)
         {
             Usuario usuarioEditado = new Usuario();
             try
@@ -153,7 +153,7 @@ namespace OlimpiadaCompras.Data
                 {
                     var parseJson = new JavaScriptSerializer().Serialize(usuario);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
-                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + usuario.token);
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/usuarios/{id}", content);
                     if (response.IsSuccessStatusCode)
                     {

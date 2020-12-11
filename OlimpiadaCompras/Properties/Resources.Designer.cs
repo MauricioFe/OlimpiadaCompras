@@ -63,9 +63,29 @@ namespace OlimpiadaCompras.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Brasão_Dourado {
+            get {
+                object obj = ResourceManager.GetObject("Brasão Dourado", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Capturar {
             get {
                 object obj = ResourceManager.GetObject("Capturar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap OCMG {
+            get {
+                object obj = ResourceManager.GetObject("OCMG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

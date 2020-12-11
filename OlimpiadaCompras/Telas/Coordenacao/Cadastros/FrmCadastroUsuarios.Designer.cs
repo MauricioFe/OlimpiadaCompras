@@ -105,7 +105,7 @@
             this.txtNome.Location = new System.Drawing.Point(89, 13);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(580, 29);
-            this.txtNome.TabIndex = 22;
+            this.txtNome.TabIndex = 1;
             // 
             // label3
             // 
@@ -122,7 +122,7 @@
             this.txtSenha.Location = new System.Drawing.Point(89, 119);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(580, 29);
-            this.txtSenha.TabIndex = 20;
+            this.txtSenha.TabIndex = 3;
             this.txtSenha.UseSystemPasswordChar = true;
             // 
             // label2
@@ -140,7 +140,7 @@
             this.txtEmail.Location = new System.Drawing.Point(89, 66);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(580, 29);
-            this.txtEmail.TabIndex = 18;
+            this.txtEmail.TabIndex = 2;
             // 
             // btnSalvar
             // 
@@ -151,10 +151,10 @@
             this.btnSalvar.Location = new System.Drawing.Point(528, 232);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(142, 40);
-            this.btnSalvar.TabIndex = 24;
+            this.btnSalvar.TabIndex = 5;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = false;
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_ClickAsync);
             // 
             // btnExcluir
             // 

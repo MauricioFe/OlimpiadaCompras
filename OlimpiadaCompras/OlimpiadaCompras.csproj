@@ -232,9 +232,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Brasão Dourado.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Capturar.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OCMG.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

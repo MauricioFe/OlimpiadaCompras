@@ -27,24 +27,34 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
             AtualizaGrid();
         }
 
-        private async void AtualizaGrid()
+
+        private async void btnSalvar_ClickAsync(object sender, EventArgs e)
         {
-            usuarios = await HttpUsuarios.GetAllUsuarios(usuarioLogado.token);
-            dgvUsuarios.Rows.Clear();
-            foreach (var usuario in usuarios)
+            Usuario usuario = new Usuario();
+            if (!string.IsNullOrEmpty(txtEmail.Text) && !string.IsNullOrEmpty(txtNome.Text) && !string.IsNullOrEmpty(txtSenha.Text))
             {
-                int n = dgvUsuarios.Rows.Add();
-                dgvUsuarios.Rows[n].Cells[0].Value = usuario.Nome;
-                dgvUsuarios.Rows[n].Cells[1].Value = usuario.Email;
-                dgvUsuarios.Rows[n].Cells[2].Value = usuario.FuncaoId;
-                dgvUsuarios.Rows[n].Cells[3].Value = usuario.Id;
+                usuario.Email = txtEmail.Text;
+                usuario.Nome = txtEmail.Text;
+                usuario.Senha = txtEmail.Text;
+                usuario.FuncaoId = 2;
+                var usuarioCriado = await HttpUsuarios.Create(usuario, usuarioLogado.token);
+                if (usuarioCriado == null)
+                {
+                    MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                }
+                else
+                {
+                    AtualizaGrid();
+                    MessageBox.Show("Usuário adicionado com sucesso");
+                    txtSenha.Text = string.Empty;
+                    txtEmail.Text = string.Empty;
+                    txtNome.Text = string.Empty;
+                }
             }
-
-        }
-
-        private void btnSalvar_Click(object sender, EventArgs e)
-        {
-
+            else
+            {
+                MessageBox.Show("Todos os campos são obrigatórios");
+            }
         }
 
         private async void txtFiltro_TextChangedAsync(object sender, EventArgs e)
@@ -64,6 +74,20 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 dgvUsuarios.Rows[n].Cells[2].Value = usuario.FuncaoId;
                 dgvUsuarios.Rows[n].Cells[3].Value = usuario.Id;
             }
+        }
+        private async void AtualizaGrid()
+        {
+            usuarios = await HttpUsuarios.GetAllUsuarios(usuarioLogado.token);
+            dgvUsuarios.Rows.Clear();
+            foreach (var usuario in usuarios)
+            {
+                int n = dgvUsuarios.Rows.Add();
+                dgvUsuarios.Rows[n].Cells[0].Value = usuario.Nome;
+                dgvUsuarios.Rows[n].Cells[1].Value = usuario.Email;
+                dgvUsuarios.Rows[n].Cells[2].Value = usuario.FuncaoId;
+                dgvUsuarios.Rows[n].Cells[3].Value = usuario.Id;
+            }
+
         }
     }
 }
