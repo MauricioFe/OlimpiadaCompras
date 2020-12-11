@@ -46,6 +46,10 @@ namespace OlimpiadaCompras
                     this.Hide();
                 }
             }
+            else
+            {
+                MessageBox.Show("Usuário e senha incorretos");
+            }
         }
 
         private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)

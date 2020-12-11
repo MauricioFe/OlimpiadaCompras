@@ -1,4 +1,5 @@
-﻿using OlimpiadaCompras.Data;
+﻿using ApiSGCOlimpiada.Models;
+using OlimpiadaCompras.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,8 +14,11 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 {
     public partial class FrmCadastroUsuarios : Form
     {
-        public FrmCadastroUsuarios()
+        Usuario usuarioLogado;
+        List<Usuario> usuarios = new List<Usuario>();
+        public FrmCadastroUsuarios(Usuario usuario)
         {
+            usuarioLogado = usuario;
             InitializeComponent();
         }
 
@@ -25,8 +29,8 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 
         private async void AtualizaGrid()
         {
-            var usuarios = await HttpUsuarios.GetAllUsuarios();
-                dgvUsuarios.Rows.Clear();
+            usuarios = await HttpUsuarios.GetAllUsuarios(usuarioLogado.token);
+            dgvUsuarios.Rows.Clear();
             foreach (var usuario in usuarios)
             {
                 int n = dgvUsuarios.Rows.Add();
@@ -34,9 +38,12 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 dgvUsuarios.Rows[n].Cells[1].Value = usuario.Email;
                 dgvUsuarios.Rows[n].Cells[2].Value = usuario.FuncaoId;
                 dgvUsuarios.Rows[n].Cells[3].Value = usuario.Id;
-
-
             }
+
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
 
         }
     }

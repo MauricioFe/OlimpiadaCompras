@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
+            this.colNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFuncao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIdUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,10 +45,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox36 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.colNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFuncao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIdUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtFiltro = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +65,30 @@
             this.dgvUsuarios.Name = "dgvUsuarios";
             this.dgvUsuarios.Size = new System.Drawing.Size(657, 171);
             this.dgvUsuarios.TabIndex = 0;
+            // 
+            // colNome
+            // 
+            this.colNome.HeaderText = "Nome";
+            this.colNome.Name = "colNome";
+            this.colNome.ReadOnly = true;
+            // 
+            // colEmail
+            // 
+            this.colEmail.HeaderText = "E-mail";
+            this.colEmail.Name = "colEmail";
+            this.colEmail.ReadOnly = true;
+            // 
+            // colFuncao
+            // 
+            this.colFuncao.HeaderText = "Função";
+            this.colFuncao.Name = "colFuncao";
+            this.colFuncao.ReadOnly = true;
+            // 
+            // colIdUsuario
+            // 
+            this.colIdUsuario.HeaderText = "Id";
+            this.colIdUsuario.Name = "colIdUsuario";
+            this.colIdUsuario.Visible = false;
             // 
             // label1
             // 
@@ -128,6 +154,7 @@
             this.btnSalvar.TabIndex = 24;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = false;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnExcluir
             // 
@@ -183,35 +210,31 @@
             this.button1.Text = "Selecionar";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // colNome
+            // label4
             // 
-            this.colNome.HeaderText = "Nome";
-            this.colNome.Name = "colNome";
-            this.colNome.ReadOnly = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 246);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 22);
+            this.label4.TabIndex = 37;
+            this.label4.Text = "Filtro";
             // 
-            // colEmail
+            // txtFiltro
             // 
-            this.colEmail.HeaderText = "E-mail";
-            this.colEmail.Name = "colEmail";
-            this.colEmail.ReadOnly = true;
-            // 
-            // colFuncao
-            // 
-            this.colFuncao.HeaderText = "Função";
-            this.colFuncao.Name = "colFuncao";
-            this.colFuncao.ReadOnly = true;
-            // 
-            // colIdUsuario
-            // 
-            this.colIdUsuario.HeaderText = "Id";
-            this.colIdUsuario.Name = "colIdUsuario";
-            this.colIdUsuario.Visible = false;
+            this.txtFiltro.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFiltro.Location = new System.Drawing.Point(68, 243);
+            this.txtFiltro.Name = "txtFiltro";
+            this.txtFiltro.Size = new System.Drawing.Size(261, 29);
+            this.txtFiltro.TabIndex = 36;
+            this.txtFiltro.UseSystemPasswordChar = true;
             // 
             // FrmCadastroUsuarios
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(682, 540);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnExcluir);
@@ -256,5 +279,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colEmail;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFuncao;
         private System.Windows.Forms.DataGridViewTextBoxColumn colIdUsuario;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtFiltro;
     }
 }

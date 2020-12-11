@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApiSGCOlimpiada.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +13,11 @@ namespace OlimpiadaCompras.Telas.Coordenacao
 {
     public partial class FrmGerenciarSolicitacaoCompra : Form
     {
-        public FrmGerenciarSolicitacaoCompra()
+        private Usuario usuarioLogado;
+
+        public FrmGerenciarSolicitacaoCompra(Usuario usuario)
         {
+            this.usuarioLogado = usuario;
             InitializeComponent();
         }
 

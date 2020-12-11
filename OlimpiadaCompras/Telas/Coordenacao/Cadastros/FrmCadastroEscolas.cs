@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApiSGCOlimpiada.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +13,11 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 {
     public partial class FrmCadastroEscolas : Form
     {
-        public FrmCadastroEscolas()
+        private Usuario usuarioLogado;
+
+        public FrmCadastroEscolas(Usuario usuario)
         {
+            this.usuarioLogado = usuario;
             InitializeComponent();
         }
 

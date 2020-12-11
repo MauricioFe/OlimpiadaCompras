@@ -11,17 +11,23 @@ namespace OlimpiadaCompras.Data
 {
     public abstract class HttpUsuarios
     {
-        public static async Task<List<Usuario>> GetAllUsuarios()
+        public static async Task<List<Usuario>> GetAllUsuarios(string token)
         {
             List<Usuario> usuarios = new List<Usuario>();
             try
             {
                 using (var client = new HttpClient())
                 {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer "+token);
                     var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/usuarios");
-                    var usuariosString = await response.Content.ReadAsStringAsync();
-                    usuarios = new JavaScriptSerializer().Deserialize<List<Usuario>>(usuariosString);
-                    return usuarios;
+                    if (response.IsSuccessStatusCode)
+                    {
+
+                        var usuariosString = await response.Content.ReadAsStringAsync();
+                        usuarios = new JavaScriptSerializer().Deserialize<List<Usuario>>(usuariosString);
+                        return usuarios;
+                    }
+                    return null;
                 }
             }
             catch (Exception)
@@ -40,10 +46,15 @@ namespace OlimpiadaCompras.Data
             {
                 using (var client = new HttpClient())
                 {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + usuario.token);
                     var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/usuarios/{id}");
-                    var usuariosString = await response.Content.ReadAsStringAsync();
-                    usuario = new JavaScriptSerializer().Deserialize<Usuario>(usuariosString);
-                    return usuario;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var usuariosString = await response.Content.ReadAsStringAsync();
+                        usuario = new JavaScriptSerializer().Deserialize<Usuario>(usuariosString);
+                        return usuario;
+                    }
+                    return null;
                 }
             }
             catch (Exception)
@@ -63,9 +74,13 @@ namespace OlimpiadaCompras.Data
                     var parseJson = new JavaScriptSerializer().Serialize(usuario);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/usuarios/login", content);
-                    var usuariosString = await response.Content.ReadAsStringAsync();
-                    usuarioLogado = new JavaScriptSerializer().Deserialize<Usuario>(usuariosString);
-                    return usuarioLogado;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var usuariosString = await response.Content.ReadAsStringAsync();
+                        usuarioLogado = new JavaScriptSerializer().Deserialize<Usuario>(usuariosString);
+                        return usuarioLogado;
+                    }
+                    return null;
                 }
             }
             catch (Exception ex)
@@ -85,10 +100,15 @@ namespace OlimpiadaCompras.Data
                 {
                     var parseJson = new JavaScriptSerializer().Serialize(usuario);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + usuario.token);
                     var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/usuarios", content);
-                    var usuariosString = await response.Content.ReadAsStringAsync();
-                    usuarioCriado = new JavaScriptSerializer().Deserialize<Usuario>(usuariosString);
-                    return usuarioCriado;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var usuariosString = await response.Content.ReadAsStringAsync();
+                        usuarioCriado = new JavaScriptSerializer().Deserialize<Usuario>(usuariosString);
+                        return usuarioCriado;
+                    }
+                    return null;
                 }
             }
             catch (Exception ex)
@@ -108,29 +128,38 @@ namespace OlimpiadaCompras.Data
                 {
                     var parseJson = new JavaScriptSerializer().Serialize(usuario);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + usuario.token);
                     var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/usuarios/{id}", content);
-                    var usuariosString = await response.Content.ReadAsStringAsync();
-                    usuarioEditado = new JavaScriptSerializer().Deserialize<Usuario>(usuariosString);
-                    return usuarioEditado;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var usuariosString = await response.Content.ReadAsStringAsync();
+                        usuarioEditado = new JavaScriptSerializer().Deserialize<Usuario>(usuariosString);
+                        return usuarioEditado;
+                    }
+                    return null;
                 }
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine($"Erro ao conectar com a api {ex.Message}");
                 return null;
             }
 
         }
-        public static async Task<bool> Delete(int id)
+        public static async Task<bool> Delete(int id, string token)
         {
             try
             {
                 using (var client = new HttpClient())
                 {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.DeleteAsync($"{ConstantesProjeto.URL_BASE}/api/usuarios/{id}");
-                    var result = await response.Content.ReadAsStringAsync();
-                    return true;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        return true;
+                    }
+                    return false;
                 }
             }
             catch (Exception ex)
