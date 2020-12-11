@@ -58,6 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Requests\HttpProdutos.cs" />
+    <Compile Include="Requests\HttpGrupos.cs" />
     <Compile Include="Requests\HttpUsuarios.cs" />
     <Compile Include="ConstantesProjeto.cs" />
     <Compile Include="Models\Acompanhamento.cs" />
