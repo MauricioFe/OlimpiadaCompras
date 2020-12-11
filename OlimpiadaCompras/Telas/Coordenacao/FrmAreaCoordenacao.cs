@@ -1,4 +1,5 @@
-﻿using OlimpiadaCompras.Models;
+﻿
+using ApiSGCOlimpiada.Models;
 using OlimpiadaCompras.Telas;
 using OlimpiadaCompras.Telas.Coordenacao;
 using OlimpiadaCompras.Telas.Coordenacao.Cadastros;
@@ -16,8 +17,10 @@ namespace OlimpiadaCompras
 {
     public partial class FrmAreaCoordenacao : Form
     {
-        public FrmAreaCoordenacao()
+        Usuario usuarioLogado;
+        public FrmAreaCoordenacao(Usuario usuario)
         {
+            this.usuarioLogado = usuario;
             InitializeComponent();
         }
 

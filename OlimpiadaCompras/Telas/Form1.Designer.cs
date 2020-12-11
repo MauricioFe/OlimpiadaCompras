@@ -54,7 +54,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(390, 33);
             this.txtEmail.TabIndex = 3;
-            this.txtEmail.Text = "coordenador@email.com";
+            this.txtEmail.Text = "dcarlos@fiemg.com.br";
             // 
             // label2
             // 
@@ -81,7 +81,7 @@
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(390, 33);
             this.txtSenha.TabIndex = 5;
-            this.txtSenha.Text = "12345678";
+            this.txtSenha.Text = "avaliador123";
             this.txtSenha.UseSystemPasswordChar = true;
             // 
             // btnCancelar
@@ -110,7 +110,7 @@
             this.btnEntrar.TabIndex = 9;
             this.btnEntrar.Text = "Entrar";
             this.btnEntrar.UseVisualStyleBackColor = false;
-            this.btnEntrar.Click += new System.EventHandler(this.btnEntrar_Click);
+            this.btnEntrar.Click += new System.EventHandler(this.btnEntrar_ClickAsync);
             // 
             // FrmLogin
             // 

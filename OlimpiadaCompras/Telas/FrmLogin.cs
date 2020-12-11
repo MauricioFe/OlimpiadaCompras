@@ -1,4 +1,6 @@
-﻿using OlimpiadaCompras.Telas.Avaliador;
+﻿using ApiSGCOlimpiada.Models;
+using OlimpiadaCompras.Data;
+using OlimpiadaCompras.Telas.Avaliador;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,19 +25,26 @@ namespace OlimpiadaCompras
             this.Dispose();
         }
 
-        private void btnEntrar_Click(object sender, EventArgs e)
+        private async void btnEntrar_ClickAsync(object sender, EventArgs e)
         {
-            if (txtEmail.Text == "coordenador@email.com")
+            Usuario usuario = new Usuario();
+            usuario.Email = txtEmail.Text;
+            usuario.Senha = txtSenha.Text;
+            var usuarioLogado = await HttpUsuarios.Login(usuario);
+            if (usuarioLogado != null)
             {
-                FrmAreaCoordenacao form = new FrmAreaCoordenacao();
-                form.Show();
-                this.Hide();
-            }
-            else
-            {
-                FrmAreaAvaliador form = new FrmAreaAvaliador();
-                form.Show();
-                this.Hide();
+                if (usuarioLogado.FuncaoId == 1)
+                {
+                    FrmAreaCoordenacao form = new FrmAreaCoordenacao(usuarioLogado);
+                    form.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    FrmAreaAvaliador form = new FrmAreaAvaliador(usuarioLogado);
+                    form.Show();
+                    this.Hide();
+                }
             }
         }
 

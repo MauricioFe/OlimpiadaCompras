@@ -66,3 +66,5 @@ C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\Oli
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.CoreCompileInputs.cache
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.exe
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.pdb
+C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.FrmAreaCoordenacao.resources
+C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroUsuarios.resources
