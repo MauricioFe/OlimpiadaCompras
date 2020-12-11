@@ -434,7 +434,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmCadastroEscolas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmCadastrarEscolas";
+            this.Text = "Cadastrar Escolas";
             this.Load += new System.EventHandler(this.FrmCadastrarEscolas_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

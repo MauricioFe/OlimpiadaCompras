@@ -58,6 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Requests\HttpResponsaveis.cs" />
+    <Compile Include="Requests\HttpEscolas.cs" />
     <Compile Include="Requests\HttpTipoCompras.cs" />
     <Compile Include="Requests\HttpOcupacoes.cs" />
     <Compile Include="Requests\HttpGrupos.cs" />
@@ -202,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Avaliador\FrmEditarUsuarios.resx">
       <DependentUpon>FrmEditarUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastroEscolas.resx">
+      <DependentUpon>FrmCadastroEscolas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastroUsuarios.resx">
       <DependentUpon>FrmCadastroUsuarios.cs</DependentUpon>
