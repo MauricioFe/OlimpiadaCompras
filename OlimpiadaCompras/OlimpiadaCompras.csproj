@@ -208,6 +208,9 @@
     <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastroEscolas.resx">
       <DependentUpon>FrmCadastroEscolas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastroGrupos.resx">
+      <DependentUpon>FrmCadastroGrupos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastroUsuarios.resx">
       <DependentUpon>FrmCadastroUsuarios.cs</DependentUpon>
     </EmbeddedResource>

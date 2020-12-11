@@ -9,23 +9,23 @@ using System.Web.Script.Serialization;
 
 namespace OlimpiadaCompras.Requests
 {
-    public abstract class HttpResponsavels
+    public abstract class HttpEscolas
     {
-        public static async Task<List<Responsavel>> GetAllResponsavels(string token)
+        public static async Task<List<Escola>> GetAllEscolas(string token)
         {
-            List<Responsavel> responsaveis = new List<Responsavel>();
+            List<Escola> escolas = new List<Escola>();
             try
             {
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/responsaveis");
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/escolas");
                     if (response.IsSuccessStatusCode)
                     {
 
-                        var responsaveisString = await response.Content.ReadAsStringAsync();
-                        responsaveis = new JavaScriptSerializer().Deserialize<List<Responsavel>>(responsaveisString);
-                        return responsaveis;
+                        var escolasString = await response.Content.ReadAsStringAsync();
+                        escolas = new JavaScriptSerializer().Deserialize<List<Escola>>(escolasString);
+                        return escolas;
                     }
                     return null;
                 }
@@ -39,20 +39,20 @@ namespace OlimpiadaCompras.Requests
 
         }
 
-        public static async Task<Responsavel> GetResponsavelById(long id, string token)
+        public static async Task<Escola> GetEscolaById(long id, string token)
         {
-            Responsavel responsavel = new Responsavel();
+            Escola escola = new Escola();
             try
             {
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/responsaveis/{id}");
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/escolas/{id}");
                     if (response.IsSuccessStatusCode)
                     {
-                        var responsaveisString = await response.Content.ReadAsStringAsync();
-                        responsavel = new JavaScriptSerializer().Deserialize<Responsavel>(responsaveisString);
-                        return responsavel;
+                        var escolasString = await response.Content.ReadAsStringAsync();
+                        escola = new JavaScriptSerializer().Deserialize<Escola>(escolasString);
+                        return escola;
                     }
                     return null;
                 }
@@ -64,20 +64,20 @@ namespace OlimpiadaCompras.Requests
                 return null;
             }
         }
-        public static async Task<List<Responsavel>> GetResponsavelsBySearch(string filtro, string token)
+        public static async Task<List<Escola>> GetEscolasBySearch(string filtro, string token)
         {
-            List<Responsavel> responsaveis = new List<Responsavel>();
+            List<Escola> escolas = new List<Escola>();
             try
             {
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/responsaveis/search?search={filtro}");
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/escolas/search?search={filtro}");
                     if (response.IsSuccessStatusCode)
                     {
-                        var responsaveisString = await response.Content.ReadAsStringAsync();
-                        responsaveis = new JavaScriptSerializer().Deserialize<List<Responsavel>>(responsaveisString);
-                        return responsaveis;
+                        var escolasString = await response.Content.ReadAsStringAsync();
+                        escolas = new JavaScriptSerializer().Deserialize<List<Escola>>(escolasString);
+                        return escolas;
                     }
                     return null;
                 }
@@ -89,22 +89,22 @@ namespace OlimpiadaCompras.Requests
                 return null;
             }
         }
-        public static async Task<Responsavel> Create(Responsavel responsavel, string token)
+        public static async Task<Escola> Create(Escola escola, string token)
         {
-            Responsavel responsavelCriado = new Responsavel();
+            Escola escolaCriado = new Escola();
             try
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(responsavel);
+                    var parseJson = new JavaScriptSerializer().Serialize(escola);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/responsaveis", content);
+                    var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/escolas", content);
                     if (response.IsSuccessStatusCode)
                     {
-                        var responsaveisString = await response.Content.ReadAsStringAsync();
-                        responsavelCriado = new JavaScriptSerializer().Deserialize<Responsavel>(responsaveisString);
-                        return responsavelCriado;
+                        var escolasString = await response.Content.ReadAsStringAsync();
+                        escolaCriado = new JavaScriptSerializer().Deserialize<Escola>(escolasString);
+                        return escolaCriado;
                     }
                     return null;
                 }
@@ -117,22 +117,22 @@ namespace OlimpiadaCompras.Requests
             }
 
         }
-        public static async Task<Responsavel> Update(Responsavel responsavel, long id, string token)
+        public static async Task<Escola> Update(Escola escola, long id, string token)
         {
-            Responsavel responsavelEditado = new Responsavel();
+            Escola escolaEditado = new Escola();
             try
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(responsavel);
+                    var parseJson = new JavaScriptSerializer().Serialize(escola);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/responsaveis/{id}", content);
+                    var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/escolas/{id}", content);
                     if (response.IsSuccessStatusCode)
                     {
-                        var responsaveisString = await response.Content.ReadAsStringAsync();
-                        responsavelEditado = new JavaScriptSerializer().Deserialize<Responsavel>(responsaveisString);
-                        return responsavelEditado;
+                        var escolasString = await response.Content.ReadAsStringAsync();
+                        escolaEditado = new JavaScriptSerializer().Deserialize<Escola>(escolasString);
+                        return escolaEditado;
                     }
                     return null;
                 }
@@ -151,7 +151,7 @@ namespace OlimpiadaCompras.Requests
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.DeleteAsync($"{ConstantesProjeto.URL_BASE}/api/responsaveis/{id}");
+                    var response = await client.DeleteAsync($"{ConstantesProjeto.URL_BASE}/api/escolas/{id}");
                     if (response.IsSuccessStatusCode)
                     {
                         var result = await response.Content.ReadAsStringAsync();

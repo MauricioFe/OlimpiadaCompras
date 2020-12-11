@@ -9,23 +9,23 @@ using System.Web.Script.Serialization;
 
 namespace OlimpiadaCompras.Requests
 {
-    public abstract class HttpGrupos
+    public abstract class HttpResponsaveis
     {
-        public static async Task<List<Grupo>> GetAllGrupos(string token)
+        public static async Task<List<Responsavel>> GetAllResponsavels(string token)
         {
-            List<Grupo> grupos = new List<Grupo>();
+            List<Responsavel> responsaveis = new List<Responsavel>();
             try
             {
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/grupos");
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/responsaveis");
                     if (response.IsSuccessStatusCode)
                     {
 
-                        var gruposString = await response.Content.ReadAsStringAsync();
-                        grupos = new JavaScriptSerializer().Deserialize<List<Grupo>>(gruposString);
-                        return grupos;
+                        var responsaveisString = await response.Content.ReadAsStringAsync();
+                        responsaveis = new JavaScriptSerializer().Deserialize<List<Responsavel>>(responsaveisString);
+                        return responsaveis;
                     }
                     return null;
                 }
@@ -39,20 +39,20 @@ namespace OlimpiadaCompras.Requests
 
         }
 
-        public static async Task<Grupo> GetGrupoById(long id, string token)
+        public static async Task<Responsavel> GetResponsavelById(long id, string token)
         {
-            Grupo grupo = new Grupo();
+            Responsavel responsavel = new Responsavel();
             try
             {
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/grupos/{id}");
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/responsaveis/{id}");
                     if (response.IsSuccessStatusCode)
                     {
-                        var gruposString = await response.Content.ReadAsStringAsync();
-                        grupo = new JavaScriptSerializer().Deserialize<Grupo>(gruposString);
-                        return grupo;
+                        var responsaveisString = await response.Content.ReadAsStringAsync();
+                        responsavel = new JavaScriptSerializer().Deserialize<Responsavel>(responsaveisString);
+                        return responsavel;
                     }
                     return null;
                 }
@@ -64,20 +64,20 @@ namespace OlimpiadaCompras.Requests
                 return null;
             }
         }
-        public static async Task<List<Grupo>> GetGruposBySearch(string filtro, string token)
+        public static async Task<List<Responsavel>> GetResponsavelsBySearch(string filtro, string token)
         {
-            List<Grupo> grupos = new List<Grupo>();
+            List<Responsavel> responsaveis = new List<Responsavel>();
             try
             {
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/grupos/search?search={filtro}");
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/responsaveis/search?search={filtro}");
                     if (response.IsSuccessStatusCode)
                     {
-                        var gruposString = await response.Content.ReadAsStringAsync();
-                        grupos = new JavaScriptSerializer().Deserialize<List<Grupo>>(gruposString);
-                        return grupos;
+                        var responsaveisString = await response.Content.ReadAsStringAsync();
+                        responsaveis = new JavaScriptSerializer().Deserialize<List<Responsavel>>(responsaveisString);
+                        return responsaveis;
                     }
                     return null;
                 }
@@ -89,22 +89,22 @@ namespace OlimpiadaCompras.Requests
                 return null;
             }
         }
-        public static async Task<Grupo> Create(Grupo grupo, string token)
+        public static async Task<Responsavel> Create(Responsavel responsavel, string token)
         {
-            Grupo grupoCriado = new Grupo();
+            Responsavel responsavelCriado = new Responsavel();
             try
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(grupo);
+                    var parseJson = new JavaScriptSerializer().Serialize(responsavel);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/grupos", content);
+                    var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/responsaveis", content);
                     if (response.IsSuccessStatusCode)
                     {
-                        var gruposString = await response.Content.ReadAsStringAsync();
-                        grupoCriado = new JavaScriptSerializer().Deserialize<Grupo>(gruposString);
-                        return grupoCriado;
+                        var responsaveisString = await response.Content.ReadAsStringAsync();
+                        responsavelCriado = new JavaScriptSerializer().Deserialize<Responsavel>(responsaveisString);
+                        return responsavelCriado;
                     }
                     return null;
                 }
@@ -117,22 +117,22 @@ namespace OlimpiadaCompras.Requests
             }
 
         }
-        public static async Task<Grupo> Update(Grupo grupo, long id, string token)
+        public static async Task<Responsavel> Update(Responsavel responsavel, long id, string token)
         {
-            Grupo grupoEditado = new Grupo();
+            Responsavel responsavelEditado = new Responsavel();
             try
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(grupo);
+                    var parseJson = new JavaScriptSerializer().Serialize(responsavel);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/grupos/{id}", content);
+                    var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/responsaveis/{id}", content);
                     if (response.IsSuccessStatusCode)
                     {
-                        var gruposString = await response.Content.ReadAsStringAsync();
-                        grupoEditado = new JavaScriptSerializer().Deserialize<Grupo>(gruposString);
-                        return grupoEditado;
+                        var responsaveisString = await response.Content.ReadAsStringAsync();
+                        responsavelEditado = new JavaScriptSerializer().Deserialize<Responsavel>(responsaveisString);
+                        return responsavelEditado;
                     }
                     return null;
                 }
@@ -151,7 +151,7 @@ namespace OlimpiadaCompras.Requests
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.DeleteAsync($"{ConstantesProjeto.URL_BASE}/api/grupos/{id}");
+                    var response = await client.DeleteAsync($"{ConstantesProjeto.URL_BASE}/api/responsaveis/{id}");
                     if (response.IsSuccessStatusCode)
                     {
                         var result = await response.Content.ReadAsStringAsync();

@@ -32,14 +32,19 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnEntrar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.txtCodigoProtheus = new System.Windows.Forms.TextBox();
+            this.dgvGrupos = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtDescricao = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox36 = new System.Windows.Forms.TextBox();
+            this.txtAnexo = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.colCodigoProtheusGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescricaoGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIdGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtFiltro = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGrupos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,21 +96,27 @@
             this.label1.TabIndex = 55;
             this.label1.Text = "Código Protheus";
             // 
-            // textBox1
+            // txtCodigoProtheus
             // 
-            this.textBox1.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(68, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(285, 29);
-            this.textBox1.TabIndex = 54;
+            this.txtCodigoProtheus.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigoProtheus.Location = new System.Drawing.Point(68, 46);
+            this.txtCodigoProtheus.Name = "txtCodigoProtheus";
+            this.txtCodigoProtheus.Size = new System.Drawing.Size(285, 29);
+            this.txtCodigoProtheus.TabIndex = 54;
             // 
-            // dataGridView1
+            // dgvGrupos
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(68, 199);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(669, 176);
-            this.dataGridView1.TabIndex = 50;
+            this.dgvGrupos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvGrupos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgvGrupos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvGrupos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colCodigoProtheusGrupo,
+            this.colDescricaoGrupo,
+            this.colIdGrupo});
+            this.dgvGrupos.Location = new System.Drawing.Point(68, 199);
+            this.dgvGrupos.Name = "dgvGrupos";
+            this.dgvGrupos.Size = new System.Drawing.Size(669, 176);
+            this.dgvGrupos.TabIndex = 50;
             // 
             // label2
             // 
@@ -116,17 +127,17 @@
             this.label2.TabIndex = 60;
             this.label2.Text = "Descrição";
             // 
-            // textBox2
+            // txtDescricao
             // 
-            this.textBox2.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(359, 46);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(378, 29);
-            this.textBox2.TabIndex = 59;
+            this.txtDescricao.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescricao.Location = new System.Drawing.Point(359, 46);
+            this.txtDescricao.Name = "txtDescricao";
+            this.txtDescricao.Size = new System.Drawing.Size(378, 29);
+            this.txtDescricao.TabIndex = 59;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox36);
+            this.groupBox1.Controls.Add(this.txtAnexo);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Location = new System.Drawing.Point(68, 81);
             this.groupBox1.Name = "groupBox1";
@@ -135,12 +146,12 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Anexos";
             // 
-            // textBox36
+            // txtAnexo
             // 
-            this.textBox36.Location = new System.Drawing.Point(6, 28);
-            this.textBox36.Name = "textBox36";
-            this.textBox36.Size = new System.Drawing.Size(515, 29);
-            this.textBox36.TabIndex = 32;
+            this.txtAnexo.Location = new System.Drawing.Point(6, 28);
+            this.txtAnexo.Name = "txtAnexo";
+            this.txtAnexo.Size = new System.Drawing.Size(515, 29);
+            this.txtAnexo.TabIndex = 32;
             // 
             // button1
             // 
@@ -151,26 +162,65 @@
             this.button1.Text = "Selecionar";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // colCodigoProtheusGrupo
+            // 
+            this.colCodigoProtheusGrupo.HeaderText = "Código do Protheus";
+            this.colCodigoProtheusGrupo.Name = "colCodigoProtheusGrupo";
+            this.colCodigoProtheusGrupo.ReadOnly = true;
+            // 
+            // colDescricaoGrupo
+            // 
+            this.colDescricaoGrupo.HeaderText = "Descrição";
+            this.colDescricaoGrupo.Name = "colDescricaoGrupo";
+            this.colDescricaoGrupo.ReadOnly = true;
+            // 
+            // colIdGrupo
+            // 
+            this.colIdGrupo.HeaderText = "Id";
+            this.colIdGrupo.Name = "colIdGrupo";
+            this.colIdGrupo.ReadOnly = true;
+            this.colIdGrupo.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(66, 167);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 22);
+            this.label4.TabIndex = 63;
+            this.label4.Text = "Filtro";
+            // 
+            // txtFiltro
+            // 
+            this.txtFiltro.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFiltro.Location = new System.Drawing.Point(121, 164);
+            this.txtFiltro.Name = "txtFiltro";
+            this.txtFiltro.Size = new System.Drawing.Size(261, 29);
+            this.txtFiltro.TabIndex = 62;
+            this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChangedAsync);
+            // 
             // FrmCadastroGrupos
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(809, 429);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtDescricao);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnEntrar);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.txtCodigoProtheus);
+            this.Controls.Add(this.dgvGrupos);
             this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmCadastroGrupos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastrar Grupos";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGrupos)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -183,12 +233,17 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnEntrar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox txtCodigoProtheus;
+        private System.Windows.Forms.DataGridView dgvGrupos;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtDescricao;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox36;
+        private System.Windows.Forms.TextBox txtAnexo;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCodigoProtheusGrupo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDescricaoGrupo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colIdGrupo;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtFiltro;
     }
 }
