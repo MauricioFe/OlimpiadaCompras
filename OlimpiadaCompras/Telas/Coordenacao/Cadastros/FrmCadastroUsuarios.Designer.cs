@@ -226,7 +226,7 @@
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(261, 29);
             this.txtFiltro.TabIndex = 36;
-            this.txtFiltro.UseSystemPasswordChar = true;
+            this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChangedAsync);
             // 
             // FrmCadastroUsuarios
             // 

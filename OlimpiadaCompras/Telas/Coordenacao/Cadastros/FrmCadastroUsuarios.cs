@@ -46,5 +46,24 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
         {
 
         }
+
+        private async void txtFiltro_TextChangedAsync(object sender, EventArgs e)
+        {
+            await AtualizaGridByFiltro();
+        }
+
+        private async Task AtualizaGridByFiltro()
+        {
+            usuarios = await HttpUsuarios.GetUsuariosByNome(txtFiltro.Text, usuarioLogado.token);
+            dgvUsuarios.Rows.Clear();
+            foreach (var usuario in usuarios)
+            {
+                int n = dgvUsuarios.Rows.Add();
+                dgvUsuarios.Rows[n].Cells[0].Value = usuario.Nome;
+                dgvUsuarios.Rows[n].Cells[1].Value = usuario.Email;
+                dgvUsuarios.Rows[n].Cells[2].Value = usuario.FuncaoId;
+                dgvUsuarios.Rows[n].Cells[3].Value = usuario.Id;
+            }
+        }
     }
 }

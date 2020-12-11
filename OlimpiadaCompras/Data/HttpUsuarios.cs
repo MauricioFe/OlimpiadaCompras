@@ -18,7 +18,7 @@ namespace OlimpiadaCompras.Data
             {
                 using (var client = new HttpClient())
                 {
-                    client.DefaultRequestHeaders.Add("Authorization", "Bearer "+token);
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/usuarios");
                     if (response.IsSuccessStatusCode)
                     {
@@ -39,20 +39,45 @@ namespace OlimpiadaCompras.Data
 
         }
 
-        public static async Task<Usuario> GetUsuarioById(int id)
+        public static async Task<Usuario> GetUsuarioById(int id, string token)
         {
             Usuario usuario = new Usuario();
             try
             {
                 using (var client = new HttpClient())
                 {
-                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + usuario.token);
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/usuarios/{id}");
                     if (response.IsSuccessStatusCode)
                     {
                         var usuariosString = await response.Content.ReadAsStringAsync();
                         usuario = new JavaScriptSerializer().Deserialize<Usuario>(usuariosString);
                         return usuario;
+                    }
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+
+                Console.WriteLine("Erro ao conectar com a api");
+                return null;
+            }
+        }
+        public static async Task<List<Usuario>> GetUsuariosByNome(string nome, string token)
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/usuarios/search?nome={nome}");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var usuariosString = await response.Content.ReadAsStringAsync();
+                        usuarios = new JavaScriptSerializer().Deserialize<List<Usuario>>(usuariosString);
+                        return usuarios;
                     }
                     return null;
                 }
