@@ -30,7 +30,6 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.txtDescricao = new System.Windows.Forms.TextBox();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.dgvTipoCompra = new System.Windows.Forms.DataGridView();
@@ -61,20 +60,6 @@
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(669, 29);
             this.txtDescricao.TabIndex = 1;
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(135)))), ((int)(((byte)(5)))));
-            this.btnEditar.FlatAppearance.BorderSize = 0;
-            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditar.ForeColor = System.Drawing.Color.White;
-            this.btnEditar.Location = new System.Drawing.Point(408, 384);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(142, 40);
-            this.btnEditar.TabIndex = 66;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = false;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnExcluir
             // 
@@ -185,7 +170,6 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtDescricao);
-            this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.dgvTipoCompra);
@@ -206,7 +190,6 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtDescricao;
-        private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.DataGridView dgvTipoCompra;

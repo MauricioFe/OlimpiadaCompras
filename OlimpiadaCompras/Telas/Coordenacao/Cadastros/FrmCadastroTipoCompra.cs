@@ -56,16 +56,14 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 
         private async void btnEntrar_Click(object sender, EventArgs e)
         {
-            if (true)
+            if (id > 0)
             {
-
+                await Update();
             }
-            await Create();
-        }
-
-        private async void btnEditar_Click(object sender, EventArgs e)
-        {
-            await Update();
+            else
+            {
+                await Create();
+            }
         }
 
         private void dgvTipoCompra_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -142,7 +140,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 if (id != 0)
                 {
                     await HttpTipoCompras.Delete(id, usuarioLogado.token);
-                    MessageBox.Show("Ocupação excluída com sucesso");
+                    MessageBox.Show("Tipo de compra excluída com sucesso");
                     AtualizaGrid();
                     txtDescricao.Text = string.Empty;
                     txtFiltro.Text = string.Empty;
