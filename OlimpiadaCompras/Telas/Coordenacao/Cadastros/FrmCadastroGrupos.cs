@@ -122,6 +122,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     MessageBox.Show("Todos os campos são obrigatórios");
                 }
             }
+            else
+            {
+                MessageBox.Show("Selecione um Grupo de produto da lista");
+            }
         }
 
         private async void btnEditar_Click(object sender, EventArgs e)

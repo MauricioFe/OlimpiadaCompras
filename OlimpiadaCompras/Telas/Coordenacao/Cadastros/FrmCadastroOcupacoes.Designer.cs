@@ -36,14 +36,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtOcupacao = new System.Windows.Forms.TextBox();
             this.dgvOcupacoes = new System.Windows.Forms.DataGridView();
+            this.colNumero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNomeOcupacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIdOcupacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtAnexos = new System.Windows.Forms.TextBox();
             this.btnSelecionar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtFiltro = new System.Windows.Forms.TextBox();
-            this.colNumero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNomeOcupacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIdOcupacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOcupacoes)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +63,7 @@
             this.txtNumero.Location = new System.Drawing.Point(359, 52);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(378, 29);
-            this.txtNumero.TabIndex = 67;
+            this.txtNumero.TabIndex = 2;
             // 
             // btnEditar
             // 
@@ -102,7 +102,7 @@
             this.btnSalvar.Location = new System.Drawing.Point(595, 157);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(142, 40);
-            this.btnSalvar.TabIndex = 64;
+            this.btnSalvar.TabIndex = 3;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = false;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -122,7 +122,7 @@
             this.txtOcupacao.Location = new System.Drawing.Point(68, 52);
             this.txtOcupacao.Name = "txtOcupacao";
             this.txtOcupacao.Size = new System.Drawing.Size(285, 29);
-            this.txtOcupacao.TabIndex = 62;
+            this.txtOcupacao.TabIndex = 1;
             // 
             // dgvOcupacoes
             // 
@@ -136,6 +136,27 @@
             this.dgvOcupacoes.Size = new System.Drawing.Size(669, 175);
             this.dgvOcupacoes.TabIndex = 61;
             this.dgvOcupacoes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOcupacoes_CellClick);
+            // 
+            // colNumero
+            // 
+            this.colNumero.HeaderText = "Número";
+            this.colNumero.Name = "colNumero";
+            this.colNumero.ReadOnly = true;
+            this.colNumero.Width = 200;
+            // 
+            // colNomeOcupacao
+            // 
+            this.colNomeOcupacao.HeaderText = "Ocupação";
+            this.colNomeOcupacao.Name = "colNomeOcupacao";
+            this.colNomeOcupacao.ReadOnly = true;
+            this.colNomeOcupacao.Width = 424;
+            // 
+            // colIdOcupacao
+            // 
+            this.colIdOcupacao.HeaderText = "id";
+            this.colIdOcupacao.Name = "colIdOcupacao";
+            this.colIdOcupacao.ReadOnly = true;
+            this.colIdOcupacao.Visible = false;
             // 
             // groupBox1
             // 
@@ -181,27 +202,6 @@
             this.txtFiltro.Size = new System.Drawing.Size(261, 29);
             this.txtFiltro.TabIndex = 70;
             this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChanged);
-            // 
-            // colNumero
-            // 
-            this.colNumero.HeaderText = "Número";
-            this.colNumero.Name = "colNumero";
-            this.colNumero.ReadOnly = true;
-            this.colNumero.Width = 200;
-            // 
-            // colNomeOcupacao
-            // 
-            this.colNomeOcupacao.HeaderText = "Ocupação";
-            this.colNomeOcupacao.Name = "colNomeOcupacao";
-            this.colNomeOcupacao.ReadOnly = true;
-            this.colNomeOcupacao.Width = 424;
-            // 
-            // colIdOcupacao
-            // 
-            this.colIdOcupacao.HeaderText = "id";
-            this.colIdOcupacao.Name = "colIdOcupacao";
-            this.colIdOcupacao.ReadOnly = true;
-            this.colIdOcupacao.Visible = false;
             // 
             // FrmCadastroOcupacoes
             // 

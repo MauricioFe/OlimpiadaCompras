@@ -85,7 +85,7 @@
             this.btnSalvar.Location = new System.Drawing.Point(595, 153);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(142, 40);
-            this.btnSalvar.TabIndex = 56;
+            this.btnSalvar.TabIndex = 3;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = false;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -105,7 +105,7 @@
             this.txtCodigoProtheus.Location = new System.Drawing.Point(68, 46);
             this.txtCodigoProtheus.Name = "txtCodigoProtheus";
             this.txtCodigoProtheus.Size = new System.Drawing.Size(285, 29);
-            this.txtCodigoProtheus.TabIndex = 54;
+            this.txtCodigoProtheus.TabIndex = 1;
             // 
             // dgvGrupos
             // 
@@ -155,7 +155,7 @@
             this.txtDescricao.Location = new System.Drawing.Point(359, 46);
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(378, 29);
-            this.txtDescricao.TabIndex = 59;
+            this.txtDescricao.TabIndex = 2;
             // 
             // groupBox1
             // 

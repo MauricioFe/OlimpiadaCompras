@@ -66,10 +66,11 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     txtNumero.Text = string.Empty;
                     txtOcupacao.Text = string.Empty;
                     txtFiltro.Text = string.Empty;
+                    id = 0;
                 }
                 else
                 {
-                    MessageBox.Show("Selecione um Grupo de produto da lista");
+                    MessageBox.Show("Selecione uma ocupação da lista");
                 }
             }
         }
@@ -138,12 +139,17 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                         txtNumero.Text = string.Empty;
                         txtOcupacao.Text = string.Empty;
                         txtFiltro.Text = string.Empty;
+                        id = 0;
                     }
                 }
                 else
                 {
                     MessageBox.Show("Todos os campos são obrigatórios");
                 }
+            }
+            else
+            {
+                MessageBox.Show("Selecione ao menos uma ocupação da lista");
             }
         }
     }

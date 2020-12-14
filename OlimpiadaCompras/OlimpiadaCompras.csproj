@@ -217,6 +217,9 @@
     <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastroProdutos.resx">
       <DependentUpon>FrmCadastroProdutos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastroTipoCompra.resx">
+      <DependentUpon>FrmCadastroTipoCompra.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Telas\Coordenacao\Cadastros\FrmCadastroUsuarios.resx">
       <DependentUpon>FrmCadastroUsuarios.cs</DependentUpon>
     </EmbeddedResource>

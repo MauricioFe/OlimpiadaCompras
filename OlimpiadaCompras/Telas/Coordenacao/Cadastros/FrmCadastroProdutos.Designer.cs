@@ -74,7 +74,7 @@
             this.btnSalvar.Location = new System.Drawing.Point(551, 248);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(142, 40);
-            this.btnSalvar.TabIndex = 34;
+            this.btnSalvar.TabIndex = 4;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = false;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -94,7 +94,7 @@
             this.txtCodigoProtheus.Location = new System.Drawing.Point(24, 33);
             this.txtCodigoProtheus.Name = "txtCodigoProtheus";
             this.txtCodigoProtheus.Size = new System.Drawing.Size(285, 29);
-            this.txtCodigoProtheus.TabIndex = 32;
+            this.txtCodigoProtheus.TabIndex = 1;
             this.txtCodigoProtheus.Text = "000000000";
             // 
             // label3
@@ -122,7 +122,7 @@
             this.txtDescricao.Multiline = true;
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(669, 69);
-            this.txtDescricao.TabIndex = 28;
+            this.txtDescricao.TabIndex = 3;
             // 
             // dgvProduto
             // 
@@ -184,7 +184,7 @@
             this.cboGrupo.Location = new System.Drawing.Point(315, 32);
             this.cboGrupo.Name = "cboGrupo";
             this.cboGrupo.Size = new System.Drawing.Size(378, 30);
-            this.cboGrupo.TabIndex = 49;
+            this.cboGrupo.TabIndex = 2;
             // 
             // groupBox1
             // 
