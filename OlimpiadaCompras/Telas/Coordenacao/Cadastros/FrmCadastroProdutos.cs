@@ -88,11 +88,48 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     txtCodigoProtheus.Text = string.Empty;
                     txtDescricao.Text = string.Empty;
                     cboGrupo.SelectedIndex = 0;
+                    txtFiltro.Text = string.Empty;
                 }
             }
             else
             {
                 MessageBox.Show("Todos os campos são obrigatórios");
+            }
+        }
+        private async Task Update()
+        {
+            Produto produto = new Produto();
+            if (id != 0)
+            {
+
+                if (!string.IsNullOrEmpty(txtCodigoProtheus.Text) && !string.IsNullOrEmpty(txtDescricao.Text))
+                {
+                    produto.CodigoProtheus = long.Parse(txtCodigoProtheus.Text);
+                    produto.Descricao = txtDescricao.Text;
+                    produto.GrupoId = Convert.ToInt64(cboGrupo.SelectedValue);
+                    var produtoUpdate = await HttpProdutos.Update(produto, id,usuarioLogado.token);
+                    if (produtoUpdate == null)
+                    {
+                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                    }
+                    else
+                    {
+                        AtualizaGrid();
+                        MessageBox.Show("Produto adicionado com sucesso");
+                        txtCodigoProtheus.Text = string.Empty;
+                        txtDescricao.Text = string.Empty;
+                        cboGrupo.SelectedIndex = 0;
+                        txtFiltro.Text = string.Empty;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Todos os campos são obrigatórios");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione ao menos um produto da lista");
             }
         }
         private async void PreencheCombobox()
@@ -115,6 +152,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     txtCodigoProtheus.Text = string.Empty;
                     txtDescricao.Text = string.Empty;
                     cboGrupo.SelectedIndex = 0;
+                    txtFiltro.Text = string.Empty;
                 }
                 else
                 {
@@ -134,9 +172,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
             }
         }
 
-        private void btnEditar_Click(object sender, EventArgs e)
+        private async void btnEditar_Click(object sender, EventArgs e)
         {
-
+            await Update();
         }
     }
 }
