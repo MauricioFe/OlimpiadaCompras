@@ -85,6 +85,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     MessageBox.Show("Grupo de produto adicionado com sucesso");
                     txtCodigoProtheus.Text = string.Empty;
                     txtDescricao.Text = string.Empty;
+                    txtFiltro.Text = string.Empty;
                 }
             }
             else
@@ -113,6 +114,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                         MessageBox.Show("Grupo de produto editado com sucesso");
                         txtCodigoProtheus.Text = string.Empty;
                         txtDescricao.Text = string.Empty;
+                        txtFiltro.Text = string.Empty;
                     }
                 }
                 else
@@ -136,6 +138,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     await HttpGrupos.Delete(id, usuarioLogado.token);
                     AtualizaGrid();
                     MessageBox.Show("Grupo de produto excluído com sucesso");
+                    txtCodigoProtheus.Text = string.Empty;
+                    txtDescricao.Text = string.Empty;
+                    txtFiltro.Text = string.Empty;
                 }
                 else
                 {

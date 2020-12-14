@@ -35,13 +35,19 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDescricao = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvProduto = new System.Windows.Forms.DataGridView();
+            this.colCodigoProtheusProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescricaoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIdProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEditar = new System.Windows.Forms.Button();
             this.cboGrupo = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtAnexo = new System.Windows.Forms.TextBox();
             this.btnSelecionar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtFiltro = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProduto)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +63,7 @@
             this.btnExcluir.TabIndex = 35;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = false;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnSalvar
             // 
@@ -70,6 +77,7 @@
             this.btnSalvar.TabIndex = 34;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = false;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // label1
             // 
@@ -116,13 +124,45 @@
             this.txtDescricao.Size = new System.Drawing.Size(669, 69);
             this.txtDescricao.TabIndex = 28;
             // 
-            // dataGridView1
+            // dgvProduto
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(24, 294);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(669, 172);
-            this.dataGridView1.TabIndex = 27;
+            this.dgvProduto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvProduto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProduto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colCodigoProtheusProduto,
+            this.colDescricaoProduto,
+            this.colGrupo,
+            this.colIdProduto});
+            this.dgvProduto.Location = new System.Drawing.Point(24, 294);
+            this.dgvProduto.Name = "dgvProduto";
+            this.dgvProduto.Size = new System.Drawing.Size(669, 172);
+            this.dgvProduto.TabIndex = 27;
+            this.dgvProduto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduto_CellClick);
+            // 
+            // colCodigoProtheusProduto
+            // 
+            this.colCodigoProtheusProduto.HeaderText = "Código Protheus";
+            this.colCodigoProtheusProduto.Name = "colCodigoProtheusProduto";
+            this.colCodigoProtheusProduto.ReadOnly = true;
+            // 
+            // colDescricaoProduto
+            // 
+            this.colDescricaoProduto.HeaderText = "Descrição";
+            this.colDescricaoProduto.Name = "colDescricaoProduto";
+            this.colDescricaoProduto.ReadOnly = true;
+            // 
+            // colGrupo
+            // 
+            this.colGrupo.HeaderText = "Grupo";
+            this.colGrupo.Name = "colGrupo";
+            this.colGrupo.ReadOnly = true;
+            // 
+            // colIdProduto
+            // 
+            this.colIdProduto.HeaderText = "Id";
+            this.colIdProduto.Name = "colIdProduto";
+            this.colIdProduto.ReadOnly = true;
+            this.colIdProduto.Visible = false;
             // 
             // btnEditar
             // 
@@ -136,6 +176,7 @@
             this.btnEditar.TabIndex = 36;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // cboGrupo
             // 
@@ -172,11 +213,30 @@
             this.btnSelecionar.Text = "Selecionar";
             this.btnSelecionar.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(25, 262);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 22);
+            this.label4.TabIndex = 65;
+            this.label4.Text = "Filtro";
+            // 
+            // txtFiltro
+            // 
+            this.txtFiltro.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFiltro.Location = new System.Drawing.Point(80, 259);
+            this.txtFiltro.Name = "txtFiltro";
+            this.txtFiltro.Size = new System.Drawing.Size(261, 29);
+            this.txtFiltro.TabIndex = 64;
+            // 
             // FrmCadastroProdutos
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(713, 531);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cboGrupo);
             this.Controls.Add(this.btnEditar);
@@ -187,13 +247,14 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtDescricao);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvProduto);
             this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmCadastroProdutos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastrar Produtos";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.FrmCadastroProdutos_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProduto)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -210,11 +271,17 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtDescricao;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvProduto;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.ComboBox cboGrupo;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtAnexo;
         private System.Windows.Forms.Button btnSelecionar;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtFiltro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCodigoProtheusProduto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDescricaoProduto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colGrupo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colIdProduto;
     }
 }

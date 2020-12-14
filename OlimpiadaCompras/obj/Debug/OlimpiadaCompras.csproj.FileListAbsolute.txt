@@ -70,3 +70,4 @@ C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\Oli
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroUsuarios.resources
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroEscolas.resources
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroGrupos.resources
+C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroProdutos.resources
