@@ -128,7 +128,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
             }
             else
             {
-                MessageBox.Show("Selecione ao menos um tipo de compra da lista");
+                MessageBox.Show("Selecione um tipo de compra da lista");
             }
         }
 
@@ -148,7 +148,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 }
                 else
                 {
-                    MessageBox.Show("Selecione uma ocupação da lista");
+                    MessageBox.Show("Selecione um tipo de compra da lista");
                 }
             }
         }
