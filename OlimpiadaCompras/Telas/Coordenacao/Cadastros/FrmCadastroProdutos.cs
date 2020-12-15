@@ -1,5 +1,6 @@
 ﻿using ApiSGCOlimpiada.Models;
 using OlimpiadaCompras.Requests;
+using OlimpiadaCompras.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -85,10 +86,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 {
                     AtualizaGrid();
                     MessageBox.Show("Produto adicionado com sucesso");
-                    txtCodigoProtheus.Text = string.Empty;
-                    txtDescricao.Text = string.Empty;
-                    cboGrupo.SelectedIndex = 0;
-                    txtFiltro.Text = string.Empty;
+                    ManipulaFormGenericoUtil.LimpaCampos(this);
                 }
             }
             else
@@ -107,7 +105,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     produto.CodigoProtheus = long.Parse(txtCodigoProtheus.Text);
                     produto.Descricao = txtDescricao.Text;
                     produto.GrupoId = Convert.ToInt64(cboGrupo.SelectedValue);
-                    var produtoUpdate = await HttpProdutos.Update(produto, id,usuarioLogado.token);
+                    var produtoUpdate = await HttpProdutos.Update(produto, id, usuarioLogado.token);
                     if (produtoUpdate == null)
                     {
                         MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
@@ -116,10 +114,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     {
                         AtualizaGrid();
                         MessageBox.Show("Produto adicionado com sucesso");
-                        txtCodigoProtheus.Text = string.Empty;
-                        txtDescricao.Text = string.Empty;
+                        ManipulaFormGenericoUtil.LimpaCampos(this);
                         cboGrupo.SelectedIndex = 0;
-                        txtFiltro.Text = string.Empty;
+                        id = 0;
                     }
                 }
                 else
@@ -149,10 +146,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     await HttpProdutos.Delete(id, usuarioLogado.token);
                     AtualizaGrid();
                     MessageBox.Show("Produto excluído com sucesso");
-                    txtCodigoProtheus.Text = string.Empty;
-                    txtDescricao.Text = string.Empty;
                     cboGrupo.SelectedIndex = 0;
-                    txtFiltro.Text = string.Empty;
+                    ManipulaFormGenericoUtil.LimpaCampos(this);
+                    id = 0;
                 }
                 else
                 {

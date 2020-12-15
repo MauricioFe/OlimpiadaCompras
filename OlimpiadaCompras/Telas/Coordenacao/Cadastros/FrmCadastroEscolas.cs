@@ -82,7 +82,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     AtualizaGrid();
                     MessageBox.Show("Escola adicionada com sucesso");
                     txtFiltro.Text = string.Empty;
-                    ManipulaFormGenericoUtil.LimpaTextBox(this);
+                    ManipulaFormGenericoUtil.LimpaCampos(this);
                 }
             }
             else

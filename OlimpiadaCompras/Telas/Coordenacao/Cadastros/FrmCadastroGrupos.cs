@@ -1,5 +1,6 @@
 ﻿using ApiSGCOlimpiada.Models;
 using OlimpiadaCompras.Requests;
+using OlimpiadaCompras.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -83,9 +84,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 {
                     AtualizaGrid();
                     MessageBox.Show("Grupo de produto adicionado com sucesso");
-                    txtCodigoProtheus.Text = string.Empty;
-                    txtDescricao.Text = string.Empty;
-                    txtFiltro.Text = string.Empty;
+                    ManipulaFormGenericoUtil.LimpaCampos(this);
                 }
             }
             else
@@ -112,9 +111,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     {
                         AtualizaGrid();
                         MessageBox.Show("Grupo de produto editado com sucesso");
-                        txtCodigoProtheus.Text = string.Empty;
-                        txtDescricao.Text = string.Empty;
-                        txtFiltro.Text = string.Empty;
+                        ManipulaFormGenericoUtil.LimpaCampos(this);
                     }
                 }
                 else
@@ -142,9 +139,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     await HttpGrupos.Delete(id, usuarioLogado.token);
                     AtualizaGrid();
                     MessageBox.Show("Grupo de produto excluído com sucesso");
-                    txtCodigoProtheus.Text = string.Empty;
-                    txtDescricao.Text = string.Empty;
-                    txtFiltro.Text = string.Empty;
+                    ManipulaFormGenericoUtil.LimpaCampos(this);
                 }
                 else
                 {

@@ -1,5 +1,6 @@
 ﻿using ApiSGCOlimpiada.Models;
 using OlimpiadaCompras.Requests;
+using OlimpiadaCompras.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -63,9 +64,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     await HttpOcupacaos.Delete(id, usuarioLogado.token);
                     AtualizaGrid();
                     MessageBox.Show("Ocupação excluída com sucesso");
-                    txtNumero.Text = string.Empty;
-                    txtOcupacao.Text = string.Empty;
-                    txtFiltro.Text = string.Empty;
+                    ManipulaFormGenericoUtil.LimpaCampos(this);
                     id = 0;
                 }
                 else
@@ -108,9 +107,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 {
                     AtualizaGrid();
                     MessageBox.Show("Ocupação adicionada com sucesso");
-                    txtNumero.Text = string.Empty;
-                    txtOcupacao.Text = string.Empty;
-                    txtFiltro.Text = string.Empty;
+                    ManipulaFormGenericoUtil.LimpaCampos(this);
                 }
             }
             else
@@ -136,9 +133,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     {
                         AtualizaGrid();
                         MessageBox.Show("Ocupação editada com sucesso");
-                        txtNumero.Text = string.Empty;
-                        txtOcupacao.Text = string.Empty;
-                        txtFiltro.Text = string.Empty;
+                        ManipulaFormGenericoUtil.LimpaCampos(this);
                         id = 0;
                     }
                 }
