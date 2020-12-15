@@ -185,6 +185,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\ManipulaFormGenericoUtil.cs" />
     <EmbeddedResource Include="Telas\Avaliador\FrmAnexarNotaFiscal.resx">
       <DependentUpon>FrmAnexarNotaFiscal.cs</DependentUpon>
     </EmbeddedResource>

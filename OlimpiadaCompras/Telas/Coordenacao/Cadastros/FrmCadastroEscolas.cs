@@ -1,5 +1,6 @@
 ﻿using ApiSGCOlimpiada.Models;
 using OlimpiadaCompras.Requests;
+using OlimpiadaCompras.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -81,7 +82,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     AtualizaGrid();
                     MessageBox.Show("Escola adicionada com sucesso");
                     txtFiltro.Text = string.Empty;
-                    LimpaTextBox();
+                    ManipulaFormGenericoUtil.LimpaTextBox(this);
                 }
             }
             else
@@ -89,29 +90,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 MessageBox.Show("Todos os campos são obrigatórios");
             }
         }
-
-        private void LimpaTextBox()
+        private async void btnSalvar_Click(object sender, EventArgs e)
         {
-            foreach (var parent in this.Controls)
-            {
-                if (parent.GetType() == typeof(GroupBox))
-                {
-                    var group = (GroupBox)parent;
-                    foreach (var childrenGroup in group.Controls)
-                    {
-                        if (childrenGroup.GetType() == typeof(TextBox))
-                        {
-                            var txt = (TextBox)childrenGroup;
-                            txt.Text = string.Empty;
-                        }
-                    }
-                }
-                if (parent.GetType() == typeof(TextBox))
-                {
-                    var txt = (TextBox)parent;
-                    txt.Text = string.Empty;
-                }
-            }
+            await CreateEscola();
         }
     }
 }
