@@ -40,7 +40,6 @@
             this.colDescricaoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colIdProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.cboGrupo = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtAnexo = new System.Windows.Forms.TextBox();
@@ -164,20 +163,6 @@
             this.colIdProduto.ReadOnly = true;
             this.colIdProduto.Visible = false;
             // 
-            // btnEditar
-            // 
-            this.btnEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(135)))), ((int)(((byte)(5)))));
-            this.btnEditar.FlatAppearance.BorderSize = 0;
-            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditar.ForeColor = System.Drawing.Color.White;
-            this.btnEditar.Location = new System.Drawing.Point(403, 472);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(142, 40);
-            this.btnEditar.TabIndex = 36;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = false;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
             // cboGrupo
             // 
             this.cboGrupo.FormattingEnabled = true;
@@ -239,7 +224,6 @@
             this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cboGrupo);
-            this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.label1);
@@ -272,7 +256,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtDescricao;
         private System.Windows.Forms.DataGridView dgvProduto;
-        private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.ComboBox cboGrupo;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtAnexo;

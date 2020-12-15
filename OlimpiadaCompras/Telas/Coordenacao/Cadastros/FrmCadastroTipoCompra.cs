@@ -1,5 +1,6 @@
 ﻿using ApiSGCOlimpiada.Models;
 using OlimpiadaCompras.Requests;
+using OlimpiadaCompras.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -89,8 +90,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 {
                     AtualizaGrid();
                     MessageBox.Show("Tipo de compra adicionada com sucesso");
-                    txtDescricao.Text = string.Empty;
-                    txtFiltro.Text = string.Empty;
+                    ManipulaFormGenericoUtil.LimpaCampos(this);
                 }
             }
             else
@@ -116,8 +116,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     {
                         AtualizaGrid();
                         MessageBox.Show("Tipo de compra editada com sucesso");
-                        txtDescricao.Text = string.Empty;
-                        txtFiltro.Text = string.Empty;
+                        ManipulaFormGenericoUtil.LimpaCampos(this);
                         id = 0;
                     }
                 }
@@ -142,8 +141,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     await HttpTipoCompras.Delete(id, usuarioLogado.token);
                     MessageBox.Show("Tipo de compra excluída com sucesso");
                     AtualizaGrid();
-                    txtDescricao.Text = string.Empty;
-                    txtFiltro.Text = string.Empty;
+                    ManipulaFormGenericoUtil.LimpaCampos(this);
                     id = 0;
                 }
                 else

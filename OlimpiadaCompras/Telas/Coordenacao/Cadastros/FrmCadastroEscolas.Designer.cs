@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -40,10 +39,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.dgvResponsavel = new System.Windows.Forms.DataGridView();
-            this.responsavel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Remove = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dgvEscolas = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.txtFiltro = new System.Windows.Forms.TextBox();
@@ -69,6 +64,10 @@
             this.cboEstado = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtCidade = new System.Windows.Forms.TextBox();
+            this.colResponsavel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEmailResponsavel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRemove = new System.Windows.Forms.DataGridViewLinkColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResponsavel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEscolas)).BeginInit();
@@ -151,6 +150,7 @@
             this.btnAdicionar.TabIndex = 11;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.UseVisualStyleBackColor = false;
+            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
             // label3
             // 
@@ -190,39 +190,17 @@
             // 
             this.dgvResponsavel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvResponsavel.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvResponsavel.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvResponsavel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvResponsavel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.responsavel,
-            this.Email,
-            this.Cargo,
-            this.Remove});
+            this.colResponsavel,
+            this.colEmailResponsavel,
+            this.colCargo,
+            this.colRemove});
             this.dgvResponsavel.Location = new System.Drawing.Point(6, 90);
             this.dgvResponsavel.Name = "dgvResponsavel";
             this.dgvResponsavel.Size = new System.Drawing.Size(854, 152);
             this.dgvResponsavel.TabIndex = 35;
-            // 
-            // responsavel
-            // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.responsavel.DefaultCellStyle = dataGridViewCellStyle3;
-            this.responsavel.HeaderText = "Nome responsável";
-            this.responsavel.Name = "responsavel";
-            // 
-            // Email
-            // 
-            this.Email.HeaderText = "Emal";
-            this.Email.Name = "Email";
-            // 
-            // Cargo
-            // 
-            this.Cargo.HeaderText = "Cargo";
-            this.Cargo.Name = "Cargo";
-            // 
-            // Remove
-            // 
-            this.Remove.HeaderText = "Remover da lista";
-            this.Remove.Name = "Remove";
+            this.dgvResponsavel.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvResponsavel_CellContentClick);
             // 
             // dgvEscolas
             // 
@@ -323,6 +301,7 @@
             this.txtNomeEscola.Name = "txtNomeEscola";
             this.txtNomeEscola.Size = new System.Drawing.Size(418, 29);
             this.txtNomeEscola.TabIndex = 1;
+            this.txtNomeEscola.Text = "Escola teste";
             // 
             // label1
             // 
@@ -351,6 +330,7 @@
             this.txtLogradouro.Name = "txtLogradouro";
             this.txtLogradouro.Size = new System.Drawing.Size(286, 29);
             this.txtLogradouro.TabIndex = 3;
+            this.txtLogradouro.Text = "Rua bacon";
             // 
             // label8
             // 
@@ -369,6 +349,7 @@
             this.txtCep.Name = "txtCep";
             this.txtCep.Size = new System.Drawing.Size(150, 29);
             this.txtCep.TabIndex = 2;
+            this.txtCep.Text = "3216549874";
             // 
             // txtBairro
             // 
@@ -377,6 +358,7 @@
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(237, 29);
             this.txtBairro.TabIndex = 4;
+            this.txtBairro.Text = "Porquinho de sá";
             // 
             // label10
             // 
@@ -395,6 +377,7 @@
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(149, 29);
             this.txtNumero.TabIndex = 5;
+            this.txtNumero.Text = "222";
             // 
             // label11
             // 
@@ -461,6 +444,27 @@
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(261, 29);
             this.txtCidade.TabIndex = 7;
+            this.txtCidade.Text = "Bh";
+            // 
+            // colResponsavel
+            // 
+            this.colResponsavel.HeaderText = "Nome responsável";
+            this.colResponsavel.Name = "colResponsavel";
+            // 
+            // colEmailResponsavel
+            // 
+            this.colEmailResponsavel.HeaderText = "Email";
+            this.colEmailResponsavel.Name = "colEmailResponsavel";
+            // 
+            // colCargo
+            // 
+            this.colCargo.HeaderText = "Cargo";
+            this.colCargo.Name = "colCargo";
+            // 
+            // colRemove
+            // 
+            this.colRemove.HeaderText = "Remover da lista";
+            this.colRemove.Name = "colRemove";
             // 
             // FrmCadastroEscolas
             // 
@@ -514,10 +518,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.DataGridView dgvResponsavel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn responsavel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cargo;
-        private System.Windows.Forms.DataGridViewLinkColumn Remove;
         private System.Windows.Forms.DataGridView dgvEscolas;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtFiltro;
@@ -543,5 +543,9 @@
         private System.Windows.Forms.ComboBox cboEstado;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtCidade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colResponsavel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEmailResponsavel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCargo;
+        private System.Windows.Forms.DataGridViewLinkColumn colRemove;
     }
 }

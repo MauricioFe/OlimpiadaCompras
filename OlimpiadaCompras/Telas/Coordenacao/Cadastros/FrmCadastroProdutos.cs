@@ -66,7 +66,14 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 
         private async void btnSalvar_Click(object sender, EventArgs e)
         {
-            await Create();
+            if (id > 0)
+            {
+                await Update();
+            }
+            else
+            {
+                await Create();
+            }
         }
 
         private async Task Create()
@@ -94,7 +101,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 MessageBox.Show("Todos os campos são obrigatórios");
             }
         }
-        private async Task Update()
+        private new async Task Update()
         {
             Produto produto = new Produto();
             if (id != 0)
@@ -115,7 +122,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                         AtualizaGrid();
                         MessageBox.Show("Produto adicionado com sucesso");
                         ManipulaFormGenericoUtil.LimpaCampos(this);
-                        cboGrupo.SelectedIndex = 0;
                         id = 0;
                     }
                 }
@@ -146,7 +152,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     await HttpProdutos.Delete(id, usuarioLogado.token);
                     AtualizaGrid();
                     MessageBox.Show("Produto excluído com sucesso");
-                    cboGrupo.SelectedIndex = 0;
                     ManipulaFormGenericoUtil.LimpaCampos(this);
                     id = 0;
                 }

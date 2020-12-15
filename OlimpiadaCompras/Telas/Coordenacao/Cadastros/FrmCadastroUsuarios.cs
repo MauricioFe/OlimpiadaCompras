@@ -1,5 +1,6 @@
 ﻿using ApiSGCOlimpiada.Models;
 using OlimpiadaCompras.Requests;
+using OlimpiadaCompras.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +32,14 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 
         private async void btnSalvar_ClickAsync(object sender, EventArgs e)
         {
-            await Create();
+            if (id > 0)
+            {
+                await Update();
+            }
+            else
+            {
+                await Create();
+            }
         }
 
         private async Task Create()
@@ -52,9 +60,8 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 {
                     AtualizaGrid();
                     MessageBox.Show("Usuário adicionado com sucesso");
-                    txtSenha.Text = string.Empty;
-                    txtEmail.Text = string.Empty;
-                    txtNome.Text = string.Empty;
+                    ManipulaFormGenericoUtil.LimpaCampos(this);
+                    id = 0;
                 }
             }
             else
@@ -95,13 +102,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
             }
 
         }
-
-        private async void btnEditar_ClickAsync(object sender, EventArgs e)
-        {
-            await Update(id);
-        }
-
-        private async Task Update(long id)
+        private new async Task Update()
         {
 
             if (id != 0)
@@ -122,9 +123,8 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     {
                         AtualizaGrid();
                         MessageBox.Show("Usuário Editado com sucesso");
-                        txtSenha.Text = string.Empty;
-                        txtEmail.Text = string.Empty;
-                        txtNome.Text = string.Empty;
+                        ManipulaFormGenericoUtil.LimpaCampos(this);
+                        id = 0;
                     }
                 }
                 else
@@ -154,6 +154,8 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     await HttpUsuarios.Delete(id, usuarioLogado.token);
                     AtualizaGrid();
                     MessageBox.Show("Usuário excluído com sucesso");
+                    ManipulaFormGenericoUtil.LimpaCampos(this);
+                    id = 0;
                 }
                 else
                 {

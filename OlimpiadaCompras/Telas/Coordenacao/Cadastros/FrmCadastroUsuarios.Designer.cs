@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
+            this.colNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFuncao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIdUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSenha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -37,17 +42,11 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox36 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtFiltro = new System.Windows.Forms.TextBox();
-            this.colNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFuncao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIdUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSenha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +67,36 @@
             this.dgvUsuarios.Size = new System.Drawing.Size(657, 171);
             this.dgvUsuarios.TabIndex = 0;
             this.dgvUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellClick);
+            // 
+            // colNome
+            // 
+            this.colNome.HeaderText = "Nome";
+            this.colNome.Name = "colNome";
+            this.colNome.ReadOnly = true;
+            // 
+            // colEmail
+            // 
+            this.colEmail.HeaderText = "E-mail";
+            this.colEmail.Name = "colEmail";
+            this.colEmail.ReadOnly = true;
+            // 
+            // colFuncao
+            // 
+            this.colFuncao.HeaderText = "Função";
+            this.colFuncao.Name = "colFuncao";
+            this.colFuncao.ReadOnly = true;
+            // 
+            // colIdUsuario
+            // 
+            this.colIdUsuario.HeaderText = "Id";
+            this.colIdUsuario.Name = "colIdUsuario";
+            this.colIdUsuario.Visible = false;
+            // 
+            // ColSenha
+            // 
+            this.ColSenha.HeaderText = "Senha";
+            this.ColSenha.Name = "ColSenha";
+            this.ColSenha.Visible = false;
             // 
             // label1
             // 
@@ -150,21 +179,6 @@
             this.btnExcluir.UseVisualStyleBackColor = false;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_ClickAsync);
             // 
-            // btnEditar
-            // 
-            this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(135)))), ((int)(((byte)(5)))));
-            this.btnEditar.FlatAppearance.BorderSize = 0;
-            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditar.ForeColor = System.Drawing.Color.White;
-            this.btnEditar.Location = new System.Drawing.Point(380, 463);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(142, 40);
-            this.btnEditar.TabIndex = 26;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = false;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_ClickAsync);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.textBox36);
@@ -210,36 +224,6 @@
             this.txtFiltro.TabIndex = 36;
             this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChangedAsync);
             // 
-            // colNome
-            // 
-            this.colNome.HeaderText = "Nome";
-            this.colNome.Name = "colNome";
-            this.colNome.ReadOnly = true;
-            // 
-            // colEmail
-            // 
-            this.colEmail.HeaderText = "E-mail";
-            this.colEmail.Name = "colEmail";
-            this.colEmail.ReadOnly = true;
-            // 
-            // colFuncao
-            // 
-            this.colFuncao.HeaderText = "Função";
-            this.colFuncao.Name = "colFuncao";
-            this.colFuncao.ReadOnly = true;
-            // 
-            // colIdUsuario
-            // 
-            this.colIdUsuario.HeaderText = "Id";
-            this.colIdUsuario.Name = "colIdUsuario";
-            this.colIdUsuario.Visible = false;
-            // 
-            // ColSenha
-            // 
-            this.ColSenha.HeaderText = "Senha";
-            this.ColSenha.Name = "ColSenha";
-            this.ColSenha.Visible = false;
-            // 
             // FrmCadastroUsuarios
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -248,7 +232,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.label1);
@@ -283,7 +266,6 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnExcluir;
-        private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox36;
         private System.Windows.Forms.Button button1;

@@ -66,7 +66,14 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 
         private async void btnSalvar_Click(object sender, EventArgs e)
         {
-            await Create();
+            if (id > 0)
+            {
+                await Update();
+            }
+            else
+            {
+                await Create();
+            }
         }
         private async Task Create()
         {
@@ -92,7 +99,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 MessageBox.Show("Todos os campos são obrigatórios");
             }
         }
-        private async Task Update(long id)
+        private new async Task Update()
         {
             Grupo grupo = new Grupo();
             if (id != 0)
@@ -124,12 +131,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 MessageBox.Show("Selecione um Grupo de produto da lista");
             }
         }
-
-        private async void btnEditar_Click(object sender, EventArgs e)
-        {
-            await Update(id);
-        }
-
         private async void btnExcluir_ClickAsync(object sender, EventArgs e)
         {
             if (MessageBox.Show("Você realmente deseja excluir esse registro?", "Exclusão", MessageBoxButtons.YesNo) == DialogResult.Yes)

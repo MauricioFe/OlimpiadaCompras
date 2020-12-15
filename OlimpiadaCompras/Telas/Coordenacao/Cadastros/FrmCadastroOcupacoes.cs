@@ -52,7 +52,14 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
         }
         private async void btnSalvar_Click(object sender, EventArgs e)
         {
-            await Create();
+            if (id > 0)
+            {
+                await Update();
+            }
+            else
+            {
+                await Create();
+            }
         }
 
         private async void btnExcluir_Click(object sender, EventArgs e)
