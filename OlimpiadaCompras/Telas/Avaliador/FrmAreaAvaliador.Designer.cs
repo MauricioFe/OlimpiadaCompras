@@ -32,9 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblNomeUsuarioLogado = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -54,8 +53,10 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
@@ -80,15 +81,15 @@
             this.textBox1.Size = new System.Drawing.Size(240, 29);
             this.textBox1.TabIndex = 9;
             // 
-            // label3
+            // lblNomeUsuarioLogado
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(245, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(143, 22);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Olá, Daniel Carlos";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.lblNomeUsuarioLogado.AutoSize = true;
+            this.lblNomeUsuarioLogado.Location = new System.Drawing.Point(259, 9);
+            this.lblNomeUsuarioLogado.Name = "lblNomeUsuarioLogado";
+            this.lblNomeUsuarioLogado.Size = new System.Drawing.Size(143, 22);
+            this.lblNomeUsuarioLogado.TabIndex = 8;
+            this.lblNomeUsuarioLogado.Text = "Olá, Daniel Carlos";
+            this.lblNomeUsuarioLogado.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -98,15 +99,6 @@
             this.label2.Size = new System.Drawing.Size(245, 22);
             this.label2.TabIndex = 7;
             this.label2.Text = "Lista de solicitações pendentes";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(62, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 22);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Brasão do estado";
             // 
             // label5
             // 
@@ -287,16 +279,26 @@
             this.dataGridViewTextBoxColumn4.HeaderText = "Status";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::OlimpiadaCompras.Properties.Resources.Brasão_Dourado;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(250, 106);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 24;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmAreaAvaliador
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(930, 646);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dgvSolicitacoes);
             this.Controls.Add(this.linkSair);
             this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnNovaSolicitacao);
             this.Controls.Add(this.btnVisualizaTodas);
             this.Controls.Add(this.label5);
@@ -304,7 +306,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblNomeUsuarioLogado);
             this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -315,6 +317,7 @@
             this.Load += new System.EventHandler(this.FrmAreaAvaliador_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,9 +327,8 @@
 
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblNomeUsuarioLogado;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label6;
@@ -346,5 +348,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -18,6 +18,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
         {
             this.usuarioLogado = usuario;
             InitializeComponent();
+            var nomeSobrenome = usuario.Nome.Split(' ');
+            lblNomeUsuarioLogado.Text = $"Olá, {nomeSobrenome[0]} {nomeSobrenome[1]}";
         }
 
         private void FrmAreaAvaliador_Load(object sender, EventArgs e)

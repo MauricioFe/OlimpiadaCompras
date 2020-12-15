@@ -22,6 +22,8 @@ namespace OlimpiadaCompras
         {
             this.usuarioLogado = usuario;
             InitializeComponent();
+            var nomeSobrenome = usuario.Nome.Split(' ');
+            lblNomeUsuarioLogado.Text = $"Olá, {nomeSobrenome[0]} {nomeSobrenome[1]}";
         }
 
         private void btnCadastros_Click(object sender, EventArgs e)

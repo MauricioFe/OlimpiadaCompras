@@ -58,15 +58,12 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 
         private void FrmCadastrarEscolas_Load(object sender, EventArgs e)
         {
-            dgvResponsavel.Rows.Add("Mauricio Lacerda", "mauricio@gmail.com", "bacon", "remove");
-            dgvResponsavel.Rows.Add("Fernada Leal", "fefe@gmail.com", "bacon Vegano", "remove");
-            dgvResponsavel.Rows.Add("Maria Paula", "mariapaula@gmail.com", "bacon picadinho", "remove");
         }
 
         private async Task Create()
         {
             Escola escola = new Escola();
-            if (isCampoVazio())
+            if (CampoVazio())
             {
                 escola.Nome = txtNomeEscola.Text;
                 escola.Cep = txtCep.Text;
@@ -75,11 +72,11 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 escola.Numero = txtNumero.Text;
                 escola.Estado = cboEstado.Text;
                 escola.Cidade = txtCidade.Text;
-                if (hasResponsavelNaLista())
+                if (ResponsavelNaLista())
                 {
 
-                    var escolaCriado = await HttpEscolas.Create(escola, usuarioLogado.token);
-                    if (escolaCriado == null)
+                    var escolaEditada = await HttpEscolas.Create(escola, usuarioLogado.token);
+                    if (escolaEditada == null)
                     {
                         MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
                     }
@@ -111,13 +108,13 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
             }
         }
 
-        private bool isCampoVazio()
+        private bool CampoVazio()
         {
             return !string.IsNullOrEmpty(txtNomeEscola.Text) && !string.IsNullOrEmpty(txtCep.Text) && !string.IsNullOrEmpty(txtLogradouro.Text)
                             && !string.IsNullOrEmpty(txtBairro.Text) && !string.IsNullOrEmpty(txtNumero.Text) && !string.IsNullOrEmpty(cboEstado.Text)
                             && !string.IsNullOrEmpty(txtCidade.Text);
         }
-        private bool hasResponsavelNaLista()
+        private bool ResponsavelNaLista()
         {
             return (dgvResponsavel.Rows.Count != -1 && dgvResponsavel.Rows.Count >= 3);
         }
@@ -128,7 +125,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
             {
 
                 Escola escola = new Escola();
-                if (isCampoVazio())
+                if (CampoVazio())
                 {
                     escola.Nome = txtNomeEscola.Text;
                     escola.Cep = txtCep.Text;
@@ -137,18 +134,17 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     escola.Numero = txtNumero.Text;
                     escola.Estado = cboEstado.Text;
                     escola.Cidade = txtCidade.Text;
-                    if (hasResponsavelNaLista())
+                    if (ResponsavelNaLista())
                     {
 
-                        var escolaCriado = await HttpEscolas.Update(escola, idEscola, usuarioLogado.token);
-                        if (escolaCriado == null)
+                        var escolaEditada = await HttpEscolas.Update(escola, idEscola, usuarioLogado.token);
+                        if (escolaEditada == null)
                         {
                             MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
                         }
                         else
                         {
                             AtualizaGrid();
-                            escolas = await HttpEscolas.GetAllEscolas(usuarioLogado.token);
                             for (int i = 0; i < dgvResponsavel.Rows.Count; i++)
                             {
                                 Responsavel responsavel = new Responsavel();
@@ -255,8 +251,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 
         private async void dgvEscolas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (!string.IsNullOrEmpty(dgvEscolas.Rows[e.RowIndex].Cells[0].Value.ToString()))
-            {
+
                 idEscola = Convert.ToInt64(dgvEscolas.Rows[e.RowIndex].Cells["colIdEscola"].Value);
                 txtNomeEscola.Text = dgvEscolas.Rows[e.RowIndex].Cells[0].Value.ToString();
                 txtLogradouro.Text = dgvEscolas.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -272,7 +267,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     dgvResponsavel.Rows.Add(item.Nome, item.Email, item.Cargo, "Remover", item.Id);
                 }
 
-            }
+            
         }
 
         private void dgvResponsavel_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -296,8 +291,8 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
             {
                 if (item.GetType() != typeof(GroupBox))
                 {
-                    var controle =(Control) item;
-                    controle.Enabled = false;
+                    var controle = (Control) item;
+                    controle.Enabled = enabled;
                 }
             }
         }

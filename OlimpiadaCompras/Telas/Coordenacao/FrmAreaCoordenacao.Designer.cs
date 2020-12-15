@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlCadastros = new System.Windows.Forms.Panel();
             this.btnCadastroOcupacoes = new System.Windows.Forms.Button();
             this.btnCadastroGrupos = new System.Windows.Forms.Button();
@@ -46,15 +47,14 @@
             this.ocupacao = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblNomeUsuarioLogado = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.linkSair = new System.Windows.Forms.LinkLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlCadastros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlMenu
@@ -68,6 +68,16 @@
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(301, 605);
             this.pnlMenu.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::OlimpiadaCompras.Properties.Resources.Brasão_Dourado;
+            this.pictureBox1.Location = new System.Drawing.Point(1, 1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(299, 90);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
             // 
             // pnlCadastros
             // 
@@ -233,14 +243,14 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Lista de solicitações";
             // 
-            // label3
+            // lblNomeUsuarioLogado
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(310, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 22);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Olá Ariele";
+            this.lblNomeUsuarioLogado.AutoSize = true;
+            this.lblNomeUsuarioLogado.Location = new System.Drawing.Point(310, 9);
+            this.lblNomeUsuarioLogado.Name = "lblNomeUsuarioLogado";
+            this.lblNomeUsuarioLogado.Size = new System.Drawing.Size(82, 22);
+            this.lblNomeUsuarioLogado.TabIndex = 3;
+            this.lblNomeUsuarioLogado.Text = "Olá Ariele";
             // 
             // textBox1
             // 
@@ -275,16 +285,6 @@
             this.linkSair.Text = "Sair";
             this.linkSair.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkSair_LinkClicked);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::OlimpiadaCompras.Properties.Resources.Brasão_Dourado;
-            this.pictureBox1.Location = new System.Drawing.Point(1, 1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(299, 90);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 9;
-            this.pictureBox1.TabStop = false;
-            // 
             // FrmAreaCoordenacao
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -293,7 +293,7 @@
             this.Controls.Add(this.linkSair);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblNomeUsuarioLogado);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvSolicitacoes);
             this.Controls.Add(this.pnlMenu);
@@ -305,9 +305,9 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmAreaCoordenacao_FormClosed);
             this.Load += new System.EventHandler(this.FrmAreaCoordenacao_Load);
             this.pnlMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlCadastros.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,7 +327,7 @@
         private System.Windows.Forms.Button btnRelatorios;
         private System.Windows.Forms.DataGridView dgvSolicitacoes;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblNomeUsuarioLogado;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel linkSair;
