@@ -43,8 +43,8 @@
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox36 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.txtAnexo = new System.Windows.Forms.TextBox();
+            this.btnSelecionar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtFiltro = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
@@ -171,7 +171,7 @@
             this.btnExcluir.FlatAppearance.BorderSize = 0;
             this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExcluir.ForeColor = System.Drawing.Color.White;
-            this.btnExcluir.Location = new System.Drawing.Point(528, 463);
+            this.btnExcluir.Location = new System.Drawing.Point(528, 455);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(142, 40);
             this.btnExcluir.TabIndex = 25;
@@ -181,8 +181,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox36);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.txtAnexo);
+            this.groupBox1.Controls.Add(this.btnSelecionar);
             this.groupBox1.Location = new System.Drawing.Point(32, 158);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(637, 67);
@@ -190,21 +190,21 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Anexos";
             // 
-            // textBox36
+            // txtAnexo
             // 
-            this.textBox36.Location = new System.Drawing.Point(6, 28);
-            this.textBox36.Name = "textBox36";
-            this.textBox36.Size = new System.Drawing.Size(484, 29);
-            this.textBox36.TabIndex = 32;
+            this.txtAnexo.Location = new System.Drawing.Point(6, 28);
+            this.txtAnexo.Name = "txtAnexo";
+            this.txtAnexo.Size = new System.Drawing.Size(484, 29);
+            this.txtAnexo.TabIndex = 32;
             // 
-            // button1
+            // btnSelecionar
             // 
-            this.button1.Location = new System.Drawing.Point(496, 28);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 29);
-            this.button1.TabIndex = 33;
-            this.button1.Text = "Selecionar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSelecionar.Location = new System.Drawing.Point(496, 28);
+            this.btnSelecionar.Name = "btnSelecionar";
+            this.btnSelecionar.Size = new System.Drawing.Size(129, 29);
+            this.btnSelecionar.TabIndex = 33;
+            this.btnSelecionar.Text = "Selecionar";
+            this.btnSelecionar.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -267,8 +267,8 @@
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox36;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtAnexo;
+        private System.Windows.Forms.Button btnSelecionar;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtFiltro;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNome;

@@ -68,6 +68,8 @@
             this.colEmailResponsavel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRemove = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.colIdResponsavel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResponsavel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEscolas)).BeginInit();
@@ -80,12 +82,13 @@
             this.btnExcluir.FlatAppearance.BorderSize = 0;
             this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExcluir.ForeColor = System.Drawing.Color.White;
-            this.btnExcluir.Location = new System.Drawing.Point(741, 624);
+            this.btnExcluir.Location = new System.Drawing.Point(744, 631);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(142, 40);
             this.btnExcluir.TabIndex = 35;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = false;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnSalvar
             // 
@@ -94,7 +97,7 @@
             this.btnSalvar.FlatAppearance.BorderSize = 0;
             this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalvar.ForeColor = System.Drawing.Color.White;
-            this.btnSalvar.Location = new System.Drawing.Point(741, 399);
+            this.btnSalvar.Location = new System.Drawing.Point(744, 406);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(142, 40);
             this.btnSalvar.TabIndex = 37;
@@ -105,6 +108,7 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.btnCancelar);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtCargo);
             this.groupBox1.Controls.Add(this.btnAdicionar);
@@ -113,9 +117,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtEmail);
             this.groupBox1.Controls.Add(this.dgvResponsavel);
-            this.groupBox1.Location = new System.Drawing.Point(17, 132);
+            this.groupBox1.Location = new System.Drawing.Point(17, 136);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(866, 261);
+            this.groupBox1.Size = new System.Drawing.Size(869, 261);
             this.groupBox1.TabIndex = 50;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados dos responsáveis";
@@ -144,7 +148,7 @@
             this.btnAdicionar.FlatAppearance.BorderSize = 0;
             this.btnAdicionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdicionar.ForeColor = System.Drawing.Color.White;
-            this.btnAdicionar.Location = new System.Drawing.Point(752, 55);
+            this.btnAdicionar.Location = new System.Drawing.Point(755, 55);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(108, 29);
             this.btnAdicionar.TabIndex = 11;
@@ -188,6 +192,8 @@
             // 
             // dgvResponsavel
             // 
+            this.dgvResponsavel.AllowUserToAddRows = false;
+            this.dgvResponsavel.AllowUserToDeleteRows = false;
             this.dgvResponsavel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvResponsavel.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvResponsavel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -195,15 +201,19 @@
             this.colResponsavel,
             this.colEmailResponsavel,
             this.colCargo,
-            this.colRemove});
+            this.colRemove,
+            this.colIdResponsavel});
             this.dgvResponsavel.Location = new System.Drawing.Point(6, 90);
             this.dgvResponsavel.Name = "dgvResponsavel";
-            this.dgvResponsavel.Size = new System.Drawing.Size(854, 152);
+            this.dgvResponsavel.Size = new System.Drawing.Size(857, 152);
             this.dgvResponsavel.TabIndex = 35;
+            this.dgvResponsavel.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvResponsavel_CellClick);
             this.dgvResponsavel.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvResponsavel_CellContentClick);
             // 
             // dgvEscolas
             // 
+            this.dgvEscolas.AllowUserToAddRows = false;
+            this.dgvEscolas.AllowUserToDeleteRows = false;
             this.dgvEscolas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvEscolas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -217,16 +227,18 @@
             this.colCidade,
             this.colEstado,
             this.colIdEscola});
-            this.dgvEscolas.Location = new System.Drawing.Point(14, 445);
+            this.dgvEscolas.Location = new System.Drawing.Point(14, 452);
             this.dgvEscolas.Name = "dgvEscolas";
-            this.dgvEscolas.Size = new System.Drawing.Size(869, 173);
+            this.dgvEscolas.ReadOnly = true;
+            this.dgvEscolas.Size = new System.Drawing.Size(872, 173);
             this.dgvEscolas.TabIndex = 51;
+            this.dgvEscolas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEscolas_CellClick);
             // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 413);
+            this.label5.Location = new System.Drawing.Point(13, 420);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 22);
             this.label5.TabIndex = 65;
@@ -236,25 +248,28 @@
             // 
             this.txtFiltro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtFiltro.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFiltro.Location = new System.Drawing.Point(68, 410);
+            this.txtFiltro.Location = new System.Drawing.Point(68, 417);
             this.txtFiltro.Name = "txtFiltro";
-            this.txtFiltro.Size = new System.Drawing.Size(261, 29);
+            this.txtFiltro.Size = new System.Drawing.Size(200, 29);
             this.txtFiltro.TabIndex = 64;
             // 
             // colNomeEscola
             // 
             this.colNomeEscola.HeaderText = "Nome da escola";
             this.colNomeEscola.Name = "colNomeEscola";
+            this.colNomeEscola.ReadOnly = true;
             // 
             // colLogradouro
             // 
             this.colLogradouro.HeaderText = "Logradouro";
             this.colLogradouro.Name = "colLogradouro";
+            this.colLogradouro.ReadOnly = true;
             // 
             // colBairro
             // 
             this.colBairro.HeaderText = "Bairro";
             this.colBairro.Name = "colBairro";
+            this.colBairro.ReadOnly = true;
             // 
             // colCep
             // 
@@ -266,28 +281,32 @@
             // 
             this.colNumero.HeaderText = "Número";
             this.colNumero.Name = "colNumero";
+            this.colNumero.ReadOnly = true;
             // 
             // colCidade
             // 
             this.colCidade.HeaderText = "Cidade";
             this.colCidade.Name = "colCidade";
+            this.colCidade.ReadOnly = true;
             // 
             // colEstado
             // 
             this.colEstado.HeaderText = "Estado";
             this.colEstado.Name = "colEstado";
+            this.colEstado.ReadOnly = true;
             // 
             // colIdEscola
             // 
             this.colIdEscola.HeaderText = "id";
             this.colIdEscola.Name = "colIdEscola";
+            this.colIdEscola.ReadOnly = true;
             this.colIdEscola.Visible = false;
             // 
             // label9
             // 
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(13, 72);
+            this.label9.Location = new System.Drawing.Point(13, 76);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(57, 22);
             this.label9.TabIndex = 43;
@@ -297,7 +316,7 @@
             // 
             this.txtNomeEscola.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtNomeEscola.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomeEscola.Location = new System.Drawing.Point(17, 40);
+            this.txtNomeEscola.Location = new System.Drawing.Point(17, 44);
             this.txtNomeEscola.Name = "txtNomeEscola";
             this.txtNomeEscola.Size = new System.Drawing.Size(418, 29);
             this.txtNomeEscola.TabIndex = 1;
@@ -307,7 +326,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 15);
+            this.label1.Location = new System.Drawing.Point(13, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(131, 22);
             this.label1.TabIndex = 33;
@@ -317,7 +336,7 @@
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(593, 15);
+            this.label7.Location = new System.Drawing.Point(593, 19);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(100, 22);
             this.label7.TabIndex = 39;
@@ -326,7 +345,7 @@
             // txtLogradouro
             // 
             this.txtLogradouro.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtLogradouro.Location = new System.Drawing.Point(597, 40);
+            this.txtLogradouro.Location = new System.Drawing.Point(597, 44);
             this.txtLogradouro.Name = "txtLogradouro";
             this.txtLogradouro.Size = new System.Drawing.Size(286, 29);
             this.txtLogradouro.TabIndex = 3;
@@ -336,7 +355,7 @@
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(437, 15);
+            this.label8.Location = new System.Drawing.Point(437, 19);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(39, 22);
             this.label8.TabIndex = 41;
@@ -345,7 +364,7 @@
             // txtCep
             // 
             this.txtCep.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtCep.Location = new System.Drawing.Point(441, 40);
+            this.txtCep.Location = new System.Drawing.Point(441, 44);
             this.txtCep.Name = "txtCep";
             this.txtCep.Size = new System.Drawing.Size(150, 29);
             this.txtCep.TabIndex = 2;
@@ -354,7 +373,7 @@
             // txtBairro
             // 
             this.txtBairro.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtBairro.Location = new System.Drawing.Point(17, 97);
+            this.txtBairro.Location = new System.Drawing.Point(17, 101);
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(237, 29);
             this.txtBairro.TabIndex = 4;
@@ -364,7 +383,7 @@
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(256, 73);
+            this.label10.Location = new System.Drawing.Point(256, 77);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(73, 22);
             this.label10.TabIndex = 45;
@@ -373,7 +392,7 @@
             // txtNumero
             // 
             this.txtNumero.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtNumero.Location = new System.Drawing.Point(260, 97);
+            this.txtNumero.Location = new System.Drawing.Point(260, 101);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(149, 29);
             this.txtNumero.TabIndex = 5;
@@ -383,7 +402,7 @@
             // 
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(618, 71);
+            this.label11.Location = new System.Drawing.Point(618, 75);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(62, 22);
             this.label11.TabIndex = 47;
@@ -421,7 +440,7 @@
             "SE",
             "TO",
             "DF"});
-            this.cboEstado.Location = new System.Drawing.Point(416, 96);
+            this.cboEstado.Location = new System.Drawing.Point(416, 100);
             this.cboEstado.Name = "cboEstado";
             this.cboEstado.Size = new System.Drawing.Size(200, 30);
             this.cboEstado.TabIndex = 6;
@@ -431,7 +450,7 @@
             // 
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(412, 71);
+            this.label12.Location = new System.Drawing.Point(412, 75);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(62, 22);
             this.label12.TabIndex = 53;
@@ -440,7 +459,7 @@
             // txtCidade
             // 
             this.txtCidade.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtCidade.Location = new System.Drawing.Point(622, 97);
+            this.txtCidade.Location = new System.Drawing.Point(622, 101);
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(261, 29);
             this.txtCidade.TabIndex = 7;
@@ -466,11 +485,34 @@
             this.colRemove.HeaderText = "Remover da lista";
             this.colRemove.Name = "colRemove";
             // 
+            // colIdResponsavel
+            // 
+            this.colIdResponsavel.HeaderText = "id";
+            this.colIdResponsavel.Name = "colIdResponsavel";
+            this.colIdResponsavel.ReadOnly = true;
+            this.colIdResponsavel.Visible = false;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.ForeColor = System.Drawing.Color.White;
+            this.btnCancelar.Location = new System.Drawing.Point(755, 19);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(108, 29);
+            this.btnCancelar.TabIndex = 43;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Visible = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // FrmCadastroEscolas
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(896, 669);
+            this.ClientSize = new System.Drawing.Size(899, 676);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.txtCidade);
@@ -547,5 +589,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colEmailResponsavel;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCargo;
         private System.Windows.Forms.DataGridViewLinkColumn colRemove;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colIdResponsavel;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

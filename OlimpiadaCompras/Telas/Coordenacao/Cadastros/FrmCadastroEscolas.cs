@@ -20,6 +20,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
         List<Responsavel> responsaveis = new List<Responsavel>();
         long idEscola = 0;
         long idResponsavel = 0;
+        int linhaClicada = 0;
         public FrmCadastroEscolas(Usuario usuario)
         {
             this.usuarioLogado = usuario;
@@ -62,7 +63,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
             dgvResponsavel.Rows.Add("Maria Paula", "mariapaula@gmail.com", "bacon picadinho", "remove");
         }
 
-        private async Task CreateEscola()
+        private async Task Create()
         {
             Escola escola = new Escola();
             if (isCampoVazio())
@@ -85,7 +86,8 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     else
                     {
                         AtualizaGrid();
-                        for (int i = 0; i < dgvResponsavel.Rows.Count - 1; i++)
+                        escolas = await HttpEscolas.GetAllEscolas(usuarioLogado.token);
+                        for (int i = 0; i < dgvResponsavel.Rows.Count; i++)
                         {
                             Responsavel responsavel = new Responsavel();
                             responsavel.EscolaId = escolas.Last().Id;
@@ -117,55 +119,82 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
         }
         private bool hasResponsavelNaLista()
         {
-            return (dgvResponsavel.Rows.Count != -1 && dgvResponsavel.Rows.Count >= 4);
+            return (dgvResponsavel.Rows.Count != -1 && dgvResponsavel.Rows.Count >= 3);
         }
 
-        private async Task UpdateEscola()
+        private new async Task Update()
         {
-            Escola escola = new Escola();
-            if (isCampoVazio())
+            if (idEscola != 0)
             {
-                escola.Nome = txtNomeEscola.Text;
-                escola.Cep = txtCep.Text;
-                escola.Logradouro = txtLogradouro.Text;
-                escola.Bairro = txtBairro.Text;
-                escola.Numero = txtNumero.Text;
-                escola.Estado = cboEstado.Text;
-                escola.Cidade = txtCidade.Text;
-                if (hasResponsavelNaLista())
+
+                Escola escola = new Escola();
+                if (isCampoVazio())
                 {
-                    var escolaCriado = await HttpEscolas.Update(escola, idEscola, usuarioLogado.token);
-                    if (escolaCriado == null)
+                    escola.Nome = txtNomeEscola.Text;
+                    escola.Cep = txtCep.Text;
+                    escola.Logradouro = txtLogradouro.Text;
+                    escola.Bairro = txtBairro.Text;
+                    escola.Numero = txtNumero.Text;
+                    escola.Estado = cboEstado.Text;
+                    escola.Cidade = txtCidade.Text;
+                    if (hasResponsavelNaLista())
                     {
-                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+
+                        var escolaCriado = await HttpEscolas.Update(escola, idEscola, usuarioLogado.token);
+                        if (escolaCriado == null)
+                        {
+                            MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                        }
+                        else
+                        {
+                            AtualizaGrid();
+                            escolas = await HttpEscolas.GetAllEscolas(usuarioLogado.token);
+                            for (int i = 0; i < dgvResponsavel.Rows.Count; i++)
+                            {
+                                Responsavel responsavel = new Responsavel();
+                                responsavel.EscolaId = idEscola;
+                                responsavel.Nome = dgvResponsavel.Rows[i].Cells[0].Value.ToString();
+                                responsavel.Email = dgvResponsavel.Rows[i].Cells[1].Value.ToString();
+                                responsavel.Cargo = dgvResponsavel.Rows[i].Cells[2].Value.ToString();
+                                idResponsavel = Convert.ToInt64(dgvResponsavel.Rows[i].Cells["colIdResponsavel"].Value);
+
+                                if (idResponsavel == 0)
+                                {
+                                    var responsavelCriado = await HttpResponsaveis.Create(responsavel, usuarioLogado.token);
+                                }
+                                else
+                                {
+                                    var responsavelEditado = await HttpResponsaveis.Update(responsavel, idResponsavel, usuarioLogado.token);
+                                }
+                            }
+                            MessageBox.Show("Escola Editada com sucesso");
+                            ManipulaFormGenericoUtil.LimpaCampos(this);
+                        }
                     }
                     else
                     {
-                        AtualizaGrid();
-                        MessageBox.Show("Escola editada com sucesso");
-                        ManipulaFormGenericoUtil.LimpaCampos(this);
-                        idEscola = 0;
+                        MessageBox.Show("Coloque pelo menos 3 responsáveis para a escola");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Coloque pelo menos 3 responsáveis para a escola");
+                    MessageBox.Show("Todos os campos são obrigatórios");
                 }
             }
             else
             {
-                MessageBox.Show("Todos os campos são obrigatórios");
+                MessageBox.Show("Selecione ao menos uma escola na lista");
             }
         }
         private async void btnSalvar_Click(object sender, EventArgs e)
         {
             if (idEscola > 0)
             {
-                await UpdateEscola();
+                await Update();
             }
             else
             {
-                await CreateEscola();
+                await Create();
             }
         }
 
@@ -174,7 +203,17 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
             if (!string.IsNullOrEmpty(txtNomeResponsavel.Text) && !string.IsNullOrEmpty(txtCargo.Text) &&
                 !string.IsNullOrEmpty(txtEmail.Text))
             {
-                dgvResponsavel.Rows.Add(txtNomeResponsavel.Text, txtEmail.Text, txtCargo.Text, "Remover");
+                if (idResponsavel == 0)
+                {
+                    dgvResponsavel.Rows.Add(txtNomeResponsavel.Text, txtEmail.Text, txtCargo.Text, "Remover");
+                }
+                else
+                {
+                    dgvResponsavel.Rows[linhaClicada].Cells[0].Value = txtNomeResponsavel.Text;
+                    dgvResponsavel.Rows[linhaClicada].Cells[1].Value = txtEmail.Text;
+                    dgvResponsavel.Rows[linhaClicada].Cells[2].Value = txtCargo.Text;
+                    LimpaEdicaoResponsavel();
+                }
             }
             else
             {
@@ -182,15 +221,110 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
             }
         }
 
-        private void dgvResponsavel_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvResponsavel_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvResponsavel.Columns[e.ColumnIndex].Name == "colRemove")
             {
-                if (MessageBox.Show("TesTem certeza que deseja remover este item?", "Remover item", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Tem certeza que deseja remover este item?", "Remover item", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    dgvResponsavel.Rows.RemoveAt(e.RowIndex);
+                    if (idResponsavel == 0)
+                    {
+                        dgvResponsavel.Rows.RemoveAt(e.RowIndex);
+                        LimpaEdicaoResponsavel();
+                    }
+                    else
+                    {
+                        if (await HttpResponsaveis.Delete(idResponsavel, usuarioLogado.token))
+                        {
+                            dgvResponsavel.Rows.RemoveAt(e.RowIndex);
+                            LimpaEdicaoResponsavel();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                        }
+
+                    }
+                }
+                else
+                {
+                    LimpaEdicaoResponsavel();
                 }
             }
+        }
+
+        private async void dgvEscolas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(dgvEscolas.Rows[e.RowIndex].Cells[0].Value.ToString()))
+            {
+                idEscola = Convert.ToInt64(dgvEscolas.Rows[e.RowIndex].Cells["colIdEscola"].Value);
+                txtNomeEscola.Text = dgvEscolas.Rows[e.RowIndex].Cells[0].Value.ToString();
+                txtLogradouro.Text = dgvEscolas.Rows[e.RowIndex].Cells[1].Value.ToString();
+                txtBairro.Text = dgvEscolas.Rows[e.RowIndex].Cells[2].Value.ToString();
+                txtCep.Text = dgvEscolas.Rows[e.RowIndex].Cells[3].Value.ToString();
+                txtNumero.Text = dgvEscolas.Rows[e.RowIndex].Cells[4].Value.ToString();
+                txtCidade.Text = dgvEscolas.Rows[e.RowIndex].Cells[5].Value.ToString();
+                cboEstado.Text = dgvEscolas.Rows[e.RowIndex].Cells[6].Value.ToString();
+                responsaveis = await HttpResponsaveis.GetResponsavelsBySearch(dgvEscolas.Rows[e.RowIndex].Cells[0].Value.ToString(), usuarioLogado.token);
+                dgvResponsavel.Rows.Clear();
+                foreach (var item in responsaveis)
+                {
+                    dgvResponsavel.Rows.Add(item.Nome, item.Email, item.Cargo, "Remover", item.Id);
+                }
+
+            }
+        }
+
+        private void dgvResponsavel_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            idResponsavel = Convert.ToInt64(dgvResponsavel.Rows[e.RowIndex].Cells["colIdResponsavel"].Value);
+            txtNomeResponsavel.Text = dgvResponsavel.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtEmail.Text = dgvResponsavel.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtCargo.Text = dgvResponsavel.Rows[e.RowIndex].Cells[2].Value.ToString();
+            btnCancelar.Visible = true;
+            btnAdicionar.Text = "Alterar";
+            btnAdicionar.BackColor = Color.Blue;
+            btnSalvar.Enabled = false;
+            btnExcluir.Enabled = false;
+            linhaClicada = e.RowIndex;
+            GerenciaBloqueioControles(false);
+        }
+
+        private void GerenciaBloqueioControles(bool enabled)
+        {
+            foreach (var item in this.Controls)
+            {
+                if (item.GetType() != typeof(GroupBox))
+                {
+                    var controle =(Control) item;
+                    controle.Enabled = false;
+                }
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpaEdicaoResponsavel();
+        }
+
+        private void LimpaEdicaoResponsavel()
+        {
+            idResponsavel = 0;
+            txtNomeResponsavel.Text = "";
+            txtEmail.Text = "";
+            txtCargo.Text = "";
+            btnCancelar.Visible = false;
+            btnAdicionar.Text = "Adicionar";
+            btnAdicionar.BackColor = Color.FromArgb(3, 166, 90);
+            btnSalvar.Enabled = true;
+            btnExcluir.Enabled = true;
+            linhaClicada = 0;
+            GerenciaBloqueioControles(true);
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }
