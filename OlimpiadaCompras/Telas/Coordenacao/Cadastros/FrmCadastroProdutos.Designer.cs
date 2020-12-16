@@ -95,6 +95,7 @@
             this.txtCodigoProtheus.Size = new System.Drawing.Size(285, 29);
             this.txtCodigoProtheus.TabIndex = 1;
             this.txtCodigoProtheus.Text = "000000000";
+            this.txtCodigoProtheus.Enter += new System.EventHandler(this.txtCodigoProtheus_Enter);
             // 
             // label3
             // 

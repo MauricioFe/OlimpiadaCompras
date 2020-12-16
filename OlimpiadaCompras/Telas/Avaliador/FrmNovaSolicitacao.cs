@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,7 +16,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
     public partial class FrmNovaSolicitacao : Form
     {
         private Usuario usuarioLogado;
-
+        long idProduto = 0;
+        long idGrupo = 0;
         public FrmNovaSolicitacao(Usuario usuario)
         {
             this.usuarioLogado = usuario;
@@ -50,7 +52,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
             PreencheCombobox(cboOcupacao, "Nome", "Id");
             PreencheCombobox(cboTipoCompra, "Descricao", "Id");
             dtpDataSolicitacao.MinDate = DateTime.Now;
-            
+
             PreencheDadosEscola(1);
 
         }
@@ -142,14 +144,66 @@ namespace OlimpiadaCompras.Telas.Avaliador
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private async void txtCodigoProtheusProduto_TextChanged(object sender, EventArgs e)
         {
-            Produto produto = HttpProdutos.GetProdutosByCodigoProtheus(((TextBox)sender).Text, usuarioLogado.token);
+            Regex regex = new Regex("^[0-9]*$");
+            if (regex.IsMatch(((TextBox)sender).Text))
+            {
+                Produto produto = await HttpProdutos.GetProdutosByCodigoProtheus(Convert.ToInt64(((TextBox)sender).Text), usuarioLogado.token);
+                if (produto != null)
+                {
+                    txtGrupo.Text = produto.Grupo.Descricao;
+                    txtDescricao.Text = produto.Descricao;
+                    idProduto = produto.Id;
+                    idGrupo = produto.GrupoId;
+                }
+                else
+                {
+                    txtGrupo.Text = "";
+                    txtDescricao.Text = "";
+                    idProduto = 0;
+                }
+            }
+        }
+
+        private void btnAdicionarProduto_Click(object sender, EventArgs e)
+        {
+            dgvProduto.Rows.Add(txtCodigoProtheusProduto.Text, txtGrupo.Text, txtDescricao.Text, "Remove", idProduto, idGrupo);
+        }
+
+        private void dgvProduto_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvProduto.Columns[e.ColumnIndex].Name == "colRemover")
+            {
+                dgvProduto.Rows.RemoveAt(e.RowIndex);
+            }
+        }
+
+        private void btnProximoProduto_Click(object sender, EventArgs e)
+        {
+            List<Produto> produtosCompras = new List<Produto>();
+
+            for (int i = 0; i < dgvProduto.Rows.Count; i++)
+            {
+                Produto produto = new Produto();
+                produto.CodigoProtheus = (long)dgvProduto.Rows[i].Cells[0].Value;
+                produto.Descricao = dgvProduto.Rows[i].Cells[2].Value.ToString();
+                produto.GrupoId = (long)dgvProduto.Rows[i].Cells["colGrupoId"].Value;
+                produto.Id = (long)dgvProduto.Rows[i].Cells["colIdProduto"].Value;
+                produtosCompras.Add(produto);
+            }
+            PreencheGridProdutoCompra(produtosCompras);
+            tabContainer.SelectTab(2);
+            ((Control)tabContainer.TabPages[1]).Enabled = false;
+
+        }
+        //Parei aqui... Criar método para preencher a parte do produto no grid de orçamentos
+        private void PreencheGridProdutoCompra(List<Produto> produtosCompras)
+        {
+            foreach (var item in produtosCompras)
+            {
+
+            }
         }
     }
 }

@@ -64,8 +64,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.cboEscola = new System.Windows.Forms.ComboBox();
             this.produto = new System.Windows.Forms.TabPage();
+            this.btnProximoProduto = new System.Windows.Forms.Button();
             this.dgvProduto = new System.Windows.Forms.DataGridView();
+            this.colCodigoProtheusProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRemover = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.colIdProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGrupoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtGrupo = new System.Windows.Forms.TextBox();
             this.btnAdicionarProduto = new System.Windows.Forms.Button();
             this.txtCodigoProtheusProduto = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -93,7 +101,7 @@
             this.textBox26 = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dgvProdutoCompra1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -168,13 +176,6 @@
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewLinkColumn3 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.btnProximoProduto = new System.Windows.Forms.Button();
-            this.colCodigoProtheusProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRemover = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.colIdProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtGrupo = new System.Windows.Forms.TextBox();
             this.tabContainer.SuspendLayout();
             this.dadosGerais.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -186,7 +187,7 @@
             this.orcamento1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProdutoCompra1)).BeginInit();
             this.orcamento2.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -230,7 +231,7 @@
             this.btnProximo.FlatAppearance.BorderSize = 0;
             this.btnProximo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximo.ForeColor = System.Drawing.Color.White;
-            this.btnProximo.Location = new System.Drawing.Point(892, 449);
+            this.btnProximo.Location = new System.Drawing.Point(892, 442);
             this.btnProximo.Name = "btnProximo";
             this.btnProximo.Size = new System.Drawing.Size(169, 34);
             this.btnProximo.TabIndex = 33;
@@ -556,8 +557,25 @@
             this.produto.Text = "Produtos";
             this.produto.UseVisualStyleBackColor = true;
             // 
+            // btnProximoProduto
+            // 
+            this.btnProximoProduto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnProximoProduto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(138)))), ((int)(((byte)(191)))));
+            this.btnProximoProduto.FlatAppearance.BorderSize = 0;
+            this.btnProximoProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProximoProduto.ForeColor = System.Drawing.Color.White;
+            this.btnProximoProduto.Location = new System.Drawing.Point(884, 463);
+            this.btnProximoProduto.Name = "btnProximoProduto";
+            this.btnProximoProduto.Size = new System.Drawing.Size(169, 34);
+            this.btnProximoProduto.TabIndex = 34;
+            this.btnProximoProduto.Text = "Próximo";
+            this.btnProximoProduto.UseVisualStyleBackColor = false;
+            this.btnProximoProduto.Click += new System.EventHandler(this.btnProximoProduto_Click);
+            // 
             // dgvProduto
             // 
+            this.dgvProduto.AllowUserToAddRows = false;
+            this.dgvProduto.AllowUserToDeleteRows = false;
             this.dgvProduto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProduto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProduto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -565,11 +583,52 @@
             this.colGrupo,
             this.colDescricao,
             this.colRemover,
-            this.colIdProduto});
+            this.colIdProduto,
+            this.colGrupoId});
             this.dgvProduto.Location = new System.Drawing.Point(23, 224);
             this.dgvProduto.Name = "dgvProduto";
+            this.dgvProduto.ReadOnly = true;
             this.dgvProduto.Size = new System.Drawing.Size(1030, 233);
             this.dgvProduto.TabIndex = 29;
+            this.dgvProduto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduto_CellContentClick);
+            // 
+            // colCodigoProtheusProduto
+            // 
+            this.colCodigoProtheusProduto.HeaderText = "Código do protheus";
+            this.colCodigoProtheusProduto.Name = "colCodigoProtheusProduto";
+            this.colCodigoProtheusProduto.ReadOnly = true;
+            // 
+            // colGrupo
+            // 
+            this.colGrupo.HeaderText = "Grupo";
+            this.colGrupo.Name = "colGrupo";
+            this.colGrupo.ReadOnly = true;
+            // 
+            // colDescricao
+            // 
+            this.colDescricao.HeaderText = "Descrição";
+            this.colDescricao.Name = "colDescricao";
+            this.colDescricao.ReadOnly = true;
+            // 
+            // colRemover
+            // 
+            this.colRemover.HeaderText = "Remover";
+            this.colRemover.Name = "colRemover";
+            this.colRemover.ReadOnly = true;
+            // 
+            // colIdProduto
+            // 
+            this.colIdProduto.HeaderText = "id";
+            this.colIdProduto.Name = "colIdProduto";
+            this.colIdProduto.ReadOnly = true;
+            this.colIdProduto.Visible = false;
+            // 
+            // colGrupoId
+            // 
+            this.colGrupoId.HeaderText = "grupoId";
+            this.colGrupoId.Name = "colGrupoId";
+            this.colGrupoId.ReadOnly = true;
+            this.colGrupoId.Visible = false;
             // 
             // groupBox1
             // 
@@ -587,6 +646,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados do Produto";
             // 
+            // txtGrupo
+            // 
+            this.txtGrupo.Enabled = false;
+            this.txtGrupo.Location = new System.Drawing.Point(420, 64);
+            this.txtGrupo.Name = "txtGrupo";
+            this.txtGrupo.Size = new System.Drawing.Size(382, 26);
+            this.txtGrupo.TabIndex = 34;
+            // 
             // btnAdicionarProduto
             // 
             this.btnAdicionarProduto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -600,7 +667,7 @@
             this.btnAdicionarProduto.TabIndex = 33;
             this.btnAdicionarProduto.Text = "Adicionar Produto";
             this.btnAdicionarProduto.UseVisualStyleBackColor = false;
-            this.btnAdicionarProduto.Click += new System.EventHandler(this.button5_Click);
+            this.btnAdicionarProduto.Click += new System.EventHandler(this.btnAdicionarProduto_Click);
             // 
             // txtCodigoProtheusProduto
             // 
@@ -836,7 +903,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.dataGridView3);
+            this.groupBox4.Controls.Add(this.dgvProdutoCompra1);
             this.groupBox4.Location = new System.Drawing.Point(8, 3);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(1062, 279);
@@ -844,11 +911,11 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Valores do produto";
             // 
-            // dataGridView3
+            // dgvProdutoCompra1
             // 
-            this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvProdutoCompra1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvProdutoCompra1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProdutoCompra1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
@@ -859,10 +926,10 @@
             this.ICMS,
             this.Total,
             this.dataGridViewLinkColumn1});
-            this.dataGridView3.Location = new System.Drawing.Point(11, 23);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(1040, 233);
-            this.dataGridView3.TabIndex = 41;
+            this.dgvProdutoCompra1.Location = new System.Drawing.Point(11, 23);
+            this.dgvProdutoCompra1.Name = "dgvProdutoCompra1";
+            this.dgvProdutoCompra1.Size = new System.Drawing.Size(1040, 233);
+            this.dgvProdutoCompra1.TabIndex = 41;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -923,10 +990,10 @@
             // 
             this.orcamento2.Controls.Add(this.groupBox8);
             this.orcamento2.Controls.Add(this.groupBox5);
-            this.orcamento2.Location = new System.Drawing.Point(4, 29);
+            this.orcamento2.Location = new System.Drawing.Point(4, 22);
             this.orcamento2.Name = "orcamento2";
             this.orcamento2.Padding = new System.Windows.Forms.Padding(3);
-            this.orcamento2.Size = new System.Drawing.Size(1073, 513);
+            this.orcamento2.Size = new System.Drawing.Size(1073, 520);
             this.orcamento2.TabIndex = 3;
             this.orcamento2.Text = "Orçamento 2";
             this.orcamento2.UseVisualStyleBackColor = true;
@@ -1197,10 +1264,10 @@
             // 
             this.orcamento3.Controls.Add(this.groupBox9);
             this.orcamento3.Controls.Add(this.groupBox6);
-            this.orcamento3.Location = new System.Drawing.Point(4, 29);
+            this.orcamento3.Location = new System.Drawing.Point(4, 22);
             this.orcamento3.Name = "orcamento3";
             this.orcamento3.Padding = new System.Windows.Forms.Padding(3);
-            this.orcamento3.Size = new System.Drawing.Size(1073, 513);
+            this.orcamento3.Size = new System.Drawing.Size(1073, 520);
             this.orcamento3.TabIndex = 4;
             this.orcamento3.Text = "Orçamento 3";
             this.orcamento3.UseVisualStyleBackColor = true;
@@ -1467,55 +1534,6 @@
             this.dataGridViewLinkColumn3.Name = "dataGridViewLinkColumn3";
             this.dataGridViewLinkColumn3.ReadOnly = true;
             // 
-            // btnProximoProduto
-            // 
-            this.btnProximoProduto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnProximoProduto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(138)))), ((int)(((byte)(191)))));
-            this.btnProximoProduto.FlatAppearance.BorderSize = 0;
-            this.btnProximoProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProximoProduto.ForeColor = System.Drawing.Color.White;
-            this.btnProximoProduto.Location = new System.Drawing.Point(884, 470);
-            this.btnProximoProduto.Name = "btnProximoProduto";
-            this.btnProximoProduto.Size = new System.Drawing.Size(169, 34);
-            this.btnProximoProduto.TabIndex = 34;
-            this.btnProximoProduto.Text = "Próximo";
-            this.btnProximoProduto.UseVisualStyleBackColor = false;
-            // 
-            // colCodigoProtheusProduto
-            // 
-            this.colCodigoProtheusProduto.HeaderText = "Código do protheus";
-            this.colCodigoProtheusProduto.Name = "colCodigoProtheusProduto";
-            // 
-            // colGrupo
-            // 
-            this.colGrupo.HeaderText = "Grupo";
-            this.colGrupo.Name = "colGrupo";
-            // 
-            // colDescricao
-            // 
-            this.colDescricao.HeaderText = "Descrição";
-            this.colDescricao.Name = "colDescricao";
-            // 
-            // colRemover
-            // 
-            this.colRemover.HeaderText = "Remover";
-            this.colRemover.Name = "colRemover";
-            this.colRemover.ReadOnly = true;
-            // 
-            // colIdProduto
-            // 
-            this.colIdProduto.HeaderText = "id";
-            this.colIdProduto.Name = "colIdProduto";
-            this.colIdProduto.ReadOnly = true;
-            this.colIdProduto.Visible = false;
-            // 
-            // txtGrupo
-            // 
-            this.txtGrupo.Location = new System.Drawing.Point(420, 64);
-            this.txtGrupo.Name = "txtGrupo";
-            this.txtGrupo.Size = new System.Drawing.Size(382, 26);
-            this.txtGrupo.TabIndex = 34;
-            // 
             // FrmNovaSolicitacao
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1543,7 +1561,7 @@
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProdutoCompra1)).EndInit();
             this.orcamento2.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
@@ -1640,7 +1658,7 @@
         private System.Windows.Forms.TextBox textBox26;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView dgvProdutoCompra1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -1700,11 +1718,12 @@
         private System.Windows.Forms.DataGridViewLinkColumn colRemoveOcupacao;
         private System.Windows.Forms.DataGridViewTextBoxColumn colIdOcupacao;
         private System.Windows.Forms.Button btnProximoProduto;
+        private System.Windows.Forms.TextBox txtGrupo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCodigoProtheusProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGrupo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDescricao;
         private System.Windows.Forms.DataGridViewLinkColumn colRemover;
         private System.Windows.Forms.DataGridViewTextBoxColumn colIdProduto;
-        private System.Windows.Forms.TextBox txtGrupo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colGrupoId;
     }
 }

@@ -23,7 +23,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
         {
             this.usuarioLogado = usuario;
             InitializeComponent();
-            PreencheCombobox();
             txtCodigoProtheus.Select(9, 0);
         }
         private async void AtualizaGridByFiltro()
@@ -56,6 +55,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 
         private void FrmCadastroProdutos_Load(object sender, EventArgs e)
         {
+            PreencheCombobox();
             AtualizaGrid();
         }
 
@@ -176,6 +176,12 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
         private async void btnEditar_Click(object sender, EventArgs e)
         {
             await Update();
+        }
+
+        private void txtCodigoProtheus_Enter(object sender, EventArgs e)
+        {
+            txtCodigoProtheus.Text = "000000000";
+            txtCodigoProtheus.Select(9, 0);
         }
     }
 }

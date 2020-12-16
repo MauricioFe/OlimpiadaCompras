@@ -169,7 +169,7 @@ namespace OlimpiadaCompras.Requests
 
         }
 
-        public static async Task<Produto> GetProdutosByCodigoProtheusAsync(long codigoProtheus, string token)
+        public static async Task<Produto> GetProdutosByCodigoProtheus(long codigoProtheus, string token)
         {
             Produto produto = new Produto();
             try
