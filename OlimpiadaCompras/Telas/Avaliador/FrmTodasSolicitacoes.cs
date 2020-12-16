@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApiSGCOlimpiada.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +13,11 @@ namespace OlimpiadaCompras.Telas.Avaliador
 {
     public partial class FrmTodasSolicitacoes : Form
     {
-        public FrmTodasSolicitacoes()
+        private Usuario usuarioLogado;
+
+        public FrmTodasSolicitacoes(Usuario usuario)
         {
+            this.usuarioLogado = usuario;
             InitializeComponent();
         }
     }

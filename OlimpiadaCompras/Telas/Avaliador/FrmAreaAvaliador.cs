@@ -34,25 +34,25 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private void dgvSolicitacoesUsuario_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            FrmNovaSolicitacao form = new FrmNovaSolicitacao();
+            FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado);
             form.ShowDialog();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            FrmNovaSolicitacao form = new FrmNovaSolicitacao();
+            FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado);
             form.ShowDialog();
         }
 
         private void btnNovaSolicitacao_Click(object sender, EventArgs e)
         {
-            FrmNovaSolicitacao frm = new FrmNovaSolicitacao();
+            FrmNovaSolicitacao frm = new FrmNovaSolicitacao(usuarioLogado);
             frm.ShowDialog();
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
-            FrmEditarUsuarios form = new FrmEditarUsuarios();
+            FrmEditarUsuarios form = new FrmEditarUsuarios(usuarioLogado);
             form.ShowDialog();
         }
 
@@ -70,7 +70,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private void btnVisualizaTodas_Click(object sender, EventArgs e)
         {
-            FrmTodasSolicitacoes form = new FrmTodasSolicitacoes();
+            FrmTodasSolicitacoes form = new FrmTodasSolicitacoes(usuarioLogado);
             form.ShowDialog();
         }
     }

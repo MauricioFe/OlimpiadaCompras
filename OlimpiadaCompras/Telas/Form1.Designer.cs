@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,17 +38,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Open Sans", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(300, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(227, 43);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Realizar Login";
-            // 
             // txtEmail
             // 
             this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -58,7 +46,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(390, 33);
             this.txtEmail.TabIndex = 3;
-            this.txtEmail.Text = "abarrado@fiemg.com.br";
+            this.txtEmail.Text = "dcarlos@fiemg.com.br";
             // 
             // label2
             // 
@@ -88,7 +76,7 @@
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(390, 33);
             this.txtSenha.TabIndex = 5;
-            this.txtSenha.Text = "adm123";
+            this.txtSenha.Text = "avaliador123";
             this.txtSenha.UseSystemPasswordChar = true;
             // 
             // btnCancelar
@@ -125,7 +113,7 @@
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Image = global::OlimpiadaCompras.Properties.Resources.OCMG;
-            this.pictureBox1.Location = new System.Drawing.Point(102, 60);
+            this.pictureBox1.Location = new System.Drawing.Point(95, 35);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(630, 194);
             this.pictureBox1.TabIndex = 10;
@@ -143,7 +131,6 @@
             this.Controls.Add(this.txtSenha);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmLogin";
@@ -157,7 +144,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
