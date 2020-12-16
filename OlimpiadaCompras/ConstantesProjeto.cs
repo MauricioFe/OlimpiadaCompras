@@ -8,6 +8,9 @@ namespace OlimpiadaCompras
 {
     public abstract class ConstantesProjeto
     {
+        //url remota
         public static string URL_BASE = "http://177.74.238.210:5000";
+        //url local
+        //public static string URL_BASE = "http://192.168.0.111:5000";
     }
 }

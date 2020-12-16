@@ -48,8 +48,8 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
             if (!string.IsNullOrEmpty(txtEmail.Text) && !string.IsNullOrEmpty(txtNome.Text) && !string.IsNullOrEmpty(txtSenha.Text))
             {
                 usuario.Email = txtEmail.Text;
-                usuario.Nome = txtEmail.Text;
-                usuario.Senha = txtEmail.Text;
+                usuario.Nome = txtNome.Text;
+                usuario.Senha = txtSenha.Text;
                 usuario.FuncaoId = 2;
                 var usuarioCriado = await HttpUsuarios.Create(usuario, usuarioLogado.token);
                 if (usuarioCriado == null)
@@ -111,8 +111,8 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 {
                     Usuario usuarioEditado = new Usuario();
                     usuarioEditado.Email = txtEmail.Text;
-                    usuarioEditado.Nome = txtEmail.Text;
-                    usuarioEditado.Senha = txtEmail.Text;
+                    usuarioEditado.Nome = txtNome.Text;
+                    usuarioEditado.Senha = txtSenha.Text;
                     usuarioEditado.FuncaoId = 2;
                     var usuarioCriado = await HttpUsuarios.Update(usuarioEditado, id, usuarioLogado.token);
                     if (usuarioCriado == null)
