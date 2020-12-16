@@ -49,6 +49,9 @@ namespace OlimpiadaCompras.Telas.Avaliador
             PreencheCombobox(cboEscola, "Nome", "Id");
             PreencheCombobox(cboOcupacao, "Nome", "Id");
             PreencheCombobox(cboTipoCompra, "Descricao", "Id");
+            dtpDataSolicitacao.MinDate = DateTime.Now;
+            
+            PreencheDadosEscola(1);
 
         }
 
@@ -85,6 +88,68 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     dgvOcupacoes.Rows.RemoveAt(e.RowIndex);
                 }
             }
+        }
+
+        private void btnProximo_Click(object sender, EventArgs e)
+        {
+            //lógica para salvar a solicitação, depois a ocupação_solicitações
+            CreateSolicitacao();
+        }
+
+        private async void CreateSolicitacao()
+        {
+            if (!string.IsNullOrEmpty(txtResponsavelEntrega.Text) && !string.IsNullOrEmpty(txtJusticativa.Text))
+            {
+                SolicitacaoCompra solicitacao = new SolicitacaoCompra();
+                solicitacao.ResponsavelEntrega = txtResponsavelEntrega.Text;
+                solicitacao.Data = dtpDataSolicitacao.Value;
+                solicitacao.EscolaId = (long)cboEscola.SelectedValue;
+                solicitacao.TipoCompraId = (long)cboTipoCompra.SelectedValue;
+                solicitacao.Justificativa = txtJusticativa.Text;
+                if (dgvOcupacoes.Rows.Count >= 1)
+                {
+
+                    var solicitacaoCriada = await HttpSolicitacaoCompras.Create(solicitacao, usuarioLogado.token);
+                    if (solicitacaoCriada == null)
+                    {
+                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                    }
+                    else
+                    {
+                        List<SolicitacaoCompra> solicitacoes = await HttpSolicitacaoCompras.GetAll(usuarioLogado.token);
+                        long solicitacaoId = solicitacoes.Last().Id;
+                        for (int i = 0; i < dgvOcupacoes.Rows.Count; i++)
+                        {
+                            long ocupacaoId = (long)dgvOcupacoes.Rows[i].Cells["colIdOcupacao"].Value;
+                            OcupacaoSolicitacaoCompra ocupacaoSolicitacao = new OcupacaoSolicitacaoCompra();
+                            ocupacaoSolicitacao.OcupacaoId = ocupacaoId;
+                            ocupacaoSolicitacao.SolicitacaoId = solicitacaoId;
+                            await HttpSolicitacaoOcupacoes.Create(ocupacaoSolicitacao, usuarioLogado.token);
+                        }
+                        tabContainer.SelectTab("produto");
+                        ((Control)tabContainer.TabPages["dadosGerais"]).Enabled = false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Adicione ao menos uma ocupação na lista");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Preencha todos os campos");
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void txtCodigoProtheusProduto_TextChanged(object sender, EventArgs e)
+        {
+            Produto produto = HttpProdutos.GetProdutosByCodigoProtheus(((TextBox)sender).Text, usuarioLogado.token);
         }
     }
 }

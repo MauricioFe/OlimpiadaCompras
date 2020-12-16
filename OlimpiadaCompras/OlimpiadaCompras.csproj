@@ -58,6 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Requests\HttpSolicitacaoOcupacoes.cs" />
+    <Compile Include="Requests\HttpSolicitacaoCompras.cs" />
     <Compile Include="Requests\HttpResponsaveis.cs" />
     <Compile Include="Requests\HttpEscolas.cs" />
     <Compile Include="Requests\HttpTipoCompras.cs" />
