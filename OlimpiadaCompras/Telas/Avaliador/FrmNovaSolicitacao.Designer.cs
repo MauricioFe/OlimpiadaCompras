@@ -181,7 +181,7 @@
             this.colICMS1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotal1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRemover1 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.colProdutoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProdutoId1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabContainer.SuspendLayout();
             this.dadosGerais.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -240,7 +240,7 @@
             this.btnProximo.FlatAppearance.BorderSize = 0;
             this.btnProximo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximo.ForeColor = System.Drawing.Color.White;
-            this.btnProximo.Location = new System.Drawing.Point(895, 458);
+            this.btnProximo.Location = new System.Drawing.Point(895, 451);
             this.btnProximo.Name = "btnProximo";
             this.btnProximo.Size = new System.Drawing.Size(169, 34);
             this.btnProximo.TabIndex = 33;
@@ -558,10 +558,10 @@
             this.produto.Controls.Add(this.btnProximoProduto);
             this.produto.Controls.Add(this.dgvProduto);
             this.produto.Controls.Add(this.groupBox1);
-            this.produto.Location = new System.Drawing.Point(4, 29);
+            this.produto.Location = new System.Drawing.Point(4, 22);
             this.produto.Name = "produto";
             this.produto.Padding = new System.Windows.Forms.Padding(3);
-            this.produto.Size = new System.Drawing.Size(1073, 513);
+            this.produto.Size = new System.Drawing.Size(1073, 520);
             this.produto.TabIndex = 1;
             this.produto.Text = "Produtos";
             this.produto.UseVisualStyleBackColor = true;
@@ -974,7 +974,7 @@
             this.colICMS1,
             this.colTotal1,
             this.colRemover1,
-            this.colProdutoId});
+            this.colProdutoId1});
             this.dgvProdutoCompra1.Location = new System.Drawing.Point(11, 23);
             this.dgvProdutoCompra1.Name = "dgvProdutoCompra1";
             this.dgvProdutoCompra1.Size = new System.Drawing.Size(1040, 233);
@@ -1610,11 +1610,11 @@
             this.colRemover1.ReadOnly = true;
             this.colRemover1.Visible = false;
             // 
-            // colProdutoId
+            // colProdutoId1
             // 
-            this.colProdutoId.HeaderText = "produtoId";
-            this.colProdutoId.Name = "colProdutoId";
-            this.colProdutoId.Visible = false;
+            this.colProdutoId1.HeaderText = "produtoId";
+            this.colProdutoId1.Name = "colProdutoId1";
+            this.colProdutoId1.Visible = false;
             // 
             // FrmNovaSolicitacao
             // 
@@ -1812,6 +1812,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colICMS1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotal1;
         private System.Windows.Forms.DataGridViewLinkColumn colRemover1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colProdutoId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colProdutoId1;
     }
 }

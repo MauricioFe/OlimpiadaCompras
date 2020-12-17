@@ -216,6 +216,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 dgvProdutoCompra1.Rows[n].Cells[0].Value = item.CodigoProtheus;
                 dgvProdutoCompra1.Rows[n].Cells[1].Value = item.Grupo.Descricao;
                 dgvProdutoCompra1.Rows[n].Cells[2].Value = item.Descricao;
+                dgvProdutoCompra1.Rows[n].Cells["colProdutoId1"].Value = item.Id;
                 dgvProdutoCompra1.Rows[n].Cells["colRemover1"].Value = "Remover";
             }
         }
@@ -312,13 +313,13 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     {
                         ProdutoPedidoOrcamento produtoPedidoOrcamento = new ProdutoPedidoOrcamento();
                         produtoPedidoOrcamento.OrcamentoId = orcamentoId1;
-                        produtoPedidoOrcamento.ProdutoId = Convert.ToInt64(dgvProdutoCompra1.Rows[i].Cells["colProdutoId"].Value);
+                        produtoPedidoOrcamento.ProdutoId = Convert.ToInt64(dgvProdutoCompra1.Rows[i].Cells["colProdutoId1"].Value);
                         produtoPedidoOrcamento.SolicitacaoComprasId = solicitacaoComprasId;
-                        produtoPedidoOrcamento.Quantidade = Convert.ToInt32(dgvProdutoCompra1.Rows[i].Cells["colQuantidade"].Value);
-                        produtoPedidoOrcamento.valor = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colUnitario"].Value);
-                        produtoPedidoOrcamento.Desconto = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colUnitario"].Value);
-                        produtoPedidoOrcamento.Ipi = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colUnitario"].Value);
-                        produtoPedidoOrcamento.Icms = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colUnitario"].Value);
+                        produtoPedidoOrcamento.Quantidade = Convert.ToInt32(dgvProdutoCompra1.Rows[i].Cells["colQuantidade1"].Value);
+                        produtoPedidoOrcamento.valor = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colUnitario1"].Value);
+                        produtoPedidoOrcamento.Desconto = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colDesconto1"].Value);
+                        produtoPedidoOrcamento.Ipi = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colIpi1"].Value);
+                        produtoPedidoOrcamento.Icms = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colICMS1"].Value);
                         //produtoPedidoOrcamento. = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colUnitario"].Value);
                         var ProdutopedidoOrcamentoCriado = await HttpProdutoPedidoOrcamentos.Create(produtoPedidoOrcamento, usuarioLogado.token);
                     }
