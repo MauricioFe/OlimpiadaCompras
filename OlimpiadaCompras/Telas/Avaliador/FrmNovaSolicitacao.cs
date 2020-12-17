@@ -106,8 +106,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 SolicitacaoCompra solicitacao = new SolicitacaoCompra();
                 solicitacao.ResponsavelEntrega = txtResponsavelEntrega.Text;
                 solicitacao.Data = dtpDataSolicitacao.Value;
-                solicitacao.EscolaId = (long)cboEscola.SelectedValue;
-                solicitacao.TipoCompraId = (long)cboTipoCompra.SelectedValue;
+                solicitacao.EscolaId = Convert.ToInt64(cboEscola.SelectedValue);
+                solicitacao.TipoCompraId = Convert.ToInt64(cboTipoCompra.SelectedValue);
                 solicitacao.Justificativa = txtJusticativa.Text;
                 if (dgvOcupacoes.Rows.Count >= 1)
                 {
@@ -267,8 +267,9 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private void btnSelecionar1_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Filter = "Png files | *.png";
+            openFileDialog1.Filter = "pdf files | *.pdf";
             openFileDialog1.InitialDirectory = $@"{Environment.SpecialFolder.Desktop}";
+            openFileDialog1.FileName = "orcamento";
             openFileDialog1.Title = "Selecione o orçamento no formato pdf";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -283,29 +284,51 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private async void CreateOrcamento1()
         {
-            if (string.IsNullOrEmpty(txtFornecedor1.Text) && string.IsNullOrEmpty(txtCnpj1.Text) && string.IsNullOrEmpty(txtTotalProdutos1.Text)
-                && string.IsNullOrEmpty(txtTotalIPI1.Text) && string.IsNullOrEmpty(txtValorFrete1.Text) && string.IsNullOrEmpty(txtAnexarPdf1.Text))
+            if (!string.IsNullOrEmpty(txtFornecedor1.Text) && !string.IsNullOrEmpty(txtCnpj1.Text) && !string.IsNullOrEmpty(txtTotalProdutos1.Text)
+                && !string.IsNullOrEmpty(txtTotalIPI1.Text) && !string.IsNullOrEmpty(txtValorFrete1.Text) && !string.IsNullOrEmpty(txtAnexarPdf1.Text))
             {
                 Orcamento orcamento1 = new Orcamento();
                 orcamento1.Anexo = txtAnexarPdf1.Text;
-                orcamento1.Fornecedor= txtFornecedor1.Text;
-                orcamento1.Data= dtpDataOrcamento1.Value;
-                orcamento1.Cnpj= txtCnpj1.Text;
-                orcamento1.FormaPagamento= cboFormaPagamento1.Text;
-                orcamento1.TotalProdutos = double.Parse(cboFormaPagamento1.Text);
+                orcamento1.Fornecedor = txtFornecedor1.Text;
+                orcamento1.Data = dtpDataOrcamento1.Value;
+                orcamento1.Cnpj = txtCnpj1.Text;
+                orcamento1.FormaPagamento = cboFormaPagamento1.Text;
+                orcamento1.TotalProdutos = double.Parse(txtTotalProdutos1.Text);
                 orcamento1.TotalIpi = double.Parse(txtTotalIPI1.Text);
                 orcamento1.ValorFrete = double.Parse(txtValorFrete1.Text);
                 orcamento1.ValorTotal = double.Parse(txtValorFinal1.Text);
 
-                var orcamentoCriado = HttpOrcamentos.Create(orcamento1, usuarioLogado.token);
+                var orcamentoCriado = await HttpOrcamentos.Create(orcamento1, usuarioLogado.token);
                 if (orcamentoCriado == null)
                 {
-                    MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                    MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+                }
+                else
+                {
+                    List<Orcamento> produtoPedidoOrcamentoList = new List<Orcamento>();
+                    var orcamentoList1 = await HttpOrcamentos.GetAll(usuarioLogado.token);
+                    long orcamentoId1 = orcamentoList1.Last().Id;
+                    for (int i = 0; i < dgvProdutoCompra1.Rows.Count; i++)
+                    {
+                        ProdutoPedidoOrcamento produtoPedidoOrcamento = new ProdutoPedidoOrcamento();
+                        produtoPedidoOrcamento.OrcamentoId = orcamentoId1;
+                        produtoPedidoOrcamento.ProdutoId = Convert.ToInt64(dgvProdutoCompra1.Rows[i].Cells["colProdutoId"].Value);
+                        produtoPedidoOrcamento.SolicitacaoComprasId = solicitacaoComprasId;
+                        produtoPedidoOrcamento.Quantidade = Convert.ToInt32(dgvProdutoCompra1.Rows[i].Cells["colQuantidade"].Value);
+                        produtoPedidoOrcamento.valor = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colUnitario"].Value);
+                        produtoPedidoOrcamento.Desconto = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colUnitario"].Value);
+                        produtoPedidoOrcamento.Ipi = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colUnitario"].Value);
+                        produtoPedidoOrcamento.Icms = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colUnitario"].Value);
+                        //produtoPedidoOrcamento. = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colUnitario"].Value);
+                        var ProdutopedidoOrcamentoCriado = await HttpProdutoPedidoOrcamentos.Create(produtoPedidoOrcamento, usuarioLogado.token);
+                    }
+
+                    MessageBox.Show("Orçamento cadastrado com sucesso");
                 }
             }
             else
             {
-                MessageBox.Show("Todos campos são obrigatórios. Lembre-se de anexar o orçamento em pdf para continuar");
+                MessageBox.Show($"{ConstantesProjeto.MENSAGEM_PREENCHER_CAMPOS}, Lembre-se de anexar o orçamento em pdf para continuar");
             }
         }
     }
