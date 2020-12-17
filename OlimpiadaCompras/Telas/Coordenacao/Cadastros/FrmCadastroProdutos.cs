@@ -87,7 +87,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 var produtoCriado = await HttpProdutos.Create(produto, usuarioLogado.token);
                 if (produtoCriado == null)
                 {
-                    MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                    MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
                 }
                 else
                 {
@@ -115,7 +115,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     var produtoUpdate = await HttpProdutos.Update(produto, id, usuarioLogado.token);
                     if (produtoUpdate == null)
                     {
-                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                        MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
                     }
                     else
                     {

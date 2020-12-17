@@ -18,6 +18,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
         private Usuario usuarioLogado;
         long idProduto = 0;
         long idGrupo = 0;
+        long solicitacaoComprasId = 0;
         public FrmNovaSolicitacao(Usuario usuario)
         {
             this.usuarioLogado = usuario;
@@ -114,7 +115,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     var solicitacaoCriada = await HttpSolicitacaoCompras.Create(solicitacao, usuarioLogado.token);
                     if (solicitacaoCriada == null)
                     {
-                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                        MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
                     }
                     else
                     {
@@ -128,6 +129,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
                             ocupacaoSolicitacao.SolicitacaoId = solicitacaoId;
                             await HttpSolicitacaoOcupacoes.Create(ocupacaoSolicitacao, usuarioLogado.token);
                         }
+                        var solicitacaoComprasList = await HttpSolicitacaoCompras.GetAll(usuarioLogado.token);
+                        solicitacaoComprasId = solicitacaoComprasList.Last().Id;
                         tabContainer.SelectTab("produto");
                         ((Control)tabContainer.TabPages["dadosGerais"]).Enabled = false;
                     }
@@ -275,12 +278,35 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private void btnProximo1_Click(object sender, EventArgs e)
         {
-            CreateOrcamento();
+            CreateOrcamento1();
         }
 
-        private async void CreateOrcamento()
+        private async void CreateOrcamento1()
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(txtFornecedor1.Text) && string.IsNullOrEmpty(txtCnpj1.Text) && string.IsNullOrEmpty(txtTotalProdutos1.Text)
+                && string.IsNullOrEmpty(txtTotalIPI1.Text) && string.IsNullOrEmpty(txtValorFrete1.Text) && string.IsNullOrEmpty(txtAnexarPdf1.Text))
+            {
+                Orcamento orcamento1 = new Orcamento();
+                orcamento1.Anexo = txtAnexarPdf1.Text;
+                orcamento1.Fornecedor= txtFornecedor1.Text;
+                orcamento1.Data= dtpDataOrcamento1.Value;
+                orcamento1.Cnpj= txtCnpj1.Text;
+                orcamento1.FormaPagamento= cboFormaPagamento1.Text;
+                orcamento1.TotalProdutos = double.Parse(cboFormaPagamento1.Text);
+                orcamento1.TotalIpi = double.Parse(txtTotalIPI1.Text);
+                orcamento1.ValorFrete = double.Parse(txtValorFrete1.Text);
+                orcamento1.ValorTotal = double.Parse(txtValorFinal1.Text);
+
+                var orcamentoCriado = HttpOrcamentos.Create(orcamento1, usuarioLogado.token);
+                if (orcamentoCriado == null)
+                {
+                    MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Todos campos são obrigatórios. Lembre-se de anexar o orçamento em pdf para continuar");
+            }
         }
     }
 }

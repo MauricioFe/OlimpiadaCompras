@@ -51,7 +51,7 @@ namespace OlimpiadaCompras.Telas
                     var usuarioCriado = await HttpUsuarios.Update(usuarioEditado, id, usuarioLogado.token);
                     if (usuarioCriado == null)
                     {
-                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                        MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
                     }
                     else
                     {

@@ -85,7 +85,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 var grupoCriado = await HttpGrupos.Create(grupo, usuarioLogado.token);
                 if (grupoCriado == null)
                 {
-                    MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                    MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
                 }
                 else
                 {
@@ -112,7 +112,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     var grupoCriado = await HttpGrupos.Update(grupo, id, usuarioLogado.token);
                     if (grupoCriado == null)
                     {
-                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                        MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
                     }
                     else
                     {
@@ -133,7 +133,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
         }
         private async void btnExcluir_ClickAsync(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Você realmente deseja excluir esse registro?", "Exclusão", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(ConstantesProjeto.CONFIRMACAO_EXLUSAO, "Exclusão", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 if (id != 0)
                 {

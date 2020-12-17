@@ -9,8 +9,11 @@ namespace OlimpiadaCompras
     public abstract class ConstantesProjeto
     {
         //url remota
-       //public static string URL_BASE = "http://177.74.238.210:5000";
+        //public static string URL_BASE = "http://177.74.238.210:5000";
         //url local
         public static string URL_BASE = "http://192.168.0.111:5000";
+        public static string MENSAGEM_ERRO_SERVIDOR = ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR;
+        public static string MENSAGEM_PREENCHER_CAMPOS = "Todos os campos são obrigatórios";
+        public static string CONFIRMACAO_EXLUSAO = "Você realmente deseja excluir esse registro?";
     }
 }

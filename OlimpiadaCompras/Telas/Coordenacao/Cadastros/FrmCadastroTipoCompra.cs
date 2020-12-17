@@ -84,7 +84,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 var tipoCompraCriado = await HttpTipoCompras.Create(tipoCompra, usuarioLogado.token);
                 if (tipoCompraCriado == null)
                 {
-                    MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                    MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
                 }
                 else
                 {
@@ -110,7 +110,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     var tipoCompraCriado = await HttpTipoCompras.Update(tipoCompra, id, usuarioLogado.token);
                     if (tipoCompraCriado == null)
                     {
-                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                        MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
                     }
                     else
                     {
