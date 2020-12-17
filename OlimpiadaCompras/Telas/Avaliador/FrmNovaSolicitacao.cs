@@ -115,7 +115,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     var solicitacaoCriada = await HttpSolicitacaoCompras.Create(solicitacao, usuarioLogado.token);
                     if (solicitacaoCriada == null)
                     {
-                        MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
                     }
                     else
                     {
@@ -300,7 +300,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 var orcamentoCriado = HttpOrcamentos.Create(orcamento1, usuarioLogado.token);
                 if (orcamentoCriado == null)
                 {
-                    MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+                    MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
                 }
             }
             else

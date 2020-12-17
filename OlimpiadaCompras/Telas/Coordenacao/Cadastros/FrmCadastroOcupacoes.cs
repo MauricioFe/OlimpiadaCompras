@@ -108,7 +108,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 var ocupacaoCriado = await HttpOcupacaos.Create(ocupacao, usuarioLogado.token);
                 if (ocupacaoCriado == null)
                 {
-                    MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+                    MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
                 }
                 else
                 {
@@ -134,7 +134,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     var ocupacaoCriado = await HttpOcupacaos.Update(ocupacao, id,usuarioLogado.token);
                     if (ocupacaoCriado == null)
                     {
-                        MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
                     }
                     else
                     {

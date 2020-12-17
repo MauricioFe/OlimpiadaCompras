@@ -54,7 +54,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 var usuarioCriado = await HttpUsuarios.Create(usuario, usuarioLogado.token);
                 if (usuarioCriado == null)
                 {
-                    MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+                    MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
                 }
                 else
                 {
@@ -117,7 +117,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     var usuarioCriado = await HttpUsuarios.Update(usuarioEditado, id, usuarioLogado.token);
                     if (usuarioCriado == null)
                     {
-                        MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
                     }
                     else
                     {

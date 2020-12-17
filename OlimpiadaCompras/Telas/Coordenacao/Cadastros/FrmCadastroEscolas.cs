@@ -78,7 +78,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     var escolaEditada = await HttpEscolas.Create(escola, usuarioLogado.token);
                     if (escolaEditada == null)
                     {
-                        MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
                     }
                     else
                     {
@@ -140,7 +140,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                         var escolaEditada = await HttpEscolas.Update(escola, idEscola, usuarioLogado.token);
                         if (escolaEditada == null)
                         {
-                            MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+                            MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
                         }
                         else
                         {
@@ -237,7 +237,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                         }
                         else
                         {
-                            MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+                            MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
                         }
 
                     }

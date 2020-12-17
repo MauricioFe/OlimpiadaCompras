@@ -85,7 +85,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 var grupoCriado = await HttpGrupos.Create(grupo, usuarioLogado.token);
                 if (grupoCriado == null)
                 {
-                    MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+                    MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
                 }
                 else
                 {
@@ -112,7 +112,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     var grupoCriado = await HttpGrupos.Update(grupo, id, usuarioLogado.token);
                     if (grupoCriado == null)
                     {
-                        MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
                     }
                     else
                     {
