@@ -146,22 +146,26 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private async void txtCodigoProtheusProduto_TextChanged(object sender, EventArgs e)
         {
+            var codigoProduto = ((TextBox)sender).Text;
             Regex regex = new Regex("^[0-9]*$");
-            if (regex.IsMatch(((TextBox)sender).Text))
+            if (!string.IsNullOrEmpty(codigoProduto))
             {
-                Produto produto = await HttpProdutos.GetProdutosByCodigoProtheus(Convert.ToInt64(((TextBox)sender).Text), usuarioLogado.token);
-                if (produto != null)
+                if (regex.IsMatch(codigoProduto))
                 {
-                    txtGrupo.Text = produto.Grupo.Descricao;
-                    txtDescricao.Text = produto.Descricao;
-                    idProduto = produto.Id;
-                    idGrupo = produto.GrupoId;
-                }
-                else
-                {
-                    txtGrupo.Text = "";
-                    txtDescricao.Text = "";
-                    idProduto = 0;
+                    Produto produto = await HttpProdutos.GetProdutosByCodigoProtheus(Convert.ToInt64(codigoProduto), usuarioLogado.token);
+                    if (produto != null)
+                    {
+                        txtGrupo.Text = produto.Grupo.Descricao;
+                        txtDescricao.Text = produto.Descricao;
+                        idProduto = produto.Id;
+                        idGrupo = produto.GrupoId;
+                    }
+                    else
+                    {
+                        txtGrupo.Text = "";
+                        txtDescricao.Text = "";
+                        idProduto = 0;
+                    }
                 }
             }
         }
@@ -186,10 +190,12 @@ namespace OlimpiadaCompras.Telas.Avaliador
             for (int i = 0; i < dgvProduto.Rows.Count; i++)
             {
                 Produto produto = new Produto();
-                produto.CodigoProtheus = (long)dgvProduto.Rows[i].Cells[0].Value;
+                produto.CodigoProtheus = Convert.ToInt64(dgvProduto.Rows[i].Cells[0].Value);
                 produto.Descricao = dgvProduto.Rows[i].Cells[2].Value.ToString();
-                produto.GrupoId = (long)dgvProduto.Rows[i].Cells["colGrupoId"].Value;
-                produto.Id = (long)dgvProduto.Rows[i].Cells["colIdProduto"].Value;
+                produto.GrupoId = Convert.ToInt64(dgvProduto.Rows[i].Cells["colGrupoId"].Value);
+                produto.Grupo = new Grupo();
+                produto.Grupo.Descricao = dgvProduto.Rows[i].Cells[1].Value.ToString();
+                produto.Id = Convert.ToInt64(dgvProduto.Rows[i].Cells["colIdProduto"].Value);
                 produtosCompras.Add(produto);
             }
             PreencheGridProdutoCompra(produtosCompras);
@@ -200,9 +206,60 @@ namespace OlimpiadaCompras.Telas.Avaliador
         //Parei aqui... Criar método para preencher a parte do produto no grid de orçamentos
         private void PreencheGridProdutoCompra(List<Produto> produtosCompras)
         {
+            dgvProdutoCompra1.Rows.Clear();
             foreach (var item in produtosCompras)
             {
+                int n = dgvProdutoCompra1.Rows.Add();
+                dgvProdutoCompra1.Rows[n].Cells[0].Value = item.CodigoProtheus;
+                dgvProdutoCompra1.Rows[n].Cells[1].Value = item.Grupo.Descricao;
+                dgvProdutoCompra1.Rows[n].Cells[2].Value = item.Descricao;
+                dgvProdutoCompra1.Rows[n].Cells["colRemover1"].Value = "Remover";
+            }
+        }
 
+        List<double> totalIpiList = new List<double>();
+        private void dgvProdutoCompra1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int quantidade = Convert.ToInt32(dgvProdutoCompra1.Rows[e.RowIndex].Cells["colQuantidade1"].Value);
+            double valorUnitario = Convert.ToDouble(dgvProdutoCompra1.Rows[e.RowIndex].Cells["colUnitario1"].Value);
+            double desconto = Convert.ToDouble(dgvProdutoCompra1.Rows[e.RowIndex].Cells["colDesconto1"].Value);
+            double total = quantidade * (valorUnitario - (valorUnitario * (desconto / 100)));
+            if (dgvProdutoCompra1.Rows[e.RowIndex].Cells["colQuantidade1"].Value != null &&
+                dgvProdutoCompra1.Rows[e.RowIndex].Cells["colUnitario1"].Value != null)
+            {
+                dgvProdutoCompra1.Rows[e.RowIndex].Cells["colTotal1"].Value = total;
+            }
+            if (dgvProdutoCompra1.Columns[e.ColumnIndex].Name == "colIpi1")
+            {
+                double ipi = Convert.ToDouble(dgvProdutoCompra1.Rows[e.RowIndex].Cells["colIpi1"].Value);
+                double totalIpi = (ipi / 100) * valorUnitario;
+                totalIpiList.Add(totalIpi);
+            }
+        }
+
+        private void txtFornecedor1_Enter(object sender, EventArgs e)
+        {
+            PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIPI1, txtValorFinal1);
+
+        }
+
+        private void PreencheValoresCalculados(DataGridView dataGrid, List<Double> totalIpiList, TextBox txtTotalProdutos, TextBox txtTotalIpi, TextBox txtValorFinal)
+        {
+            double valorTotalProduto = dataGrid.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDouble(t.Cells["colTotal1"].Value));
+            double valorTotalIpi = totalIpiList.Sum(item => item);
+            txtTotalProdutos.Text = valorTotalProduto.ToString("F2");
+            txtTotalIpi.Text = valorTotalIpi.ToString("F2");
+            txtValorFinal.Text = (valorTotalProduto + valorTotalIpi).ToString("F2");
+        }
+
+        private void txtValorFrete1_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                double valorFinal = double.Parse(txtValorFinal1.Text);
+                double frete = double.Parse(((TextBox)sender).Text);
+                valorFinal += frete;
+                txtValorFinal1.Text = valorFinal.ToString("F2");
             }
         }
     }
