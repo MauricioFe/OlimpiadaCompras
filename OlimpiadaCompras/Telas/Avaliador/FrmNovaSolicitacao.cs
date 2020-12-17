@@ -240,7 +240,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
         private void txtFornecedor1_Enter(object sender, EventArgs e)
         {
             PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIPI1, txtValorFinal1);
-
         }
 
         private void PreencheValoresCalculados(DataGridView dataGrid, List<Double> totalIpiList, TextBox txtTotalProdutos, TextBox txtTotalIpi, TextBox txtValorFinal)
@@ -261,6 +260,27 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 valorFinal += frete;
                 txtValorFinal1.Text = valorFinal.ToString("F2");
             }
+        }
+
+        private void btnSelecionar1_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = "Png files | *.png";
+            openFileDialog1.InitialDirectory = $@"{Environment.SpecialFolder.Desktop}";
+            openFileDialog1.Title = "Selecione o orçamento no formato pdf";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                txtAnexarPdf1.Text = openFileDialog1.FileName;
+            }
+        }
+
+        private void btnProximo1_Click(object sender, EventArgs e)
+        {
+            CreateOrcamento();
+        }
+
+        private async void CreateOrcamento()
+        {
+            throw new NotImplementedException();
         }
     }
 }

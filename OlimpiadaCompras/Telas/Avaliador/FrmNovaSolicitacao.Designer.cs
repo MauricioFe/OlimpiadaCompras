@@ -180,6 +180,7 @@
             this.colICMS1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotal1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRemover1 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabContainer.SuspendLayout();
             this.dadosGerais.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -773,6 +774,7 @@
             this.btnProximo1.TabIndex = 63;
             this.btnProximo1.Text = "Próximo";
             this.btnProximo1.UseVisualStyleBackColor = false;
+            this.btnProximo1.Click += new System.EventHandler(this.btnProximo1_Click);
             // 
             // txtValorFrete1
             // 
@@ -837,9 +839,11 @@
             this.btnSelecionar1.TabIndex = 56;
             this.btnSelecionar1.Text = "Selecionar";
             this.btnSelecionar1.UseVisualStyleBackColor = true;
+            this.btnSelecionar1.Click += new System.EventHandler(this.btnSelecionar1_Click);
             // 
             // txtAnexarPdf1
             // 
+            this.txtAnexarPdf1.Enabled = false;
             this.txtAnexarPdf1.Location = new System.Drawing.Point(636, 105);
             this.txtAnexarPdf1.Name = "txtAnexarPdf1";
             this.txtAnexarPdf1.Size = new System.Drawing.Size(279, 26);
@@ -1538,7 +1542,7 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(632, 81);
+            this.label42.Location = new System.Drawing.Point(632, 82);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(86, 20);
             this.label42.TabIndex = 64;
@@ -1599,6 +1603,10 @@
             this.colRemover1.Name = "colRemover1";
             this.colRemover1.ReadOnly = true;
             this.colRemover1.Visible = false;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // FrmNovaSolicitacao
             // 
@@ -1795,5 +1803,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colICMS1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotal1;
         private System.Windows.Forms.DataGridViewLinkColumn colRemover1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
