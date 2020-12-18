@@ -220,26 +220,31 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 dgv.Rows[n].Cells[0].Value = item.CodigoProtheus;
                 dgv.Rows[n].Cells[1].Value = item.Grupo.Descricao;
                 dgv.Rows[n].Cells[2].Value = item.Descricao;
-                dgv.Rows[n].Cells["colProdutoId1"].Value = item.Id;
-                dgv.Rows[n].Cells["colRemover1"].Value = "Remover";
+                dgv.Rows[n].Cells[10].Value = item.Id;
+               // dgv.Rows[n].Cells["colRemover1"].Value = "Remover";
             }
         }
 
         List<double> totalIpiList = new List<double>();
         private void dgvProdutoCompra1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            int quantidade = Convert.ToInt32(dgvProdutoCompra1.Rows[e.RowIndex].Cells["colQuantidade1"].Value);
-            double valorUnitario = Convert.ToDouble(dgvProdutoCompra1.Rows[e.RowIndex].Cells["colUnitario1"].Value);
-            double desconto = Convert.ToDouble(dgvProdutoCompra1.Rows[e.RowIndex].Cells["colDesconto1"].Value);
+            RealizaCalculoValoresFinais(e,dgvProdutoCompra1);
+        }
+
+        private void RealizaCalculoValoresFinais(DataGridViewCellEventArgs e, DataGridView dataGrid)
+        {
+            int quantidade = Convert.ToInt32(dataGrid.Rows[e.RowIndex].Cells[3].Value);
+            double valorUnitario = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[4].Value);
+            double desconto = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[5].Value);
             double total = quantidade * (valorUnitario - (valorUnitario * (desconto / 100)));
-            if (dgvProdutoCompra1.Rows[e.RowIndex].Cells["colQuantidade1"].Value != null &&
-                dgvProdutoCompra1.Rows[e.RowIndex].Cells["colUnitario1"].Value != null)
+            if (dataGrid.Rows[e.RowIndex].Cells[3].Value != null &&
+                dataGrid.Rows[e.RowIndex].Cells[4].Value != null)
             {
-                dgvProdutoCompra1.Rows[e.RowIndex].Cells["colTotal1"].Value = total;
+                dataGrid.Rows[e.RowIndex].Cells[8].Value = total;
             }
-            if (dgvProdutoCompra1.Columns[e.ColumnIndex].Name == "colIpi1")
+            if (dataGrid.Columns[e.ColumnIndex].Index == 6)
             {
-                double ipi = Convert.ToDouble(dgvProdutoCompra1.Rows[e.RowIndex].Cells["colIpi1"].Value);
+                double ipi = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[6].Value);
                 double totalIpi = (ipi / 100) * valorUnitario;
                 totalIpiList.Add(totalIpi);
             }
@@ -331,7 +336,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         var ProdutopedidoOrcamentoCriado = await HttpProdutoPedidoOrcamentos.Create(produtoPedidoOrcamento, usuarioLogado.token);
                     }
 
-                    if (int.Parse(txtValorFinal1.Text) < 5000)
+                    if (float.Parse(txtValorFinal1.Text) < 5000)
                     {
                         if (MessageBox.Show("O seu primeiro orçamento ficou abaixo de R$5.000,00. Deseja encerrar a solicitação de compras?", "Finalizar solicitação de compras", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
@@ -375,18 +380,18 @@ namespace OlimpiadaCompras.Telas.Avaliador
             if (!string.IsNullOrEmpty(txtFornecedor2.Text) && !string.IsNullOrEmpty(txtCnpj2.Text) && !string.IsNullOrEmpty(txtTotalProdutos2.Text)
                 && !string.IsNullOrEmpty(txtTotalIpi2.Text) && !string.IsNullOrEmpty(txtValorFrete2.Text) && !string.IsNullOrEmpty(txtAnexarPdf2.Text))
             {
-                Orcamento orcamento1 = new Orcamento();
-                orcamento1.Anexo = txtAnexarPdf2.Text;
-                orcamento1.Fornecedor = txtFornecedor2.Text;
-                orcamento1.Data = dtpDataOrcamento2.Value;
-                orcamento1.Cnpj = txtCnpj2.Text;
-                orcamento1.FormaPagamento = cboFormaPagamento2.Text;
-                orcamento1.TotalProdutos = double.Parse(txtTotalProdutos2.Text);
-                orcamento1.TotalIpi = double.Parse(txtTotalIpi2.Text);
-                orcamento1.ValorFrete = double.Parse(txtValorFrete2.Text);
-                orcamento1.ValorTotal = double.Parse(txtValorFinal2.Text);
+                Orcamento orcamento = new Orcamento();
+                orcamento.Anexo = txtAnexarPdf2.Text;
+                orcamento.Fornecedor = txtFornecedor2.Text;
+                orcamento.Data = dtpDataOrcamento2.Value;
+                orcamento.Cnpj = txtCnpj2.Text;
+                orcamento.FormaPagamento = cboFormaPagamento2.Text;
+                orcamento.TotalProdutos = double.Parse(txtTotalProdutos2.Text);
+                orcamento.TotalIpi = double.Parse(txtTotalIpi2.Text);
+                orcamento.ValorFrete = double.Parse(txtValorFrete2.Text);
+                orcamento.ValorTotal = double.Parse(txtValorFinal2.Text);
 
-                var orcamentoCriado = await HttpOrcamentos.Create(orcamento1, usuarioLogado.token);
+                var orcamentoCriado = await HttpOrcamentos.Create(orcamento, usuarioLogado.token);
                 if (orcamentoCriado == null)
                 {
                     MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
@@ -480,6 +485,16 @@ namespace OlimpiadaCompras.Telas.Avaliador
             {
                 CreateOrcamento3();
             }
+        }
+
+        private void dgvProdutoCompra2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            RealizaCalculoValoresFinais(e, dgvProdutoCompra2);
+        }
+
+        private void dgvProdutoCompra3_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            RealizaCalculoValoresFinais(e, dgvProdutoCompra3);
         }
     }
 }
