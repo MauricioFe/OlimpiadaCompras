@@ -1,0 +1,116 @@
+﻿using ApiSGCOlimpiada.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Script.Serialization;
+
+namespace OlimpiadaCompras.Requests
+{
+    public abstract class HttpAcompanhamento
+    {
+        public static async Task<List<Acompanhamento>> GetAll(string token)
+        {
+            List<Acompanhamento> acompanhamentos = new List<Acompanhamento>();
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/acompanhamento");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var acompanhamentoStr = await response.Content.ReadAsStringAsync();
+                        acompanhamentos = new JavaScriptSerializer().Deserialize<List<Acompanhamento>>(acompanhamentoStr);
+                        return acompanhamentos;
+                    }
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao conectar com a api " + ex.Message);
+                return null;
+            }
+        }
+
+        public static async Task<Acompanhamento> GetById(long id, string token)
+        {
+            Acompanhamento acompanhamento = new Acompanhamento();
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/acompanhamento/{id}");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var acompanhamentoStr = await response.Content.ReadAsStringAsync();
+                        acompanhamento = new JavaScriptSerializer().Deserialize<Acompanhamento>(acompanhamentoStr);
+                        return acompanhamento;
+                    }
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao conectar com a api " + ex.Message);
+                return null;
+            }
+        }
+        public static async Task<Acompanhamento> Create(Acompanhamento acompanhamento, string token)
+        {
+            Acompanhamento acompanhamentoCriado = new Acompanhamento();
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var parseJson = new JavaScriptSerializer().Serialize(acompanhamento);
+                    var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                    var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/acompanhamento", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var acompanhamentoStr = await response.Content.ReadAsStringAsync();
+                        acompanhamentoCriado = new JavaScriptSerializer().Deserialize<Acompanhamento>(acompanhamentoStr);
+                        return acompanhamentoCriado;
+                    }
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao conectar com a api "+ex.Message);
+                return null;
+            }
+        }
+        public static async Task<Acompanhamento> Update(Acompanhamento acompanhamento, long id,string token)
+        {
+            Acompanhamento acompanhamentoCriado = new Acompanhamento();
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var parseJson = new JavaScriptSerializer().Serialize(acompanhamento);
+                    var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                    var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/acompanhamento/{id}", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var acompanhamentoStr = await response.Content.ReadAsStringAsync();
+                        acompanhamentoCriado = new JavaScriptSerializer().Deserialize<Acompanhamento>(acompanhamentoStr);
+                        return acompanhamentoCriado;
+                    }
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao conectar com a api " + ex.Message);
+                return null;
+            }
+        }
+    }
+}

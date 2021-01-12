@@ -280,7 +280,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
         private void CalculaFrete(TextBox txtFrete, TextBox txtValorFinal)
         {
             double valorFinal = 0;
-            if (valorFinal != 0)
+            if (valorFinal == 0)
             {
                 valorFinal = double.Parse(txtValorFinal.Text);
             }
@@ -367,7 +367,12 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     {
                         if (MessageBox.Show("O seu primeiro orçamento ficou abaixo de R$5.000,00. Deseja encerrar a solicitação de compras?", "Finalizar solicitação de compras", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
-                            MessageBox.Show("Orçamento cadastrado com sucesso");
+                            MessageBox.Show("Orçamento cadastrado com sucesso e sua solicitação foi enviada para a coordenação e ficará em análise.");
+                            var acompanhamento = await CadastrarAcompanhamento();
+                            if (acompanhamento == null)
+                            {
+                                MessageBox.Show("Erro no acompanhamento");
+                            }
                             this.Dispose();
                         }
                         else
@@ -506,6 +511,11 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     }
 
                     MessageBox.Show("Orçamento cadastrado com sucesso e sua solicitação foi enviada para a coordenação e ficará em análise.");
+                    var acompanhamento = await CadastrarAcompanhamento();
+                    if (acompanhamento == null)
+                    {
+                        MessageBox.Show("Erro no acompanhamento");
+                    }
                     this.Dispose();
 
                 }
@@ -514,6 +524,17 @@ namespace OlimpiadaCompras.Telas.Avaliador
             {
                 MessageBox.Show($"{ConstantesProjeto.MENSAGEM_PREENCHER_CAMPOS}, Lembre-se de anexar o orçamento em pdf para continuar");
             }
+        }
+
+        private async Task<Acompanhamento> CadastrarAcompanhamento()
+        {
+            Acompanhamento acompanhamento = new Acompanhamento();
+            acompanhamento.Observacao = null;
+            acompanhamento.SolicitacaoCompraId = solicitacaoComprasId;
+            acompanhamento.StatusId = 1;
+            acompanhamento.UsuarioId = usuarioLogado.Id;
+            acompanhamento.Date = DateTime.Now;
+            return await HttpAcompanhamento.Create(acompanhamento, usuarioLogado.token);
         }
 
         private void btnProximo3_Click(object sender, EventArgs e)
