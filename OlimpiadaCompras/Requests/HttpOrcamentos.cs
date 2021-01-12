@@ -77,6 +77,7 @@ namespace OlimpiadaCompras.Requests
                     FileStream fileStream = File.OpenRead(orcamento.Anexo);
                     formContent.Add(new StreamContent(fileStream), "arquivo", orcamento.Anexo.Split('\\').Last());
                     formContent.Add(new StringContent(orcamento.Fornecedor), "Fornecedor");
+                    formContent.Add(new StringContent(orcamento.FormaPagamento), "FormaPagamento");
                     formContent.Add(new StringContent(orcamento.Cnpj), "Cnpj");
                     formContent.Add(new StringContent(orcamento.ValorTotal.ToString()), "ValorTotal");
                     formContent.Add(new StringContent(orcamento.TotalIpi.ToString()), "TotalIpi");

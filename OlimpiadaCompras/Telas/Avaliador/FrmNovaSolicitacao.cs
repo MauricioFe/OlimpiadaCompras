@@ -343,6 +343,11 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         produtoPedidoOrcamento.Icms = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colICMS1"].Value);
                         //produtoPedidoOrcamento. = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colUnitario"].Value);
                         var ProdutopedidoOrcamentoCriado = await HttpProdutoPedidoOrcamentos.Create(produtoPedidoOrcamento, usuarioLogado.token);
+                        if (ProdutopedidoOrcamentoCriado == null)
+                        {
+                            MessageBox.Show("Deu pau");
+                            return;
+                        }
                     }
 
                     if (float.Parse(txtValorFinal1.Text) < 5000)

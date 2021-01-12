@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace OlimpiadaCompras
         //url remota
         //public static string URL_BASE = "http://177.74.238.210:5000";
         //url local
-        public static string URL_BASE = "http://192.168.0.107:5000";
+        public static string URL_BASE = $"http://{Dns.GetHostAddresses(Dns.GetHostName()).Where(ip => ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).First()}:5000";
         public static string MENSAGEM_ERRO_SERVIDOR = "Erro interno no servidor, tente em novamente em outro momento";
         public static string MENSAGEM_PREENCHER_CAMPOS = "Todos os campos são obrigatórios";
         public static string CONFIRMACAO_EXLUSAO = "Você realmente deseja excluir esse registro?";
