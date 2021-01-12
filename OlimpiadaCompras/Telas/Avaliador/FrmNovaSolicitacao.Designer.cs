@@ -174,18 +174,18 @@
             this.label39 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.dgvProdutoCompra3 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewLinkColumn2 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.colCodProtheus3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGrupo3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescricao3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantidade3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUnitario3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDesconto3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIpi3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colICMS3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotal3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewLinkColumn2 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.colProdutoId3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabContainer.SuspendLayout();
             this.dadosGerais.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -730,9 +730,9 @@
             // 
             this.orcamento1.Controls.Add(this.groupBox7);
             this.orcamento1.Controls.Add(this.groupBox4);
-            this.orcamento1.Location = new System.Drawing.Point(4, 22);
+            this.orcamento1.Location = new System.Drawing.Point(4, 29);
             this.orcamento1.Name = "orcamento1";
-            this.orcamento1.Size = new System.Drawing.Size(1073, 520);
+            this.orcamento1.Size = new System.Drawing.Size(1073, 513);
             this.orcamento1.TabIndex = 2;
             this.orcamento1.Text = "Orçamento 1";
             this.orcamento1.UseVisualStyleBackColor = true;
@@ -1118,6 +1118,7 @@
             this.txtValorFrete2.Name = "txtValorFrete2";
             this.txtValorFrete2.Size = new System.Drawing.Size(177, 26);
             this.txtValorFrete2.TabIndex = 61;
+            this.txtValorFrete2.TextChanged += new System.EventHandler(this.txtValorFrete2_TextChanged);
             // 
             // label18
             // 
@@ -1174,9 +1175,11 @@
             this.btnSelecionar2.TabIndex = 56;
             this.btnSelecionar2.Text = "Selecionar";
             this.btnSelecionar2.UseVisualStyleBackColor = true;
+            this.btnSelecionar2.Click += new System.EventHandler(this.btnSelecionar2_Click);
             // 
             // txtAnexarPdf2
             // 
+            this.txtAnexarPdf2.Enabled = false;
             this.txtAnexarPdf2.Location = new System.Drawing.Point(636, 105);
             this.txtAnexarPdf2.Name = "txtAnexarPdf2";
             this.txtAnexarPdf2.Size = new System.Drawing.Size(279, 26);
@@ -1184,6 +1187,7 @@
             // 
             // txtValorFinal2
             // 
+            this.txtValorFinal2.Enabled = false;
             this.txtValorFinal2.Location = new System.Drawing.Point(6, 105);
             this.txtValorFinal2.Name = "txtValorFinal2";
             this.txtValorFinal2.Size = new System.Drawing.Size(162, 26);
@@ -1200,6 +1204,7 @@
             // 
             // txtTotalIpi2
             // 
+            this.txtTotalIpi2.Enabled = false;
             this.txtTotalIpi2.Location = new System.Drawing.Point(738, 53);
             this.txtTotalIpi2.Name = "txtTotalIpi2";
             this.txtTotalIpi2.Size = new System.Drawing.Size(125, 26);
@@ -1216,6 +1221,7 @@
             // 
             // txtTotalProdutos2
             // 
+            this.txtTotalProdutos2.Enabled = false;
             this.txtTotalProdutos2.Location = new System.Drawing.Point(611, 53);
             this.txtTotalProdutos2.Name = "txtTotalProdutos2";
             this.txtTotalProdutos2.Size = new System.Drawing.Size(122, 26);
@@ -1432,6 +1438,7 @@
             this.txtValorFrete3.Name = "txtValorFrete3";
             this.txtValorFrete3.Size = new System.Drawing.Size(177, 26);
             this.txtValorFrete3.TabIndex = 61;
+            this.txtValorFrete3.TextChanged += new System.EventHandler(this.txtValorFrete3_TextChanged);
             // 
             // label28
             // 
@@ -1488,6 +1495,7 @@
             this.btnSelecionar3.TabIndex = 56;
             this.btnSelecionar3.Text = "Selecionar";
             this.btnSelecionar3.UseVisualStyleBackColor = true;
+            this.btnSelecionar3.Click += new System.EventHandler(this.btnSelecionar3_Click);
             // 
             // txtAnexarPdf3
             // 
@@ -1499,6 +1507,7 @@
             // 
             // txtValorFinal3
             // 
+            this.txtValorFinal3.Enabled = false;
             this.txtValorFinal3.Location = new System.Drawing.Point(6, 105);
             this.txtValorFinal3.Name = "txtValorFinal3";
             this.txtValorFinal3.Size = new System.Drawing.Size(162, 26);
@@ -1515,6 +1524,7 @@
             // 
             // txtTotalIpi3
             // 
+            this.txtTotalIpi3.Enabled = false;
             this.txtTotalIpi3.Location = new System.Drawing.Point(738, 53);
             this.txtTotalIpi3.Name = "txtTotalIpi3";
             this.txtTotalIpi3.Size = new System.Drawing.Size(125, 26);
@@ -1531,6 +1541,7 @@
             // 
             // txtTotalProdutos3
             // 
+            this.txtTotalProdutos3.Enabled = false;
             this.txtTotalProdutos3.Location = new System.Drawing.Point(611, 53);
             this.txtTotalProdutos3.Name = "txtTotalProdutos3";
             this.txtTotalProdutos3.Size = new System.Drawing.Size(122, 26);
@@ -1597,71 +1608,75 @@
             this.dgvProdutoCompra3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProdutoCompra3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProdutoCompra3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11,
-            this.dataGridViewTextBoxColumn12,
+            this.colCodProtheus3,
+            this.colGrupo3,
+            this.colDescricao3,
+            this.colQuantidade3,
+            this.colUnitario3,
+            this.colDesconto3,
+            this.colIpi3,
+            this.colICMS3,
+            this.colTotal3,
             this.dataGridViewLinkColumn2,
-            this.dataGridViewTextBoxColumn13});
+            this.colProdutoId3});
             this.dgvProdutoCompra3.Location = new System.Drawing.Point(11, 23);
             this.dgvProdutoCompra3.Name = "dgvProdutoCompra3";
             this.dgvProdutoCompra3.Size = new System.Drawing.Size(1040, 233);
             this.dgvProdutoCompra3.TabIndex = 43;
             this.dgvProdutoCompra3.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra3_CellEndEdit);
             // 
-            // dataGridViewTextBoxColumn4
+            // openFileDialog1
             // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Código do protheus";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // dataGridViewTextBoxColumn5
+            // colCodProtheus3
             // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Grupo";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.colCodProtheus3.HeaderText = "Código do protheus";
+            this.colCodProtheus3.Name = "colCodProtheus3";
+            this.colCodProtheus3.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn6
+            // colGrupo3
             // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Descrição";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.colGrupo3.HeaderText = "Grupo";
+            this.colGrupo3.Name = "colGrupo3";
+            this.colGrupo3.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn7
+            // colDescricao3
             // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Quantidade";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.colDescricao3.HeaderText = "Descrição";
+            this.colDescricao3.Name = "colDescricao3";
+            this.colDescricao3.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn8
+            // colQuantidade3
             // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Valor Unitário";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.colQuantidade3.HeaderText = "Quantidade";
+            this.colQuantidade3.Name = "colQuantidade3";
             // 
-            // dataGridViewTextBoxColumn9
+            // colUnitario3
             // 
-            this.dataGridViewTextBoxColumn9.HeaderText = "Desconto";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.colUnitario3.HeaderText = "Valor Unitário";
+            this.colUnitario3.Name = "colUnitario3";
             // 
-            // dataGridViewTextBoxColumn10
+            // colDesconto3
             // 
-            this.dataGridViewTextBoxColumn10.HeaderText = "IPI";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.colDesconto3.HeaderText = "Desconto";
+            this.colDesconto3.Name = "colDesconto3";
             // 
-            // dataGridViewTextBoxColumn11
+            // colIpi3
             // 
-            this.dataGridViewTextBoxColumn11.HeaderText = "ICMS";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.colIpi3.HeaderText = "IPI";
+            this.colIpi3.Name = "colIpi3";
             // 
-            // dataGridViewTextBoxColumn12
+            // colICMS3
             // 
-            this.dataGridViewTextBoxColumn12.HeaderText = "Total";
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            this.colICMS3.HeaderText = "ICMS";
+            this.colICMS3.Name = "colICMS3";
+            // 
+            // colTotal3
+            // 
+            this.colTotal3.HeaderText = "Total";
+            this.colTotal3.Name = "colTotal3";
+            this.colTotal3.ReadOnly = true;
             // 
             // dataGridViewLinkColumn2
             // 
@@ -1670,15 +1685,11 @@
             this.dataGridViewLinkColumn2.ReadOnly = true;
             this.dataGridViewLinkColumn2.Visible = false;
             // 
-            // dataGridViewTextBoxColumn13
+            // colProdutoId3
             // 
-            this.dataGridViewTextBoxColumn13.HeaderText = "produtoId";
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            this.dataGridViewTextBoxColumn13.Visible = false;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.colProdutoId3.HeaderText = "produtoId";
+            this.colProdutoId3.Name = "colProdutoId3";
+            this.colProdutoId3.Visible = false;
             // 
             // FrmNovaSolicitacao
             // 
@@ -1869,17 +1880,17 @@
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colProdutoId2;
         private System.Windows.Forms.DataGridView dgvProdutoCompra3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.Button btnProximo3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCodProtheus3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colGrupo3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDescricao3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuantidade3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUnitario3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDesconto3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colIpi3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colICMS3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTotal3;
+        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colProdutoId3;
     }
 }

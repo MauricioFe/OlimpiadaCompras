@@ -220,14 +220,14 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 dgv.Rows[n].Cells[1].Value = item.Grupo.Descricao;
                 dgv.Rows[n].Cells[2].Value = item.Descricao;
                 dgv.Rows[n].Cells[10].Value = item.Id;
-               // dgv.Rows[n].Cells["colRemover1"].Value = "Remover";
+                // dgv.Rows[n].Cells["colRemover1"].Value = "Remover";
             }
         }
 
         List<double> totalIpiList = new List<double>();
         private void dgvProdutoCompra1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            RealizaCalculoValoresFinais(e,dgvProdutoCompra1);
+            RealizaCalculoValoresFinais(e, dgvProdutoCompra1);
         }
 
         private void RealizaCalculoValoresFinais(DataGridViewCellEventArgs e, DataGridView dataGrid)
@@ -254,9 +254,9 @@ namespace OlimpiadaCompras.Telas.Avaliador
             catch (Exception)
             {
 
-               
+
             }
-            
+
         }
 
         private void txtFornecedor1_Enter(object sender, EventArgs e)
@@ -275,16 +275,29 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private void txtValorFrete1_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(((TextBox)sender).Text))
+            CalculaFrete((TextBox)sender, txtValorFinal1);
+        }
+        private void CalculaFrete(TextBox txtFrete, TextBox txtValorFinal)
+        {
+            double valorFinal = 0;
+            if (valorFinal != 0)
             {
-                double valorFinal = double.Parse(txtValorFinal1.Text);
-                double frete = double.Parse(((TextBox)sender).Text);
-                valorFinal += frete;
-                txtValorFinal1.Text = valorFinal.ToString("F2");
+                valorFinal = double.Parse(txtValorFinal.Text);
+            }
+            if (!string.IsNullOrEmpty(txtFrete.Text))
+            {
+                double frete = double.Parse(txtFrete.Text);
+                double resultado = valorFinal + frete;
+                txtValorFinal1.Text = (resultado).ToString("F2");
             }
         }
 
         private void btnSelecionar1_Click(object sender, EventArgs e)
+        {
+            AnexarOrcamento(txtAnexarPdf1);
+        }
+
+        private void AnexarOrcamento(TextBox txtAnexarpdf)
         {
             openFileDialog1.Filter = "pdf files | *.pdf";
             openFileDialog1.InitialDirectory = $@"{Environment.SpecialFolder.Desktop}";
@@ -292,7 +305,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
             openFileDialog1.Title = "Selecione o orçamento no formato pdf";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                txtAnexarPdf1.Text = openFileDialog1.FileName;
+                txtAnexarpdf.Text = openFileDialog1.FileName;
             }
         }
 
@@ -428,10 +441,15 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         produtoPedidoOrcamento.Icms = Convert.ToDouble(dgvProdutoCompra2.Rows[i].Cells["colICMS2"].Value);
                         //produtoPedidoOrcamento. = Convert.ToDouble(dgvProdutoCompra2.Rows[i].Cells["colUnitario"].Value);
                         var ProdutopedidoOrcamentoCriado = await HttpProdutoPedidoOrcamentos.Create(produtoPedidoOrcamento, usuarioLogado.token);
+                        if (ProdutopedidoOrcamentoCriado == null)
+                        {
+                            MessageBox.Show("Deu pau");
+                            return;
+                        }
                     }
 
                     MessageBox.Show("Orçamento cadastrado com sucesso");
-                    PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra2);
+                    PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra3);
                     tabContainer.SelectTab(4);
                     ((Control)tabContainer.TabPages[3]).Enabled = false;
                 }
@@ -467,24 +485,29 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     List<Orcamento> produtoPedidoOrcamentoList = new List<Orcamento>();
                     var orcamentoList1 = await HttpOrcamentos.GetAll(usuarioLogado.token);
                     long orcamentoId1 = orcamentoList1.Last().Id;
-                    for (int i = 0; i < dgvProdutoCompra2.Rows.Count; i++)
+                    for (int i = 0; i < dgvProdutoCompra3.Rows.Count; i++)
                     {
                         ProdutoPedidoOrcamento produtoPedidoOrcamento = new ProdutoPedidoOrcamento();
                         produtoPedidoOrcamento.OrcamentoId = orcamentoId1;
-                        produtoPedidoOrcamento.ProdutoId = Convert.ToInt64(dgvProdutoCompra2.Rows[i].Cells["colProdutoId3"].Value);
+                        produtoPedidoOrcamento.ProdutoId = Convert.ToInt64(dgvProdutoCompra3.Rows[i].Cells["colProdutoId3"].Value);
                         produtoPedidoOrcamento.SolicitacaoComprasId = solicitacaoComprasId;
-                        produtoPedidoOrcamento.Quantidade = Convert.ToInt32(dgvProdutoCompra2.Rows[i].Cells["colQuantidade3"].Value);
-                        produtoPedidoOrcamento.valor = Convert.ToDouble(dgvProdutoCompra2.Rows[i].Cells["colUnitario3"].Value);
-                        produtoPedidoOrcamento.Desconto = Convert.ToDouble(dgvProdutoCompra2.Rows[i].Cells["colDesconto3"].Value);
-                        produtoPedidoOrcamento.Ipi = Convert.ToDouble(dgvProdutoCompra2.Rows[i].Cells["colIpi3"].Value);
-                        produtoPedidoOrcamento.Icms = Convert.ToDouble(dgvProdutoCompra2.Rows[i].Cells["colICMS3"].Value);
-                        //produtoPedidoOrcamento. = Convert.ToDouble(dgvProdutoCompra2.Rows[i].Cells["colUnitario"].Value);
+                        produtoPedidoOrcamento.Quantidade = Convert.ToInt32(dgvProdutoCompra3.Rows[i].Cells["colQuantidade3"].Value);
+                        produtoPedidoOrcamento.valor = Convert.ToDouble(dgvProdutoCompra3.Rows[i].Cells["colUnitario3"].Value);
+                        produtoPedidoOrcamento.Desconto = Convert.ToDouble(dgvProdutoCompra3.Rows[i].Cells["colDesconto3"].Value);
+                        produtoPedidoOrcamento.Ipi = Convert.ToDouble(dgvProdutoCompra3.Rows[i].Cells["colIpi3"].Value);
+                        produtoPedidoOrcamento.Icms = Convert.ToDouble(dgvProdutoCompra3.Rows[i].Cells["colICMS3"].Value);
+                        //produtoPedidoOrcamento. = Convert.ToDouble(dgvProdutoCompra3.Rows[i].Cells["colUnitario"].Value);
                         var ProdutopedidoOrcamentoCriado = await HttpProdutoPedidoOrcamentos.Create(produtoPedidoOrcamento, usuarioLogado.token);
+                        if (ProdutopedidoOrcamentoCriado == null)
+                        {
+                            MessageBox.Show("Deu pau");
+                            return;
+                        }
                     }
 
                     MessageBox.Show("Orçamento cadastrado com sucesso e sua solicitação foi enviada para a coordenação e ficará em análise.");
                     this.Dispose();
-                    
+
                 }
             }
             else
@@ -519,6 +542,26 @@ namespace OlimpiadaCompras.Telas.Avaliador
         private void txtFornecedor3_Enter(object sender, EventArgs e)
         {
             PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
+        }
+
+        private void btnSelecionar2_Click(object sender, EventArgs e)
+        {
+            AnexarOrcamento(txtAnexarPdf2);
+        }
+
+        private void btnSelecionar3_Click(object sender, EventArgs e)
+        {
+            AnexarOrcamento(txtAnexarPdf3);
+        }
+
+        private void txtValorFrete2_TextChanged(object sender, EventArgs e)
+        {
+            CalculaFrete((TextBox)sender, txtValorFinal2);
+        }
+
+        private void txtValorFrete3_TextChanged(object sender, EventArgs e)
+        {
+            CalculaFrete((TextBox)sender, txtValorFinal3);
         }
     }
 }
