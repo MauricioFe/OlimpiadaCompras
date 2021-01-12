@@ -244,7 +244,7 @@
             this.btnProximo.FlatAppearance.BorderSize = 0;
             this.btnProximo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximo.ForeColor = System.Drawing.Color.White;
-            this.btnProximo.Location = new System.Drawing.Point(898, 444);
+            this.btnProximo.Location = new System.Drawing.Point(898, 437);
             this.btnProximo.Name = "btnProximo";
             this.btnProximo.Size = new System.Drawing.Size(169, 34);
             this.btnProximo.TabIndex = 33;
@@ -1051,10 +1051,10 @@
             // 
             this.orcamento2.Controls.Add(this.groupBox8);
             this.orcamento2.Controls.Add(this.groupBox5);
-            this.orcamento2.Location = new System.Drawing.Point(4, 22);
+            this.orcamento2.Location = new System.Drawing.Point(4, 29);
             this.orcamento2.Name = "orcamento2";
             this.orcamento2.Padding = new System.Windows.Forms.Padding(3);
-            this.orcamento2.Size = new System.Drawing.Size(1073, 520);
+            this.orcamento2.Size = new System.Drawing.Size(1073, 513);
             this.orcamento2.TabIndex = 3;
             this.orcamento2.Text = "Orçamento 2";
             this.orcamento2.UseVisualStyleBackColor = true;
@@ -1252,6 +1252,7 @@
             this.txtFornecedor2.Name = "txtFornecedor2";
             this.txtFornecedor2.Size = new System.Drawing.Size(382, 26);
             this.txtFornecedor2.TabIndex = 45;
+            this.txtFornecedor2.Enter += new System.EventHandler(this.txtFornecedor2_Enter);
             // 
             // label38
             // 
@@ -1566,6 +1567,7 @@
             this.txtFornecedor3.Name = "txtFornecedor3";
             this.txtFornecedor3.Size = new System.Drawing.Size(382, 26);
             this.txtFornecedor3.TabIndex = 45;
+            this.txtFornecedor3.Enter += new System.EventHandler(this.txtFornecedor3_Enter);
             // 
             // label39
             // 

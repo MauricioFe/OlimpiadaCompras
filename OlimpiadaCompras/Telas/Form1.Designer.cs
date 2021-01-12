@@ -45,8 +45,9 @@
             this.txtEmail.Location = new System.Drawing.Point(229, 286);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(390, 33);
-            this.txtEmail.TabIndex = 3;
+            this.txtEmail.TabIndex = 1;
             this.txtEmail.Text = "dcarlos@fiemg.com.br";
+            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
             // 
             // label2
             // 
@@ -75,9 +76,10 @@
             this.txtSenha.Location = new System.Drawing.Point(229, 339);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(390, 33);
-            this.txtSenha.TabIndex = 5;
+            this.txtSenha.TabIndex = 2;
             this.txtSenha.Text = "avaliador123";
             this.txtSenha.UseSystemPasswordChar = true;
+            this.txtSenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSenha_KeyDown);
             // 
             // btnCancelar
             // 
@@ -89,7 +91,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(430, 394);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(142, 40);
-            this.btnCancelar.TabIndex = 8;
+            this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -104,7 +106,7 @@
             this.btnEntrar.Location = new System.Drawing.Point(269, 394);
             this.btnEntrar.Name = "btnEntrar";
             this.btnEntrar.Size = new System.Drawing.Size(142, 40);
-            this.btnEntrar.TabIndex = 9;
+            this.btnEntrar.TabIndex = 3;
             this.btnEntrar.Text = "Entrar";
             this.btnEntrar.UseVisualStyleBackColor = false;
             this.btnEntrar.Click += new System.EventHandler(this.btnEntrar_ClickAsync);

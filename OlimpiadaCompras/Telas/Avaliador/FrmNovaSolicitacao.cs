@@ -210,7 +210,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 ((Control)tabContainer.TabPages[1]).Enabled = false;
             }
         }
-        //Parei aqui... Criar método para preencher a parte do produto no grid de orçamentos
         private void PreencheGridProdutoCompra(List<Produto> produtosCompras, DataGridView dgv)
         {
             dgv.Rows.Clear();
@@ -233,21 +232,31 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private void RealizaCalculoValoresFinais(DataGridViewCellEventArgs e, DataGridView dataGrid)
         {
-            int quantidade = Convert.ToInt32(dataGrid.Rows[e.RowIndex].Cells[3].Value);
-            double valorUnitario = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[4].Value);
-            double desconto = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[5].Value);
-            double total = quantidade * (valorUnitario - (valorUnitario * (desconto / 100)));
-            if (dataGrid.Rows[e.RowIndex].Cells[3].Value != null &&
-                dataGrid.Rows[e.RowIndex].Cells[4].Value != null)
+            try
             {
-                dataGrid.Rows[e.RowIndex].Cells[8].Value = total;
+                totalIpiList.Clear();
+                int quantidade = Convert.ToInt32(dataGrid.Rows[e.RowIndex].Cells[3].Value);
+                double valorUnitario = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[4].Value);
+                double desconto = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[5].Value);
+                double total = quantidade * (valorUnitario - (valorUnitario * (desconto / 100)));
+                if (dataGrid.Rows[e.RowIndex].Cells[3].Value != null &&
+                    dataGrid.Rows[e.RowIndex].Cells[4].Value != null)
+                {
+                    dataGrid.Rows[e.RowIndex].Cells[8].Value = total;
+                }
+                if (dataGrid.Columns[e.ColumnIndex].Index == 6)
+                {
+                    double ipi = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[6].Value);
+                    double totalIpi = (ipi / 100) * valorUnitario;
+                    totalIpiList.Add(totalIpi);
+                }
             }
-            if (dataGrid.Columns[e.ColumnIndex].Index == 6)
+            catch (Exception)
             {
-                double ipi = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[6].Value);
-                double totalIpi = (ipi / 100) * valorUnitario;
-                totalIpiList.Add(totalIpi);
+
+               
             }
+            
         }
 
         private void txtFornecedor1_Enter(object sender, EventArgs e)
@@ -257,7 +266,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private void PreencheValoresCalculados(DataGridView dataGrid, List<Double> totalIpiList, TextBox txtTotalProdutos, TextBox txtTotalIpi, TextBox txtValorFinal)
         {
-            double valorTotalProduto = dataGrid.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDouble(t.Cells["colTotal1"].Value));
+            double valorTotalProduto = dataGrid.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDouble(t.Cells[8].Value));
             double valorTotalIpi = totalIpiList.Sum(item => item);
             txtTotalProdutos.Text = valorTotalProduto.ToString("F2");
             txtTotalIpi.Text = valorTotalIpi.ToString("F2");
@@ -495,6 +504,16 @@ namespace OlimpiadaCompras.Telas.Avaliador
         private void dgvProdutoCompra3_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             RealizaCalculoValoresFinais(e, dgvProdutoCompra3);
+        }
+
+        private void txtFornecedor2_Enter(object sender, EventArgs e)
+        {
+            PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
+        }
+
+        private void txtFornecedor3_Enter(object sender, EventArgs e)
+        {
+            PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
         }
     }
 }
