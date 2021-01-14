@@ -58,19 +58,74 @@ namespace OlimpiadaCompras.Telas.Avaliador
             PreencheCombobox(cboEscola, "Nome", "Id");
             PreencheCombobox(cboOcupacao, "Nome", "Id");
             PreencheCombobox(cboTipoCompra, "Descricao", "Id");
-            dtpDataSolicitacao.MinDate = DateTime.Now;
             PreencheDadosEscola(1);
-            if (idSolicitacao >0)
+            if (idSolicitacao > 0)
             {
                 PreencheDadosVisualizacaoSolicitacao();
                 DisabilitaInputs();
             }
         }
 
-        private void PreencheDadosVisualizacaoSolicitacao()
+        private async void PreencheDadosVisualizacaoSolicitacao()
         {
-            List<OcupacaoSolicitacaoCompra> ocupacaoSolicitacaoCompras = new List<OcupacaoSolicitacaoCompra>();
-            
+            List<OcupacaoSolicitacaoCompra> ocupacaoSolicitacaoCompras = await HttpSolicitacaoOcupacoes.GetSolicitacao(idSolicitacao, usuarioLogado.token);
+            if (ocupacaoSolicitacaoCompras.Count > 1)
+            {
+                List<Ocupacao> ocupacoes = new List<Ocupacao>();
+                dgvOcupacoes.Rows.Clear();
+                foreach (var item in ocupacaoSolicitacaoCompras)
+                {
+                    Ocupacao ocupacao = item.Ocupacao;
+                    ocupacoes.Add(ocupacao);
+
+                }
+                foreach (var oc in ocupacoes)
+                {
+                    int n = dgvOcupacoes.Rows.Add();
+                    dgvOcupacoes.Rows[n].Cells[0].Value = oc.Numero;
+                    dgvOcupacoes.Rows[n].Cells[1].Value = oc.Nome;
+                    dgvOcupacoes.Rows[n].Cells[2].Value = "Remover";
+                }
+                foreach (var inputs in ocupacaoSolicitacaoCompras)
+                {
+                    cboEscola.SelectedValue = inputs.SolicitacaoCompra.Escola.Id;
+                    txtResponsavelEntrega.Text = inputs.SolicitacaoCompra.ResponsavelEntrega;
+                    txtJusticativa.Text = inputs.SolicitacaoCompra.Justificativa;
+                    dtpDataSolicitacao.Value = inputs.SolicitacaoCompra.Data.Date;
+                    cboTipoCompra.SelectedValue = inputs.SolicitacaoCompra.TipoCompraId;
+                    txtCep.Text = inputs.SolicitacaoCompra.Escola.Cep;
+                    txtLogradouro.Text = inputs.SolicitacaoCompra.Escola.Logradouro;
+                    txtBairro.Text = inputs.SolicitacaoCompra.Escola.Bairro;
+                    txtNumero.Text = inputs.SolicitacaoCompra.Escola.Numero;
+                    txtCidade.Text = inputs.SolicitacaoCompra.Escola.Cidade;
+                    txtEstado.Text = inputs.SolicitacaoCompra.Escola.Estado;
+                    break;
+                }
+            }
+            else
+            {
+                foreach (var item in ocupacaoSolicitacaoCompras)
+                {
+                    cboEscola.SelectedValue = item.SolicitacaoCompra.Escola.Id;
+                    txtResponsavelEntrega.Text = item.SolicitacaoCompra.ResponsavelEntrega;
+                    txtResponsavelEntrega.Text = item.SolicitacaoCompra.Justificativa;
+                    dtpDataSolicitacao.Value = item.SolicitacaoCompra.Data;
+                    cboTipoCompra.SelectedValue = item.SolicitacaoCompra.TipoCompraId;
+                    txtCep.Text = item.SolicitacaoCompra.Escola.Cep;
+                    txtLogradouro.Text = item.SolicitacaoCompra.Escola.Logradouro;
+                    txtBairro.Text = item.SolicitacaoCompra.Escola.Bairro;
+                    txtNumero.Text = item.SolicitacaoCompra.Escola.Numero;
+                    txtCidade.Text = item.SolicitacaoCompra.Escola.Cidade;
+                    txtEstado.Text = item.SolicitacaoCompra.Escola.Estado;
+                    int n = dgvOcupacoes.Rows.Add();
+                    dgvOcupacoes.Rows[n].Cells[0].Value = item.Ocupacao.Numero;
+                    dgvOcupacoes.Rows[n].Cells[1].Value = item.Ocupacao.Nome;
+                    dgvOcupacoes.Rows[n].Cells[2].Value = "Remover";
+
+                }
+            }
+
+
         }
 
         private void DisabilitaInputs()
@@ -92,8 +147,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
                                 {
                                     var txt = (TextBox)group;
                                     txt.Enabled = false;
-
-
                                 }
                                 if (group.GetType() == typeof(ComboBox))
                                 {
@@ -104,6 +157,11 @@ namespace OlimpiadaCompras.Telas.Avaliador
                                 {
                                     var dateTimePicker = (DateTimePicker)group;
                                     dateTimePicker.Enabled = false;
+                                }
+                                if (group.GetType() == typeof(DataGridView))
+                                {
+                                    var dgv = (DataGridView)group;
+                                    dgv.Enabled = false;
                                 }
                             }
                         }
