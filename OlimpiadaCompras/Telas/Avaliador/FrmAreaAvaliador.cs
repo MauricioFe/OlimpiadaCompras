@@ -15,6 +15,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
     public partial class FrmAreaAvaliador : Form
     {
         Usuario usuarioLogado;
+        long idSolicitacao;
         public FrmAreaAvaliador(Usuario usuario)
         {
             this.usuarioLogado = usuario;
@@ -34,7 +35,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
             List<Acompanhamento> acompanhamentos = new List<Acompanhamento>();
             acompanhamentos = await HttpAcompanhamento.GetSolicitacaoAcompanhamento(usuarioLogado.token);
             dgvMinhasSolicitacoes.Rows.Clear();
-            foreach (var item in acompanhamentos)
+            foreach (var item in acompanhamentos.Where(u => u.UsuarioId == usuarioLogado.Id))
             {
                 int n = dgvMinhasSolicitacoes.Rows.Add();
                 dgvMinhasSolicitacoes.Rows[n].Cells["colMinhaIdSolicitacao"].Value = item.SolicitacaoCompra.Id;
@@ -49,7 +50,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
             List<Acompanhamento> acompanhamentos = new List<Acompanhamento>();
             acompanhamentos = await HttpAcompanhamento.GetSolicitacaoAcompanhamentoPendente(usuarioLogado.token);
             dgvSolicitacoesPendentes.Rows.Clear();
-            foreach (var item in acompanhamentos)
+            foreach (var item in acompanhamentos.Where(u => u.UsuarioId == usuarioLogado.Id))
             {
                 int n = dgvSolicitacoesPendentes.Rows.Add();
                 dgvSolicitacoesPendentes.Rows[n].Cells["colPendenteIdSolicitacao"].Value = item.SolicitacaoCompra.Id;
@@ -91,6 +92,13 @@ namespace OlimpiadaCompras.Telas.Avaliador
         private void btnVisualizaTodas_Click(object sender, EventArgs e)
         {
             FrmTodasSolicitacoes form = new FrmTodasSolicitacoes(usuarioLogado);
+            form.ShowDialog();
+        }
+
+        private void dgvSolicitacoesPendentes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            idSolicitacao = Convert.ToInt64(dgvSolicitacoesPendentes.Rows[e.RowIndex].Cells[0].Value);
+            FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado, idSolicitacao);
             form.ShowDialog();
         }
     }

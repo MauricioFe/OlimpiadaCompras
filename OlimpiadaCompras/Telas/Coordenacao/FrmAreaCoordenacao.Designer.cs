@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlCadastros = new System.Windows.Forms.Panel();
@@ -40,17 +40,16 @@
             this.btnCadastroProdutos = new System.Windows.Forms.Button();
             this.btnCadastros = new System.Windows.Forms.Button();
             this.btnRelatorios = new System.Windows.Forms.Button();
-            this.dgvSolicitacoes = new System.Windows.Forms.DataGridView();
-            this.codProtheus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ocupacao = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNomeUsuarioLogado = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtFiltrar = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.linkSair = new System.Windows.Forms.LinkLabel();
+            this.dgvSolicitacoes = new System.Windows.Forms.DataGridView();
+            this.colIdSolicitacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colData = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlCadastros.SuspendLayout();
@@ -179,60 +178,13 @@
             // btnRelatorios
             // 
             this.btnRelatorios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRelatorios.Location = new System.Drawing.Point(0, 90);
+            this.btnRelatorios.Location = new System.Drawing.Point(0, 92);
             this.btnRelatorios.Name = "btnRelatorios";
             this.btnRelatorios.Size = new System.Drawing.Size(301, 62);
             this.btnRelatorios.TabIndex = 6;
             this.btnRelatorios.Text = "Relatórios";
             this.btnRelatorios.UseVisualStyleBackColor = true;
             this.btnRelatorios.Click += new System.EventHandler(this.btnRelatorios_Click);
-            // 
-            // dgvSolicitacoes
-            // 
-            this.dgvSolicitacoes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvSolicitacoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSolicitacoes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.codProtheus,
-            this.Descricao,
-            this.TipoCompra,
-            this.ocupacao,
-            this.Status});
-            this.dgvSolicitacoes.Location = new System.Drawing.Point(310, 92);
-            this.dgvSolicitacoes.Name = "dgvSolicitacoes";
-            this.dgvSolicitacoes.Size = new System.Drawing.Size(723, 516);
-            this.dgvSolicitacoes.TabIndex = 1;
-            this.dgvSolicitacoes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSolicitacoes_CellClick);
-            // 
-            // codProtheus
-            // 
-            this.codProtheus.HeaderText = "Codigo da solicitação";
-            this.codProtheus.Name = "codProtheus";
-            this.codProtheus.Width = 150;
-            // 
-            // Descricao
-            // 
-            this.Descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Descricao.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Descricao.HeaderText = "Data da solicitação";
-            this.Descricao.Name = "Descricao";
-            // 
-            // TipoCompra
-            // 
-            this.TipoCompra.HeaderText = "Usuário solicitante";
-            this.TipoCompra.Name = "TipoCompra";
-            // 
-            // ocupacao
-            // 
-            this.ocupacao.HeaderText = "Ocupação";
-            this.ocupacao.Name = "ocupacao";
-            // 
-            // Status
-            // 
-            this.Status.HeaderText = "Status";
-            this.Status.Name = "Status";
             // 
             // label2
             // 
@@ -252,15 +204,15 @@
             this.lblNomeUsuarioLogado.TabIndex = 3;
             this.lblNomeUsuarioLogado.Text = "Olá Ariele";
             // 
-            // textBox1
+            // txtFiltrar
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(803, 60);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(230, 29);
-            this.textBox1.TabIndex = 4;
+            this.txtFiltrar.Location = new System.Drawing.Point(803, 60);
+            this.txtFiltrar.Name = "txtFiltrar";
+            this.txtFiltrar.Size = new System.Drawing.Size(230, 29);
+            this.txtFiltrar.TabIndex = 4;
             // 
             // label4
             // 
@@ -285,17 +237,62 @@
             this.linkSair.Text = "Sair";
             this.linkSair.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkSair_LinkClicked);
             // 
+            // dgvSolicitacoes
+            // 
+            this.dgvSolicitacoes.AllowUserToAddRows = false;
+            this.dgvSolicitacoes.AllowUserToDeleteRows = false;
+            this.dgvSolicitacoes.AllowUserToOrderColumns = true;
+            this.dgvSolicitacoes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvSolicitacoes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSolicitacoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSolicitacoes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colIdSolicitacao,
+            this.colData,
+            this.colUsuario,
+            this.colStatus});
+            this.dgvSolicitacoes.Location = new System.Drawing.Point(310, 95);
+            this.dgvSolicitacoes.Name = "dgvSolicitacoes";
+            this.dgvSolicitacoes.ReadOnly = true;
+            this.dgvSolicitacoes.Size = new System.Drawing.Size(723, 501);
+            this.dgvSolicitacoes.TabIndex = 26;
+            // 
+            // colIdSolicitacao
+            // 
+            this.colIdSolicitacao.HeaderText = "Codigo da solicitação";
+            this.colIdSolicitacao.Name = "colIdSolicitacao";
+            // 
+            // colData
+            // 
+            this.colData.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colData.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colData.HeaderText = "Data da solicitação";
+            this.colData.Name = "colData";
+            this.colData.ReadOnly = true;
+            // 
+            // colUsuario
+            // 
+            this.colUsuario.HeaderText = "Usuário solicitante";
+            this.colUsuario.Name = "colUsuario";
+            // 
+            // colStatus
+            // 
+            this.colStatus.HeaderText = "Status";
+            this.colStatus.Name = "colStatus";
+            // 
             // FrmAreaCoordenacao
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1037, 608);
+            this.Controls.Add(this.dgvSolicitacoes);
             this.Controls.Add(this.linkSair);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtFiltrar);
             this.Controls.Add(this.lblNomeUsuarioLogado);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dgvSolicitacoes);
             this.Controls.Add(this.pnlMenu);
             this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -325,17 +322,16 @@
         private System.Windows.Forms.Button btnCadastroProdutos;
         private System.Windows.Forms.Button btnCadastros;
         private System.Windows.Forms.Button btnRelatorios;
-        private System.Windows.Forms.DataGridView dgvSolicitacoes;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNomeUsuarioLogado;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtFiltrar;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel linkSair;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codProtheus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TipoCompra;
-        private System.Windows.Forms.DataGridViewComboBoxColumn ocupacao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DataGridView dgvSolicitacoes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colIdSolicitacao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colData;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUsuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colStatus;
     }
 }

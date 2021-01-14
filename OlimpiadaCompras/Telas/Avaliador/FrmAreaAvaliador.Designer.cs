@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label4 = new System.Windows.Forms.Label();
             this.txtFiltroPendentes = new System.Windows.Forms.TextBox();
             this.lblNomeUsuarioLogado = new System.Windows.Forms.Label();
@@ -48,10 +48,10 @@
             this.colMinhaUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMinhaStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvSolicitacoesPendentes = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPendenteIdSolicitacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPendenteData = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPendenteUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPendenteStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMinhasSolicitacoes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoesPendentes)).BeginInit();
@@ -187,6 +187,9 @@
             // 
             // dgvMinhasSolicitacoes
             // 
+            this.dgvMinhasSolicitacoes.AllowUserToAddRows = false;
+            this.dgvMinhasSolicitacoes.AllowUserToDeleteRows = false;
+            this.dgvMinhasSolicitacoes.AllowUserToOrderColumns = true;
             this.dgvMinhasSolicitacoes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -199,6 +202,7 @@
             this.colMinhaStatus});
             this.dgvMinhasSolicitacoes.Location = new System.Drawing.Point(12, 390);
             this.dgvMinhasSolicitacoes.Name = "dgvMinhasSolicitacoes";
+            this.dgvMinhasSolicitacoes.ReadOnly = true;
             this.dgvMinhasSolicitacoes.Size = new System.Drawing.Size(901, 197);
             this.dgvMinhasSolicitacoes.TabIndex = 23;
             // 
@@ -220,10 +224,11 @@
             // colMinhaData
             // 
             this.colMinhaData.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.colMinhaData.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colMinhaData.DefaultCellStyle = dataGridViewCellStyle9;
             this.colMinhaData.HeaderText = "Data da solicitação";
             this.colMinhaData.Name = "colMinhaData";
+            this.colMinhaData.ReadOnly = true;
             // 
             // colMinhaUsuario
             // 
@@ -237,43 +242,49 @@
             // 
             // dgvSolicitacoesPendentes
             // 
+            this.dgvSolicitacoesPendentes.AllowUserToAddRows = false;
+            this.dgvSolicitacoesPendentes.AllowUserToDeleteRows = false;
+            this.dgvSolicitacoesPendentes.AllowUserToOrderColumns = true;
             this.dgvSolicitacoesPendentes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvSolicitacoesPendentes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSolicitacoesPendentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSolicitacoesPendentes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
+            this.colPendenteIdSolicitacao,
+            this.colPendenteData,
+            this.colPendenteUsuario,
+            this.colPendenteStatus});
             this.dgvSolicitacoesPendentes.Location = new System.Drawing.Point(12, 143);
             this.dgvSolicitacoesPendentes.Name = "dgvSolicitacoesPendentes";
+            this.dgvSolicitacoesPendentes.ReadOnly = true;
             this.dgvSolicitacoesPendentes.Size = new System.Drawing.Size(901, 197);
             this.dgvSolicitacoesPendentes.TabIndex = 25;
+            this.dgvSolicitacoesPendentes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSolicitacoesPendentes_CellDoubleClick);
             // 
-            // dataGridViewTextBoxColumn1
+            // colPendenteIdSolicitacao
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Codigo da solicitação";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.colPendenteIdSolicitacao.HeaderText = "Codigo da solicitação";
+            this.colPendenteIdSolicitacao.Name = "colPendenteIdSolicitacao";
             // 
-            // dataGridViewTextBoxColumn2
+            // colPendenteData
             // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Data da solicitação";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.colPendenteData.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colPendenteData.DefaultCellStyle = dataGridViewCellStyle10;
+            this.colPendenteData.HeaderText = "Data da solicitação";
+            this.colPendenteData.Name = "colPendenteData";
+            this.colPendenteData.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn3
+            // colPendenteUsuario
             // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Usuário solicitante";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.colPendenteUsuario.HeaderText = "Usuário solicitante";
+            this.colPendenteUsuario.Name = "colPendenteUsuario";
             // 
-            // dataGridViewTextBoxColumn4
+            // colPendenteStatus
             // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Status";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.colPendenteStatus.HeaderText = "Status";
+            this.colPendenteStatus.Name = "colPendenteStatus";
             // 
             // FrmAreaAvaliador
             // 
@@ -329,9 +340,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colMinhaUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMinhaStatus;
         private System.Windows.Forms.DataGridView dgvSolicitacoesPendentes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPendenteIdSolicitacao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPendenteData;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPendenteUsuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPendenteStatus;
     }
 }

@@ -19,9 +19,16 @@ namespace OlimpiadaCompras.Telas.Avaliador
         long idProduto = 0;
         long idGrupo = 0;
         long solicitacaoComprasId = 0;
+        long idSolicitacao = 0;
         public FrmNovaSolicitacao(Usuario usuario)
         {
             this.usuarioLogado = usuario;
+            InitializeComponent();
+        }
+        public FrmNovaSolicitacao(Usuario usuario, long idSolicitacao)
+        {
+            this.usuarioLogado = usuario;
+            this.idSolicitacao = idSolicitacao;
             InitializeComponent();
         }
 
@@ -48,14 +55,61 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private void FrmNovaSolicitacao_Load(object sender, EventArgs e)
         {
-
             PreencheCombobox(cboEscola, "Nome", "Id");
             PreencheCombobox(cboOcupacao, "Nome", "Id");
             PreencheCombobox(cboTipoCompra, "Descricao", "Id");
             dtpDataSolicitacao.MinDate = DateTime.Now;
-
             PreencheDadosEscola(1);
+            if (idSolicitacao >0)
+            {
+                PreencheDadosVisualizacaoSolicitacao();
+                DisabilitaInputs();
+            }
+        }
 
+        private void PreencheDadosVisualizacaoSolicitacao()
+        {
+            List<OcupacaoSolicitacaoCompra> ocupacaoSolicitacaoCompras = new List<OcupacaoSolicitacaoCompra>();
+            
+        }
+
+        private void DisabilitaInputs()
+        {
+            foreach (var item in tabContainer.Controls)
+            {
+
+                if (item.GetType() == typeof(TabPage))
+                {
+                    TabPage tabPage = (TabPage)item;
+                    foreach (var tab in tabPage.Controls)
+                    {
+                        if (tab.GetType() == typeof(GroupBox))
+                        {
+                            GroupBox box = (GroupBox)tab;
+                            foreach (var group in box.Controls)
+                            {
+                                if (group.GetType() == typeof(TextBox))
+                                {
+                                    var txt = (TextBox)group;
+                                    txt.Enabled = false;
+
+
+                                }
+                                if (group.GetType() == typeof(ComboBox))
+                                {
+                                    var combo = (ComboBox)group;
+                                    combo.Enabled = false;
+                                }
+                                if (group.GetType() == typeof(DateTimePicker))
+                                {
+                                    var dateTimePicker = (DateTimePicker)group;
+                                    dateTimePicker.Enabled = false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void cboEscola_SelectionChangeCommitted(object sender, EventArgs e)

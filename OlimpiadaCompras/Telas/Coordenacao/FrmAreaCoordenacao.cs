@@ -1,5 +1,6 @@
 ﻿
 using ApiSGCOlimpiada.Models;
+using OlimpiadaCompras.Requests;
 using OlimpiadaCompras.Telas;
 using OlimpiadaCompras.Telas.Coordenacao;
 using OlimpiadaCompras.Telas.Coordenacao.Cadastros;
@@ -18,6 +19,7 @@ namespace OlimpiadaCompras
     public partial class FrmAreaCoordenacao : Form
     {
         Usuario usuarioLogado;
+        List<Acompanhamento> acompanhamentos = new List<Acompanhamento>();
         public FrmAreaCoordenacao(Usuario usuario)
         {
             this.usuarioLogado = usuario;
@@ -40,14 +42,21 @@ namespace OlimpiadaCompras
 
         private void FrmAreaCoordenacao_Load(object sender, EventArgs e)
         {
+            AtualizaGridSolicitacoes();
         }
-
-        private void dgvSolicitacoes_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void AtualizaGridSolicitacoes()
         {
-            FrmGerenciarSolicitacaoCompra form = new FrmGerenciarSolicitacaoCompra(usuarioLogado);
-            form.ShowDialog();
+            acompanhamentos = await HttpAcompanhamento.GetSolicitacaoAcompanhamento(usuarioLogado.token);
+            dgvSolicitacoes.Rows.Clear();
+            foreach (var item in acompanhamentos.OrderBy(ac => ac.StatusId))
+            {
+                int n = dgvSolicitacoes.Rows.Add();
+                dgvSolicitacoes.Rows[n].Cells["colIdSolicitacao"].Value = item.SolicitacaoCompra.Id;
+                dgvSolicitacoes.Rows[n].Cells["colData"].Value = item.SolicitacaoCompra.Data.ToString("dd/MM/yyyy");
+                dgvSolicitacoes.Rows[n].Cells["colUsuario"].Value = $"{item.Usuario.Nome.Split(' ')[0]} {item.Usuario.Nome.Split(' ')[1]}";
+                dgvSolicitacoes.Rows[n].Cells["colStatus"].Value = item.Status.Descricao;
+            }
         }
-
         private void btnCadastroProdutos_Click(object sender, EventArgs e)
         {
             FrmCadastroProdutos form = new FrmCadastroProdutos(usuarioLogado);
