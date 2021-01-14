@@ -35,6 +35,55 @@ namespace OlimpiadaCompras.Requests
                 return null;
             }
         }
+        public static async Task<List<Acompanhamento>> GetSolicitacaoAcompanhamento(string token)
+        {
+            List<Acompanhamento> acompanhamentos = new List<Acompanhamento>();
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/acompanhamento/solicitacao");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var acompanhamentoStr = await response.Content.ReadAsStringAsync();
+                        acompanhamentos = new JavaScriptSerializer().Deserialize<List<Acompanhamento>>(acompanhamentoStr);
+                        return acompanhamentos;
+                    }
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao conectar com a api " + ex.Message);
+                return null;
+            }
+        }
+
+        public static async Task<List<Acompanhamento>> GetSolicitacaoAcompanhamentoPendente(string token)
+        {
+            List<Acompanhamento> acompanhamentos = new List<Acompanhamento>();
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/acompanhamento/solicitacao/pendente");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var acompanhamentoStr = await response.Content.ReadAsStringAsync();
+                        acompanhamentos = new JavaScriptSerializer().Deserialize<List<Acompanhamento>>(acompanhamentoStr);
+                        return acompanhamentos;
+                    }
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao conectar com a api " + ex.Message);
+                return null;
+            }
+        }
 
         public static async Task<Acompanhamento> GetById(long id, string token)
         {
