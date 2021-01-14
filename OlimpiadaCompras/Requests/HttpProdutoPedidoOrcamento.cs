@@ -64,7 +64,7 @@ namespace OlimpiadaCompras.Requests
                 return null;
             }
         }
-        
+
         public static async Task<ProdutoPedidoOrcamento> Create(ProdutoPedidoOrcamento produtoPedidoOrcamento, string token)
         {
             ProdutoPedidoOrcamento produtoPedidoOrcamentoCriado = new ProdutoPedidoOrcamento();
@@ -116,6 +116,33 @@ namespace OlimpiadaCompras.Requests
             catch (Exception ex)
             {
                 Console.WriteLine($"Erro ao conectar com a api {ex.Message}");
+                return null;
+            }
+
+        }
+        public static async Task<List<ProdutoPedidoOrcamento>> GetSolicitacao(long idSolicitacao, string token, string route)
+        {
+            List<ProdutoPedidoOrcamento> produtoPedidoOrcamentos = new List<ProdutoPedidoOrcamento>();
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/produtoPedidoOrcamento/{route}/{idSolicitacao}");
+                    if (response.IsSuccessStatusCode)
+                    {
+
+                        var produtoPedidoOrcamentosString = await response.Content.ReadAsStringAsync();
+                        produtoPedidoOrcamentos = new JavaScriptSerializer().Deserialize<List<ProdutoPedidoOrcamento>>(produtoPedidoOrcamentosString);
+                        return produtoPedidoOrcamentos;
+                    }
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine("Erro ao conectar com a api " + e.Message);
                 return null;
             }
 

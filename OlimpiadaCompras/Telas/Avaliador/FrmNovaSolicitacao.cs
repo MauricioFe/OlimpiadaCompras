@@ -62,17 +62,150 @@ namespace OlimpiadaCompras.Telas.Avaliador
             if (idSolicitacao > 0)
             {
                 PreencheDadosVisualizacaoSolicitacao();
+                PreencheDadosVisualizacaoSolicitacaoProdutos();
                 DisabilitaInputs();
+            }
+        }
+
+        private async void PreencheDadosVisualizacaoSolicitacaoProdutos()
+        {
+            List<ProdutoPedidoOrcamento> produtosSolicitacao = await HttpProdutoPedidoOrcamentos.GetSolicitacao(idSolicitacao, usuarioLogado.token, "produtoSolicitacao");
+            List<ProdutoPedidoOrcamento> orcamentoSolicitacao = await HttpProdutoPedidoOrcamentos.GetSolicitacao(idSolicitacao, usuarioLogado.token, "orcamentoSolicitacao");
+            List<ProdutoPedidoOrcamento> orcamentoProdutoSolicitacao = await HttpProdutoPedidoOrcamentos.GetSolicitacao(idSolicitacao, usuarioLogado.token, "produtoOrcamentoSolicitacao");
+            dgvProduto.Rows.Clear();
+
+            List<Produto> produtos = new List<Produto>();
+            foreach (var item in produtosSolicitacao)
+            {
+                Produto produto = item.Produto;
+                produtos.Add(produto);
+            }
+            foreach (var produto in produtos)
+            {
+                int n = dgvProduto.Rows.Add();
+                dgvProduto.Rows[n].Cells[0].Value = produto.CodigoProtheus;
+                dgvProduto.Rows[n].Cells[1].Value = produto.Grupo.Descricao;
+                dgvProduto.Rows[n].Cells[2].Value = produto.Descricao;
+                dgvProduto.Rows[n].Cells[3].Value = "Remover";
+            }
+            int i = 0;
+            foreach (var item in orcamentoSolicitacao)
+            {
+                switch (i)
+                {
+                    case 0:
+                        txtFornecedor1.Text = item.Orcamento.Fornecedor;
+                        txtCnpj1.Text = item.Orcamento.Cnpj;
+                        dtpDataOrcamento1.Value = item.Orcamento.Data;
+                        txtTotalProdutos1.Text = item.Orcamento.TotalProdutos.ToString();
+                        txtTotalIPI1.Text = item.Orcamento.TotalIpi.ToString();
+                        txtValorFinal1.Text = item.Orcamento.TotalIpi.ToString();
+                        cboFormaPagamento1.Text = item.Orcamento.FormaPagamento;
+                        txtValorFrete1.Text = item.Orcamento.ValorFrete.ToString();
+                        txtAnexarPdf1.Text = item.Orcamento.Anexo;
+                        break;
+                    case 1:
+                        txtFornecedor2.Text = item.Orcamento.Fornecedor;
+                        txtCnpj2.Text = item.Orcamento.Cnpj;
+                        dtpDataOrcamento2.Value = item.Orcamento.Data;
+                        txtTotalProdutos2.Text = item.Orcamento.TotalProdutos.ToString();
+                        txtTotalIpi2.Text = item.Orcamento.TotalIpi.ToString();
+                        txtValorFinal2.Text = item.Orcamento.TotalIpi.ToString();
+                        cboFormaPagamento2.Text = item.Orcamento.FormaPagamento;
+                        txtValorFrete2.Text = item.Orcamento.ValorFrete.ToString();
+                        txtAnexarPdf2.Text = item.Orcamento.Anexo;
+                        break;
+                    case 2:
+                        txtFornecedor3.Text = item.Orcamento.Fornecedor;
+                        txtCnpj3.Text = item.Orcamento.Cnpj;
+                        dtpDataOrcamento3.Value = item.Orcamento.Data;
+                        txtTotalProdutos3.Text = item.Orcamento.TotalProdutos.ToString();
+                        txtTotalIpi3.Text = item.Orcamento.TotalIpi.ToString();
+                        txtValorFinal3.Text = item.Orcamento.TotalIpi.ToString();
+                        txtValorFrete3.Text = item.Orcamento.ValorFrete.ToString();
+                        cboFormaPagamento3.Text = item.Orcamento.FormaPagamento;
+                        txtAnexarPdf3.Text = item.Orcamento.Anexo;
+                        break;
+                    default:
+                        break;
+                }
+                i++;
+            }
+            i = 0;
+            for (int j = 0; j < orcamentoSolicitacao.Count; j++)
+            {
+                switch (j)
+                {
+                    case 0:
+                        foreach (var item in orcamentoProdutoSolicitacao)
+                        {
+                            if (item.OrcamentoId == orcamentoSolicitacao[j].OrcamentoId)
+                            {
+                                int n = dgvProdutoCompra1.Rows.Add();
+                                dgvProdutoCompra1.Rows[n].Cells[0].Value = item.Produto.CodigoProtheus;
+                                dgvProdutoCompra1.Rows[n].Cells[1].Value = item.Produto.Grupo.Descricao;
+                                dgvProdutoCompra1.Rows[n].Cells[2].Value = item.Produto.Descricao;
+                                dgvProdutoCompra1.Rows[n].Cells[3].Value = item.Quantidade;
+                                dgvProdutoCompra1.Rows[n].Cells[4].Value = item.valor;
+                                dgvProdutoCompra1.Rows[n].Cells[5].Value = item.Desconto;
+                                dgvProdutoCompra1.Rows[n].Cells[6].Value = item.Ipi;
+                                dgvProdutoCompra1.Rows[n].Cells[7].Value = item.Icms;
+                                dgvProdutoCompra1.Rows[n].Cells[8].Value = item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)));
+                            }
+
+                        }
+                        break;
+                    case 1:
+                        foreach (var item in orcamentoProdutoSolicitacao)
+                        {
+                            if (item.OrcamentoId == orcamentoSolicitacao[j].OrcamentoId)
+                            {
+                                int n = dgvProdutoCompra2.Rows.Add();
+                                dgvProdutoCompra2.Rows[n].Cells[0].Value = item.Produto.CodigoProtheus;
+                                dgvProdutoCompra2.Rows[n].Cells[1].Value = item.Produto.Grupo.Descricao;
+                                dgvProdutoCompra2.Rows[n].Cells[2].Value = item.Produto.Descricao;
+                                dgvProdutoCompra2.Rows[n].Cells[3].Value = item.Quantidade;
+                                dgvProdutoCompra2.Rows[n].Cells[4].Value = item.valor;
+                                dgvProdutoCompra2.Rows[n].Cells[5].Value = item.Desconto;
+                                dgvProdutoCompra2.Rows[n].Cells[6].Value = item.Ipi;
+                                dgvProdutoCompra2.Rows[n].Cells[7].Value = item.Icms;
+                                dgvProdutoCompra2.Rows[n].Cells[8].Value = item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)));
+                            }
+
+                        }
+                        break;
+                    case 2:
+                        foreach (var item in orcamentoProdutoSolicitacao)
+                        {
+                            if (item.OrcamentoId == orcamentoSolicitacao[j].OrcamentoId)
+                            {
+                                int n = dgvProdutoCompra3.Rows.Add();
+                                dgvProdutoCompra3.Rows[n].Cells[0].Value = item.Produto.CodigoProtheus;
+                                dgvProdutoCompra3.Rows[n].Cells[1].Value = item.Produto.Grupo.Descricao;
+                                dgvProdutoCompra3.Rows[n].Cells[2].Value = item.Produto.Descricao;
+                                dgvProdutoCompra3.Rows[n].Cells[3].Value = item.Quantidade;
+                                dgvProdutoCompra3.Rows[n].Cells[4].Value = item.valor;
+                                dgvProdutoCompra3.Rows[n].Cells[5].Value = item.Desconto;
+                                dgvProdutoCompra3.Rows[n].Cells[6].Value = item.Ipi;
+                                dgvProdutoCompra3.Rows[n].Cells[7].Value = item.Icms;
+                                dgvProdutoCompra3.Rows[n].Cells[8].Value = item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)));
+                            }
+
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
         private async void PreencheDadosVisualizacaoSolicitacao()
         {
             List<OcupacaoSolicitacaoCompra> ocupacaoSolicitacaoCompras = await HttpSolicitacaoOcupacoes.GetSolicitacao(idSolicitacao, usuarioLogado.token);
+            dgvOcupacoes.Rows.Clear();
             if (ocupacaoSolicitacaoCompras.Count > 1)
             {
                 List<Ocupacao> ocupacoes = new List<Ocupacao>();
-                dgvOcupacoes.Rows.Clear();
                 foreach (var item in ocupacaoSolicitacaoCompras)
                 {
                     Ocupacao ocupacao = item.Ocupacao;
@@ -108,7 +241,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 {
                     cboEscola.SelectedValue = item.SolicitacaoCompra.Escola.Id;
                     txtResponsavelEntrega.Text = item.SolicitacaoCompra.ResponsavelEntrega;
-                    txtResponsavelEntrega.Text = item.SolicitacaoCompra.Justificativa;
+                    txtJusticativa.Text = item.SolicitacaoCompra.Justificativa;
                     dtpDataSolicitacao.Value = item.SolicitacaoCompra.Data;
                     cboTipoCompra.SelectedValue = item.SolicitacaoCompra.TipoCompraId;
                     txtCep.Text = item.SolicitacaoCompra.Escola.Cep;
@@ -135,9 +268,20 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
                 if (item.GetType() == typeof(TabPage))
                 {
+
                     TabPage tabPage = (TabPage)item;
                     foreach (var tab in tabPage.Controls)
                     {
+                        if (tab.GetType() == typeof(DataGridView))
+                        {
+                            var dgv = (DataGridView)tab;
+                            dgv.Enabled = false;
+                        }
+                        if (tab.GetType() == typeof(Button))
+                        {
+                            var btn = (Button)tab;
+                            btn.Enabled = false;
+                        }
                         if (tab.GetType() == typeof(GroupBox))
                         {
                             GroupBox box = (GroupBox)tab;
@@ -162,6 +306,11 @@ namespace OlimpiadaCompras.Telas.Avaliador
                                 {
                                     var dgv = (DataGridView)group;
                                     dgv.Enabled = false;
+                                }
+                                if (group.GetType() == typeof(Button))
+                                {
+                                    var btn = (Button)group;
+                                    btn.Enabled = false;
                                 }
                             }
                         }
