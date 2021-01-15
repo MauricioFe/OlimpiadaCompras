@@ -71,10 +71,11 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             //form.ShowDialog();
         }
 
-        private void btnAprovar_Click(object sender, EventArgs e)
+        private async void btnAprovar_Click(object sender, EventArgs e)
         {
-            //FrmModalSolicitacao form = new FrmModalSolicitacao(2);
-            //form.ShowDialog();
+            Acompanhamento acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
+            FrmModalSolicitacao form = new FrmModalSolicitacao(2, acompanhamento, usuarioLogado);
+            form.ShowDialog();
         }
 
         private void btnReprvar_Click(object sender, EventArgs e)
@@ -87,10 +88,8 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         {
             foreach (var item in tabContainer.Controls)
             {
-
                 if (item.GetType() == typeof(TabPage))
                 {
-
                     TabPage tabPage = (TabPage)item;
                     foreach (var tab in tabPage.Controls)
                     {

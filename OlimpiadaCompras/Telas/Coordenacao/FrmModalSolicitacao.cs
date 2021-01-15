@@ -38,20 +38,44 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         {
             if (acao == SOLICITACAO_APROVADA)
             {
+                acompanhamento.StatusId = ConstantesProjeto.APROVADO;
                 var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
+                if (acompanhamentoUpdate != null)
+                {
+                    //FrmEmailAutorizacao form = new FrmEmailAutorizacao();
+                    //form.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao realizar aprovação");
+                }
 
-
-                //FrmEmailAutorizacao form = new FrmEmailAutorizacao();
-                //form.ShowDialog();
             }
             else if (acao == SOLICITACAO_REPROVADA)
             {
-                //criar lógica para update em acompanhamento
-                this.Dispose();
+                acompanhamento.StatusId = ConstantesProjeto.REPROVADO;
+                var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
+                if (acompanhamentoUpdate != null)
+                {
+                    this.Dispose();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao realizar reprovação");
+                }
             }
             else
             {
-                this.Dispose();
+                acompanhamento.StatusId = ConstantesProjeto.PENDENTE_ALTERACAO;
+                var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
+                if (acompanhamentoUpdate != null)
+                {
+                    this.Dispose();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao realizar solicitação de alteração");
+                }
             }
         }
 

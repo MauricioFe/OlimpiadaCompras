@@ -85,7 +85,7 @@ namespace OlimpiadaCompras.Requests
             }
         }
 
-        public static async Task<Acompanhamento> GetById(long id, string token)
+        public static async Task<Acompanhamento> GetBySolicitacaoId(long id, string token)
         {
             Acompanhamento acompanhamento = new Acompanhamento();
             try
