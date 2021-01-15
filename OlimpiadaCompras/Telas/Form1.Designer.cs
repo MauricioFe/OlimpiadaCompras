@@ -46,7 +46,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(390, 33);
             this.txtEmail.TabIndex = 1;
-            this.txtEmail.Text = "dcarlos@fiemg.com.br";
+            this.txtEmail.Text = "abarrado@fiemg.com.br";
             this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
             // 
             // label2
@@ -77,7 +77,7 @@
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(390, 33);
             this.txtSenha.TabIndex = 2;
-            this.txtSenha.Text = "avaliador123";
+            this.txtSenha.Text = "adm123";
             this.txtSenha.UseSystemPasswordChar = true;
             this.txtSenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSenha_KeyDown);
             // 

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlCadastros = new System.Windows.Forms.Panel();
@@ -257,17 +257,19 @@
             this.dgvSolicitacoes.ReadOnly = true;
             this.dgvSolicitacoes.Size = new System.Drawing.Size(723, 501);
             this.dgvSolicitacoes.TabIndex = 26;
+            this.dgvSolicitacoes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSolicitacoes_CellClick);
             // 
             // colIdSolicitacao
             // 
             this.colIdSolicitacao.HeaderText = "Codigo da solicitação";
             this.colIdSolicitacao.Name = "colIdSolicitacao";
+            this.colIdSolicitacao.ReadOnly = true;
             // 
             // colData
             // 
             this.colData.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.colData.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colData.DefaultCellStyle = dataGridViewCellStyle1;
             this.colData.HeaderText = "Data da solicitação";
             this.colData.Name = "colData";
             this.colData.ReadOnly = true;
@@ -276,11 +278,13 @@
             // 
             this.colUsuario.HeaderText = "Usuário solicitante";
             this.colUsuario.Name = "colUsuario";
+            this.colUsuario.ReadOnly = true;
             // 
             // colStatus
             // 
             this.colStatus.HeaderText = "Status";
             this.colStatus.Name = "colStatus";
+            this.colStatus.ReadOnly = true;
             // 
             // FrmAreaCoordenacao
             // 

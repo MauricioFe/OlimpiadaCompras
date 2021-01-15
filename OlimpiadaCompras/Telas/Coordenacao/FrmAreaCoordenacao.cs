@@ -19,6 +19,7 @@ namespace OlimpiadaCompras
     public partial class FrmAreaCoordenacao : Form
     {
         Usuario usuarioLogado;
+        long idSolicitacao = 0;
         List<Acompanhamento> acompanhamentos = new List<Acompanhamento>();
         public FrmAreaCoordenacao(Usuario usuario)
         {
@@ -110,6 +111,13 @@ namespace OlimpiadaCompras
         private void FrmAreaCoordenacao_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void dgvSolicitacoes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            idSolicitacao = Convert.ToInt64(dgvSolicitacoes.Rows[e.RowIndex].Cells[0].Value);
+            FrmGerenciarSolicitacaoCompra form = new FrmGerenciarSolicitacaoCompra(usuarioLogado, idSolicitacao);
+            form.ShowDialog();
         }
     }
 }

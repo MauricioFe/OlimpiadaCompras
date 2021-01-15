@@ -325,7 +325,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
             PreencheDadosEscola(escolaId);
         }
 
-        private async void PreencheDadosEscola(long escolaId)
+        public async void PreencheDadosEscola(long escolaId)
         {
             Escola escola = await HttpEscolas.GetEscolaById(escolaId, usuarioLogado.token);
             txtCep.Text = escola.Cep;
