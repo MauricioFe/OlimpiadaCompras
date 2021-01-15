@@ -99,7 +99,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         dtpDataOrcamento1.Value = item.Orcamento.Data;
                         txtTotalProdutos1.Text = item.Orcamento.TotalProdutos.ToString();
                         txtTotalIPI1.Text = item.Orcamento.TotalIpi.ToString();
-                        txtValorFinal1.Text = item.Orcamento.TotalIpi.ToString();
+                        txtValorFinal1.Text = item.Orcamento.ValorTotal.ToString();
                         cboFormaPagamento1.Text = item.Orcamento.FormaPagamento;
                         txtValorFrete1.Text = item.Orcamento.ValorFrete.ToString();
                         txtAnexarPdf1.Text = item.Orcamento.Anexo;
@@ -110,7 +110,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         dtpDataOrcamento2.Value = item.Orcamento.Data;
                         txtTotalProdutos2.Text = item.Orcamento.TotalProdutos.ToString();
                         txtTotalIpi2.Text = item.Orcamento.TotalIpi.ToString();
-                        txtValorFinal2.Text = item.Orcamento.TotalIpi.ToString();
+                        txtValorFinal2.Text = item.Orcamento.ValorTotal.ToString();
                         cboFormaPagamento2.Text = item.Orcamento.FormaPagamento;
                         txtValorFrete2.Text = item.Orcamento.ValorFrete.ToString();
                         txtAnexarPdf2.Text = item.Orcamento.Anexo;
@@ -121,7 +121,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         dtpDataOrcamento3.Value = item.Orcamento.Data;
                         txtTotalProdutos3.Text = item.Orcamento.TotalProdutos.ToString();
                         txtTotalIpi3.Text = item.Orcamento.TotalIpi.ToString();
-                        txtValorFinal3.Text = item.Orcamento.TotalIpi.ToString();
+                        txtValorFinal3.Text = item.Orcamento.ValorTotal.ToString();
                         txtValorFrete3.Text = item.Orcamento.ValorFrete.ToString();
                         cboFormaPagamento3.Text = item.Orcamento.FormaPagamento;
                         txtAnexarPdf3.Text = item.Orcamento.Anexo;

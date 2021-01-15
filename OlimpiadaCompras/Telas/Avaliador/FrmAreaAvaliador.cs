@@ -101,5 +101,12 @@ namespace OlimpiadaCompras.Telas.Avaliador
             FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado, idSolicitacao);
             form.ShowDialog();
         }
+
+        private void dgvMinhasSolicitacoes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            idSolicitacao = Convert.ToInt64(dgvMinhasSolicitacoes.Rows[e.RowIndex].Cells[0].Value);
+            FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado, idSolicitacao);
+            form.ShowDialog();
+        }
     }
 }

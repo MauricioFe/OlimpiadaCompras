@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label4 = new System.Windows.Forms.Label();
             this.txtFiltroPendentes = new System.Windows.Forms.TextBox();
             this.lblNomeUsuarioLogado = new System.Windows.Forms.Label();
@@ -42,11 +42,11 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.linkSair = new System.Windows.Forms.LinkLabel();
             this.dgvMinhasSolicitacoes = new System.Windows.Forms.DataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.colMinhaIdSolicitacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMinhaData = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMinhaUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMinhaStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvSolicitacoesPendentes = new System.Windows.Forms.DataGridView();
             this.colPendenteIdSolicitacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPendenteData = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -205,6 +205,34 @@
             this.dgvMinhasSolicitacoes.ReadOnly = true;
             this.dgvMinhasSolicitacoes.Size = new System.Drawing.Size(901, 197);
             this.dgvMinhasSolicitacoes.TabIndex = 23;
+            this.dgvMinhasSolicitacoes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMinhasSolicitacoes_CellClick);
+            // 
+            // colMinhaIdSolicitacao
+            // 
+            this.colMinhaIdSolicitacao.HeaderText = "Codigo da solicitação";
+            this.colMinhaIdSolicitacao.Name = "colMinhaIdSolicitacao";
+            this.colMinhaIdSolicitacao.ReadOnly = true;
+            // 
+            // colMinhaData
+            // 
+            this.colMinhaData.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colMinhaData.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colMinhaData.HeaderText = "Data da solicitação";
+            this.colMinhaData.Name = "colMinhaData";
+            this.colMinhaData.ReadOnly = true;
+            // 
+            // colMinhaUsuario
+            // 
+            this.colMinhaUsuario.HeaderText = "Usuário solicitante";
+            this.colMinhaUsuario.Name = "colMinhaUsuario";
+            this.colMinhaUsuario.ReadOnly = true;
+            // 
+            // colMinhaStatus
+            // 
+            this.colMinhaStatus.HeaderText = "Status";
+            this.colMinhaStatus.Name = "colMinhaStatus";
+            this.colMinhaStatus.ReadOnly = true;
             // 
             // pictureBox1
             // 
@@ -215,30 +243,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 24;
             this.pictureBox1.TabStop = false;
-            // 
-            // colMinhaIdSolicitacao
-            // 
-            this.colMinhaIdSolicitacao.HeaderText = "Codigo da solicitação";
-            this.colMinhaIdSolicitacao.Name = "colMinhaIdSolicitacao";
-            // 
-            // colMinhaData
-            // 
-            this.colMinhaData.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.colMinhaData.DefaultCellStyle = dataGridViewCellStyle9;
-            this.colMinhaData.HeaderText = "Data da solicitação";
-            this.colMinhaData.Name = "colMinhaData";
-            this.colMinhaData.ReadOnly = true;
-            // 
-            // colMinhaUsuario
-            // 
-            this.colMinhaUsuario.HeaderText = "Usuário solicitante";
-            this.colMinhaUsuario.Name = "colMinhaUsuario";
-            // 
-            // colMinhaStatus
-            // 
-            this.colMinhaStatus.HeaderText = "Status";
-            this.colMinhaStatus.Name = "colMinhaStatus";
             // 
             // dgvSolicitacoesPendentes
             // 
@@ -266,12 +270,13 @@
             // 
             this.colPendenteIdSolicitacao.HeaderText = "Codigo da solicitação";
             this.colPendenteIdSolicitacao.Name = "colPendenteIdSolicitacao";
+            this.colPendenteIdSolicitacao.ReadOnly = true;
             // 
             // colPendenteData
             // 
             this.colPendenteData.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.colPendenteData.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colPendenteData.DefaultCellStyle = dataGridViewCellStyle2;
             this.colPendenteData.HeaderText = "Data da solicitação";
             this.colPendenteData.Name = "colPendenteData";
             this.colPendenteData.ReadOnly = true;
@@ -280,11 +285,13 @@
             // 
             this.colPendenteUsuario.HeaderText = "Usuário solicitante";
             this.colPendenteUsuario.Name = "colPendenteUsuario";
+            this.colPendenteUsuario.ReadOnly = true;
             // 
             // colPendenteStatus
             // 
             this.colPendenteStatus.HeaderText = "Status";
             this.colPendenteStatus.Name = "colPendenteStatus";
+            this.colPendenteStatus.ReadOnly = true;
             // 
             // FrmAreaAvaliador
             // 
