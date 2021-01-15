@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ApiSGCOlimpiada.Models;
+using OlimpiadaCompras.Requests;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,26 +24,40 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         private const int SOLICITACAO_APROVADA = 2;
         private const int SOLICITACAO_REPROVADA = 3;
         int acao = 0;
-        public FrmModalSolicitacao(int acao)
+        Acompanhamento acompanhamento;
+        private Usuario usuarioLogado;
+
+        public FrmModalSolicitacao(int acao, Acompanhamento acompanhamento, Usuario usuario)
         {
             InitializeComponent();
             this.acao = acao;
+            this.acompanhamento = acompanhamento;
+            this.usuarioLogado = usuario;
         }
-        private void btnEntrar_Click(object sender, EventArgs e)
+        private async void btnEntrar_Click(object sender, EventArgs e)
         {
             if (acao == SOLICITACAO_APROVADA)
             {
-                FrmEmailAutorizacao form = new FrmEmailAutorizacao();
-                form.ShowDialog();
+                var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
+
+
+                //FrmEmailAutorizacao form = new FrmEmailAutorizacao();
+                //form.ShowDialog();
             }
             else if (acao == SOLICITACAO_REPROVADA)
             {
+                //criar lógica para update em acompanhamento
                 this.Dispose();
             }
             else
             {
                 this.Dispose();
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }
