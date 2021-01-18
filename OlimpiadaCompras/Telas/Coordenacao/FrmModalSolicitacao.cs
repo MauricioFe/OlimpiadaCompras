@@ -15,14 +15,12 @@ namespace OlimpiadaCompras.Telas.Coordenacao
 {
     public partial class FrmModalSolicitacao : Form
     {
-        public FrmModalSolicitacao()
+        public FrmModalSolicitacao(Acompanhamento acompanhamento)
         {
             InitializeComponent();
         }
 
-        private const int SOLICITAR_ALTERACAO = 1;
-        private const int SOLICITACAO_APROVADA = 2;
-        private const int SOLICITACAO_REPROVADA = 3;
+
         int acao = 0;
         Acompanhamento acompanhamento;
         private Usuario usuarioLogado;
@@ -36,14 +34,16 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         }
         private async void btnEntrar_Click(object sender, EventArgs e)
         {
-            if (acao == SOLICITACAO_APROVADA)
+            if (acao == ConstantesProjeto.SOLICITACAO_APROVADA)
             {
                 acompanhamento.StatusId = ConstantesProjeto.APROVADO;
                 var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
                 if (acompanhamentoUpdate != null)
                 {
-                    //FrmEmailAutorizacao form = new FrmEmailAutorizacao();
-                    //form.ShowDialog();
+                    MessageBox.Show("Deu certo");
+                    this.Dispose();
+                    FrmEmailAutorizacao form = new FrmEmailAutorizacao();
+                    form.ShowDialog();
                 }
                 else
                 {
@@ -51,30 +51,46 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 }
 
             }
-            else if (acao == SOLICITACAO_REPROVADA)
+            else if (acao == ConstantesProjeto.SOLICITACAO_REPROVADA)
             {
-                acompanhamento.StatusId = ConstantesProjeto.REPROVADO;
-                var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
-                if (acompanhamentoUpdate != null)
+                if (!string.IsNullOrEmpty(txtObservacao.Text))
                 {
-                    this.Dispose();
+                    acompanhamento.StatusId = ConstantesProjeto.REPROVADO;
+                    var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
+                    if (acompanhamentoUpdate != null)
+                    {
+                        MessageBox.Show("Deu certo");
+                        this.Dispose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao realizar reprovação");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao realizar reprovação");
+                    MessageBox.Show("Para conseguir prosseguir com essa ação preencha o campo observação", "Preencha o campo observação", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
             else
             {
-                acompanhamento.StatusId = ConstantesProjeto.PENDENTE_ALTERACAO;
-                var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
-                if (acompanhamentoUpdate != null)
+                if (!string.IsNullOrEmpty(txtObservacao.Text))
                 {
-                    this.Dispose();
+                    acompanhamento.StatusId = ConstantesProjeto.PENDENTE_ALTERACAO;
+                    var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
+                    if (acompanhamentoUpdate != null)
+                    {
+                        MessageBox.Show("Deu certo");
+                        this.Dispose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao realizar solicitação de alteração");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao realizar solicitação de alteração");
+                    MessageBox.Show("Para conseguir prosseguir com essa ação preencha o campo observação", "Preencha o campo observação", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
         }

@@ -1646,7 +1646,6 @@
             this.cboEscola.Name = "cboEscola";
             this.cboEscola.Size = new System.Drawing.Size(537, 28);
             this.cboEscola.TabIndex = 6;
-            this.cboEscola.SelectionChangeCommitted += CboEscola_SelectionChangeCommitted;
             // 
             // tabContainer
             // 

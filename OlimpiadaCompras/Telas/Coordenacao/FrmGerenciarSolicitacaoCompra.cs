@@ -65,23 +65,26 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             ToggleHabilitaInputs(true);
         }
 
-        private void btnSolicitarAlteracao_Click(object sender, EventArgs e)
+        private async void btnSolicitarAlteracao_Click(object sender, EventArgs e)
         {
-            //FrmModalSolicitacao form = new FrmModalSolicitacao(1);
-            //form.ShowDialog();
+            Acompanhamento acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
+            FrmModalSolicitacao form = new FrmModalSolicitacao(ConstantesProjeto.SOLICITAR_ALTERACAO, acompanhamento, usuarioLogado);
+            form.ShowDialog();
         }
 
         private async void btnAprovar_Click(object sender, EventArgs e)
         {
             Acompanhamento acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
-            FrmModalSolicitacao form = new FrmModalSolicitacao(2, acompanhamento, usuarioLogado);
+            FrmModalSolicitacao form = new FrmModalSolicitacao(ConstantesProjeto.SOLICITACAO_APROVADA, acompanhamento, usuarioLogado);
             form.ShowDialog();
         }
 
-        private void btnReprvar_Click(object sender, EventArgs e)
+        private async void btnReprvar_Click(object sender, EventArgs e)
         {
-            //FrmModalSolicitacao form = new FrmModalSolicitacao(3);
-            //form.ShowDialog();
+
+            Acompanhamento acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
+            FrmModalSolicitacao form = new FrmModalSolicitacao(ConstantesProjeto.SOLICITACAO_REPROVADA, acompanhamento, usuarioLogado);
+            form.ShowDialog();
         }
 
         private void ToggleHabilitaInputs(bool estaHabilitado)

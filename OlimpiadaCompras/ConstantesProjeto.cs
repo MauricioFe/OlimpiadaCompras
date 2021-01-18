@@ -21,6 +21,9 @@ namespace OlimpiadaCompras
         public static int EM_ANALISE_NF = 4; 
         public static int PENDENTE_ALTERACAO = 5; 
         public static int FINALIZADO = 6; 
-        public static int REPROVADO = 7; 
+        public static int REPROVADO = 7;
+        public static int SOLICITAR_ALTERACAO = 1;
+        public static int SOLICITACAO_APROVADA = 2;
+        public static int SOLICITACAO_REPROVADA = 3;
     }
 }
