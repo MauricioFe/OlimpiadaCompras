@@ -18,8 +18,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
         private Usuario usuarioLogado;
         long idProduto = 0;
         long idGrupo = 0;
-        long solicitacaoComprasId = 0;
         long idSolicitacao = 0;
+        List<OcupacaoSolicitacaoCompra> ocupacoesSolicitacaoEditList = new List<OcupacaoSolicitacaoCompra>();
         int acao;
         public FrmNovaSolicitacao(Usuario usuario)
         {
@@ -71,8 +71,11 @@ namespace OlimpiadaCompras.Telas.Avaliador
             {
                 PreencheDadosVisualizacaoSolicitacao();
                 PreencheDadosVisualizacaoSolicitacaoProdutos();
+
             }
         }
+
+
 
         private async void PreencheDadosVisualizacaoSolicitacaoProdutos()
         {
@@ -89,6 +92,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 dgvProduto.Rows[n].Cells[1].Value = produto.Grupo.Descricao;
                 dgvProduto.Rows[n].Cells[2].Value = produto.Descricao;
                 dgvProduto.Rows[n].Cells[3].Value = "Remover";
+                dgvProduto.Rows[n].Cells[4].Value = produto.Id;
             }
             int i = 1;
             foreach (var item in orcamentoSolicitacao)
@@ -102,6 +106,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 ((ComboBox)tabContainer.Controls.Find($"cboFormaPagamento{i}", true)[0]).Text = item.Orcamento.FormaPagamento;
                 ((TextBox)tabContainer.Controls.Find($"txtValorFrete{i}", true)[0]).Text = item.Orcamento.ValorFrete.ToString();
                 ((TextBox)tabContainer.Controls.Find($"txtAnexarPdf{i}", true)[0]).Text = item.Orcamento.Anexo;
+                ((TextBox)tabContainer.Controls.Find($"txtIdOrcamento{i}", true)[0]).Text = item.Orcamento.Id.ToString();
                 i++;
             }
             i = 0;
@@ -137,7 +142,13 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 int n = dgvOcupacoes.Rows.Add();
                 dgvOcupacoes.Rows[n].Cells[0].Value = ocupacao.Numero;
                 dgvOcupacoes.Rows[n].Cells[1].Value = ocupacao.Nome;
+                dgvOcupacoes.Rows[n].Cells["colIdOcupacao"].Value = ocupacao.Id;
                 dgvOcupacoes.Rows[n].Cells[2].Value = "Remover";
+                OcupacaoSolicitacaoCompra ocupacaoSolicitacaoCompra = new OcupacaoSolicitacaoCompra();
+                ocupacaoSolicitacaoCompra.OcupacaoId = ocupacao.Id;
+                ocupacaoSolicitacaoCompra.SolicitacaoId = idSolicitacao;
+                ocupacoesSolicitacaoEditList.Add(ocupacaoSolicitacaoCompra);
+
             }
             foreach (var inputs in ocupacaoSolicitacaoCompras)
             {
@@ -152,6 +163,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 txtNumero.Text = inputs.SolicitacaoCompra.Escola.Numero;
                 txtCidade.Text = inputs.SolicitacaoCompra.Escola.Cidade;
                 txtEstado.Text = inputs.SolicitacaoCompra.Escola.Estado;
+                txtIdSolicitacao.Text = inputs.SolicitacaoCompra.Id.ToString();
                 break;
             }
         }
@@ -238,13 +250,30 @@ namespace OlimpiadaCompras.Telas.Avaliador
             dgvOcupacoes.Rows.Add(ocupacao.Numero, ocupacao.Nome, "Remove", ocupacao.Id);
         }
 
-        private void dgvOcupacoes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvOcupacoes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvOcupacoes.Columns[e.ColumnIndex].Name == "colRemoveOcupacao")
             {
-                if (MessageBox.Show("Tem certeza que deseja remover esse registro da lista?", "Remover registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (acao == ConstantesProjeto.EDITAR)
                 {
-                    dgvOcupacoes.Rows.RemoveAt(e.RowIndex);
+                    if (MessageBox.Show("Tem certeza que deseja remover esse registro do banco de dados?", "Remover registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        if (await HttpSolicitacaoOcupacoes.Delete((long)dgvOcupacoes.Rows[e.RowIndex].Cells[3].Value, idSolicitacao, usuarioLogado.token))
+                        {
+                            dgvOcupacoes.Rows.RemoveAt(e.RowIndex);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erro ao remover ocupação, tente novamente mais tarde");
+                        }
+                    }
+                }
+                else
+                {
+                    if (MessageBox.Show("Tem certeza que deseja remover esse registro da lista?", "Remover registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        dgvOcupacoes.Rows.RemoveAt(e.RowIndex);
+                    }
                 }
             }
         }
@@ -255,21 +284,18 @@ namespace OlimpiadaCompras.Telas.Avaliador
             {
                 if (acao == ConstantesProjeto.EDITAR)
                 {
-                    EditSolicitacao();
+                    SalvarSolicitacao(ConstantesProjeto.EDITAR);
                 }
                 else
                 {
-                    CreateSolicitacao();
+                    SalvarSolicitacao(ConstantesProjeto.SALVAR);
                 }
             }
         }
 
-        private void EditSolicitacao()
-        {
-            //implementar edição
-        }
 
-        private async void CreateSolicitacao()
+
+        private async void SalvarSolicitacao(int acao)
         {
             if (!string.IsNullOrEmpty(txtResponsavelEntrega.Text) && !string.IsNullOrEmpty(txtJusticativa.Text))
             {
@@ -282,34 +308,65 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 if (dgvOcupacoes.Rows.Count >= 1)
                 {
 
-                    var solicitacaoCriada = await HttpSolicitacaoCompras.Create(solicitacao, usuarioLogado.token);
-                    if (solicitacaoCriada == null)
+                    if (acao == ConstantesProjeto.SALVAR)
                     {
-                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                        var solicitacaoCriada = await HttpSolicitacaoCompras.Create(solicitacao, usuarioLogado.token);
+                        if (solicitacaoCriada == null)
+                        {
+                            MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                        }
+                        else
+                        {
+                            var solicitacaoComprasList = await HttpSolicitacaoCompras.GetAll(usuarioLogado.token);
+                            idSolicitacao = solicitacaoComprasList.Last().Id;
+                            for (int i = 0; i < dgvOcupacoes.Rows.Count; i++)
+                            {
+                                long ocupacaoId = (long)dgvOcupacoes.Rows[i].Cells["colIdOcupacao"].Value;
+                                OcupacaoSolicitacaoCompra ocupacaoSolicitacao = new OcupacaoSolicitacaoCompra();
+                                ocupacaoSolicitacao.OcupacaoId = ocupacaoId;
+                                ocupacaoSolicitacao.SolicitacaoId = idSolicitacao;
+                                await HttpSolicitacaoOcupacoes.Create(ocupacaoSolicitacao, usuarioLogado.token);
+                            }
+                            tabContainer.SelectTab("produto");
+                            ((Control)tabContainer.TabPages["dadosGerais"]).Enabled = false;
+                        }
                     }
                     else
                     {
-                        List<SolicitacaoCompra> solicitacoes = await HttpSolicitacaoCompras.GetAll(usuarioLogado.token);
-                        long solicitacaoId = solicitacoes.Last().Id;
-                        for (int i = 0; i < dgvOcupacoes.Rows.Count; i++)
+                        var solicitacaoEditada = await HttpSolicitacaoCompras.Update(solicitacao, Convert.ToInt64(txtIdSolicitacao.Text), usuarioLogado.token);
+                        if (solicitacaoEditada == null)
                         {
-                            long ocupacaoId = (long)dgvOcupacoes.Rows[i].Cells["colIdOcupacao"].Value;
-                            OcupacaoSolicitacaoCompra ocupacaoSolicitacao = new OcupacaoSolicitacaoCompra();
-                            ocupacaoSolicitacao.OcupacaoId = ocupacaoId;
-                            ocupacaoSolicitacao.SolicitacaoId = solicitacaoId;
-                            await HttpSolicitacaoOcupacoes.Create(ocupacaoSolicitacao, usuarioLogado.token);
+                            MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
                         }
-                        var solicitacaoComprasList = await HttpSolicitacaoCompras.GetAll(usuarioLogado.token);
-                        solicitacaoComprasId = solicitacaoComprasList.Last().Id;
-                        tabContainer.SelectTab("produto");
-                        ((Control)tabContainer.TabPages["dadosGerais"]).Enabled = false;
+                        else
+                        {
+
+                            for (int i = 0; i < dgvOcupacoes.Rows.Count; i++)
+                            {
+                                long ocupacaoId = 0;
+                                if (ocupacoesSolicitacaoEditList.Count > i)
+                                    ocupacaoId = ocupacoesSolicitacaoEditList[i].OcupacaoId;
+                                else
+                                    ocupacaoId = (long)dgvOcupacoes.Rows[i].Cells["colIdOcupacao"].Value;
+                                long solicitacaoId = Convert.ToInt64(txtIdSolicitacao.Text);
+                                OcupacaoSolicitacaoCompra ocupacaoSolicitacao = new OcupacaoSolicitacaoCompra();
+                                ocupacaoSolicitacao.OcupacaoId = (long)dgvOcupacoes.Rows[i].Cells["colIdOcupacao"].Value;
+                                ocupacaoSolicitacao.SolicitacaoId = solicitacaoId;
+                                var ocupacaoSolicitacaoEditada = await HttpSolicitacaoOcupacoes.Update(ocupacaoSolicitacao, ocupacaoId, solicitacaoId, usuarioLogado.token);
+                                if (ocupacaoSolicitacaoEditada == null)
+                                {
+                                    await HttpSolicitacaoOcupacoes.Create(ocupacaoSolicitacao, usuarioLogado.token);
+                                }
+                            }
+                            tabContainer.SelectTab("produto");
+                            ((Control)tabContainer.TabPages["dadosGerais"]).Enabled = false;
+                        }
                     }
                 }
                 else
                 {
                     MessageBox.Show("Adicione ao menos uma ocupação na lista");
                 }
-
             }
             else
             {
@@ -516,7 +573,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         ProdutoPedidoOrcamento produtoPedidoOrcamento = new ProdutoPedidoOrcamento();
                         produtoPedidoOrcamento.OrcamentoId = orcamentoId1;
                         produtoPedidoOrcamento.ProdutoId = Convert.ToInt64(dgvProdutoCompra1.Rows[i].Cells["colProdutoId1"].Value);
-                        produtoPedidoOrcamento.SolicitacaoComprasId = solicitacaoComprasId;
+                        produtoPedidoOrcamento.SolicitacaoComprasId = idSolicitacao;
                         produtoPedidoOrcamento.Quantidade = Convert.ToInt32(dgvProdutoCompra1.Rows[i].Cells["colQuantidade1"].Value);
                         produtoPedidoOrcamento.valor = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colUnitario1"].Value);
                         produtoPedidoOrcamento.Desconto = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colDesconto1"].Value);
@@ -606,7 +663,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         ProdutoPedidoOrcamento produtoPedidoOrcamento = new ProdutoPedidoOrcamento();
                         produtoPedidoOrcamento.OrcamentoId = orcamentoId1;
                         produtoPedidoOrcamento.ProdutoId = Convert.ToInt64(dgvProdutoCompra2.Rows[i].Cells["colProdutoId2"].Value);
-                        produtoPedidoOrcamento.SolicitacaoComprasId = solicitacaoComprasId;
+                        produtoPedidoOrcamento.SolicitacaoComprasId = idSolicitacao;
                         produtoPedidoOrcamento.Quantidade = Convert.ToInt32(dgvProdutoCompra2.Rows[i].Cells["colQuantidade2"].Value);
                         produtoPedidoOrcamento.valor = Convert.ToDouble(dgvProdutoCompra2.Rows[i].Cells["colUnitario2"].Value);
                         produtoPedidoOrcamento.Desconto = Convert.ToDouble(dgvProdutoCompra2.Rows[i].Cells["colDesconto2"].Value);
@@ -663,7 +720,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         ProdutoPedidoOrcamento produtoPedidoOrcamento = new ProdutoPedidoOrcamento();
                         produtoPedidoOrcamento.OrcamentoId = orcamentoId1;
                         produtoPedidoOrcamento.ProdutoId = Convert.ToInt64(dgvProdutoCompra3.Rows[i].Cells["colProdutoId3"].Value);
-                        produtoPedidoOrcamento.SolicitacaoComprasId = solicitacaoComprasId;
+                        produtoPedidoOrcamento.SolicitacaoComprasId = idSolicitacao;
                         produtoPedidoOrcamento.Quantidade = Convert.ToInt32(dgvProdutoCompra3.Rows[i].Cells["colQuantidade3"].Value);
                         produtoPedidoOrcamento.valor = Convert.ToDouble(dgvProdutoCompra3.Rows[i].Cells["colUnitario3"].Value);
                         produtoPedidoOrcamento.Desconto = Convert.ToDouble(dgvProdutoCompra3.Rows[i].Cells["colDesconto3"].Value);
@@ -698,7 +755,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
         {
             Acompanhamento acompanhamento = new Acompanhamento();
             acompanhamento.Observacao = null;
-            acompanhamento.SolicitacaoCompraId = solicitacaoComprasId;
+            acompanhamento.SolicitacaoCompraId = idSolicitacao;
             acompanhamento.StatusId = 1;
             acompanhamento.UsuarioId = usuarioLogado.Id;
             acompanhamento.Date = DateTime.Now;

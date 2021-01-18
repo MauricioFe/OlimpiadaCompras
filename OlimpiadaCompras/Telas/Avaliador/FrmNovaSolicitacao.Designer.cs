@@ -30,6 +30,7 @@
         {
             this.tabContainer = new System.Windows.Forms.TabControl();
             this.dadosGerais = new System.Windows.Forms.TabPage();
+            this.txtIdSolicitacao = new System.Windows.Forms.TextBox();
             this.btnProximo = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvOcupacoes = new System.Windows.Forms.DataGridView();
@@ -82,6 +83,7 @@
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.orcamento1 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.txtIdOrcamento1 = new System.Windows.Forms.TextBox();
             this.label42 = new System.Windows.Forms.Label();
             this.btnProximo1 = new System.Windows.Forms.Button();
             this.txtValorFrete1 = new System.Windows.Forms.TextBox();
@@ -117,6 +119,7 @@
             this.colProdutoId1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orcamento2 = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.txtIdOrcamento2 = new System.Windows.Forms.TextBox();
             this.btnProximo2 = new System.Windows.Forms.Button();
             this.label41 = new System.Windows.Forms.Label();
             this.txtValorFrete2 = new System.Windows.Forms.TextBox();
@@ -152,6 +155,7 @@
             this.colProdutoId2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orcamento3 = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.txtIdOrcamento3 = new System.Windows.Forms.TextBox();
             this.btnProximo3 = new System.Windows.Forms.Button();
             this.label40 = new System.Windows.Forms.Label();
             this.txtValorFrete3 = new System.Windows.Forms.TextBox();
@@ -226,6 +230,7 @@
             // 
             // dadosGerais
             // 
+            this.dadosGerais.Controls.Add(this.txtIdSolicitacao);
             this.dadosGerais.Controls.Add(this.btnProximo);
             this.dadosGerais.Controls.Add(this.groupBox3);
             this.dadosGerais.Controls.Add(this.groupBox2);
@@ -237,6 +242,14 @@
             this.dadosGerais.Text = "Dados Gerais";
             this.dadosGerais.UseVisualStyleBackColor = true;
             // 
+            // txtIdSolicitacao
+            // 
+            this.txtIdSolicitacao.Location = new System.Drawing.Point(11, 453);
+            this.txtIdSolicitacao.Name = "txtIdSolicitacao";
+            this.txtIdSolicitacao.Size = new System.Drawing.Size(121, 26);
+            this.txtIdSolicitacao.TabIndex = 34;
+            this.txtIdSolicitacao.Visible = false;
+            // 
             // btnProximo
             // 
             this.btnProximo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -244,7 +257,7 @@
             this.btnProximo.FlatAppearance.BorderSize = 0;
             this.btnProximo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximo.ForeColor = System.Drawing.Color.White;
-            this.btnProximo.Location = new System.Drawing.Point(898, 453);
+            this.btnProximo.Location = new System.Drawing.Point(898, 450);
             this.btnProximo.Name = "btnProximo";
             this.btnProximo.Size = new System.Drawing.Size(169, 34);
             this.btnProximo.TabIndex = 33;
@@ -577,7 +590,7 @@
             this.btnProximoProduto.FlatAppearance.BorderSize = 0;
             this.btnProximoProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximoProduto.ForeColor = System.Drawing.Color.White;
-            this.btnProximoProduto.Location = new System.Drawing.Point(884, 455);
+            this.btnProximoProduto.Location = new System.Drawing.Point(884, 463);
             this.btnProximoProduto.Name = "btnProximoProduto";
             this.btnProximoProduto.Size = new System.Drawing.Size(169, 34);
             this.btnProximoProduto.TabIndex = 34;
@@ -730,15 +743,16 @@
             // 
             this.orcamento1.Controls.Add(this.groupBox7);
             this.orcamento1.Controls.Add(this.groupBox4);
-            this.orcamento1.Location = new System.Drawing.Point(4, 22);
+            this.orcamento1.Location = new System.Drawing.Point(4, 29);
             this.orcamento1.Name = "orcamento1";
-            this.orcamento1.Size = new System.Drawing.Size(1073, 520);
+            this.orcamento1.Size = new System.Drawing.Size(1073, 513);
             this.orcamento1.TabIndex = 2;
             this.orcamento1.Text = "Orçamento 1";
             this.orcamento1.UseVisualStyleBackColor = true;
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.txtIdOrcamento1);
             this.groupBox7.Controls.Add(this.label42);
             this.groupBox7.Controls.Add(this.btnProximo1);
             this.groupBox7.Controls.Add(this.txtValorFrete1);
@@ -765,6 +779,14 @@
             this.groupBox7.TabIndex = 62;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Dados do orçamento";
+            // 
+            // txtIdOrcamento1
+            // 
+            this.txtIdOrcamento1.Location = new System.Drawing.Point(6, 153);
+            this.txtIdOrcamento1.Name = "txtIdOrcamento1";
+            this.txtIdOrcamento1.Size = new System.Drawing.Size(162, 26);
+            this.txtIdOrcamento1.TabIndex = 65;
+            this.txtIdOrcamento1.Visible = false;
             // 
             // label42
             // 
@@ -1061,6 +1083,7 @@
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.txtIdOrcamento2);
             this.groupBox8.Controls.Add(this.btnProximo2);
             this.groupBox8.Controls.Add(this.label41);
             this.groupBox8.Controls.Add(this.txtValorFrete2);
@@ -1087,6 +1110,14 @@
             this.groupBox8.TabIndex = 62;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Dados do orçamento";
+            // 
+            // txtIdOrcamento2
+            // 
+            this.txtIdOrcamento2.Location = new System.Drawing.Point(6, 137);
+            this.txtIdOrcamento2.Name = "txtIdOrcamento2";
+            this.txtIdOrcamento2.Size = new System.Drawing.Size(162, 26);
+            this.txtIdOrcamento2.TabIndex = 66;
+            this.txtIdOrcamento2.Visible = false;
             // 
             // btnProximo2
             // 
@@ -1381,6 +1412,7 @@
             // 
             // groupBox9
             // 
+            this.groupBox9.Controls.Add(this.txtIdOrcamento3);
             this.groupBox9.Controls.Add(this.btnProximo3);
             this.groupBox9.Controls.Add(this.label40);
             this.groupBox9.Controls.Add(this.txtValorFrete3);
@@ -1407,6 +1439,14 @@
             this.groupBox9.TabIndex = 62;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Dados do orçamento";
+            // 
+            // txtIdOrcamento3
+            // 
+            this.txtIdOrcamento3.Location = new System.Drawing.Point(6, 137);
+            this.txtIdOrcamento3.Name = "txtIdOrcamento3";
+            this.txtIdOrcamento3.Size = new System.Drawing.Size(162, 26);
+            this.txtIdOrcamento3.TabIndex = 67;
+            this.txtIdOrcamento3.Visible = false;
             // 
             // btnProximo3
             // 
@@ -1705,6 +1745,7 @@
             this.Load += new System.EventHandler(this.FrmNovaSolicitacao_Load);
             this.tabContainer.ResumeLayout(false);
             this.dadosGerais.ResumeLayout(false);
+            this.dadosGerais.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOcupacoes)).EndInit();
@@ -1892,5 +1933,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotal3;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colProdutoId3;
+        private System.Windows.Forms.TextBox txtIdSolicitacao;
+        private System.Windows.Forms.TextBox txtIdOrcamento1;
+        private System.Windows.Forms.TextBox txtIdOrcamento2;
+        private System.Windows.Forms.TextBox txtIdOrcamento3;
     }
 }

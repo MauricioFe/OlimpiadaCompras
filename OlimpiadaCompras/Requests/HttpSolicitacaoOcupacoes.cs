@@ -39,7 +39,7 @@ namespace OlimpiadaCompras.Requests
 
         }
 
-        public static async Task<OcupacaoSolicitacaoCompra> GetOcupacaoSolicitacaoCompraById(long id, string token)
+        public static async Task<OcupacaoSolicitacaoCompra> GetOcupacaoSolicitacaoCompraById(long ocupacaoId, long solicitacaoId, string token)
         {
             OcupacaoSolicitacaoCompra ocupacaoSolicitacaoCompra = new OcupacaoSolicitacaoCompra();
             try
@@ -47,7 +47,7 @@ namespace OlimpiadaCompras.Requests
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/ocupacaoSolicitacaoCompra/{id}");
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/ocupacaoSolicitacaoCompra/{ocupacaoId}/{solicitacaoId}");
                     if (response.IsSuccessStatusCode)
                     {
                         var ocupacaoSolicitacaoComprasString = await response.Content.ReadAsStringAsync();
@@ -117,7 +117,7 @@ namespace OlimpiadaCompras.Requests
             }
 
         }
-        public static async Task<OcupacaoSolicitacaoCompra> Update(OcupacaoSolicitacaoCompra ocupacaoSolicitacaoCompra, long id, string token)
+        public static async Task<OcupacaoSolicitacaoCompra> Update(OcupacaoSolicitacaoCompra ocupacaoSolicitacaoCompra, long ocupacaoId, long solicitacaoId, string token)
         {
             OcupacaoSolicitacaoCompra ocupacaoSolicitacaoCompraEditado = new OcupacaoSolicitacaoCompra();
             try
@@ -127,7 +127,7 @@ namespace OlimpiadaCompras.Requests
                     var parseJson = new JavaScriptSerializer().Serialize(ocupacaoSolicitacaoCompra);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/ocupacaoSolicitacaoCompra/{id}", content);
+                    var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/ocupacaoSolicitacaoCompra/{ocupacaoId}/{solicitacaoId}", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var ocupacaoSolicitacaoComprasString = await response.Content.ReadAsStringAsync();
@@ -144,14 +144,14 @@ namespace OlimpiadaCompras.Requests
             }
 
         }
-        public static async Task<bool> Delete(long id, string token)
+        public static async Task<bool> Delete(long ocupacaoId, long solicitacaoId, string token)
         {
             try
             {
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.DeleteAsync($"{ConstantesProjeto.URL_BASE}/api/ocupacaoSolicitacaoCompra/{id}");
+                    var response = await client.DeleteAsync($"{ConstantesProjeto.URL_BASE}/api/ocupacaoSolicitacaoCompra/{ocupacaoId}/{solicitacaoId}");
                     if (response.IsSuccessStatusCode)
                     {
                         var result = await response.Content.ReadAsStringAsync();
