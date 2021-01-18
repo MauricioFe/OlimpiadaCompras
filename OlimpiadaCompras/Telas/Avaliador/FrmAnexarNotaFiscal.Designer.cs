@@ -32,14 +32,14 @@
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnAprovar = new System.Windows.Forms.Button();
             this.btnReprvar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -90,6 +90,22 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dados da nota fiscal";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(419, 112);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(347, 29);
+            this.textBox1.TabIndex = 22;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(415, 87);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(169, 22);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Telefone da empresa";
+            // 
             // textBox6
             // 
             this.textBox6.Location = new System.Drawing.Point(419, 50);
@@ -137,22 +153,6 @@
             this.label7.Size = new System.Drawing.Size(151, 22);
             this.label7.TabIndex = 17;
             this.label7.Text = "Empresa emissora";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(419, 112);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(347, 29);
-            this.textBox1.TabIndex = 22;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(415, 87);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 22);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "Telefone da empresa";
             // 
             // btnAprovar
             // 
