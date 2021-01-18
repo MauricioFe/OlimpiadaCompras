@@ -20,15 +20,17 @@ namespace OlimpiadaCompras.Telas.Avaliador
         long idGrupo = 0;
         long solicitacaoComprasId = 0;
         long idSolicitacao = 0;
+        int acao;
         public FrmNovaSolicitacao(Usuario usuario)
         {
             this.usuarioLogado = usuario;
             InitializeComponent();
         }
-        public FrmNovaSolicitacao(Usuario usuario, long idSolicitacao)
+        public FrmNovaSolicitacao(Usuario usuario, long idSolicitacao, int acao)
         {
             this.usuarioLogado = usuario;
             this.idSolicitacao = idSolicitacao;
+            this.acao = acao;
             InitializeComponent();
         }
 
@@ -59,11 +61,16 @@ namespace OlimpiadaCompras.Telas.Avaliador
             PreencheCombobox(cboOcupacao, "Nome", "Id");
             PreencheCombobox(cboTipoCompra, "Descricao", "Id");
             PreencheDadosEscola(1);
-            if (idSolicitacao > 0)
+            if (idSolicitacao > 0 && acao == ConstantesProjeto.VISUALIZAR)
             {
                 PreencheDadosVisualizacaoSolicitacao();
                 PreencheDadosVisualizacaoSolicitacaoProdutos();
                 DisabilitaInputs();
+            }
+            else if (idSolicitacao > 0 && acao == ConstantesProjeto.EDITAR)
+            {
+                PreencheDadosVisualizacaoSolicitacao();
+                PreencheDadosVisualizacaoSolicitacaoProdutos();
             }
         }
 
@@ -246,8 +253,20 @@ namespace OlimpiadaCompras.Telas.Avaliador
         {
             if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                CreateSolicitacao();
+                if (acao == ConstantesProjeto.EDITAR)
+                {
+                    EditSolicitacao();
+                }
+                else
+                {
+                    CreateSolicitacao();
+                }
             }
+        }
+
+        private void EditSolicitacao()
+        {
+            //implementar edição
         }
 
         private async void CreateSolicitacao()

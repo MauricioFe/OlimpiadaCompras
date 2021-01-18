@@ -16,14 +16,17 @@ namespace OlimpiadaCompras
         public static string MENSAGEM_ERRO_SERVIDOR = "Erro interno no servidor, tente em novamente em outro momento";
         public static string MENSAGEM_PREENCHER_CAMPOS = "Todos os campos são obrigatórios";
         public static string CONFIRMACAO_EXLUSAO = "Você realmente deseja excluir esse registro?";
-        public static int APROVADO = 2; 
-        public static int ANEXAR_NF = 3; 
-        public static int EM_ANALISE_NF = 4; 
-        public static int PENDENTE_ALTERACAO = 5; 
-        public static int FINALIZADO = 6; 
-        public static int REPROVADO = 7;
+        public static int STATUS_APROVADO = 2;
+        public static int STATUS_ANEXAR_NF = 3;
+        public static int STATUS_EM_ANALISE_NF = 4;
+        public static int STATUS_PENDENTE_ALTERACAO = 5;
+        public static int STATUS_FINALIZADO = 6;
+        public static int STATUS_REPROVADO = 7;
         public static int SOLICITAR_ALTERACAO = 1;
         public static int SOLICITACAO_APROVADA = 2;
         public static int SOLICITACAO_REPROVADA = 3;
+        public const int EDITAR = 1;
+        public const int VISUALIZAR = 2;
+
     }
 }

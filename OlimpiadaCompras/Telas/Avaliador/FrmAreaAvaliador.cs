@@ -16,6 +16,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
     {
         Usuario usuarioLogado;
         long idSolicitacao;
+        long idStatus = 0;
+        int acoes = 0;
         public FrmAreaAvaliador(Usuario usuario)
         {
             this.usuarioLogado = usuario;
@@ -57,12 +59,22 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 dgvSolicitacoesPendentes.Rows[n].Cells["colPendenteData"].Value = item.SolicitacaoCompra.Data.ToString("dd/MM/yyyy");
                 dgvSolicitacoesPendentes.Rows[n].Cells["colPendenteUsuario"].Value = $"{item.Usuario.Nome.Split(' ')[0]} {item.Usuario.Nome.Split(' ')[1]}";
                 dgvSolicitacoesPendentes.Rows[n].Cells["colPendenteStatus"].Value = item.Status.Descricao;
+                dgvSolicitacoesPendentes.Rows[n].Cells["colPendenteStatusID"].Value = item.Status.Id;
             }
         }
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado);
-            form.ShowDialog();
+            if (idStatus == ConstantesProjeto.STATUS_PENDENTE_ALTERACAO)
+            {
+                acoes = ConstantesProjeto.EDITAR;
+                FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado, idSolicitacao, acoes);
+                form.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Para editar uma solicitação ela precisa ter o status pendente para alteração",
+                    "Confirmação de edição", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnNovaSolicitacao_Click(object sender, EventArgs e)
@@ -97,16 +109,33 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private void dgvSolicitacoesPendentes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            acoes = ConstantesProjeto.VISUALIZAR;
+            btnEditar.Enabled = false;
             idSolicitacao = Convert.ToInt64(dgvSolicitacoesPendentes.Rows[e.RowIndex].Cells[0].Value);
-            FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado, idSolicitacao);
+            FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado, idSolicitacao, acoes);
             form.ShowDialog();
+
         }
 
         private void dgvMinhasSolicitacoes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            acoes = ConstantesProjeto.VISUALIZAR;
             idSolicitacao = Convert.ToInt64(dgvMinhasSolicitacoes.Rows[e.RowIndex].Cells[0].Value);
-            FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado, idSolicitacao);
+            FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado, idSolicitacao, acoes);
             form.ShowDialog();
+        }
+
+        private void dgvSolicitacoesPendentes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            idStatus = Convert.ToInt64(dgvSolicitacoesPendentes.Rows[e.RowIndex].Cells["colPendenteStatusID"].Value);
+            if (idStatus == ConstantesProjeto.STATUS_PENDENTE_ALTERACAO)
+            {
+                btnEditar.Enabled = true;
+            }
+            else
+            {
+                btnEditar.Enabled = false;
+            }
         }
     }
 }

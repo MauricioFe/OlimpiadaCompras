@@ -15,7 +15,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
 {
     public partial class FrmModalSolicitacao : Form
     {
-        public FrmModalSolicitacao(Acompanhamento acompanhamento)
+        public FrmModalSolicitacao()
         {
             InitializeComponent();
         }
@@ -36,7 +36,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         {
             if (acao == ConstantesProjeto.SOLICITACAO_APROVADA)
             {
-                acompanhamento.StatusId = ConstantesProjeto.APROVADO;
+                acompanhamento.StatusId = ConstantesProjeto.STATUS_APROVADO;
                 var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
                 if (acompanhamentoUpdate != null)
                 {
@@ -55,7 +55,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             {
                 if (!string.IsNullOrEmpty(txtObservacao.Text))
                 {
-                    acompanhamento.StatusId = ConstantesProjeto.REPROVADO;
+                    acompanhamento.StatusId = ConstantesProjeto.STATUS_REPROVADO;
                     var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
                     if (acompanhamentoUpdate != null)
                     {
@@ -76,7 +76,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             {
                 if (!string.IsNullOrEmpty(txtObservacao.Text))
                 {
-                    acompanhamento.StatusId = ConstantesProjeto.PENDENTE_ALTERACAO;
+                    acompanhamento.StatusId = ConstantesProjeto.STATUS_PENDENTE_ALTERACAO;
                     var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
                     if (acompanhamentoUpdate != null)
                     {

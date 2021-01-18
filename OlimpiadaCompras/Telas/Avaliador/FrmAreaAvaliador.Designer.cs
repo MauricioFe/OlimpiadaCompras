@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label4 = new System.Windows.Forms.Label();
             this.txtFiltroPendentes = new System.Windows.Forms.TextBox();
             this.lblNomeUsuarioLogado = new System.Windows.Forms.Label();
@@ -52,6 +52,7 @@
             this.colPendenteData = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPendenteUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPendenteStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPendenteStatusID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMinhasSolicitacoes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoesPendentes)).BeginInit();
@@ -163,6 +164,7 @@
             // 
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(135)))), ((int)(((byte)(5)))));
+            this.btnEditar.Enabled = false;
             this.btnEditar.FlatAppearance.BorderSize = 0;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.ForeColor = System.Drawing.Color.White;
@@ -216,8 +218,8 @@
             // colMinhaData
             // 
             this.colMinhaData.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.colMinhaData.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colMinhaData.DefaultCellStyle = dataGridViewCellStyle3;
             this.colMinhaData.HeaderText = "Data da solicitação";
             this.colMinhaData.Name = "colMinhaData";
             this.colMinhaData.ReadOnly = true;
@@ -258,12 +260,14 @@
             this.colPendenteIdSolicitacao,
             this.colPendenteData,
             this.colPendenteUsuario,
-            this.colPendenteStatus});
+            this.colPendenteStatus,
+            this.colPendenteStatusID});
             this.dgvSolicitacoesPendentes.Location = new System.Drawing.Point(12, 143);
             this.dgvSolicitacoesPendentes.Name = "dgvSolicitacoesPendentes";
             this.dgvSolicitacoesPendentes.ReadOnly = true;
             this.dgvSolicitacoesPendentes.Size = new System.Drawing.Size(901, 197);
             this.dgvSolicitacoesPendentes.TabIndex = 25;
+            this.dgvSolicitacoesPendentes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSolicitacoesPendentes_CellClick);
             this.dgvSolicitacoesPendentes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSolicitacoesPendentes_CellDoubleClick);
             // 
             // colPendenteIdSolicitacao
@@ -275,8 +279,8 @@
             // colPendenteData
             // 
             this.colPendenteData.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.colPendenteData.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colPendenteData.DefaultCellStyle = dataGridViewCellStyle4;
             this.colPendenteData.HeaderText = "Data da solicitação";
             this.colPendenteData.Name = "colPendenteData";
             this.colPendenteData.ReadOnly = true;
@@ -292,6 +296,13 @@
             this.colPendenteStatus.HeaderText = "Status";
             this.colPendenteStatus.Name = "colPendenteStatus";
             this.colPendenteStatus.ReadOnly = true;
+            // 
+            // colPendenteStatusID
+            // 
+            this.colPendenteStatusID.HeaderText = "statusId";
+            this.colPendenteStatusID.Name = "colPendenteStatusID";
+            this.colPendenteStatusID.ReadOnly = true;
+            this.colPendenteStatusID.Visible = false;
             // 
             // FrmAreaAvaliador
             // 
@@ -351,5 +362,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colPendenteData;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPendenteUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPendenteStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPendenteStatusID;
     }
 }
