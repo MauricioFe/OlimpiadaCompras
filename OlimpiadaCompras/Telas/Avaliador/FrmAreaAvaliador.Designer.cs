@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label4 = new System.Windows.Forms.Label();
             this.txtFiltroPendentes = new System.Windows.Forms.TextBox();
             this.lblNomeUsuarioLogado = new System.Windows.Forms.Label();
@@ -42,17 +42,18 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.linkSair = new System.Windows.Forms.LinkLabel();
             this.dgvMinhasSolicitacoes = new System.Windows.Forms.DataGridView();
-            this.colMinhaIdSolicitacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMinhaData = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMinhaUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMinhaStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvSolicitacoesPendentes = new System.Windows.Forms.DataGridView();
             this.colPendenteIdSolicitacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPendenteData = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPendenteUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPendenteJustificativa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPendenteStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPendenteStatusID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMinhaIdSolicitacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMinhaData = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMinhaJustificativa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMinhaStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMinhaStatusID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMinhasSolicitacoes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoesPendentes)).BeginInit();
@@ -200,41 +201,15 @@
             this.dgvMinhasSolicitacoes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colMinhaIdSolicitacao,
             this.colMinhaData,
-            this.colMinhaUsuario,
-            this.colMinhaStatus});
+            this.colMinhaJustificativa,
+            this.colMinhaStatus,
+            this.colMinhaStatusID});
             this.dgvMinhasSolicitacoes.Location = new System.Drawing.Point(12, 390);
             this.dgvMinhasSolicitacoes.Name = "dgvMinhasSolicitacoes";
             this.dgvMinhasSolicitacoes.ReadOnly = true;
             this.dgvMinhasSolicitacoes.Size = new System.Drawing.Size(901, 197);
             this.dgvMinhasSolicitacoes.TabIndex = 23;
             this.dgvMinhasSolicitacoes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMinhasSolicitacoes_CellClick);
-            // 
-            // colMinhaIdSolicitacao
-            // 
-            this.colMinhaIdSolicitacao.HeaderText = "Codigo da solicitação";
-            this.colMinhaIdSolicitacao.Name = "colMinhaIdSolicitacao";
-            this.colMinhaIdSolicitacao.ReadOnly = true;
-            // 
-            // colMinhaData
-            // 
-            this.colMinhaData.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.colMinhaData.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colMinhaData.HeaderText = "Data da solicitação";
-            this.colMinhaData.Name = "colMinhaData";
-            this.colMinhaData.ReadOnly = true;
-            // 
-            // colMinhaUsuario
-            // 
-            this.colMinhaUsuario.HeaderText = "Usuário solicitante";
-            this.colMinhaUsuario.Name = "colMinhaUsuario";
-            this.colMinhaUsuario.ReadOnly = true;
-            // 
-            // colMinhaStatus
-            // 
-            this.colMinhaStatus.HeaderText = "Status";
-            this.colMinhaStatus.Name = "colMinhaStatus";
-            this.colMinhaStatus.ReadOnly = true;
             // 
             // pictureBox1
             // 
@@ -259,7 +234,7 @@
             this.dgvSolicitacoesPendentes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colPendenteIdSolicitacao,
             this.colPendenteData,
-            this.colPendenteUsuario,
+            this.colPendenteJustificativa,
             this.colPendenteStatus,
             this.colPendenteStatusID});
             this.dgvSolicitacoesPendentes.Location = new System.Drawing.Point(12, 143);
@@ -279,17 +254,17 @@
             // colPendenteData
             // 
             this.colPendenteData.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.colPendenteData.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colPendenteData.DefaultCellStyle = dataGridViewCellStyle2;
             this.colPendenteData.HeaderText = "Data da solicitação";
             this.colPendenteData.Name = "colPendenteData";
             this.colPendenteData.ReadOnly = true;
             // 
-            // colPendenteUsuario
+            // colPendenteJustificativa
             // 
-            this.colPendenteUsuario.HeaderText = "Usuário solicitante";
-            this.colPendenteUsuario.Name = "colPendenteUsuario";
-            this.colPendenteUsuario.ReadOnly = true;
+            this.colPendenteJustificativa.HeaderText = "Justificativa";
+            this.colPendenteJustificativa.Name = "colPendenteJustificativa";
+            this.colPendenteJustificativa.ReadOnly = true;
             // 
             // colPendenteStatus
             // 
@@ -303,6 +278,40 @@
             this.colPendenteStatusID.Name = "colPendenteStatusID";
             this.colPendenteStatusID.ReadOnly = true;
             this.colPendenteStatusID.Visible = false;
+            // 
+            // colMinhaIdSolicitacao
+            // 
+            this.colMinhaIdSolicitacao.HeaderText = "Codigo da solicitação";
+            this.colMinhaIdSolicitacao.Name = "colMinhaIdSolicitacao";
+            this.colMinhaIdSolicitacao.ReadOnly = true;
+            // 
+            // colMinhaData
+            // 
+            this.colMinhaData.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colMinhaData.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colMinhaData.HeaderText = "Data da solicitação";
+            this.colMinhaData.Name = "colMinhaData";
+            this.colMinhaData.ReadOnly = true;
+            // 
+            // colMinhaJustificativa
+            // 
+            this.colMinhaJustificativa.HeaderText = "Justificativa";
+            this.colMinhaJustificativa.Name = "colMinhaJustificativa";
+            this.colMinhaJustificativa.ReadOnly = true;
+            // 
+            // colMinhaStatus
+            // 
+            this.colMinhaStatus.HeaderText = "Status";
+            this.colMinhaStatus.Name = "colMinhaStatus";
+            this.colMinhaStatus.ReadOnly = true;
+            // 
+            // colMinhaStatusID
+            // 
+            this.colMinhaStatusID.HeaderText = "statusID";
+            this.colMinhaStatusID.Name = "colMinhaStatusID";
+            this.colMinhaStatusID.ReadOnly = true;
+            this.colMinhaStatusID.Visible = false;
             // 
             // FrmAreaAvaliador
             // 
@@ -353,15 +362,16 @@
         private System.Windows.Forms.LinkLabel linkSair;
         private System.Windows.Forms.DataGridView dgvMinhasSolicitacoes;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMinhaIdSolicitacao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMinhaData;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMinhaUsuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMinhaStatus;
         private System.Windows.Forms.DataGridView dgvSolicitacoesPendentes;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPendenteIdSolicitacao;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPendenteData;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPendenteUsuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPendenteJustificativa;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPendenteStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPendenteStatusID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMinhaIdSolicitacao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMinhaData;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMinhaJustificativa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMinhaStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMinhaStatusID;
     }
 }

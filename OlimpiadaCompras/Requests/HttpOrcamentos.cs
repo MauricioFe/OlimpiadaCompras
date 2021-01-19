@@ -74,8 +74,16 @@ namespace OlimpiadaCompras.Requests
                 using (var formContent = new MultipartFormDataContent())
                 {
                     formContent.Headers.ContentType.MediaType = "multipart/form-data";
-                    FileStream fileStream = File.OpenRead(orcamento.Anexo);
-                    formContent.Add(new StreamContent(fileStream), "arquivo", orcamento.Anexo.Split('\\').Last());
+                    try
+                    {
+                        FileStream fileStream = File.OpenRead(orcamento.Anexo);
+                        formContent.Add(new StreamContent(fileStream), "arquivo", orcamento.Anexo.Split('\\').Last());
+
+                    }
+                    catch (Exception)
+                    {
+                        orcamento.Anexo = "null";
+                    }
                     formContent.Add(new StringContent(orcamento.Fornecedor), "Fornecedor");
                     formContent.Add(new StringContent(orcamento.FormaPagamento), "FormaPagamento");
                     formContent.Add(new StringContent(orcamento.Cnpj), "Cnpj");

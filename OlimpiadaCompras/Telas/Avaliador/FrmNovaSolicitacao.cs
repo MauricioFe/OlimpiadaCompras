@@ -21,7 +21,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
         long idSolicitacao = 0;
         List<OcupacaoSolicitacaoCompra> ocupacoesSolicitacaoEditList = new List<OcupacaoSolicitacaoCompra>();
         List<ProdutoPedidoOrcamento> produtoPedidoOrcamentosList = new List<ProdutoPedidoOrcamento>();
-        List<Produto> produtosCompras = new List<Produto>();
+        List<ProdutoSolicitacao> produtosCompras = new List<ProdutoSolicitacao>();
         List<double> totalIpiList = new List<double>();
         int acao;
         public FrmNovaSolicitacao(Usuario usuario)
@@ -44,13 +44,17 @@ namespace OlimpiadaCompras.Telas.Avaliador
             PreencheDadosEscola(1);
             if (idSolicitacao > 0 && acao == ConstantesProjeto.VISUALIZAR)
             {
-                PreencheDadosVisualizacaoSolicitacao();
+                PreencheDadosSolicitacao();
                 //PreencheDadosVisualizacaoSolicitacaoProdutos();
                 DisabilitaInputs();
             }
+            else if (idSolicitacao > 0 && acao == ConstantesProjeto.SALVAR)
+            {
+                PreencheDadosSolicitacao();
+            }
             else if (idSolicitacao > 0 && acao == ConstantesProjeto.EDITAR)
             {
-                PreencheDadosVisualizacaoSolicitacao();
+                PreencheDadosSolicitacao();
                 //PreencheDadosVisualizacaoSolicitacaoProdutos();
 
             }
@@ -130,10 +134,11 @@ namespace OlimpiadaCompras.Telas.Avaliador
         //        }
         //    }
         //}
-        private async void PreencheDadosVisualizacaoSolicitacao()
+        private async void PreencheDadosSolicitacao()
         {
             List<OcupacaoSolicitacaoCompra> ocupacaoSolicitacaoCompras = await HttpSolicitacaoOcupacoes.GetSolicitacao(idSolicitacao, usuarioLogado.token);
             dgvOcupacoes.Rows.Clear();
+            dgvProduto.Rows.Clear();
             foreach (var item in ocupacaoSolicitacaoCompras)
             {
                 Ocupacao ocupacao = item.Ocupacao;
@@ -148,12 +153,13 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 ocupacoesSolicitacaoEditList.Add(ocupacaoSolicitacaoCompra);
 
             }
-            foreach (var inputs in ocupacaoSolicitacaoCompras)
+            List<ProdutoSolicitacao> produtoSolicitacoes = await HttpProdutoSolicitacoes.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
+            foreach (var inputs in produtoSolicitacoes)
             {
                 cboEscola.SelectedValue = inputs.SolicitacaoCompra.Escola.Id;
                 txtResponsavelEntrega.Text = inputs.SolicitacaoCompra.ResponsavelEntrega;
                 txtJusticativa.Text = inputs.SolicitacaoCompra.Justificativa;
-                dtpDataSolicitacao.Value = inputs.SolicitacaoCompra.Data.Date;
+                dtpDataSolicitacao.Value = inputs.SolicitacaoCompra.Data;
                 cboTipoCompra.SelectedValue = inputs.SolicitacaoCompra.TipoCompraId;
                 txtCep.Text = inputs.SolicitacaoCompra.Escola.Cep;
                 txtLogradouro.Text = inputs.SolicitacaoCompra.Escola.Logradouro;
@@ -162,7 +168,12 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 txtCidade.Text = inputs.SolicitacaoCompra.Escola.Cidade;
                 txtEstado.Text = inputs.SolicitacaoCompra.Escola.Estado;
                 txtIdSolicitacao.Text = inputs.SolicitacaoCompra.Id.ToString();
-                break;
+                int n = dgvProduto.Rows.Add();
+                dgvProduto.Rows[n].Cells[0].Value = inputs.Produto.CodigoProtheus;
+                dgvProduto.Rows[n].Cells[1].Value = inputs.Produto.Grupo.Descricao;
+                dgvProduto.Rows[n].Cells[2].Value = inputs.Produto.Descricao;
+                dgvProduto.Rows[n].Cells[3].Value = "Remover";
+                dgvProduto.Rows[n].Cells[4].Value = inputs.Produto.Id;
             }
         }
         private void DisabilitaInputs()
@@ -245,7 +256,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 if (dgvOcupacoes.Rows.Count >= 1)
                 {
 
-                    if (acao == ConstantesProjeto.SALVAR)
+                    if (acao == ConstantesProjeto.SALVAR && idSolicitacao == 0)
                     {
                         var solicitacaoCriada = await HttpSolicitacaoCompras.Create(solicitacao, usuarioLogado.token);
                         if (solicitacaoCriada == null)
@@ -264,6 +275,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                                 ocupacaoSolicitacao.SolicitacaoId = idSolicitacao;
                                 await HttpSolicitacaoOcupacoes.Create(ocupacaoSolicitacao, usuarioLogado.token);
                             }
+                            await CadastrarAcompanhamento();
                             tabContainer.SelectTab("produto");
                             ((Control)tabContainer.TabPages["dadosGerais"]).Enabled = false;
                         }
@@ -310,16 +322,26 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 MessageBox.Show("Preencha todos os campos");
             }
         }
-        private void PreencheGridProdutoCompra(List<Produto> produtosCompras, DataGridView dgv)
+        private async Task<Acompanhamento> CadastrarAcompanhamento()
+        {
+            Acompanhamento acompanhamento = new Acompanhamento();
+            acompanhamento.Observacao = null;
+            acompanhamento.SolicitacaoCompraId = idSolicitacao;
+            acompanhamento.StatusId = 4;
+            acompanhamento.UsuarioId = usuarioLogado.Id;
+            acompanhamento.Date = DateTime.Now;
+            return await HttpAcompanhamento.Create(acompanhamento, usuarioLogado.token);
+        }
+        private void PreencheGridProdutoCompra(List<ProdutoSolicitacao> produtosCompras, DataGridView dgv)
         {
             dgv.Rows.Clear();
             foreach (var item in produtosCompras)
             {
                 int n = dgv.Rows.Add();
-                dgv.Rows[n].Cells[0].Value = item.CodigoProtheus;
-                dgv.Rows[n].Cells[1].Value = item.Grupo.Descricao;
-                dgv.Rows[n].Cells[2].Value = item.Descricao;
-                dgv.Rows[n].Cells[10].Value = item.Id;
+                dgv.Rows[n].Cells[0].Value = item.Produto.CodigoProtheus;
+                dgv.Rows[n].Cells[1].Value = item.Produto.Grupo.Descricao;
+                dgv.Rows[n].Cells[2].Value = item.Produto.Descricao;
+                dgv.Rows[n].Cells[10].Value = item.Produto.Id;
             }
         }
         private void RealizaCalculoValoresFinais(DataGridViewCellEventArgs e, DataGridView dataGrid)
@@ -383,92 +405,112 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 txtAnexarpdf.Text = openFileDialog1.FileName;
             }
         }
-        //private async void SalvarOrcamento1()
-        //{
-        //    if (!string.IsNullOrEmpty(txtFornecedor1.Text) && !string.IsNullOrEmpty(txtCnpj1.Text) && !string.IsNullOrEmpty(txtTotalProdutos1.Text)
-        //        && !string.IsNullOrEmpty(txtTotalIPI1.Text) && !string.IsNullOrEmpty(txtValorFrete1.Text) && !string.IsNullOrEmpty(txtAnexarPdf1.Text))
-        //    {
-        //        Orcamento orcamento1 = new Orcamento();
-        //        orcamento1.Anexo = txtAnexarPdf1.Text;
-        //        orcamento1.Fornecedor = txtFornecedor1.Text;
-        //        orcamento1.Data = dtpDataOrcamento1.Value;
-        //        orcamento1.Cnpj = txtCnpj1.Text;
-        //        orcamento1.FormaPagamento = cboFormaPagamento1.Text;
-        //        orcamento1.TotalProdutos = double.Parse(txtTotalProdutos1.Text);
-        //        orcamento1.TotalIpi = double.Parse(txtTotalIPI1.Text);
-        //        orcamento1.ValorFrete = double.Parse(txtValorFrete1.Text);
-        //        orcamento1.ValorTotal = double.Parse(txtValorFinal1.Text);
-        //        if (string.IsNullOrEmpty(txtIdOrcamento1.Text))
-        //        {
-        //            var orcamentoCriado = await HttpOrcamentos.Create(orcamento1, usuarioLogado.token);
-        //            if (orcamentoCriado == null)
-        //            {
-        //                MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
-        //            }
-        //            else
-        //            {
-        //                List<Orcamento> produtoPedidoOrcamentoList = new List<Orcamento>();
-        //                var orcamentoList1 = await HttpOrcamentos.GetAll(usuarioLogado.token);
-        //                long orcamentoId1 = orcamentoList1.Last().Id;
-        //                for (int i = 0; i < dgvProdutoCompra1.Rows.Count; i++)
-        //                {
-        //                    ProdutoPedidoOrcamento produtoPedidoOrcamento = new ProdutoPedidoOrcamento();
-        //                    produtoPedidoOrcamento.OrcamentoId = orcamentoId1;
-        //                    produtoPedidoOrcamento.ProdutoId = Convert.ToInt64(dgvProdutoCompra1.Rows[i].Cells["colProdutoId1"].Value);
-        //                    produtoPedidoOrcamento.SolicitacaoComprasId = idSolicitacao;
-        //                    produtoPedidoOrcamento.Quantidade = Convert.ToInt32(dgvProdutoCompra1.Rows[i].Cells["colQuantidade1"].Value);
-        //                    produtoPedidoOrcamento.valor = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colUnitario1"].Value);
-        //                    produtoPedidoOrcamento.Desconto = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colDesconto1"].Value);
-        //                    produtoPedidoOrcamento.Ipi = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colIpi1"].Value);
-        //                    produtoPedidoOrcamento.Icms = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colICMS1"].Value);
-        //                    var ProdutopedidoOrcamentoCriado = await HttpProdutoPedidoOrcamentos.Create(produtoPedidoOrcamento, usuarioLogado.token);
-        //                    if (ProdutopedidoOrcamentoCriado == null)
-        //                    {
-        //                        MessageBox.Show("Deu pau");
-        //                        return;
-        //                    }
-        //                }
 
-        //                if (float.Parse(txtValorFinal1.Text) < 5000)
-        //                {
-        //                    if (MessageBox.Show("O seu primeiro orçamento ficou abaixo de R$5.000,00. Deseja encerrar a solicitação de compras?", "Finalizar solicitação de compras", MessageBoxButtons.YesNo) == DialogResult.Yes)
-        //                    {
-        //                        MessageBox.Show("Orçamento cadastrado com sucesso e sua solicitação foi enviada para a coordenação e ficará em análise.");
-        //                        var acompanhamento = await CadastrarAcompanhamento();
-        //                        if (acompanhamento == null)
-        //                        {
-        //                            MessageBox.Show("Erro no acompanhamento");
-        //                        }
-        //                        this.Dispose();
-        //                    }
-        //                    else
-        //                    {
-        //                        MessageBox.Show("Orçamento cadastrado com sucesso");
-        //                        PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra2);
-        //                        tabContainer.SelectTab(3);
-        //                        ((Control)tabContainer.TabPages[2]).Enabled = false;
-        //                    }
+        private async Task CriarOrcamento1()
+        {
+            Orcamento orcamento = new Orcamento();
+            orcamento.Anexo = null;
+            orcamento.Fornecedor = "Fornecerdor1";
+            orcamento.Data = dtpDataOrcamento1.Value;
+            orcamento.Cnpj = "0000000000000";
+            orcamento.FormaPagamento = "formaPagamento1";
+            orcamento.TotalProdutos = 0;
+            orcamento.TotalIpi = 0;
+            orcamento.ValorFrete = 0;
+            orcamento.ValorTotal = 0;
+            var orcamentoCriado = await HttpOrcamentos.Create(orcamento, usuarioLogado.token);
+            if (orcamentoCriado == null)
+            {
+                MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+            }
+            else
+                txtIdOrcamento1.Text = (await HttpOrcamentos.GetAll(usuarioLogado.token)).Last().Id.ToString();
 
-        //                }
-        //                else
-        //                {
-        //                    MessageBox.Show("Orçamento cadastrado com sucesso");
-        //                    PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra2);
-        //                    tabContainer.SelectTab(3);
-        //                    ((Control)tabContainer.TabPages[2]).Enabled = false;
-        //                }
-        //            }
-        //        }
-        //        else
-        //        {
+        }
+        private async void SalvarOrcamento1()
+        {
+            if (!string.IsNullOrEmpty(txtFornecedor1.Text) && !string.IsNullOrEmpty(txtCnpj1.Text) && !string.IsNullOrEmpty(txtTotalProdutos1.Text)
+                && !string.IsNullOrEmpty(txtTotalIPI1.Text) && !string.IsNullOrEmpty(txtValorFrete1.Text) && !string.IsNullOrEmpty(txtAnexarPdf1.Text))
+            {
+                Orcamento orcamento = new Orcamento();
+                orcamento.Anexo = txtAnexarPdf1.Text;
+                orcamento.Fornecedor = txtFornecedor1.Text;
+                orcamento.Data = dtpDataOrcamento1.Value;
+                orcamento.Cnpj = txtCnpj1.Text;
+                orcamento.FormaPagamento = cboFormaPagamento1.Text;
+                orcamento.TotalProdutos = double.Parse(txtTotalProdutos1.Text);
+                orcamento.TotalIpi = double.Parse(txtTotalIPI1.Text);
+                orcamento.ValorFrete = double.Parse(txtValorFrete1.Text);
+                orcamento.ValorTotal = double.Parse(txtValorFinal1.Text);
+                if (string.IsNullOrEmpty(txtIdOrcamento1.Text))
+                {
+                    var orcamentoCriado = await HttpOrcamentos.Create(orcamento, usuarioLogado.token);
+                    if (orcamentoCriado == null)
+                    {
+                        MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+                    }
+                    else
+                    {
+                        List<Orcamento> produtoPedidoOrcamentoList = new List<Orcamento>();
+                        var orcamentoList1 = await HttpOrcamentos.GetAll(usuarioLogado.token);
+                        long orcamentoId1 = orcamentoList1.Last().Id;
+                        for (int i = 0; i < dgvProdutoCompra1.Rows.Count; i++)
+                        {
+                            ProdutoPedidoOrcamento produtoPedidoOrcamento = new ProdutoPedidoOrcamento();
+                            produtoPedidoOrcamento.OrcamentoId = orcamentoId1;
+                            produtoPedidoOrcamento.Quantidade = Convert.ToInt32(dgvProdutoCompra1.Rows[i].Cells["colQuantidade1"].Value);
+                            produtoPedidoOrcamento.valor = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colUnitario1"].Value);
+                            produtoPedidoOrcamento.Desconto = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colDesconto1"].Value);
+                            produtoPedidoOrcamento.Ipi = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colIpi1"].Value);
+                            produtoPedidoOrcamento.Icms = Convert.ToDouble(dgvProdutoCompra1.Rows[i].Cells["colICMS1"].Value);
+                            var ProdutopedidoOrcamentoCriado = await HttpProdutoPedidoOrcamentos.Create(produtoPedidoOrcamento, usuarioLogado.token);
+                            if (ProdutopedidoOrcamentoCriado == null)
+                            {
+                                MessageBox.Show("Deu pau");
+                                return;
+                            }
+                        }
 
-        //        }
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show($"{ConstantesProjeto.MENSAGEM_PREENCHER_CAMPOS}, Lembre-se de anexar o orçamento em pdf para continuar");
-        //    }
-        //}
+                        if (float.Parse(txtValorFinal1.Text) < 5000)
+                        {
+                            if (MessageBox.Show("O seu primeiro orçamento ficou abaixo de R$5.000,00. Deseja encerrar a solicitação de compras?", "Finalizar solicitação de compras", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            {
+                                MessageBox.Show("Orçamento cadastrado com sucesso e sua solicitação foi enviada para a coordenação e ficará em análise.");
+                                var acompanhamento = await CadastrarAcompanhamento();
+                                if (acompanhamento == null)
+                                {
+                                    MessageBox.Show("Erro no acompanhamento");
+                                }
+                                this.Dispose();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Orçamento cadastrado com sucesso");
+                                PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra2);
+                                tabContainer.SelectTab(3);
+                                ((Control)tabContainer.TabPages[2]).Enabled = false;
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Orçamento cadastrado com sucesso");
+                            PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra2);
+                            tabContainer.SelectTab(3);
+                            ((Control)tabContainer.TabPages[2]).Enabled = false;
+                        }
+                    }
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                MessageBox.Show($"{ConstantesProjeto.MENSAGEM_PREENCHER_CAMPOS}, Lembre-se de anexar o orçamento em pdf para continuar");
+            }
+        }
         //private async void CreateOrcamento2()
         //{
         //    if (!string.IsNullOrEmpty(txtFornecedor2.Text) && !string.IsNullOrEmpty(txtCnpj2.Text) && !string.IsNullOrEmpty(txtTotalProdutos2.Text)
@@ -587,16 +629,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
         //}
 
         //Eventos do formulário
-        private async Task<Acompanhamento> CadastrarAcompanhamento()
-        {
-            Acompanhamento acompanhamento = new Acompanhamento();
-            acompanhamento.Observacao = null;
-            acompanhamento.SolicitacaoCompraId = idSolicitacao;
-            acompanhamento.StatusId = 1;
-            acompanhamento.UsuarioId = usuarioLogado.Id;
-            acompanhamento.Date = DateTime.Now;
-            return await HttpAcompanhamento.Create(acompanhamento, usuarioLogado.token);
-        }
         private async void txtCodigoProtheusProduto_TextChanged(object sender, EventArgs e)
         {
             var codigoProduto = ((TextBox)sender).Text;
@@ -697,21 +729,13 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 }
             }
         }
-        private void btnProximoProduto_Click(object sender, EventArgs e)
+        private async void btnProximoProduto_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                for (int i = 0; i < dgvProduto.Rows.Count; i++)
-                {
-                    Produto produto = new Produto();
-                    produto.CodigoProtheus = Convert.ToInt64(dgvProduto.Rows[i].Cells[0].Value);
-                    produto.Descricao = dgvProduto.Rows[i].Cells[2].Value.ToString();
-                    produto.GrupoId = Convert.ToInt64(dgvProduto.Rows[i].Cells["colGrupoId"].Value);
-                    produto.Grupo = new Grupo();
-                    produto.Grupo.Descricao = dgvProduto.Rows[i].Cells[1].Value.ToString();
-                    produto.Id = Convert.ToInt64(dgvProduto.Rows[i].Cells["colIdProduto"].Value);
-                    produtosCompras.Add(produto);
-                }
+
+                produtosCompras = await HttpProdutoSolicitacoes.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
+                PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra1);
                 tabContainer.SelectTab(2);
                 ((Control)tabContainer.TabPages[1]).Enabled = false;
             }
@@ -780,7 +804,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
         {
             if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                //SalvarOrcamento1();
+                SalvarOrcamento1();
             }
         }
         private void btnProximo2_Click(object sender, EventArgs e)
@@ -836,6 +860,37 @@ namespace OlimpiadaCompras.Telas.Avaliador
         private void txtValorFrete3_TextChanged(object sender, EventArgs e)
         {
             CalculaFrete((TextBox)sender, txtValorFinal3);
+        }
+
+        private void dgvProdutoCompra3_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private async Task CriarProdutoPedidoOrcamento(DataGridViewCellEventArgs e)
+        {
+            ProdutoPedidoOrcamento produtoPedidoOrcamento = new ProdutoPedidoOrcamento();
+            produtoPedidoOrcamento.OrcamentoId = long.Parse(txtIdOrcamento1.Text);
+            produtoPedidoOrcamento.ProdutoSolicitacoesId = Convert.ToInt64(dgvProdutoCompra1.Rows[e.RowIndex].Cells["colProdutoSolicitacaoId1"].Value);
+            produtoPedidoOrcamento.Quantidade = Convert.ToInt32(dgvProdutoCompra1.Rows[e.RowIndex].Cells["colQuantidade1"].Value);
+            produtoPedidoOrcamento.valor = Convert.ToDouble(dgvProdutoCompra1.Rows[e.RowIndex].Cells["colUnitario1"].Value);
+            produtoPedidoOrcamento.Desconto = Convert.ToDouble(dgvProdutoCompra1.Rows[e.RowIndex].Cells["colDesconto1"].Value);
+            produtoPedidoOrcamento.Ipi = Convert.ToDouble(dgvProdutoCompra1.Rows[e.RowIndex].Cells["colIpi1"].Value);
+            produtoPedidoOrcamento.Icms = Convert.ToDouble(dgvProdutoCompra1.Rows[e.RowIndex].Cells["colICMS1"].Value);
+            var ProdutopedidoOrcamentoCriado = await HttpProdutoPedidoOrcamentos.Create(produtoPedidoOrcamento, usuarioLogado.token);
+            if (ProdutopedidoOrcamentoCriado == null)
+            {
+                MessageBox.Show("Deu pau");
+                return;
+            }
+        }
+
+        private async void dgvProdutoCompra1_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            //Resetar o banco de dados e iniciar a parte de cadastro dos orcamentos e produto pedido orcamento
+            MessageBox.Show("Mudei de linha");
+            await CriarOrcamento1();
+            await CriarProdutoPedidoOrcamento(e);
         }
     }
 }

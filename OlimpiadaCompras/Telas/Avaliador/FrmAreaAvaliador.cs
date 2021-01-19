@@ -42,8 +42,10 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 int n = dgvMinhasSolicitacoes.Rows.Add();
                 dgvMinhasSolicitacoes.Rows[n].Cells["colMinhaIdSolicitacao"].Value = item.SolicitacaoCompra.Id;
                 dgvMinhasSolicitacoes.Rows[n].Cells["colMinhaData"].Value = item.SolicitacaoCompra.Data.ToString("dd/MM/yyyy");
-                dgvMinhasSolicitacoes.Rows[n].Cells["colMinhaUsuario"].Value = $"{item.Usuario.Nome.Split(' ')[0]} {item.Usuario.Nome.Split(' ')[1]}";
+                dgvMinhasSolicitacoes.Rows[n].Cells["colMinhaJustificativa"].Value = item.SolicitacaoCompra.Justificativa;
                 dgvMinhasSolicitacoes.Rows[n].Cells["colMinhaStatus"].Value = item.Status.Descricao;
+                dgvMinhasSolicitacoes.Rows[n].Cells["colMinhaStatusID"].Value = item.Status.Id;
+
             }
         }
 
@@ -57,7 +59,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 int n = dgvSolicitacoesPendentes.Rows.Add();
                 dgvSolicitacoesPendentes.Rows[n].Cells["colPendenteIdSolicitacao"].Value = item.SolicitacaoCompra.Id;
                 dgvSolicitacoesPendentes.Rows[n].Cells["colPendenteData"].Value = item.SolicitacaoCompra.Data.ToString("dd/MM/yyyy");
-                dgvSolicitacoesPendentes.Rows[n].Cells["colPendenteUsuario"].Value = $"{item.Usuario.Nome.Split(' ')[0]} {item.Usuario.Nome.Split(' ')[1]}";
+                dgvSolicitacoesPendentes.Rows[n].Cells["colPendenteJustificativa"].Value = item.SolicitacaoCompra.Justificativa;
                 dgvSolicitacoesPendentes.Rows[n].Cells["colPendenteStatus"].Value = item.Status.Descricao;
                 dgvSolicitacoesPendentes.Rows[n].Cells["colPendenteStatusID"].Value = item.Status.Id;
             }
@@ -109,7 +111,15 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private void dgvSolicitacoesPendentes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            acoes = ConstantesProjeto.VISUALIZAR;
+            idStatus = Convert.ToInt64(dgvSolicitacoesPendentes.Rows[e.RowIndex].Cells["colPendenteStatusID"].Value);
+            if (idStatus == ConstantesProjeto.STATUS_FINALIZAR_CADASTRO)
+            {
+                acoes = ConstantesProjeto.SALVAR;
+            }
+            else
+            {
+                acoes = ConstantesProjeto.VISUALIZAR;
+            }
             btnEditar.Enabled = false;
             idSolicitacao = Convert.ToInt64(dgvSolicitacoesPendentes.Rows[e.RowIndex].Cells[0].Value);
             FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado, idSolicitacao, acoes);
