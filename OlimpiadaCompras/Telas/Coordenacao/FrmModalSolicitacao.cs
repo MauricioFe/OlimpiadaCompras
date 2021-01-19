@@ -1,4 +1,4 @@
-﻿using ApiSGCOlimpiada.Models;
+﻿using OlimpiadaCompras.Models;
 using OlimpiadaCompras.Requests;
 using System;
 using System.CodeDom;

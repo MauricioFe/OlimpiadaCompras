@@ -1,4 +1,4 @@
-﻿using ApiSGCOlimpiada.Models;
+﻿using OlimpiadaCompras.Models;
 using OlimpiadaCompras.Requests;
 using System;
 using System.Collections.Generic;
@@ -624,7 +624,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
         }
         private void btnAdicionarProduto_Click(object sender, EventArgs e)
         {
-            dgvProduto.Rows.Add(txtCodigoProtheusProduto.Text, txtGrupo.Text, txtDescricao.Text, "Remove", idProduto, idGrupo);
+            
         }
         private async void dgvProduto_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

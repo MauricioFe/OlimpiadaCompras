@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ApiSGCOlimpiada.Models
+namespace OlimpiadaCompras.Models
 {
     public class SolicitacaoCompra
     {

@@ -1,5 +1,5 @@
 ﻿
-using ApiSGCOlimpiada.Models;
+using OlimpiadaCompras.Models;
 using OlimpiadaCompras.Requests;
 using OlimpiadaCompras.Telas;
 using OlimpiadaCompras.Telas.Coordenacao;

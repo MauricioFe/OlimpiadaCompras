@@ -1,4 +1,4 @@
-﻿namespace ApiSGCOlimpiada.Models
+﻿namespace OlimpiadaCompras.Models
 {
     public class Funcao
     {
