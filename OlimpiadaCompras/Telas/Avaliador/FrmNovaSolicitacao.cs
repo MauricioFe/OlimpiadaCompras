@@ -17,13 +17,15 @@ namespace OlimpiadaCompras.Telas.Avaliador
     {
         private Usuario usuarioLogado;
         long idProduto = 0;
-        long idGrupo = 0;
         long idSolicitacao = 0;
+        long idGrupo = 0;
         List<OcupacaoSolicitacaoCompra> ocupacoesSolicitacaoEditList = new List<OcupacaoSolicitacaoCompra>();
-        List<ProdutoPedidoOrcamento> produtoPedidoOrcamentosList = new List<ProdutoPedidoOrcamento>();
         List<ProdutoSolicitacao> produtosCompras = new List<ProdutoSolicitacao>();
         List<double> totalIpiList = new List<double>();
         int acao;
+        bool orcamentoCadastrado1 = false;
+        bool orcamentoCadastrado2 = false;
+        bool orcamentoCadastrado3 = false;
         public FrmNovaSolicitacao(Usuario usuario)
         {
             this.usuarioLogado = usuario;
@@ -131,6 +133,18 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 {
                     if (orcamento.Id == item.Orcamento.Id)
                     {
+                        if (i == 0)
+                        {
+                            orcamentoCadastrado1 = true;
+                        }
+                        if (i == 1)
+                        {
+                            orcamentoCadastrado2 = true;
+                        }
+                        if (i == 2)
+                        {
+                            orcamentoCadastrado3 = true;
+                        }
                         int row = ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows.Add();
                         ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[0].Value = item.ProdutoSolicitacao.Produto.CodigoProtheus;
                         ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[1].Value = item.ProdutoSolicitacao.Produto.Grupo.Descricao;
@@ -148,7 +162,14 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         ((TextBox)tabContainer.Controls.Find($"txtTotalProdutos{i + 1}", true)[0]).Text = orcamento.TotalProdutos.ToString();
                         ((TextBox)tabContainer.Controls.Find($"txtTotalIPI{i + 1}", true)[0]).Text = orcamento.TotalIpi.ToString();
                         ((TextBox)tabContainer.Controls.Find($"txtValorFinal{i + 1}", true)[0]).Text = orcamento.ValorTotal.ToString();
-                        ((ComboBox)tabContainer.Controls.Find($"cboFormaPagamento{i + 1}", true)[0]).Text = orcamento.FormaPagamento;
+                        if (orcamento.FormaPagamento == "Crédito em conta")
+                        {
+                            ((ComboBox)tabContainer.Controls.Find($"cboFormaPagamento{i + 1}", true)[0]).SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            ((ComboBox)tabContainer.Controls.Find($"cboFormaPagamento{i + 1}", true)[0]).SelectedIndex = 1;
+                        }
                         ((TextBox)tabContainer.Controls.Find($"txtValorFrete{i + 1}", true)[0]).Text = orcamento.ValorFrete.ToString();
                         ((TextBox)tabContainer.Controls.Find($"txtAnexarPdf{i + 1}", true)[0]).Text = orcamento.Anexo;
                         ((TextBox)tabContainer.Controls.Find($"txtIdOrcamento{i + 1}", true)[0]).Text = orcamento.Id.ToString();
@@ -526,12 +547,93 @@ namespace OlimpiadaCompras.Telas.Avaliador
         {
             if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-
                 produtosCompras = await HttpProdutoSolicitacoes.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
-                PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra1);
-                await CriarOrcamentoDefault1();
+                if (!orcamentoCadastrado1)
+                {
+                    PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra1);
+                    await CriarOrcamentoDefault1();
+                }
                 tabContainer.SelectTab(2);
                 ((Control)tabContainer.TabPages[1]).Enabled = false;
+            }
+        }
+        private async void btnProximo1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (!orcamentoCadastrado2)
+                {
+                    if (!VerificaCamposVaziosOrcamentos(1))
+                    {
+                        Orcamento orcamento = PreencheObjetoDosInputs(1);
+                        if (await UpdateOrcamento(orcamento))
+                        {
+                            await CriarOrcamentoDafault2();
+                            PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra2);
+                            tabContainer.SelectTab(3);
+                            ((Control)tabContainer.TabPages[2]).Enabled = false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Todos os campos são obrigatórios", "Cadastro do orcamento", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                else
+                {
+                    tabContainer.SelectTab(3);
+                    ((Control)tabContainer.TabPages[2]).Enabled = false;
+                }
+            }
+        }
+        private async void btnProximo2_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (!orcamentoCadastrado3)
+                {
+                    if (!VerificaCamposVaziosOrcamentos(2))
+                    {
+                        Orcamento orcamento = PreencheObjetoDosInputs(2);
+                        if (await UpdateOrcamento(orcamento))
+                        {
+                            await CriarOrcamentoDafault3();
+                            PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra3);
+                            tabContainer.SelectTab(4);
+                            ((Control)tabContainer.TabPages[3]).Enabled = false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Todos os campos são obrigatórios", "Cadastro do orcamento", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                else
+                {
+                    tabContainer.SelectTab(4);
+                    ((Control)tabContainer.TabPages[3]).Enabled = false;
+                }
+            }
+        }
+        private async void btnProximo3_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (!VerificaCamposVaziosOrcamentos(3))
+                {
+                    Orcamento orcamento = PreencheObjetoDosInputs(3);
+                    if (await UpdateOrcamento(orcamento))
+                    {
+                        MessageBox.Show("Você finalizou a primeira etapa para realizar sua compra com sucesso!!\n" +
+                            "A coordenação irá analisar sua solicitação e irá dar um retorno assim que possível.",
+                            "Finalizar processo de compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Dispose();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Todos os campos são obrigatórios", "Cadastro do orcamento", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
         }
         private async void btnAdicionarOcupacao_Click(object sender, EventArgs e)
@@ -594,28 +696,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
         {
             AnexarOrcamento(txtAnexarPdf1);
         }
-        private async void btnProximo1_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                if (!VerificaCamposVaziosOrcamentos(1))
-                {
-                    Orcamento orcamento = PreencheObjetoDosInputs(1);
-                    if (await UpdateOrcamento(orcamento))
-                    {
-                        await CriarOrcamentoDafault2();
-                        PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra2);
-                        tabContainer.SelectTab(3);
-                        ((Control)tabContainer.TabPages[2]).Enabled = false;
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("Todos os campos são obrigatórios", "Cadastro do orcamento", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
-        }
 
         private bool VerificaCamposVaziosOrcamentos(int index)
         {
@@ -659,50 +739,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
             }
             MessageBox.Show("Erro interno no sistema tente novamente mais tarde", "Erro interno Servidor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;
-        }
-
-        private async void btnProximo2_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                if (!VerificaCamposVaziosOrcamentos(2))
-                {
-                    Orcamento orcamento = PreencheObjetoDosInputs(2);
-                    if (await UpdateOrcamento(orcamento))
-                    {
-                        await CriarOrcamentoDafault2();
-                        PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra3);
-                        tabContainer.SelectTab(4);
-                        ((Control)tabContainer.TabPages[3]).Enabled = false;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Todos os campos são obrigatórios", "Cadastro do orcamento", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
-        }
-        private async void btnProximo3_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                if (!VerificaCamposVaziosOrcamentos(3))
-                {
-                    Orcamento orcamento = PreencheObjetoDosInputs(3);
-                    if (await UpdateOrcamento(orcamento))
-                    {
-                        await CriarOrcamentoDafault3();
-                        MessageBox.Show("Você finalizou a primeira etapa para realizar sua compra com sucesso!!\n" +
-                            "A coordenação irá analisar sua solicitação e irá dar um retorno assim que possível.",
-                            "Finalizar processo de compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Dispose();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Todos os campos são obrigatórios", "Cadastro do orcamento", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
         }
         private void dgvProdutoCompra1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
