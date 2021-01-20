@@ -17,7 +17,11 @@ namespace OlimpiadaCompras.Telas.Coordenacao
     {
         private Usuario usuarioLogado;
         private long idSolicitacao = 0;
-
+        int acao;
+        bool orcamentoCadastrado1 = false;
+        bool orcamentoCadastrado2 = false;
+        bool orcamentoCadastrado3 = false;
+        List<OcupacaoSolicitacaoCompra> ocupacoesSolicitacaoEditList = new List<OcupacaoSolicitacaoCompra>();
         public FrmGerenciarSolicitacaoCompra(Usuario usuario)
         {
             this.usuarioLogado = usuario;
@@ -150,88 +154,101 @@ namespace OlimpiadaCompras.Telas.Coordenacao
 
         }
 
-        //private async void PreencheDadosVisualizacaoSolicitacaoProdutos()
-        //{
-        //    List<ProdutoPedidoOrcamento> produtosSolicitacao = await HttpProdutoPedidoOrcamentos.GetSolicitacao(idSolicitacao, usuarioLogado.token, "produtoSolicitacao");
-        //    List<ProdutoPedidoOrcamento> orcamentoSolicitacao = await HttpProdutoPedidoOrcamentos.GetSolicitacao(idSolicitacao, usuarioLogado.token, "orcamentoSolicitacao");
-        //    List<ProdutoPedidoOrcamento> orcamentoProdutoSolicitacao = await HttpProdutoPedidoOrcamentos.GetSolicitacao(idSolicitacao, usuarioLogado.token, "produtoOrcamentoSolicitacao");
-        //    dgvProduto.Rows.Clear();
+        private async void PreencheDadosSolicitacao()
+        {
+            List<OcupacaoSolicitacaoCompra> ocupacaoSolicitacaoCompras = await HttpSolicitacaoOcupacoes.GetSolicitacao(idSolicitacao, usuarioLogado.token);
+            dgvOcupacoes.Rows.Clear();
+            dgvProduto.Rows.Clear();
+            foreach (var item in ocupacaoSolicitacaoCompras)
+            {
+                Ocupacao ocupacao = item.Ocupacao;
+                int n = dgvOcupacoes.Rows.Add();
+                dgvOcupacoes.Rows[n].Cells[0].Value = ocupacao.Numero;
+                dgvOcupacoes.Rows[n].Cells[1].Value = ocupacao.Nome;
+                dgvOcupacoes.Rows[n].Cells["colIdOcupacao"].Value = ocupacao.Id;
+                dgvOcupacoes.Rows[n].Cells[2].Value = "Remover";
+                OcupacaoSolicitacaoCompra ocupacaoSolicitacaoCompra = new OcupacaoSolicitacaoCompra();
+                ocupacaoSolicitacaoCompra.OcupacaoId = ocupacao.Id;
+                ocupacaoSolicitacaoCompra.SolicitacaoId = idSolicitacao;
+                ocupacoesSolicitacaoEditList.Add(ocupacaoSolicitacaoCompra);
 
-        //    foreach (var item in produtosSolicitacao)
-        //    {
-        //        Produto produto = item.Produto;
-        //        int n = dgvProduto.Rows.Add();
-        //        dgvProduto.Rows[n].Cells[0].Value = produto.CodigoProtheus;
-        //        dgvProduto.Rows[n].Cells[1].Value = produto.Grupo.Descricao;
-        //        dgvProduto.Rows[n].Cells[2].Value = produto.Descricao;
-        //        dgvProduto.Rows[n].Cells[3].Value = "Remover";
-        //    }
-        //    int i = 1;
-        //    foreach (var item in orcamentoSolicitacao)
-        //    {
-        //        ((TextBox)tabContainer.Controls.Find($"txtFornecedor{i}", true)[0]).Text = item.Orcamento.Fornecedor;
-        //        ((TextBox)tabContainer.Controls.Find($"txtCnpj{i}", true)[0]).Text = item.Orcamento.Cnpj;
-        //        ((DateTimePicker)tabContainer.Controls.Find($"dtpDataOrcamento{i}", true)[0]).Value = item.Orcamento.Data;
-        //        ((TextBox)tabContainer.Controls.Find($"txtTotalProdutos{i}", true)[0]).Text = item.Orcamento.TotalProdutos.ToString();
-        //        ((TextBox)tabContainer.Controls.Find($"txtTotalIPI{i}", true)[0]).Text = item.Orcamento.TotalIpi.ToString();
-        //        ((TextBox)tabContainer.Controls.Find($"txtValorFinal{i}", true)[0]).Text = item.Orcamento.ValorTotal.ToString();
-        //        ((ComboBox)tabContainer.Controls.Find($"cboFormaPagamento{i}", true)[0]).Text = item.Orcamento.FormaPagamento;
-        //        ((TextBox)tabContainer.Controls.Find($"txtValorFrete{i}", true)[0]).Text = item.Orcamento.ValorFrete.ToString();
-        //        ((TextBox)tabContainer.Controls.Find($"txtAnexarPdf{i}", true)[0]).Text = item.Orcamento.Anexo;
-        //        i++;
-        //    }
-        //    i = 0;
-        //    int row = 0;
-        //    for (int j = 0; j < orcamentoSolicitacao.Count; j++)
-        //    {
-        //        foreach (var item in orcamentoProdutoSolicitacao)
-        //        {
-        //            if (item.OrcamentoId == orcamentoSolicitacao[j].OrcamentoId)
-        //            {
-        //                row = ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{j + 1}", true)[0]).Rows.Add();
-        //                ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{j + 1}", true)[0]).Rows[row].Cells[0].Value = item.Produto.CodigoProtheus;
-        //                ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{j + 1}", true)[0]).Rows[row].Cells[1].Value = item.Produto.Grupo.Descricao;
-        //                ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{j + 1}", true)[0]).Rows[row].Cells[2].Value = item.Produto.Descricao;
-        //                ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{j + 1}", true)[0]).Rows[row].Cells[3].Value = item.Quantidade;
-        //                ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{j + 1}", true)[0]).Rows[row].Cells[4].Value = item.valor;
-        //                ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{j + 1}", true)[0]).Rows[row].Cells[5].Value = item.Desconto;
-        //                ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{j + 1}", true)[0]).Rows[row].Cells[6].Value = item.Ipi;
-        //                ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{j + 1}", true)[0]).Rows[row].Cells[7].Value = item.Icms;
-        //                ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{j + 1}", true)[0]).Rows[row].Cells[8].Value = item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)));
-        //            }
-        //        }
-        //    }
-        //}
+            }
+            List<ProdutoSolicitacao> produtoSolicitacoes = await HttpProdutoSolicitacoes.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
+            foreach (var inputs in produtoSolicitacoes)
+            {
+                cboEscola.SelectedValue = inputs.SolicitacaoCompra.Escola.Id;
+                txtResponsavelEntrega.Text = inputs.SolicitacaoCompra.ResponsavelEntrega;
+                txtJusticativa.Text = inputs.SolicitacaoCompra.Justificativa;
+                dtpDataSolicitacao.Value = inputs.SolicitacaoCompra.Data;
+                cboTipoCompra.SelectedValue = inputs.SolicitacaoCompra.TipoCompraId;
+                txtCep.Text = inputs.SolicitacaoCompra.Escola.Cep;
+                txtLogradouro.Text = inputs.SolicitacaoCompra.Escola.Logradouro;
+                txtBairro.Text = inputs.SolicitacaoCompra.Escola.Bairro;
+                txtNumero.Text = inputs.SolicitacaoCompra.Escola.Numero;
+                txtCidade.Text = inputs.SolicitacaoCompra.Escola.Cidade;
+                txtEstado.Text = inputs.SolicitacaoCompra.Escola.Estado;
+                txtIdSolicitacao.Text = inputs.SolicitacaoCompra.Id.ToString();
+                int n = dgvProduto.Rows.Add();
+                dgvProduto.Rows[n].Cells[0].Value = inputs.Produto.CodigoProtheus;
+                dgvProduto.Rows[n].Cells[1].Value = inputs.Produto.Grupo.Descricao;
+                dgvProduto.Rows[n].Cells[2].Value = inputs.Produto.Descricao;
+                dgvProduto.Rows[n].Cells[3].Value = "Remover";
+                dgvProduto.Rows[n].Cells[4].Value = inputs.Produto.Id;
+            }
+            List<ProdutoPedidoOrcamento> produtoPedidoOrcamentos = await HttpProdutoPedidoOrcamentos.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
+            List<Orcamento> orcamentos = await HttpOrcamentos.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
+            for (int i = 0; i < orcamentos.Count; i++)
+            {
+                Orcamento orcamento = orcamentos[i];
+                foreach (var item in produtoPedidoOrcamentos)
+                {
+                    if (orcamento.Id == item.Orcamento.Id)
+                    {
+                        if (i == 0)
+                        {
+                            orcamentoCadastrado1 = true;
+                        }
+                        if (i == 1)
+                        {
+                            orcamentoCadastrado2 = true;
+                        }
+                        if (i == 2)
+                        {
+                            orcamentoCadastrado3 = true;
+                        }
+                        int row = ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows.Add();
+                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[0].Value = item.ProdutoSolicitacao.Produto.CodigoProtheus;
+                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[1].Value = item.ProdutoSolicitacao.Produto.Grupo.Descricao;
+                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[2].Value = item.ProdutoSolicitacao.Produto.Descricao;
+                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[3].Value = item.Quantidade;
+                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[4].Value = item.valor;
+                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[5].Value = item.Desconto;
+                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[6].Value = item.Ipi;
+                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[7].Value = item.Icms;
+                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[8].Value = item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)));
+                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[10].Value = item.ProdutoSolicitacao.Id;
+                        ((TextBox)tabContainer.Controls.Find($"txtFornecedor{i + 1}", true)[0]).Text = orcamento.Fornecedor;
+                        ((TextBox)tabContainer.Controls.Find($"txtCnpj{i + 1}", true)[0]).Text = orcamento.Cnpj;
+                        ((DateTimePicker)tabContainer.Controls.Find($"dtpDataOrcamento{i + 1}", true)[0]).Value = orcamento.Data;
+                        ((TextBox)tabContainer.Controls.Find($"txtTotalProdutos{i + 1}", true)[0]).Text = orcamento.TotalProdutos.ToString();
+                        ((TextBox)tabContainer.Controls.Find($"txtTotalIPI{i + 1}", true)[0]).Text = orcamento.TotalIpi.ToString();
+                        ((TextBox)tabContainer.Controls.Find($"txtValorFinal{i + 1}", true)[0]).Text = orcamento.ValorTotal.ToString();
+                        if (orcamento.FormaPagamento == "Crédito em conta")
+                        {
+                            ((ComboBox)tabContainer.Controls.Find($"cboFormaPagamento{i + 1}", true)[0]).SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            ((ComboBox)tabContainer.Controls.Find($"cboFormaPagamento{i + 1}", true)[0]).SelectedIndex = 1;
+                        }
+                        ((TextBox)tabContainer.Controls.Find($"txtValorFrete{i + 1}", true)[0]).Text = orcamento.ValorFrete.ToString();
+                        ((TextBox)tabContainer.Controls.Find($"txtAnexarPdf{i + 1}", true)[0]).Text = orcamento.Anexo;
+                        ((TextBox)tabContainer.Controls.Find($"txtIdOrcamento{i + 1}", true)[0]).Text = orcamento.Id.ToString();
+                    }
+                }
 
-        //private async void PreencheDadosVisualizacaoSolicitacao()
-        //{
-        //    List<OcupacaoSolicitacaoCompra> ocupacaoSolicitacaoCompras = await HttpSolicitacaoOcupacoes.GetSolicitacao(idSolicitacao, usuarioLogado.token);
-        //    dgvOcupacoes.Rows.Clear();
-        //    foreach (var item in ocupacaoSolicitacaoCompras)
-        //    {
-        //        Ocupacao ocupacao = item.Ocupacao;
-        //        int n = dgvOcupacoes.Rows.Add();
-        //        dgvOcupacoes.Rows[n].Cells[0].Value = ocupacao.Numero;
-        //        dgvOcupacoes.Rows[n].Cells[1].Value = ocupacao.Nome;
-        //        dgvOcupacoes.Rows[n].Cells[2].Value = "Remover";
-        //    }
-        //    foreach (var inputs in ocupacaoSolicitacaoCompras)
-        //    {
-        //        cboEscola.SelectedValue = inputs.SolicitacaoCompra.Escola.Id;
-        //        txtResponsavelEntrega.Text = inputs.SolicitacaoCompra.ResponsavelEntrega;
-        //        txtJusticativa.Text = inputs.SolicitacaoCompra.Justificativa;
-        //        dtpDataSolicitacao.Value = inputs.SolicitacaoCompra.Data.Date;
-        //        cboTipoCompra.SelectedValue = inputs.SolicitacaoCompra.TipoCompraId;
-        //        txtCep.Text = inputs.SolicitacaoCompra.Escola.Cep;
-        //        txtLogradouro.Text = inputs.SolicitacaoCompra.Escola.Logradouro;
-        //        txtBairro.Text = inputs.SolicitacaoCompra.Escola.Bairro;
-        //        txtNumero.Text = inputs.SolicitacaoCompra.Escola.Numero;
-        //        txtCidade.Text = inputs.SolicitacaoCompra.Escola.Cidade;
-        //        txtEstado.Text = inputs.SolicitacaoCompra.Escola.Estado;
-        //        break;
-        //    }
-        //}
-
+            }
+        }
         private void FrmGerenciarSolicitacaoCompra_Load(object sender, EventArgs e)
         {
 
@@ -242,8 +259,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             PreencheDadosEscola(1);
             if (idSolicitacao > 0)
             {
-                //PreencheDadosVisualizacaoSolicitacao();
-                //PreencheDadosVisualizacaoSolicitacaoProdutos();
+                PreencheDadosSolicitacao();
             }
         }
         private void cboEscola_SelectionChangeCommitted(object sender, EventArgs e)
