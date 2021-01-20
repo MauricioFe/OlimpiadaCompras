@@ -164,5 +164,32 @@ namespace OlimpiadaCompras.Requests
             }
 
         }
+        public static async Task<List<Orcamento>> GetByIdSolicitacao(long id, string token)
+        {
+            List<Orcamento> orcamentos = new List<Orcamento>();
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/orcamentos/solicitacao/{id}");
+                    if (response.IsSuccessStatusCode)
+                    {
+
+                        var orcamentosString = await response.Content.ReadAsStringAsync();
+                        orcamentos = new JavaScriptSerializer().Deserialize<List<Orcamento>>(orcamentosString);
+                        return orcamentos;
+                    }
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+
+                Console.WriteLine("Erro ao conectar com a api");
+                return null;
+            }
+
+        }
     }
 }

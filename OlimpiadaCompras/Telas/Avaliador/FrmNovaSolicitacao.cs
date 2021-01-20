@@ -125,7 +125,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 dgvProduto.Rows[n].Cells[4].Value = inputs.Produto.Id;
             }
             List<ProdutoPedidoOrcamento> produtoPedidoOrcamentos = await HttpProdutoPedidoOrcamentos.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
-            List<Orcamento> orcamentos = await HttpOrcamentos.GetAll(usuarioLogado.token);
+            List<Orcamento> orcamentos = await HttpOrcamentos.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
             for (int i = 0; i < orcamentos.Count; i++)
             {
                 Orcamento orcamento = orcamentos[i];
