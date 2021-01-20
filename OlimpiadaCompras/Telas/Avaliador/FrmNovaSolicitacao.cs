@@ -624,6 +624,9 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     Orcamento orcamento = PreencheObjetoDosInputs(3);
                     if (await UpdateOrcamento(orcamento))
                     {
+                        var acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
+                        acompanhamento.StatusId = 1;
+                        await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
                         MessageBox.Show("Você finalizou a primeira etapa para realizar sua compra com sucesso!!\n" +
                             "A coordenação irá analisar sua solicitação e irá dar um retorno assim que possível.",
                             "Finalizar processo de compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -805,7 +808,11 @@ namespace OlimpiadaCompras.Telas.Avaliador
         }
         private async void dgvProdutoCompra1_RowLeave(object sender, DataGridViewCellEventArgs e)
         {
-            await CriarProdutoPedidoOrcamento(e, 1);
+            if (dgvProdutoCompra1.Rows[e.RowIndex].Cells["colQuantidade1"].Value != null &&
+                dgvProdutoCompra1.Rows[e.RowIndex].Cells["colValor1"].Value != null)
+            {
+                await CriarProdutoPedidoOrcamento(e, 1);
+            }
         }
 
         private async void dgvProdutoCompra2_RowLeave(object sender, DataGridViewCellEventArgs e)
