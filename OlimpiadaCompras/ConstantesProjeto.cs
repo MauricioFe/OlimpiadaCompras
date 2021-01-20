@@ -30,6 +30,5 @@ namespace OlimpiadaCompras
         public const int EDITAR = 1;
         public const int VISUALIZAR = 2;
         public const int SALVAR = 3;
-
     }
 }

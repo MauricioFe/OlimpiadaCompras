@@ -172,5 +172,29 @@ namespace OlimpiadaCompras.Requests
             }
 
         }
+        public static async Task<List<ProdutoPedidoOrcamento>> GetByIdSolicitacao(long idSolicitacao, string token)
+        {
+            List<ProdutoPedidoOrcamento> produtoPedidoOrcamento = new List<ProdutoPedidoOrcamento>();
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/ProdutoPedidoOrcamento/solicitacao/{idSolicitacao}");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var produtoSolicitacaoStr = await response.Content.ReadAsStringAsync();
+                        produtoPedidoOrcamento = new JavaScriptSerializer().Deserialize<List<ProdutoPedidoOrcamento>>(produtoSolicitacaoStr);
+                        return produtoPedidoOrcamento;
+                    }
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Erro ao conectar na api {e.Message}");
+                return null;
+            }
+        }
     }
 }

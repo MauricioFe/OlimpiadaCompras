@@ -120,23 +120,45 @@ namespace OlimpiadaCompras.Requests
             Orcamento orcamentoEditado = new Orcamento();
             try
             {
-                using (var client = new HttpClient())
+                using (var formContent = new MultipartFormDataContent())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(orcamento);
-                    var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
-                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/orcamentos/{id}", content);
-                    if (response.IsSuccessStatusCode)
+                    formContent.Headers.ContentType.MediaType = "multipart/form-data";
+                    try
                     {
-                        var orcamentosString = await response.Content.ReadAsStringAsync();
-                        orcamentoEditado = new JavaScriptSerializer().Deserialize<Orcamento>(orcamentosString);
-                        return orcamentoEditado;
+                        FileStream fileStream = File.OpenRead(orcamento.Anexo);
+                        formContent.Add(new StreamContent(fileStream), "arquivo", orcamento.Anexo.Split('\\').Last());
+
                     }
-                    return null;
+                    catch (Exception)
+                    {
+                        orcamento.Anexo = "null";
+                    }
+                    formContent.Add(new StringContent(orcamento.Fornecedor), "Fornecedor");
+                    formContent.Add(new StringContent(orcamento.FormaPagamento), "FormaPagamento");
+                    formContent.Add(new StringContent(orcamento.Cnpj), "Cnpj");
+                    formContent.Add(new StringContent(orcamento.ValorTotal.ToString()), "ValorTotal");
+                    formContent.Add(new StringContent(orcamento.TotalIpi.ToString()), "TotalIpi");
+                    formContent.Add(new StringContent(orcamento.TotalProdutos.ToString()), "TotalProdutos");
+                    formContent.Add(new StringContent(orcamento.ValorFrete.ToString()), "ValorFrete");
+                    formContent.Add(new StringContent(orcamento.Data.ToString()), "Data");
+                    formContent.Add(new StringContent(orcamento.Anexo), "anexo");
+                    using (var client = new HttpClient())
+                    {
+                        client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                        var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/orcamentos/{id}", formContent);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var orcamentosString = await response.Content.ReadAsStringAsync();
+                            orcamentoEditado = new JavaScriptSerializer().Deserialize<Orcamento>(orcamentosString);
+                            return orcamentoEditado;
+                        }
+                        return null;
+                    }
                 }
             }
             catch (Exception ex)
             {
+
                 Console.WriteLine($"Erro ao conectar com a api {ex.Message}");
                 return null;
             }
