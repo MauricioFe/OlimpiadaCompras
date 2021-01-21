@@ -87,7 +87,6 @@ namespace OlimpiadaCompras.Requests
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine($"Erro ao conectar com a api {ex.Message}");
                 return null;
             }

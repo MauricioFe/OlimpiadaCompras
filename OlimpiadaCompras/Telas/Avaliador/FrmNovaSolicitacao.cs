@@ -111,7 +111,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 txtCidade.Text = item.SolicitacaoCompra.Escola.Cidade;
                 txtEstado.Text = item.SolicitacaoCompra.Escola.Estado;
                 txtIdSolicitacao.Text = item.SolicitacaoCompra.Id.ToString();
-
             }
             List<ProdutoSolicitacao> produtoSolicitacoes = await HttpProdutoSolicitacoes.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
             foreach (var inputs in produtoSolicitacoes)
@@ -168,6 +167,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[7].Value = item.Icms;
                         ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[8].Value = item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)));
                         ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[10].Value = item.ProdutoSolicitacao.Id;
+                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[11].Value = item.Id;
                         ((TextBox)tabContainer.Controls.Find($"txtFornecedor{i + 1}", true)[0]).Text = orcamento.Fornecedor;
                         ((TextBox)tabContainer.Controls.Find($"txtCnpj{i + 1}", true)[0]).Text = orcamento.Cnpj;
                         ((DateTimePicker)tabContainer.Controls.Find($"dtpDataOrcamento{i + 1}", true)[0]).Value = orcamento.Data;
@@ -345,16 +345,25 @@ namespace OlimpiadaCompras.Telas.Avaliador
             acompanhamento.Date = DateTime.Now;
             return await HttpAcompanhamento.Create(acompanhamento, usuarioLogado.token);
         }
-        private void PreencheGridProdutoCompra(List<ProdutoSolicitacao> produtosCompras, DataGridView dgv)
+        // Alterar consulta que traz todos os produtoPedidoOrcamento
+        private async void PreencheGridProdutoCompra(DataGridView dgv)
         {
+            List<ProdutoPedidoOrcamento> produtosCompras = await HttpProdutoPedidoOrcamentos.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
             dgv.Rows.Clear();
             foreach (var item in produtosCompras)
             {
                 int n = dgv.Rows.Add();
-                dgv.Rows[n].Cells[0].Value = item.Produto.CodigoProtheus;
-                dgv.Rows[n].Cells[1].Value = item.Produto.Grupo.Descricao;
-                dgv.Rows[n].Cells[2].Value = item.Produto.Descricao;
-                dgv.Rows[n].Cells[10].Value = item.Id;
+                dgv.Rows[n].Cells[0].Value = item.ProdutoSolicitacao.Produto.CodigoProtheus;
+                dgv.Rows[n].Cells[1].Value = item.ProdutoSolicitacao.Produto.Grupo.Descricao;
+                dgv.Rows[n].Cells[2].Value = item.ProdutoSolicitacao.Produto.Descricao;
+                dgv.Rows[n].Cells[4].Value = item.Quantidade;
+                dgv.Rows[n].Cells[3].Value = item.valor;
+                dgv.Rows[n].Cells[5].Value = item.Desconto;
+                dgv.Rows[n].Cells[6].Value = item.Ipi;
+                dgv.Rows[n].Cells[7].Value = item.Icms;
+                dgv.Rows[n].Cells[8].Value = item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)));
+                dgv.Rows[n].Cells[10].Value = item.ProdutoSolicitacoesId;
+                dgv.Rows[n].Cells[11].Value = item.Id;
             }
         }
         private void RealizaCalculoValoresFinais(DataGridViewCellEventArgs e, DataGridView dataGrid)
@@ -511,10 +520,9 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private async void AtualizaGridProdutos()
         {
-            List<ProdutoSolicitacao> produtoSolicitacoes = new List<ProdutoSolicitacao>();
-            produtoSolicitacoes = await HttpProdutoSolicitacoes.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
+            produtosCompras = await HttpProdutoSolicitacoes.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
             dgvProduto.Rows.Clear();
-            foreach (var item in produtoSolicitacoes)
+            foreach (var item in produtosCompras)
             {
                 int n = dgvProduto.Rows.Add();
                 dgvProduto.Rows[n].Cells[0].Value = item.Produto.CodigoProtheus;
@@ -553,6 +561,9 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     if (await HttpProdutoSolicitacoes.Delete(produtoSolicitacaoId, usuarioLogado.token))
                     {
                         AtualizaGridProdutos();
+                        PreencheGridProdutoCompra(dgvProdutoCompra1);
+                        PreencheGridProdutoCompra(dgvProdutoCompra2);
+                        PreencheGridProdutoCompra(dgvProdutoCompra3);
                     }
                     else
                     {
@@ -565,19 +576,21 @@ namespace OlimpiadaCompras.Telas.Avaliador
         {
             if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                produtosCompras = await HttpProdutoSolicitacoes.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
                 if (!orcamentoCadastrado1)
                 {
-                    PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra1);
                     await CriarOrcamentoDefault1();
-                    await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento1);
+                    if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento1)))
+                    {
+                        return;
+                    }
+                    PreencheGridProdutoCompra(dgvProdutoCompra1);
                 }
                 tabContainer.SelectTab(2);
                 ((Control)tabContainer.TabPages[1]).Enabled = false;
             }
         }
 
-        private async Task CriarProdutoPedidoOrcamentoDefault(TextBox txtIdOrcamento)
+        private async Task<bool> CriarProdutoPedidoOrcamentoDefault(TextBox txtIdOrcamento)
         {
             foreach (var item in produtosCompras)
             {
@@ -593,9 +606,10 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 if (produtoPedidoCriado == null)
                 {
                     MessageBox.Show("Error");
-                    return;
+                    return false;
                 }
             }
+            return true;
         }
 
         private async void btnProximo1_Click(object sender, EventArgs e)
@@ -610,8 +624,11 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         if (await UpdateOrcamento(orcamento))
                         {
                             await CriarOrcamentoDafault2();
-                            PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra2);
-                            await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento2);
+                            if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento2)))
+                            {
+                                return;
+                            }
+                            PreencheGridProdutoCompra(dgvProdutoCompra2);
                             tabContainer.SelectTab(3);
                             ((Control)tabContainer.TabPages[2]).Enabled = false;
                         }
@@ -642,8 +659,11 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         if (await UpdateOrcamento(orcamento))
                         {
                             await CriarOrcamentoDafault3();
-                            PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra3);
-                            await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento3);
+                            if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento3)))
+                            {
+                                return;
+                            }
+                            PreencheGridProdutoCompra(dgvProdutoCompra3);
                             tabContainer.SelectTab(4);
                             ((Control)tabContainer.TabPages[3]).Enabled = false;
                         }
