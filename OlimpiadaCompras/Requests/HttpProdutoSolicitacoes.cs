@@ -140,7 +140,8 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var response = await client.DeleteAsync($"{ConstantesProjeto.URL_BASE}/api/produtoSolicitacoes/{id}");
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                    var response = await client.DeleteAsync($"{ConstantesProjeto.URL_BASE}/api/ProdutoSolicitacoes/{id}");
                     if (response.IsSuccessStatusCode)
                     {
                         var produtoSolicitacaoStr = await response.Content.ReadAsStringAsync();

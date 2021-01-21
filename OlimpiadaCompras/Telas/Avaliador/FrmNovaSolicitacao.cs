@@ -23,19 +23,22 @@ namespace OlimpiadaCompras.Telas.Avaliador
         List<ProdutoSolicitacao> produtosCompras = new List<ProdutoSolicitacao>();
         List<double> totalIpiList = new List<double>();
         int acao;
+        private FrmAreaAvaliador frmAreaAvaliador;
         bool orcamentoCadastrado1 = false;
         bool orcamentoCadastrado2 = false;
         bool orcamentoCadastrado3 = false;
-        public FrmNovaSolicitacao(Usuario usuario)
+        public FrmNovaSolicitacao(Usuario usuario, FrmAreaAvaliador frmAreaAvaliador)
         {
             this.usuarioLogado = usuario;
+            this.frmAreaAvaliador = frmAreaAvaliador;
             InitializeComponent();
         }
-        public FrmNovaSolicitacao(Usuario usuario, long idSolicitacao, int acao)
+        public FrmNovaSolicitacao(Usuario usuario, long idSolicitacao, int acao, FrmAreaAvaliador frmAreaAvaliador)
         {
             this.usuarioLogado = usuario;
             this.idSolicitacao = idSolicitacao;
             this.acao = acao;
+            this.frmAreaAvaliador = frmAreaAvaliador;
             InitializeComponent();
         }
         private void FrmNovaSolicitacao_Load(object sender, EventArgs e)
@@ -47,7 +50,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
             if (idSolicitacao > 0 && acao == ConstantesProjeto.VISUALIZAR)
             {
                 PreencheDadosSolicitacao();
-
                 DisabilitaInputs();
             }
             else if (idSolicitacao > 0 && acao == ConstantesProjeto.SALVAR)
@@ -57,9 +59,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
             else if (idSolicitacao > 0 && acao == ConstantesProjeto.EDITAR)
             {
                 PreencheDadosSolicitacao();
-
-
-
             }
         }
         public async void PreencheCombobox(ComboBox cbo, string displayMember, string valueMember)
@@ -100,6 +99,18 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 ocupacaoSolicitacaoCompra.OcupacaoId = ocupacao.Id;
                 ocupacaoSolicitacaoCompra.SolicitacaoId = idSolicitacao;
                 ocupacoesSolicitacaoEditList.Add(ocupacaoSolicitacaoCompra);
+                cboEscola.SelectedValue = item.SolicitacaoCompra.Escola.Id;
+                txtResponsavelEntrega.Text = item.SolicitacaoCompra.ResponsavelEntrega;
+                txtJusticativa.Text = item.SolicitacaoCompra.Justificativa;
+                dtpDataSolicitacao.Value = item.SolicitacaoCompra.Data;
+                cboTipoCompra.SelectedValue = item.SolicitacaoCompra.TipoCompraId;
+                txtCep.Text = item.SolicitacaoCompra.Escola.Cep;
+                txtLogradouro.Text = item.SolicitacaoCompra.Escola.Logradouro;
+                txtBairro.Text = item.SolicitacaoCompra.Escola.Bairro;
+                txtNumero.Text = item.SolicitacaoCompra.Escola.Numero;
+                txtCidade.Text = item.SolicitacaoCompra.Escola.Cidade;
+                txtEstado.Text = item.SolicitacaoCompra.Escola.Estado;
+                txtIdSolicitacao.Text = item.SolicitacaoCompra.Id.ToString();
 
             }
             List<ProdutoSolicitacao> produtoSolicitacoes = await HttpProdutoSolicitacoes.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
@@ -123,6 +134,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 dgvProduto.Rows[n].Cells[2].Value = inputs.Produto.Descricao;
                 dgvProduto.Rows[n].Cells[3].Value = "Remover";
                 dgvProduto.Rows[n].Cells[4].Value = inputs.Produto.Id;
+                dgvProduto.Rows[n].Cells[6].Value = inputs.Id;
             }
             List<ProdutoPedidoOrcamento> produtoPedidoOrcamentos = await HttpProdutoPedidoOrcamentos.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
             List<Orcamento> orcamentos = await HttpOrcamentos.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
@@ -162,6 +174,9 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         ((TextBox)tabContainer.Controls.Find($"txtTotalProdutos{i + 1}", true)[0]).Text = orcamento.TotalProdutos.ToString();
                         ((TextBox)tabContainer.Controls.Find($"txtTotalIPI{i + 1}", true)[0]).Text = orcamento.TotalIpi.ToString();
                         ((TextBox)tabContainer.Controls.Find($"txtValorFinal{i + 1}", true)[0]).Text = orcamento.ValorTotal.ToString();
+                        ((TextBox)tabContainer.Controls.Find($"txtValorFrete{i + 1}", true)[0]).Text = orcamento.ValorFrete.ToString();
+                        ((TextBox)tabContainer.Controls.Find($"txtAnexarPdf{i + 1}", true)[0]).Text = orcamento.Anexo;
+                        ((TextBox)tabContainer.Controls.Find($"txtIdOrcamento{i + 1}", true)[0]).Text = orcamento.Id.ToString();
                         if (orcamento.FormaPagamento == "Crédito em conta")
                         {
                             ((ComboBox)tabContainer.Controls.Find($"cboFormaPagamento{i + 1}", true)[0]).SelectedIndex = 0;
@@ -170,12 +185,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         {
                             ((ComboBox)tabContainer.Controls.Find($"cboFormaPagamento{i + 1}", true)[0]).SelectedIndex = 1;
                         }
-                        ((TextBox)tabContainer.Controls.Find($"txtValorFrete{i + 1}", true)[0]).Text = orcamento.ValorFrete.ToString();
-                        ((TextBox)tabContainer.Controls.Find($"txtAnexarPdf{i + 1}", true)[0]).Text = orcamento.Anexo;
-                        ((TextBox)tabContainer.Controls.Find($"txtIdOrcamento{i + 1}", true)[0]).Text = orcamento.Id.ToString();
                     }
                 }
-
             }
         }
         private void DisabilitaInputs()
@@ -511,6 +522,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 dgvProduto.Rows[n].Cells[2].Value = item.Produto.Descricao;
                 dgvProduto.Rows[n].Cells[3].Value = "Remover";
                 dgvProduto.Rows[n].Cells[4].Value = item.Produto.Id;
+                dgvProduto.Rows[n].Cells[6].Value = item.Id;
             }
         }
 
@@ -533,13 +545,19 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private async void dgvProduto_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //implementar remoção do produtoSolicitacao
             if (dgvProduto.Columns[e.ColumnIndex].Name == "colRemover")
             {
-                long produtoId = (long)dgvProduto.Rows[e.RowIndex].Cells["colIdProduto"].Value;
+                long produtoSolicitacaoId = (long)dgvProduto.Rows[e.RowIndex].Cells["colProdutoSolicitacaoId"].Value;
                 if (MessageBox.Show("Tem certeza que deseja remover esse registro da lista?", "Remover registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    dgvProduto.Rows.RemoveAt(e.RowIndex);
+                    if (await HttpProdutoSolicitacoes.Delete(produtoSolicitacaoId, usuarioLogado.token))
+                    {
+                        AtualizaGridProdutos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao realizar exclusão, tente novamente mais tarde", "Erro ao tentar excluir", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -552,11 +570,34 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 {
                     PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra1);
                     await CriarOrcamentoDefault1();
+                    await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento1);
                 }
                 tabContainer.SelectTab(2);
                 ((Control)tabContainer.TabPages[1]).Enabled = false;
             }
         }
+
+        private async Task CriarProdutoPedidoOrcamentoDefault(TextBox txtIdOrcamento)
+        {
+            foreach (var item in produtosCompras)
+            {
+                ProdutoPedidoOrcamento produtoPedidoOrcamento = new ProdutoPedidoOrcamento();
+                produtoPedidoOrcamento.OrcamentoId = long.Parse(txtIdOrcamento.Text);
+                produtoPedidoOrcamento.ProdutoSolicitacoesId = item.Id;
+                produtoPedidoOrcamento.Quantidade = 0;
+                produtoPedidoOrcamento.valor = 0;
+                produtoPedidoOrcamento.Desconto = 0;
+                produtoPedidoOrcamento.Ipi = 0;
+                produtoPedidoOrcamento.Icms = 0;
+                var produtoPedidoCriado = await HttpProdutoPedidoOrcamentos.Create(produtoPedidoOrcamento, usuarioLogado.token);
+                if (produtoPedidoCriado == null)
+                {
+                    MessageBox.Show("Error");
+                    return;
+                }
+            }
+        }
+
         private async void btnProximo1_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -570,6 +611,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         {
                             await CriarOrcamentoDafault2();
                             PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra2);
+                            await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento2);
                             tabContainer.SelectTab(3);
                             ((Control)tabContainer.TabPages[2]).Enabled = false;
                         }
@@ -586,6 +628,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 }
             }
         }
+
+
         private async void btnProximo2_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -599,6 +643,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         {
                             await CriarOrcamentoDafault3();
                             PreencheGridProdutoCompra(produtosCompras, dgvProdutoCompra3);
+                            await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento3);
                             tabContainer.SelectTab(4);
                             ((Control)tabContainer.TabPages[3]).Enabled = false;
                         }
@@ -631,6 +676,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
                             "A coordenação irá analisar sua solicitação e irá dar um retorno assim que possível.",
                             "Finalizar processo de compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Dispose();
+                        frmAreaAvaliador.AtualizaGridSolicitacoesPendentes();
+                        frmAreaAvaliador.AtualizaGridSolicitacoesUsuario();
                     }
                 }
                 else
@@ -784,12 +831,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
             CalculaFrete((TextBox)sender, txtValorFinal3);
         }
 
-        private async void dgvProdutoCompra3_RowLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            await CriarProdutoPedidoOrcamento(e, 3);
-        }
 
-        private async Task CriarProdutoPedidoOrcamento(DataGridViewCellEventArgs e, int index)
+        private async Task EditarProdutoPedidoOrcamento(DataGridViewCellEventArgs e, int index)
         {
             ProdutoPedidoOrcamento produtoPedidoOrcamento = new ProdutoPedidoOrcamento();
             produtoPedidoOrcamento.OrcamentoId = long.Parse(((TextBox)tabContainer.Controls.Find("txtIdOrcamento" + index, true)[0]).Text);
@@ -799,25 +842,46 @@ namespace OlimpiadaCompras.Telas.Avaliador
             produtoPedidoOrcamento.Desconto = Convert.ToDouble(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colDesconto" + index].Value);
             produtoPedidoOrcamento.Ipi = Convert.ToDouble(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colIpi" + index].Value);
             produtoPedidoOrcamento.Icms = Convert.ToDouble(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colICMS" + index].Value);
-            var ProdutopedidoOrcamentoCriado = await HttpProdutoPedidoOrcamentos.Create(produtoPedidoOrcamento, usuarioLogado.token);
+            produtoPedidoOrcamento.Id = Convert.ToInt64(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colProdutoPedidoOrcamentoId" + index].Value);
+            var ProdutopedidoOrcamentoCriado = await HttpProdutoPedidoOrcamentos.Update(produtoPedidoOrcamento, produtoPedidoOrcamento.Id, usuarioLogado.token);
             if (ProdutopedidoOrcamentoCriado == null)
             {
                 MessageBox.Show("Deu pau");
                 return;
             }
+
         }
+
         private async void dgvProdutoCompra1_RowLeave(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvProdutoCompra1.Rows[e.RowIndex].Cells["colQuantidade1"].Value != null &&
-                dgvProdutoCompra1.Rows[e.RowIndex].Cells["colValor1"].Value != null)
+                dgvProdutoCompra1.Rows[e.RowIndex].Cells["colUnitario1"].Value != null)
             {
-                await CriarProdutoPedidoOrcamento(e, 1);
+                await EditarProdutoPedidoOrcamento(e, 1);
             }
         }
 
         private async void dgvProdutoCompra2_RowLeave(object sender, DataGridViewCellEventArgs e)
         {
-            await CriarProdutoPedidoOrcamento(e, 2);
+            if (dgvProdutoCompra2.Rows[e.RowIndex].Cells["colQuantidade2"].Value != null &&
+               dgvProdutoCompra2.Rows[e.RowIndex].Cells["colUnitario2"].Value != null)
+            {
+                await EditarProdutoPedidoOrcamento(e, 2);
+            }
+        }
+        private async void dgvProdutoCompra3_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvProdutoCompra3.Rows[e.RowIndex].Cells["colQuantidade3"].Value != null &&
+              dgvProdutoCompra3.Rows[e.RowIndex].Cells["colUnitario3"].Value != null)
+            {
+                await EditarProdutoPedidoOrcamento(e, 3);
+            }
+        }
+
+        private void FrmNovaSolicitacao_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmAreaAvaliador.AtualizaGridSolicitacoesPendentes();
+            frmAreaAvaliador.AtualizaGridSolicitacoesUsuario();
         }
     }
 }

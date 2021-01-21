@@ -32,7 +32,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
             AtualizaGridSolicitacoesPendentes();
         }
 
-        private async void AtualizaGridSolicitacoesUsuario()
+        public async void AtualizaGridSolicitacoesUsuario()
         {
             List<Acompanhamento> acompanhamentos = new List<Acompanhamento>();
             acompanhamentos = await HttpAcompanhamento.GetSolicitacaoAcompanhamento(usuarioLogado.token);
@@ -49,7 +49,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
             }
         }
 
-        private async void AtualizaGridSolicitacoesPendentes()
+        public async void AtualizaGridSolicitacoesPendentes()
         {
             List<Acompanhamento> acompanhamentos = new List<Acompanhamento>();
             acompanhamentos = await HttpAcompanhamento.GetSolicitacaoAcompanhamentoPendente(usuarioLogado.token);
@@ -69,7 +69,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
             if (idStatus == ConstantesProjeto.STATUS_PENDENTE_ALTERACAO)
             {
                 acoes = ConstantesProjeto.EDITAR;
-                FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado, idSolicitacao, acoes);
+                FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado, idSolicitacao, acoes, this);
                 form.ShowDialog();
             }
             else
@@ -81,7 +81,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private void btnNovaSolicitacao_Click(object sender, EventArgs e)
         {
-            FrmNovaSolicitacao frm = new FrmNovaSolicitacao(usuarioLogado);
+            FrmNovaSolicitacao frm = new FrmNovaSolicitacao(usuarioLogado, this);
             frm.ShowDialog();
         }
 
@@ -122,7 +122,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
             }
             btnEditar.Enabled = false;
             idSolicitacao = Convert.ToInt64(dgvSolicitacoesPendentes.Rows[e.RowIndex].Cells[0].Value);
-            FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado, idSolicitacao, acoes);
+            FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado, idSolicitacao, acoes, this);
             form.ShowDialog();
 
         }
@@ -131,7 +131,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
         {
             acoes = ConstantesProjeto.VISUALIZAR;
             idSolicitacao = Convert.ToInt64(dgvMinhasSolicitacoes.Rows[e.RowIndex].Cells[0].Value);
-            FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado, idSolicitacao, acoes);
+            FrmNovaSolicitacao form = new FrmNovaSolicitacao(usuarioLogado, idSolicitacao, acoes, this);
             form.ShowDialog();
         }
 

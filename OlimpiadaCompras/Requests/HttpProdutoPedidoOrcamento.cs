@@ -148,14 +148,14 @@ namespace OlimpiadaCompras.Requests
 
         }
 
-        public async static Task<bool> Delete(long idSolicitacao, long produtoId, long orcamentoId, string token)
+        public async static Task<bool> Delete(long id, string token)
         {
             try
             {
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.DeleteAsync($"{ConstantesProjeto.URL_BASE}/api/produtoPedidoOrcamento/{idSolicitacao}/{produtoId}/{orcamentoId}");
+                    var response = await client.DeleteAsync($"{ConstantesProjeto.URL_BASE}/api/produtoPedidoOrcamento/{id}");
                     if (response.IsSuccessStatusCode)
                     {
                         var result = await response.Content.ReadAsStringAsync();
