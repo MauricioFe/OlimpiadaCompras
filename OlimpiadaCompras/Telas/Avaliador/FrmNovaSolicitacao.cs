@@ -345,19 +345,18 @@ namespace OlimpiadaCompras.Telas.Avaliador
             acompanhamento.Date = DateTime.Now;
             return await HttpAcompanhamento.Create(acompanhamento, usuarioLogado.token);
         }
-        // Alterar consulta que traz todos os produtoPedidoOrcamento
-        private async void PreencheGridProdutoCompra(DataGridView dgv)
+        private async void PreencheGridProdutoCompra(DataGridView dgv, TextBox txtIdOrcamento)
         {
             List<ProdutoPedidoOrcamento> produtosCompras = await HttpProdutoPedidoOrcamentos.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
             dgv.Rows.Clear();
-            foreach (var item in produtosCompras)
+            foreach (var item in produtosCompras.FindAll(o => o.OrcamentoId == long.Parse(txtIdOrcamento.Text == "" ? "0" : txtIdOrcamento.Text)))
             {
                 int n = dgv.Rows.Add();
                 dgv.Rows[n].Cells[0].Value = item.ProdutoSolicitacao.Produto.CodigoProtheus;
                 dgv.Rows[n].Cells[1].Value = item.ProdutoSolicitacao.Produto.Grupo.Descricao;
                 dgv.Rows[n].Cells[2].Value = item.ProdutoSolicitacao.Produto.Descricao;
-                dgv.Rows[n].Cells[4].Value = item.Quantidade;
-                dgv.Rows[n].Cells[3].Value = item.valor;
+                dgv.Rows[n].Cells[3].Value = item.Quantidade;
+                dgv.Rows[n].Cells[4].Value = item.valor;
                 dgv.Rows[n].Cells[5].Value = item.Desconto;
                 dgv.Rows[n].Cells[6].Value = item.Ipi;
                 dgv.Rows[n].Cells[7].Value = item.Icms;
@@ -561,9 +560,9 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     if (await HttpProdutoSolicitacoes.Delete(produtoSolicitacaoId, usuarioLogado.token))
                     {
                         AtualizaGridProdutos();
-                        PreencheGridProdutoCompra(dgvProdutoCompra1);
-                        PreencheGridProdutoCompra(dgvProdutoCompra2);
-                        PreencheGridProdutoCompra(dgvProdutoCompra3);
+                        PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
+                        PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
+                        PreencheGridProdutoCompra(dgvProdutoCompra3, txtIdOrcamento3);
                     }
                     else
                     {
@@ -576,22 +575,32 @@ namespace OlimpiadaCompras.Telas.Avaliador
         {
             if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+
                 if (!orcamentoCadastrado1)
                 {
                     await CriarOrcamentoDefault1();
+                    PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
+                }
+                else
+                {
                     if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento1)))
                     {
+                        MessageBox.Show("Erro interno no servidor tente mais tarde novamente");
                         return;
                     }
-                    PreencheGridProdutoCompra(dgvProdutoCompra1);
+                    else
+                    {
+                        PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
+                    }
+                    tabContainer.SelectTab(2);
+                    ((Control)tabContainer.TabPages[1]).Enabled = false;
                 }
-                tabContainer.SelectTab(2);
-                ((Control)tabContainer.TabPages[1]).Enabled = false;
             }
         }
 
         private async Task<bool> CriarProdutoPedidoOrcamentoDefault(TextBox txtIdOrcamento)
         {
+            List<ProdutoSolicitacao> produtosCompras = await HttpProdutoSolicitacoes.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
             foreach (var item in produtosCompras)
             {
                 ProdutoPedidoOrcamento produtoPedidoOrcamento = new ProdutoPedidoOrcamento();
@@ -616,6 +625,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
         {
             if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+
                 if (!orcamentoCadastrado2)
                 {
                     if (!VerificaCamposVaziosOrcamentos(1))
@@ -628,7 +638,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                             {
                                 return;
                             }
-                            PreencheGridProdutoCompra(dgvProdutoCompra2);
+                            PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
                             tabContainer.SelectTab(3);
                             ((Control)tabContainer.TabPages[2]).Enabled = false;
                         }
@@ -640,6 +650,15 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 }
                 else
                 {
+                    if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento2)))
+                    {
+                        MessageBox.Show("Erro interno no servidor tente mais tarde novamente");
+                        return;
+                    }
+                    else
+                    {
+                        PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
+                    }
                     tabContainer.SelectTab(3);
                     ((Control)tabContainer.TabPages[2]).Enabled = false;
                 }
@@ -651,6 +670,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
         {
             if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+
                 if (!orcamentoCadastrado3)
                 {
                     if (!VerificaCamposVaziosOrcamentos(2))
@@ -663,7 +683,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                             {
                                 return;
                             }
-                            PreencheGridProdutoCompra(dgvProdutoCompra3);
+                            PreencheGridProdutoCompra(dgvProdutoCompra3, txtIdOrcamento3);
                             tabContainer.SelectTab(4);
                             ((Control)tabContainer.TabPages[3]).Enabled = false;
                         }
@@ -675,6 +695,15 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 }
                 else
                 {
+                    if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento3)))
+                    {
+                        MessageBox.Show("Erro interno no servidor tente mais tarde novamente");
+                        return;
+                    }
+                    else
+                    {
+                        PreencheGridProdutoCompra(dgvProdutoCompra3, txtIdOrcamento3);
+                    }
                     tabContainer.SelectTab(4);
                     ((Control)tabContainer.TabPages[3]).Enabled = false;
                 }
