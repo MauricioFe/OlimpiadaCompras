@@ -74,3 +74,11 @@ C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\Oli
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroOcupacoes.resources
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroTipoCompra.resources
 C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmModalSolicitacao.resources
+D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroEscolas.resources
+D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroGrupos.resources
+D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroOcupacoes.resources
+D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroProdutos.resources
+D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroTipoCompra.resources
+D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroUsuarios.resources
+D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.FrmAreaCoordenacao.resources
+D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmModalSolicitacao.resources

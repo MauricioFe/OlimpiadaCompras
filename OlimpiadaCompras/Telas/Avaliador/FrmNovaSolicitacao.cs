@@ -580,6 +580,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 {
                     await CriarOrcamentoDefault1();
                     PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
+                    tabContainer.SelectTab(2);
+                    ((Control)tabContainer.TabPages[1]).Enabled = false;
                 }
                 else
                 {
