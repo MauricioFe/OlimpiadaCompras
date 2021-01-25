@@ -261,7 +261,7 @@
             this.btnProximo.FlatAppearance.BorderSize = 0;
             this.btnProximo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximo.ForeColor = System.Drawing.Color.White;
-            this.btnProximo.Location = new System.Drawing.Point(901, 453);
+            this.btnProximo.Location = new System.Drawing.Point(898, 453);
             this.btnProximo.Name = "btnProximo";
             this.btnProximo.Size = new System.Drawing.Size(169, 34);
             this.btnProximo.TabIndex = 33;
@@ -594,7 +594,7 @@
             this.btnProximoProduto.FlatAppearance.BorderSize = 0;
             this.btnProximoProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximoProduto.ForeColor = System.Drawing.Color.White;
-            this.btnProximoProduto.Location = new System.Drawing.Point(884, 465);
+            this.btnProximoProduto.Location = new System.Drawing.Point(884, 461);
             this.btnProximoProduto.Name = "btnProximoProduto";
             this.btnProximoProduto.Size = new System.Drawing.Size(169, 34);
             this.btnProximoProduto.TabIndex = 34;
@@ -755,9 +755,9 @@
             // 
             this.orcamento1.Controls.Add(this.groupBox7);
             this.orcamento1.Controls.Add(this.groupBox4);
-            this.orcamento1.Location = new System.Drawing.Point(4, 29);
+            this.orcamento1.Location = new System.Drawing.Point(4, 22);
             this.orcamento1.Name = "orcamento1";
-            this.orcamento1.Size = new System.Drawing.Size(1073, 513);
+            this.orcamento1.Size = new System.Drawing.Size(1073, 520);
             this.orcamento1.TabIndex = 2;
             this.orcamento1.Text = "Orçamento 1";
             this.orcamento1.UseVisualStyleBackColor = true;
@@ -1097,10 +1097,10 @@
             // 
             this.orcamento2.Controls.Add(this.groupBox8);
             this.orcamento2.Controls.Add(this.groupBox5);
-            this.orcamento2.Location = new System.Drawing.Point(4, 29);
+            this.orcamento2.Location = new System.Drawing.Point(4, 22);
             this.orcamento2.Name = "orcamento2";
             this.orcamento2.Padding = new System.Windows.Forms.Padding(3);
-            this.orcamento2.Size = new System.Drawing.Size(1073, 513);
+            this.orcamento2.Size = new System.Drawing.Size(1073, 520);
             this.orcamento2.TabIndex = 3;
             this.orcamento2.Text = "Orçamento 2";
             this.orcamento2.UseVisualStyleBackColor = true;
@@ -1438,10 +1438,10 @@
             // 
             this.orcamento3.Controls.Add(this.groupBox9);
             this.orcamento3.Controls.Add(this.groupBox6);
-            this.orcamento3.Location = new System.Drawing.Point(4, 29);
+            this.orcamento3.Location = new System.Drawing.Point(4, 22);
             this.orcamento3.Name = "orcamento3";
             this.orcamento3.Padding = new System.Windows.Forms.Padding(3);
-            this.orcamento3.Size = new System.Drawing.Size(1073, 513);
+            this.orcamento3.Size = new System.Drawing.Size(1073, 520);
             this.orcamento3.TabIndex = 4;
             this.orcamento3.Text = "Orçamento 3";
             this.orcamento3.UseVisualStyleBackColor = true;

@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,11 +18,12 @@ namespace OlimpiadaCompras.Telas.Coordenacao
     {
         private Usuario usuarioLogado;
         private long idSolicitacao = 0;
-        int acao;
-        bool orcamentoCadastrado1 = false;
-        bool orcamentoCadastrado2 = false;
-        bool orcamentoCadastrado3 = false;
+        long idProduto;
+        long idGrupo;
+        List<ProdutoSolicitacao> produtosCompras = new List<ProdutoSolicitacao>();
         List<OcupacaoSolicitacaoCompra> ocupacoesSolicitacaoEditList = new List<OcupacaoSolicitacaoCompra>();
+        List<double> totalIpiList = new List<double>();
+
         public FrmGerenciarSolicitacaoCompra(Usuario usuario)
         {
             this.usuarioLogado = usuario;
@@ -204,18 +206,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 {
                     if (orcamento.Id == item.Orcamento.Id)
                     {
-                        if (i == 0)
-                        {
-                            orcamentoCadastrado1 = true;
-                        }
-                        if (i == 1)
-                        {
-                            orcamentoCadastrado2 = true;
-                        }
-                        if (i == 2)
-                        {
-                            orcamentoCadastrado3 = true;
-                        }
                         int row = ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows.Add();
                         ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[0].Value = item.ProdutoSolicitacao.Produto.CodigoProtheus;
                         ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[1].Value = item.ProdutoSolicitacao.Produto.Grupo.Descricao;
@@ -266,6 +256,350 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         {
             long escolaId = (long)((ComboBox)sender).SelectedValue;
             PreencheDadosEscola(escolaId);
+        }
+
+        private void btnProximo_Click(object sender, EventArgs e)
+        {
+            SalvarSolicitacao();
+        }
+        private async void SalvarSolicitacao()
+        {
+            if (!string.IsNullOrEmpty(txtResponsavelEntrega.Text) && !string.IsNullOrEmpty(txtJusticativa.Text))
+            {
+                SolicitacaoCompra solicitacao = new SolicitacaoCompra();
+                solicitacao.ResponsavelEntrega = txtResponsavelEntrega.Text;
+                solicitacao.Data = dtpDataSolicitacao.Value;
+                solicitacao.EscolaId = Convert.ToInt64(cboEscola.SelectedValue);
+                solicitacao.TipoCompraId = Convert.ToInt64(cboTipoCompra.SelectedValue);
+                solicitacao.Justificativa = txtJusticativa.Text;
+                if (dgvOcupacoes.Rows.Count >= 1)
+                {
+                    var solicitacaoEditada = await HttpSolicitacaoCompras.Update(solicitacao, Convert.ToInt64(txtIdSolicitacao.Text), usuarioLogado.token);
+                    if (solicitacaoEditada == null)
+                    {
+                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                    }
+                    else
+                    {
+
+                        for (int i = 0; i < dgvOcupacoes.Rows.Count; i++)
+                        {
+                            long ocupacaoId = 0;
+                            if (ocupacoesSolicitacaoEditList.Count > i)
+                                ocupacaoId = ocupacoesSolicitacaoEditList[i].OcupacaoId;
+                            else
+                                ocupacaoId = (long)dgvOcupacoes.Rows[i].Cells["colIdOcupacao"].Value;
+                            long solicitacaoId = Convert.ToInt64(txtIdSolicitacao.Text);
+                            OcupacaoSolicitacaoCompra ocupacaoSolicitacao = new OcupacaoSolicitacaoCompra();
+                            ocupacaoSolicitacao.OcupacaoId = (long)dgvOcupacoes.Rows[i].Cells["colIdOcupacao"].Value;
+                            ocupacaoSolicitacao.SolicitacaoId = solicitacaoId;
+                            var ocupacaoSolicitacaoEditada = await HttpSolicitacaoOcupacoes.Update(ocupacaoSolicitacao, ocupacaoId, solicitacaoId, usuarioLogado.token);
+                            if (ocupacaoSolicitacaoEditada == null)
+                            {
+                                await HttpSolicitacaoOcupacoes.Create(ocupacaoSolicitacao, usuarioLogado.token);
+                            }
+                        }
+                        tabContainer.SelectTab("produto");
+                        ((Control)tabContainer.TabPages["dadosGerais"]).Enabled = false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Adicione ao menos uma ocupação na lista");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Preencha todos os campos");
+            }
+        }
+        private async void AtualizaGridProdutos()
+        {
+            produtosCompras = await HttpProdutoSolicitacoes.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
+            dgvProduto.Rows.Clear();
+            foreach (var item in produtosCompras)
+            {
+                int n = dgvProduto.Rows.Add();
+                dgvProduto.Rows[n].Cells[0].Value = item.Produto.CodigoProtheus;
+                dgvProduto.Rows[n].Cells[1].Value = item.Produto.Grupo.Descricao;
+                dgvProduto.Rows[n].Cells[2].Value = item.Produto.Descricao;
+                dgvProduto.Rows[n].Cells[3].Value = "Remover";
+                dgvProduto.Rows[n].Cells[4].Value = item.Produto.Id;
+                dgvProduto.Rows[n].Cells[6].Value = item.Id;
+            }
+        }
+
+        private async void CadastrarProdutoSolicitacao()
+        {
+            ProdutoSolicitacao produtoSolicitacao = new ProdutoSolicitacao();
+            produtoSolicitacao.SolicitacaoComprasId = idSolicitacao;
+            produtoSolicitacao.ProdutosId = idProduto;
+            var produtoSolicitacaoCriado = await HttpProdutoSolicitacoes.Create(produtoSolicitacao, usuarioLogado.token);
+            if (produtoSolicitacaoCriado != null)
+            {
+                AtualizaGridProdutos();
+            }
+            else
+            {
+                MessageBox.Show("Erro ao salvar produto na solicitação de compras");
+            }
+
+        }
+
+        private async void txtCodigoProtheusProduto_TextChanged(object sender, EventArgs e)
+        {
+            var codigoProduto = ((TextBox)sender).Text;
+            Regex regex = new Regex("^[0-9]*$");
+            if (!string.IsNullOrEmpty(codigoProduto))
+            {
+                if (regex.IsMatch(codigoProduto))
+                {
+                    Produto produto = await HttpProdutos.GetProdutosByCodigoProtheus(Convert.ToInt64(codigoProduto), usuarioLogado.token);
+                    if (produto != null)
+                    {
+                        txtGrupo.Text = produto.Grupo.Descricao;
+                        txtDescricao.Text = produto.Descricao;
+                        idProduto = produto.Id;
+                        idGrupo = produto.GrupoId;
+                    }
+                    else
+                    {
+                        txtGrupo.Text = "";
+                        txtDescricao.Text = "";
+                        idProduto = 0;
+                    }
+                }
+            }
+        }
+
+        private void btnAdicionarProduto_Click(object sender, EventArgs e)
+        {
+            CadastrarProdutoSolicitacao();
+        }
+
+        private async void btnProximoProduto_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+
+                if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento1)))
+                {
+                    MessageBox.Show("Erro interno no servidor tente mais tarde novamente");
+                    return;
+                }
+                else
+                {
+                    PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
+                }
+                tabContainer.SelectTab(2);
+                ((Control)tabContainer.TabPages[1]).Enabled = false;
+
+            }
+        }
+        private async Task<bool> CriarProdutoPedidoOrcamentoDefault(TextBox txtIdOrcamento)
+        {
+            List<ProdutoSolicitacao> produtosCompras = await HttpProdutoSolicitacoes.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
+            foreach (var item in produtosCompras)
+            {
+                ProdutoPedidoOrcamento produtoPedidoOrcamento = new ProdutoPedidoOrcamento();
+                produtoPedidoOrcamento.OrcamentoId = long.Parse(txtIdOrcamento.Text);
+                produtoPedidoOrcamento.ProdutoSolicitacoesId = item.Id;
+                produtoPedidoOrcamento.Quantidade = 0;
+                produtoPedidoOrcamento.valor = 0;
+                produtoPedidoOrcamento.Desconto = 0;
+                produtoPedidoOrcamento.Ipi = 0;
+                produtoPedidoOrcamento.Icms = 0;
+                var produtoPedidoCriado = await HttpProdutoPedidoOrcamentos.Create(produtoPedidoOrcamento, usuarioLogado.token);
+                if (produtoPedidoCriado == null)
+                {
+                    MessageBox.Show("Error");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private async void dgvProduto_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvProduto.Columns[e.ColumnIndex].Name == "colRemover")
+            {
+                long produtoSolicitacaoId = (long)dgvProduto.Rows[e.RowIndex].Cells["colProdutoSolicitacaoId"].Value;
+                if (MessageBox.Show("Tem certeza que deseja remover esse registro da lista?", "Remover registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (await HttpProdutoSolicitacoes.Delete(produtoSolicitacaoId, usuarioLogado.token))
+                    {
+                        AtualizaGridProdutos();
+                        PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
+                        PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
+                        PreencheGridProdutoCompra(dgvProdutoCompra3, txtIdOrcamento3);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao realizar exclusão, tente novamente mais tarde", "Erro ao tentar excluir", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+        private async void PreencheGridProdutoCompra(DataGridView dgv, TextBox txtIdOrcamento)
+        {
+            List<ProdutoPedidoOrcamento> produtosCompras = await HttpProdutoPedidoOrcamentos.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
+            dgv.Rows.Clear();
+            foreach (var item in produtosCompras.FindAll(o => o.OrcamentoId == long.Parse(txtIdOrcamento.Text == "" ? "0" : txtIdOrcamento.Text)))
+            {
+                int n = dgv.Rows.Add();
+                dgv.Rows[n].Cells[0].Value = item.ProdutoSolicitacao.Produto.CodigoProtheus;
+                dgv.Rows[n].Cells[1].Value = item.ProdutoSolicitacao.Produto.Grupo.Descricao;
+                dgv.Rows[n].Cells[2].Value = item.ProdutoSolicitacao.Produto.Descricao;
+                dgv.Rows[n].Cells[3].Value = item.Quantidade;
+                dgv.Rows[n].Cells[4].Value = item.valor;
+                dgv.Rows[n].Cells[5].Value = item.Desconto;
+                dgv.Rows[n].Cells[6].Value = item.Ipi;
+                dgv.Rows[n].Cells[7].Value = item.Icms;
+                dgv.Rows[n].Cells[8].Value = item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)));
+                dgv.Rows[n].Cells[10].Value = item.ProdutoSolicitacoesId;
+                dgv.Rows[n].Cells[11].Value = item.Id;
+            }
+        }
+        private void RealizaCalculoValoresFinais(DataGridViewCellEventArgs e, DataGridView dataGrid)
+        {
+            try
+            {
+                totalIpiList.Clear();
+                int quantidade = Convert.ToInt32(dataGrid.Rows[e.RowIndex].Cells[3].Value);
+                double valorUnitario = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[4].Value);
+                double desconto = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[5].Value);
+                double total = quantidade * (valorUnitario - (valorUnitario * (desconto / 100)));
+                if (dataGrid.Rows[e.RowIndex].Cells[3].Value != null &&
+                    dataGrid.Rows[e.RowIndex].Cells[4].Value != null)
+                {
+                    dataGrid.Rows[e.RowIndex].Cells[8].Value = total;
+                }
+                if (dataGrid.Columns[e.ColumnIndex].Index == 6)
+                {
+                    double ipi = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[6].Value);
+                    double totalIpi = (ipi / 100) * valorUnitario;
+                    totalIpiList.Add(totalIpi);
+                }
+            }
+            catch (Exception)
+            {
+
+
+            }
+
+        }
+        private void PreencheValoresCalculados(DataGridView dataGrid, List<Double> totalIpiList, TextBox txtTotalProdutos, TextBox txtTotalIpi, TextBox txtValorFinal)
+        {
+            double valorTotalProduto = dataGrid.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDouble(t.Cells[8].Value));
+            double valorTotalIpi = totalIpiList.Sum(item => item);
+            txtTotalProdutos.Text = valorTotalProduto.ToString("F2");
+            txtTotalIpi.Text = valorTotalIpi.ToString("F2");
+            txtValorFinal.Text = (valorTotalProduto + valorTotalIpi).ToString("F2");
+        }
+        private void CalculaFrete(TextBox txtFrete, TextBox txtValorFinal)
+        {
+            double valorFinal = 0;
+            if (valorFinal == 0)
+            {
+                valorFinal = double.Parse(txtValorFinal.Text);
+            }
+            if (!string.IsNullOrEmpty(txtFrete.Text))
+            {
+                double frete = double.Parse(txtFrete.Text);
+                double resultado = valorFinal + frete;
+                txtValorFinal1.Text = (resultado).ToString("F2");
+            }
+        }
+        private void AnexarOrcamento(TextBox txtAnexarpdf)
+        {
+            openFileDialog1.Filter = "pdf files | *.pdf";
+            openFileDialog1.InitialDirectory = $@"{Environment.SpecialFolder.Desktop}";
+            openFileDialog1.FileName = "orcamento";
+            openFileDialog1.Title = "Selecione o orçamento no formato pdf";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                txtAnexarpdf.Text = openFileDialog1.FileName;
+            }
+        }
+
+        private async Task CriarOrcamentoDefault1()
+        {
+            Orcamento orcamento = new Orcamento();
+            orcamento.Anexo = null;
+            orcamento.Fornecedor = "Fornecerdor1";
+            orcamento.Data = dtpDataOrcamento1.Value;
+            orcamento.Cnpj = "0000000000001";
+            orcamento.FormaPagamento = "formaPagamento1";
+            orcamento.TotalProdutos = 0;
+            orcamento.TotalIpi = 0;
+            orcamento.ValorFrete = 0;
+            orcamento.ValorTotal = 0;
+            var orcamentoCriado = await HttpOrcamentos.Create(orcamento, usuarioLogado.token);
+            if (orcamentoCriado == null)
+            {
+                MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+            }
+            else
+                txtIdOrcamento1.Text = (await HttpOrcamentos.GetAll(usuarioLogado.token)).Last().Id.ToString();
+        }
+        private async Task CriarOrcamentoDafault2()
+        {
+            Orcamento orcamento = new Orcamento();
+            orcamento.Anexo = null;
+            orcamento.Fornecedor = "Fornecerdor2";
+            orcamento.Data = dtpDataOrcamento1.Value;
+            orcamento.Cnpj = "0000000000002";
+            orcamento.FormaPagamento = "formaPagamento2";
+            orcamento.TotalProdutos = 0;
+            orcamento.TotalIpi = 0;
+            orcamento.ValorFrete = 0;
+            orcamento.ValorTotal = 0;
+            var orcamentoCriado = await HttpOrcamentos.Create(orcamento, usuarioLogado.token);
+            if (orcamentoCriado == null)
+            {
+                MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+            }
+            else
+                txtIdOrcamento2.Text = (await HttpOrcamentos.GetAll(usuarioLogado.token)).Last().Id.ToString();
+        }
+        private async Task CriarOrcamentoDafault3()
+        {
+            Orcamento orcamento = new Orcamento();
+            orcamento.Anexo = null;
+            orcamento.Fornecedor = "Fornecerdor3";
+            orcamento.Data = dtpDataOrcamento1.Value;
+            orcamento.Cnpj = "0000000000003";
+            orcamento.FormaPagamento = "formaPagamento3";
+            orcamento.TotalProdutos = 0;
+            orcamento.TotalIpi = 0;
+            orcamento.ValorFrete = 0;
+            orcamento.ValorTotal = 0;
+            var orcamentoCriado = await HttpOrcamentos.Create(orcamento, usuarioLogado.token);
+            if (orcamentoCriado == null)
+            {
+                MessageBox.Show(ConstantesProjeto.MENSAGEM_ERRO_SERVIDOR);
+            }
+            else
+                txtIdOrcamento3.Text = (await HttpOrcamentos.GetAll(usuarioLogado.token)).Last().Id.ToString();
+        }
+
+        private async void btnProximo1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento2)))
+                {
+                    MessageBox.Show("Erro interno no servidor tente mais tarde novamente");
+                    return;
+                }
+                else
+                {
+                    PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
+                }
+                tabContainer.SelectTab(3);
+                ((Control)tabContainer.TabPages[2]).Enabled = false;
+            }
+
         }
     }
 }

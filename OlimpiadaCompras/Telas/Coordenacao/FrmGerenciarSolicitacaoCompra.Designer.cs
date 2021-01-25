@@ -194,6 +194,7 @@
             this.colTotal3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewLinkColumn2 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.colProdutoSolicitacaoId3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabContainer.SuspendLayout();
             this.dadosGerais.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -336,12 +337,13 @@
             this.btnProximo.FlatAppearance.BorderSize = 0;
             this.btnProximo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximo.ForeColor = System.Drawing.Color.White;
-            this.btnProximo.Location = new System.Drawing.Point(898, 453);
+            this.btnProximo.Location = new System.Drawing.Point(898, 446);
             this.btnProximo.Name = "btnProximo";
             this.btnProximo.Size = new System.Drawing.Size(169, 34);
             this.btnProximo.TabIndex = 33;
             this.btnProximo.Text = "Próximo";
             this.btnProximo.UseVisualStyleBackColor = false;
+            this.btnProximo.Click += new System.EventHandler(this.btnProximo_Click);
             // 
             // groupBox3
             // 
@@ -671,6 +673,7 @@
             this.btnProximoProduto.TabIndex = 34;
             this.btnProximoProduto.Text = "Próximo";
             this.btnProximoProduto.UseVisualStyleBackColor = false;
+            this.btnProximoProduto.Click += new System.EventHandler(this.btnProximoProduto_Click);
             // 
             // dgvProduto
             // 
@@ -690,6 +693,7 @@
             this.dgvProduto.ReadOnly = true;
             this.dgvProduto.Size = new System.Drawing.Size(1030, 233);
             this.dgvProduto.TabIndex = 29;
+            this.dgvProduto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduto_CellContentClick);
             // 
             // colCodigoProtheusProduto
             // 
@@ -766,6 +770,7 @@
             this.btnAdicionarProduto.TabIndex = 33;
             this.btnAdicionarProduto.Text = "Adicionar Produto";
             this.btnAdicionarProduto.UseVisualStyleBackColor = false;
+            this.btnAdicionarProduto.Click += new System.EventHandler(this.btnAdicionarProduto_Click);
             // 
             // txtCodigoProtheusProduto
             // 
@@ -773,6 +778,7 @@
             this.txtCodigoProtheusProduto.Name = "txtCodigoProtheusProduto";
             this.txtCodigoProtheusProduto.Size = new System.Drawing.Size(408, 26);
             this.txtCodigoProtheusProduto.TabIndex = 0;
+            this.txtCodigoProtheusProduto.TextChanged += new System.EventHandler(this.txtCodigoProtheusProduto_TextChanged);
             // 
             // label2
             // 
@@ -881,6 +887,7 @@
             this.btnProximo1.TabIndex = 63;
             this.btnProximo1.Text = "Próximo";
             this.btnProximo1.UseVisualStyleBackColor = false;
+            this.btnProximo1.Click += new System.EventHandler(this.btnProximo1_Click);
             // 
             // txtValorFrete1
             // 
@@ -1139,10 +1146,10 @@
             // 
             this.orcamento2.Controls.Add(this.groupBox8);
             this.orcamento2.Controls.Add(this.groupBox5);
-            this.orcamento2.Location = new System.Drawing.Point(4, 29);
+            this.orcamento2.Location = new System.Drawing.Point(4, 22);
             this.orcamento2.Name = "orcamento2";
             this.orcamento2.Padding = new System.Windows.Forms.Padding(3);
-            this.orcamento2.Size = new System.Drawing.Size(1073, 513);
+            this.orcamento2.Size = new System.Drawing.Size(1073, 520);
             this.orcamento2.TabIndex = 3;
             this.orcamento2.Text = "Orçamento 2";
             this.orcamento2.UseVisualStyleBackColor = true;
@@ -1463,10 +1470,10 @@
             // 
             this.orcamento3.Controls.Add(this.groupBox9);
             this.orcamento3.Controls.Add(this.groupBox6);
-            this.orcamento3.Location = new System.Drawing.Point(4, 29);
+            this.orcamento3.Location = new System.Drawing.Point(4, 22);
             this.orcamento3.Name = "orcamento3";
             this.orcamento3.Padding = new System.Windows.Forms.Padding(3);
-            this.orcamento3.Size = new System.Drawing.Size(1073, 513);
+            this.orcamento3.Size = new System.Drawing.Size(1073, 520);
             this.orcamento3.TabIndex = 4;
             this.orcamento3.Text = "Orçamento 3";
             this.orcamento3.UseVisualStyleBackColor = true;
@@ -1783,6 +1790,10 @@
             this.colProdutoSolicitacaoId3.Name = "colProdutoSolicitacaoId3";
             this.colProdutoSolicitacaoId3.Visible = false;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // FrmGerenciarSolicitacaoCompra
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2003,5 +2014,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotal3;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colProdutoSolicitacaoId3;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
