@@ -391,7 +391,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 }
                 else
                 {
-                    PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
+                    await PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
                 }
                 tabContainer.SelectTab(2);
                 ((Control)tabContainer.TabPages[1]).Enabled = false;
@@ -431,9 +431,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                     if (await HttpProdutoSolicitacoes.Delete(produtoSolicitacaoId, usuarioLogado.token))
                     {
                         AtualizaGridProdutos();
-                        PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
-                        PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
-                        PreencheGridProdutoCompra(dgvProdutoCompra3, txtIdOrcamento3);
+                        await PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
+                        await PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
+                        await PreencheGridProdutoCompra(dgvProdutoCompra3, txtIdOrcamento3);
                     }
                     else
                     {
@@ -442,7 +442,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 }
             }
         }
-        private async void PreencheGridProdutoCompra(DataGridView dgv, TextBox txtIdOrcamento)
+        private async Task PreencheGridProdutoCompra(DataGridView dgv, TextBox txtIdOrcamento)
         {
             List<ProdutoPedidoOrcamento> produtosCompras = await HttpProdutoPedidoOrcamentos.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
             dgv.Rows.Clear();
@@ -537,7 +537,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 }
                 else
                 {
-                    PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
+                    await PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
                 }
                 tabContainer.SelectTab(3);
                 ((Control)tabContainer.TabPages[2]).Enabled = false;
@@ -558,7 +558,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 }
                 else
                 {
-                    PreencheGridProdutoCompra(dgvProdutoCompra3, txtIdOrcamento3);
+                    await PreencheGridProdutoCompra(dgvProdutoCompra3, txtIdOrcamento3);
                 }
                 tabContainer.SelectTab(4);
                 ((Control)tabContainer.TabPages[3]).Enabled = false;
