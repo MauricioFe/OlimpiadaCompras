@@ -178,6 +178,12 @@
     <Compile Include="Telas\Avaliador\FrmEditarUsuarios.Designer.cs">
       <DependentUpon>FrmEditarUsuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Telas\Coordenacao\FrmPrecadastroEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Coordenacao\FrmPrecadastroEmail.Designer.cs">
+      <DependentUpon>FrmPrecadastroEmail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\Coordenacao\FrmRelatorios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Coordenacao\FrmModalSolicitacao.resx">
       <DependentUpon>FrmModalSolicitacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Coordenacao\FrmPrecadastroEmail.resx">
+      <DependentUpon>FrmPrecadastroEmail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>

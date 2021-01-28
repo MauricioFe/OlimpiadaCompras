@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.btnSolicitarAlteracao = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnAprovar = new System.Windows.Forms.Button();
@@ -215,21 +214,6 @@
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutoCompra3)).BeginInit();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(166)))), ((int)(((byte)(90)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(185, 558);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 34);
-            this.button1.TabIndex = 38;
-            this.button1.Text = "Salvar";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Visible = false;
             // 
             // btnSolicitarAlteracao
             // 
@@ -1789,7 +1773,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1083, 600);
             this.Controls.Add(this.tabContainer);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSolicitarAlteracao);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnAprovar);
@@ -1837,7 +1820,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnSolicitarAlteracao;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnAprovar;
