@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OlimpiadaCompras.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +13,13 @@ namespace OlimpiadaCompras.Telas.Coordenacao
 {
     public partial class FrmPrecadastroEmail : Form
     {
-        public FrmPrecadastroEmail()
+        private Usuario usuarioLogado;
+        private long idSolicitacao;
+
+        public FrmPrecadastroEmail(Usuario usuario, long idSolicitacao)
         {
+            this.usuarioLogado = usuario;
+            this.idSolicitacao = idSolicitacao;
             InitializeComponent();
         }
     }

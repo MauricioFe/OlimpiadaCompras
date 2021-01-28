@@ -78,9 +78,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(139, 106);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(178, 20);
+            this.label4.Size = new System.Drawing.Size(114, 20);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Unidade Organizacional";
+            this.label4.Text = "Conta Contábil";
             // 
             // txtUnidadeOrganizacional
             // 
@@ -94,9 +94,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(459, 106);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 20);
+            this.label5.Size = new System.Drawing.Size(59, 20);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Classe de valor";
+            this.label5.Text = "Projeto";
             // 
             // txtClasseValor
             // 

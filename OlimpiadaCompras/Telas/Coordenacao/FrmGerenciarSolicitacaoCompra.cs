@@ -76,11 +76,11 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             form.ShowDialog();
         }
 
-        private async void btnAprovar_Click(object sender, EventArgs e)
+        private void btnAprovar_Click(object sender, EventArgs e)
         {
-            Acompanhamento acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
-            FrmModalSolicitacao form = new FrmModalSolicitacao(ConstantesProjeto.SOLICITACAO_APROVADA, acompanhamento, usuarioLogado);
+            FrmPrecadastroEmail form = new FrmPrecadastroEmail(usuarioLogado, idSolicitacao);
             form.ShowDialog();
+            this.Dispose();
         }
 
         private async void btnReprvar_Click(object sender, EventArgs e)
@@ -145,13 +145,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                     }
                 }
             }
-            if (estaHabilitado)
-            {
-                button1.Visible = true;
-                btnSolicitarAlteracao.Location = new Point(btnSolicitarAlteracao.Location.X + 173, btnSolicitarAlteracao.Location.Y);
-            }
-
-
         }
 
         private async void PreencheDadosSolicitacao()

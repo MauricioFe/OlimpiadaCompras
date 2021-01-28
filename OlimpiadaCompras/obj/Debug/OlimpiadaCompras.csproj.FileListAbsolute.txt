@@ -82,3 +82,4 @@ D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\Olimpiad
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroUsuarios.resources
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.FrmAreaCoordenacao.resources
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmModalSolicitacao.resources
+D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmPrecadastroEmail.resources
