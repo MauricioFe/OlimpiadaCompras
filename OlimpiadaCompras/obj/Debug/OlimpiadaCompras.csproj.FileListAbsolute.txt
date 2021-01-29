@@ -23,3 +23,4 @@ D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\Olimpiad
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.CoreCompileInputs.cache
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.exe
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.pdb
+D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmGerenciarSolicitacaoCompra.resources

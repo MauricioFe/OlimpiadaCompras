@@ -234,6 +234,9 @@
     <EmbeddedResource Include="Telas\Coordenacao\FrmEmailAutorizacao.resx">
       <DependentUpon>FrmEmailAutorizacao.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Coordenacao\FrmGerenciarSolicitacaoCompra.resx">
+      <DependentUpon>FrmGerenciarSolicitacaoCompra.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Telas\Coordenacao\FrmModalSolicitacao.resx">
       <DependentUpon>FrmModalSolicitacao.cs</DependentUpon>
     </EmbeddedResource>
