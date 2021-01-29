@@ -11,7 +11,7 @@ namespace OlimpiadaCompras.Requests
 {
     public static class HttpEmail
     {
-        public static async Task EnviarEmail(EmailModel data, long idSolicitacao, string token)
+        public static async Task<bool> EnviarEmail(EmailModel data, long idSolicitacao, string token)
         {
             try
             {
@@ -20,11 +20,16 @@ namespace OlimpiadaCompras.Requests
                     client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
                     var json = new JavaScriptSerializer().Serialize(data);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/enviarEmail/{idSolicitacao}", content);
+                    if (response.IsSuccessStatusCode)
+                        return true;
+                    return false;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                return false;
             }
         }
     }

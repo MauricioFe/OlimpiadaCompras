@@ -155,9 +155,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                         ((TextBox)tabContainer.Controls.Find($"txtFornecedor{i + 1}", true)[0]).Text = orcamento.Fornecedor;
                         ((TextBox)tabContainer.Controls.Find($"txtCnpj{i + 1}", true)[0]).Text = orcamento.Cnpj;
                         ((DateTimePicker)tabContainer.Controls.Find($"dtpDataOrcamento{i + 1}", true)[0]).Value = orcamento.Data;
-                        ((TextBox)tabContainer.Controls.Find($"txtTotalProdutos{i + 1}", true)[0]).Text = orcamento.TotalProdutos.ToString();
-                        ((TextBox)tabContainer.Controls.Find($"txtTotalIPI{i + 1}", true)[0]).Text = orcamento.TotalIpi.ToString();
-                        ((TextBox)tabContainer.Controls.Find($"txtValorFinal{i + 1}", true)[0]).Text = orcamento.ValorTotal.ToString();
+                        ((TextBox)tabContainer.Controls.Find($"txtTotalProdutos{i + 1}", true)[0]).Text = orcamento.TotalProdutos.ToString("F2");
+                        ((TextBox)tabContainer.Controls.Find($"txtTotalIPI{i + 1}", true)[0]).Text = orcamento.TotalIpi.ToString("F2");
+                        ((TextBox)tabContainer.Controls.Find($"txtValorFinal{i + 1}", true)[0]).Text = orcamento.ValorTotal.ToString("F2");
                         if (orcamento.FormaPagamento == "Crédito em conta")
                         {
                             ((ComboBox)tabContainer.Controls.Find($"cboFormaPagamento{i + 1}", true)[0]).SelectedIndex = 0;
@@ -166,7 +166,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                         {
                             ((ComboBox)tabContainer.Controls.Find($"cboFormaPagamento{i + 1}", true)[0]).SelectedIndex = 1;
                         }
-                        ((TextBox)tabContainer.Controls.Find($"txtValorFrete{i + 1}", true)[0]).Text = orcamento.ValorFrete.ToString();
+                        ((TextBox)tabContainer.Controls.Find($"txtValorFrete{i + 1}", true)[0]).Text = orcamento.ValorFrete.ToString("F2");
                         ((TextBox)tabContainer.Controls.Find($"txtAnexarPdf{i + 1}", true)[0]).Text = orcamento.Anexo;
                         ((TextBox)tabContainer.Controls.Find($"txtIdOrcamento{i + 1}", true)[0]).Text = orcamento.Id.ToString();
                     }
@@ -395,9 +395,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                     if (await HttpProdutoSolicitacoes.Delete(produtoSolicitacaoId, usuarioLogado.token))
                     {
                         AtualizaGridProdutos();
-                        PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
-                        PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
-                        PreencheGridProdutoCompra(dgvProdutoCompra3, txtIdOrcamento3);
+                        await PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
+                        await PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
+                        await PreencheGridProdutoCompra(dgvProdutoCompra3, txtIdOrcamento3);
                     }
                     else
                     {
@@ -410,7 +410,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         {
             CadastrarProdutoSolicitacao();
         }
-        private async void PreencheGridProdutoCompra(DataGridView dgv, TextBox txtIdOrcamento)
+        private async Task PreencheGridProdutoCompra(DataGridView dgv, TextBox txtIdOrcamento)
         {
             List<ProdutoPedidoOrcamento> produtosCompras = await HttpProdutoPedidoOrcamentos.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
             dgv.Rows.Clear();
@@ -461,7 +461,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             }
             else
             {
-                PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
+                await PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
             }
             tabContainer.SelectTab(2);
             ((Control)tabContainer.TabPages[1]).Enabled = false;
@@ -623,7 +623,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                         }
                         else
                         {
-                            PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
+                            await PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
                         }
                         tabContainer.SelectTab(3);
                         ((Control)tabContainer.TabPages[2]).Enabled = false;
@@ -725,7 +725,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                     Orcamento orcamento = PreencheObjetoDosInputs(3);
                     if (await UpdateOrcamento(orcamento))
                     {
-                          var acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
+                        var acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
                         acompanhamento.StatusId = 1;
                         await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
                         MessageBox.Show("Solicitação de compras editada com sucesso",

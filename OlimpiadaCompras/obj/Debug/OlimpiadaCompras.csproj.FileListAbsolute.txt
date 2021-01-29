@@ -49,3 +49,4 @@ D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompra
 D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.CoreCompileInputs.cache
 D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.exe
 D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.pdb
+D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csprojAssemblyReference.cache
