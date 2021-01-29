@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -227,6 +228,241 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             Acompanhamento acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
             FrmModalSolicitacao form = new FrmModalSolicitacao(ConstantesProjeto.SOLICITACAO_REPROVADA, acompanhamento, usuarioLogado);
             form.ShowDialog();
+        }
+
+        private void FrmGerenciarSolicitacaoCompra_Load(object sender, EventArgs e)
+        {
+            PreencheCombobox(cboEscola, "Nome", "Id");
+            PreencheCombobox(cboOcupacao, "Nome", "Id");
+            PreencheCombobox(cboTipoCompra, "Descricao", "Id");
+            PreencheDadosEscola(1);
+            if (idSolicitacao > 0)
+            {
+                PreencheDadosSolicitacao();
+            }
+        }
+
+        private void cboEscola_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            long escolaId = (long)((ComboBox)sender).SelectedValue;
+            PreencheDadosEscola(escolaId);
+        }
+        private async void btnAdicionarOcupacao_Click(object sender, EventArgs e)
+        {
+            long ocupacaoId = (long)cboOcupacao.SelectedValue;
+            Ocupacao ocupacao = await HttpOcupacaos.GetOcupacaoById(ocupacaoId, usuarioLogado.token);
+            dgvOcupacoes.Rows.Add(ocupacao.Numero, ocupacao.Nome, "Remove", ocupacao.Id);
+        }
+        private async void dgvOcupacoes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvOcupacoes.Columns[e.ColumnIndex].Name == "colRemoveOcupacao")
+            {
+                if (MessageBox.Show("Tem certeza que deseja remover esse registro do banco de dados?", "Remover registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (await HttpSolicitacaoOcupacoes.Delete((long)dgvOcupacoes.Rows[e.RowIndex].Cells[3].Value, idSolicitacao, usuarioLogado.token))
+                    {
+                        dgvOcupacoes.Rows.RemoveAt(e.RowIndex);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao remover ocupação, tente novamente mais tarde");
+                    }
+                }
+            }
+        }
+        private async void SalvarSolicitacao()
+        {
+            if (!string.IsNullOrEmpty(txtResponsavelEntrega.Text) && !string.IsNullOrEmpty(txtJusticativa.Text))
+            {
+                SolicitacaoCompra solicitacao = new SolicitacaoCompra();
+                solicitacao.ResponsavelEntrega = txtResponsavelEntrega.Text;
+                solicitacao.Data = dtpDataSolicitacao.Value;
+                solicitacao.EscolaId = Convert.ToInt64(cboEscola.SelectedValue);
+                solicitacao.TipoCompraId = Convert.ToInt64(cboTipoCompra.SelectedValue);
+                solicitacao.Justificativa = txtJusticativa.Text;
+                if (dgvOcupacoes.Rows.Count >= 1)
+                {
+                    var solicitacaoEditada = await HttpSolicitacaoCompras.Update(solicitacao, Convert.ToInt64(txtIdSolicitacao.Text), usuarioLogado.token);
+                    if (solicitacaoEditada == null)
+                    {
+                        MessageBox.Show("Erro interno no servidor, tente em novamente em outro momento");
+                    }
+                    else
+                    {
+
+                        for (int i = 0; i < dgvOcupacoes.Rows.Count; i++)
+                        {
+                            long ocupacaoId = 0;
+                            if (ocupacoesSolicitacaoEditList.Count > i)
+                                ocupacaoId = ocupacoesSolicitacaoEditList[i].OcupacaoId;
+                            else
+                                ocupacaoId = (long)dgvOcupacoes.Rows[i].Cells["colIdOcupacao"].Value;
+                            long solicitacaoId = Convert.ToInt64(txtIdSolicitacao.Text);
+                            OcupacaoSolicitacaoCompra ocupacaoSolicitacao = new OcupacaoSolicitacaoCompra();
+                            ocupacaoSolicitacao.OcupacaoId = (long)dgvOcupacoes.Rows[i].Cells["colIdOcupacao"].Value;
+                            ocupacaoSolicitacao.SolicitacaoId = solicitacaoId;
+                            var ocupacaoSolicitacaoEditada = await HttpSolicitacaoOcupacoes.Update(ocupacaoSolicitacao, ocupacaoId, solicitacaoId, usuarioLogado.token);
+                            if (ocupacaoSolicitacaoEditada == null)
+                            {
+                                await HttpSolicitacaoOcupacoes.Create(ocupacaoSolicitacao, usuarioLogado.token);
+                            }
+                        }
+                        tabContainer.SelectTab("produto");
+                        ((Control)tabContainer.TabPages["dadosGerais"]).Enabled = false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Adicione ao menos uma ocupação na lista");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Preencha todos os campos");
+            }
+        }
+        private async void AtualizaGridProdutos()
+        {
+            produtosCompras = await HttpProdutoSolicitacoes.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
+            dgvProduto.Rows.Clear();
+            foreach (var item in produtosCompras)
+            {
+                int n = dgvProduto.Rows.Add();
+                dgvProduto.Rows[n].Cells[0].Value = item.Produto.CodigoProtheus;
+                dgvProduto.Rows[n].Cells[1].Value = item.Produto.Grupo.Descricao;
+                dgvProduto.Rows[n].Cells[2].Value = item.Produto.Descricao;
+                dgvProduto.Rows[n].Cells[3].Value = "Remover";
+                dgvProduto.Rows[n].Cells[4].Value = item.Produto.Id;
+                dgvProduto.Rows[n].Cells[6].Value = item.Id;
+            }
+        }
+
+        private async void CadastrarProdutoSolicitacao()
+        {
+            ProdutoSolicitacao produtoSolicitacao = new ProdutoSolicitacao();
+            produtoSolicitacao.SolicitacaoComprasId = idSolicitacao;
+            produtoSolicitacao.ProdutosId = idProduto;
+            var produtoSolicitacaoCriado = await HttpProdutoSolicitacoes.Create(produtoSolicitacao, usuarioLogado.token);
+            if (produtoSolicitacaoCriado != null)
+            {
+                AtualizaGridProdutos();
+            }
+            else
+            {
+                MessageBox.Show("Erro ao salvar produto na solicitação de compras");
+            }
+
+        }
+
+        private void btnProximo_Click(object sender, EventArgs e)
+        {
+            SalvarSolicitacao();
+        }
+        private async void txtCodigoProtheusProduto_TextChanged(object sender, EventArgs e)
+        {
+            var codigoProduto = ((TextBox)sender).Text;
+            Regex regex = new Regex("^[0-9]*$");
+            if (!string.IsNullOrEmpty(codigoProduto))
+            {
+                if (regex.IsMatch(codigoProduto))
+                {
+                    Produto produto = await HttpProdutos.GetProdutosByCodigoProtheus(Convert.ToInt64(codigoProduto), usuarioLogado.token);
+                    if (produto != null)
+                    {
+                        txtGrupo.Text = produto.Grupo.Descricao;
+                        txtDescricao.Text = produto.Descricao;
+                        idProduto = produto.Id;
+                        idGrupo = produto.GrupoId;
+                    }
+                    else
+                    {
+                        txtGrupo.Text = "";
+                        txtDescricao.Text = "";
+                        idProduto = 0;
+                    }
+                }
+            }
+        }
+        private async void dgvProduto_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvProduto.Columns[e.ColumnIndex].Name == "colRemover")
+            {
+                long produtoSolicitacaoId = (long)dgvProduto.Rows[e.RowIndex].Cells["colProdutoSolicitacaoId"].Value;
+                if (MessageBox.Show("Tem certeza que deseja remover esse registro da lista?", "Remover registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (await HttpProdutoSolicitacoes.Delete(produtoSolicitacaoId, usuarioLogado.token))
+                    {
+                        AtualizaGridProdutos();
+                        PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
+                        PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
+                        PreencheGridProdutoCompra(dgvProdutoCompra3, txtIdOrcamento3);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao realizar exclusão, tente novamente mais tarde", "Erro ao tentar excluir", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+        private void btnAdicionarProduto_Click(object sender, EventArgs e)
+        {
+            CadastrarProdutoSolicitacao();
+        }
+        private async void PreencheGridProdutoCompra(DataGridView dgv, TextBox txtIdOrcamento)
+        {
+            List<ProdutoPedidoOrcamento> produtosCompras = await HttpProdutoPedidoOrcamentos.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
+            dgv.Rows.Clear();
+            foreach (var item in produtosCompras.FindAll(o => o.OrcamentoId == long.Parse(txtIdOrcamento.Text == "" ? "0" : txtIdOrcamento.Text)))
+            {
+                int n = dgv.Rows.Add();
+                dgv.Rows[n].Cells[0].Value = item.ProdutoSolicitacao.Produto.CodigoProtheus;
+                dgv.Rows[n].Cells[1].Value = item.ProdutoSolicitacao.Produto.Grupo.Descricao;
+                dgv.Rows[n].Cells[2].Value = item.ProdutoSolicitacao.Produto.Descricao;
+                dgv.Rows[n].Cells[3].Value = item.Quantidade;
+                dgv.Rows[n].Cells[4].Value = item.valor;
+                dgv.Rows[n].Cells[5].Value = item.Desconto;
+                dgv.Rows[n].Cells[6].Value = item.Ipi;
+                dgv.Rows[n].Cells[7].Value = item.Icms;
+                dgv.Rows[n].Cells[8].Value = item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)));
+                dgv.Rows[n].Cells[10].Value = item.ProdutoSolicitacoesId;
+                dgv.Rows[n].Cells[11].Value = item.Id;
+            }
+        }
+        private async Task<bool> CriarProdutoPedidoOrcamentoDefault(TextBox txtIdOrcamento)
+        {
+            List<ProdutoSolicitacao> produtosCompras = await HttpProdutoSolicitacoes.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
+            foreach (var item in produtosCompras)
+            {
+                ProdutoPedidoOrcamento produtoPedidoOrcamento = new ProdutoPedidoOrcamento();
+                produtoPedidoOrcamento.OrcamentoId = long.Parse(txtIdOrcamento.Text);
+                produtoPedidoOrcamento.ProdutoSolicitacoesId = item.Id;
+                produtoPedidoOrcamento.Quantidade = 0;
+                produtoPedidoOrcamento.valor = 0;
+                produtoPedidoOrcamento.Desconto = 0;
+                produtoPedidoOrcamento.Ipi = 0;
+                produtoPedidoOrcamento.Icms = 0;
+                var produtoPedidoCriado = await HttpProdutoPedidoOrcamentos.Create(produtoPedidoOrcamento, usuarioLogado.token);
+                if (produtoPedidoCriado == null)
+                {
+                    MessageBox.Show("Error");
+                    return false;
+                }
+            }
+            return true;
+        }
+        private async void btnProximoProduto_Click(object sender, EventArgs e)
+        {
+            if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento1)))
+            {
+                MessageBox.Show("Erro interno no servidor tente mais tarde novamente");
+                return;
+            }
+            else
+            {
+                PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
+            }
+            tabContainer.SelectTab(2);
+            ((Control)tabContainer.TabPages[1]).Enabled = false;
         }
     }
 }

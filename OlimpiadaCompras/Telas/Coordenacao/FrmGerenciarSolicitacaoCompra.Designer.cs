@@ -233,7 +233,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.tabContainer.Location = new System.Drawing.Point(3, 1);
             this.tabContainer.Name = "tabContainer";
             this.tabContainer.SelectedIndex = 0;
-            this.tabContainer.Size = new System.Drawing.Size(1092, 534);
+            this.tabContainer.Size = new System.Drawing.Size(1088, 539);
             this.tabContainer.TabIndex = 33;
             // 
             // dadosGerais
@@ -245,7 +245,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.dadosGerais.Location = new System.Drawing.Point(4, 29);
             this.dadosGerais.Name = "dadosGerais";
             this.dadosGerais.Padding = new System.Windows.Forms.Padding(3);
-            this.dadosGerais.Size = new System.Drawing.Size(1084, 501);
+            this.dadosGerais.Size = new System.Drawing.Size(1080, 506);
             this.dadosGerais.TabIndex = 0;
             this.dadosGerais.Text = "Dados Gerais";
             this.dadosGerais.UseVisualStyleBackColor = true;
@@ -260,17 +260,18 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             // 
             // btnProximo
             // 
-            this.btnProximo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnProximo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnProximo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(138)))), ((int)(((byte)(191)))));
             this.btnProximo.FlatAppearance.BorderSize = 0;
             this.btnProximo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximo.ForeColor = System.Drawing.Color.White;
-            this.btnProximo.Location = new System.Drawing.Point(898, 453);
+            this.btnProximo.Location = new System.Drawing.Point(898, 458);
             this.btnProximo.Name = "btnProximo";
             this.btnProximo.Size = new System.Drawing.Size(169, 34);
             this.btnProximo.TabIndex = 33;
             this.btnProximo.Text = "Próximo";
             this.btnProximo.UseVisualStyleBackColor = false;
+            this.btnProximo.Click += new System.EventHandler(this.btnProximo_Click);
             // 
             // groupBox3
             // 
@@ -301,6 +302,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.dgvOcupacoes.ReadOnly = true;
             this.dgvOcupacoes.Size = new System.Drawing.Size(484, 262);
             this.dgvOcupacoes.TabIndex = 62;
+            this.dgvOcupacoes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOcupacoes_CellContentClick);
             // 
             // colNumero
             // 
@@ -339,6 +341,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnAdicionarOcupacao.TabIndex = 32;
             this.btnAdicionarOcupacao.Text = "Adicionar ocupação";
             this.btnAdicionarOcupacao.UseVisualStyleBackColor = false;
+            this.btnAdicionarOcupacao.Click += new System.EventHandler(this.btnAdicionarOcupacao_Click);
             // 
             // label4
             // 
@@ -573,6 +576,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.cboEscola.Name = "cboEscola";
             this.cboEscola.Size = new System.Drawing.Size(537, 28);
             this.cboEscola.TabIndex = 6;
+            this.cboEscola.SelectionChangeCommitted += new System.EventHandler(this.cboEscola_SelectionChangeCommitted);
             // 
             // produto
             // 
@@ -582,7 +586,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.produto.Location = new System.Drawing.Point(4, 29);
             this.produto.Name = "produto";
             this.produto.Padding = new System.Windows.Forms.Padding(3);
-            this.produto.Size = new System.Drawing.Size(1084, 501);
+            this.produto.Size = new System.Drawing.Size(1080, 506);
             this.produto.TabIndex = 1;
             this.produto.Text = "Produtos";
             this.produto.UseVisualStyleBackColor = true;
@@ -594,12 +598,13 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnProximoProduto.FlatAppearance.BorderSize = 0;
             this.btnProximoProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximoProduto.ForeColor = System.Drawing.Color.White;
-            this.btnProximoProduto.Location = new System.Drawing.Point(884, 461);
+            this.btnProximoProduto.Location = new System.Drawing.Point(884, 466);
             this.btnProximoProduto.Name = "btnProximoProduto";
             this.btnProximoProduto.Size = new System.Drawing.Size(169, 34);
             this.btnProximoProduto.TabIndex = 34;
             this.btnProximoProduto.Text = "Próximo";
             this.btnProximoProduto.UseVisualStyleBackColor = false;
+            this.btnProximoProduto.Click += new System.EventHandler(this.btnProximoProduto_Click);
             // 
             // dgvProduto
             // 
@@ -620,6 +625,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.dgvProduto.ReadOnly = true;
             this.dgvProduto.Size = new System.Drawing.Size(1030, 233);
             this.dgvProduto.TabIndex = 29;
+            this.dgvProduto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduto_CellContentClick);
             // 
             // colCodigoProtheusProduto
             // 
@@ -703,6 +709,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnAdicionarProduto.TabIndex = 33;
             this.btnAdicionarProduto.Text = "Adicionar Produto";
             this.btnAdicionarProduto.UseVisualStyleBackColor = false;
+            this.btnAdicionarProduto.Click += new System.EventHandler(this.btnAdicionarProduto_Click);
             // 
             // txtCodigoProtheusProduto
             // 
@@ -710,6 +717,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.txtCodigoProtheusProduto.Name = "txtCodigoProtheusProduto";
             this.txtCodigoProtheusProduto.Size = new System.Drawing.Size(408, 26);
             this.txtCodigoProtheusProduto.TabIndex = 0;
+            this.txtCodigoProtheusProduto.TextChanged += new System.EventHandler(this.txtCodigoProtheusProduto_TextChanged);
             // 
             // label2
             // 
@@ -751,9 +759,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             // 
             this.orcamento1.Controls.Add(this.groupBox7);
             this.orcamento1.Controls.Add(this.groupBox4);
-            this.orcamento1.Location = new System.Drawing.Point(4, 29);
+            this.orcamento1.Location = new System.Drawing.Point(4, 22);
             this.orcamento1.Name = "orcamento1";
-            this.orcamento1.Size = new System.Drawing.Size(1084, 501);
+            this.orcamento1.Size = new System.Drawing.Size(1084, 508);
             this.orcamento1.TabIndex = 2;
             this.orcamento1.Text = "Orçamento 1";
             this.orcamento1.UseVisualStyleBackColor = true;
@@ -1087,10 +1095,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             // 
             this.orcamento2.Controls.Add(this.groupBox8);
             this.orcamento2.Controls.Add(this.groupBox5);
-            this.orcamento2.Location = new System.Drawing.Point(4, 29);
+            this.orcamento2.Location = new System.Drawing.Point(4, 22);
             this.orcamento2.Name = "orcamento2";
             this.orcamento2.Padding = new System.Windows.Forms.Padding(3);
-            this.orcamento2.Size = new System.Drawing.Size(1084, 501);
+            this.orcamento2.Size = new System.Drawing.Size(1084, 508);
             this.orcamento2.TabIndex = 3;
             this.orcamento2.Text = "Orçamento 2";
             this.orcamento2.UseVisualStyleBackColor = true;
@@ -1422,10 +1430,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             // 
             this.orcamento3.Controls.Add(this.groupBox9);
             this.orcamento3.Controls.Add(this.groupBox6);
-            this.orcamento3.Location = new System.Drawing.Point(4, 29);
+            this.orcamento3.Location = new System.Drawing.Point(4, 22);
             this.orcamento3.Name = "orcamento3";
             this.orcamento3.Padding = new System.Windows.Forms.Padding(3);
-            this.orcamento3.Size = new System.Drawing.Size(1084, 501);
+            this.orcamento3.Size = new System.Drawing.Size(1084, 508);
             this.orcamento3.TabIndex = 4;
             this.orcamento3.Text = "Orçamento 3";
             this.orcamento3.UseVisualStyleBackColor = true;
@@ -1760,7 +1768,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnAprovar.FlatAppearance.BorderSize = 0;
             this.btnAprovar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAprovar.ForeColor = System.Drawing.Color.White;
-            this.btnAprovar.Location = new System.Drawing.Point(922, 537);
+            this.btnAprovar.Location = new System.Drawing.Point(922, 546);
             this.btnAprovar.Name = "btnAprovar";
             this.btnAprovar.Size = new System.Drawing.Size(169, 34);
             this.btnAprovar.TabIndex = 34;
@@ -1775,7 +1783,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnReprovar.FlatAppearance.BorderSize = 0;
             this.btnReprovar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReprovar.ForeColor = System.Drawing.Color.White;
-            this.btnReprovar.Location = new System.Drawing.Point(747, 537);
+            this.btnReprovar.Location = new System.Drawing.Point(747, 546);
             this.btnReprovar.Name = "btnReprovar";
             this.btnReprovar.Size = new System.Drawing.Size(169, 34);
             this.btnReprovar.TabIndex = 35;
@@ -1790,7 +1798,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnSolicitarAlteracao.FlatAppearance.BorderSize = 0;
             this.btnSolicitarAlteracao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSolicitarAlteracao.ForeColor = System.Drawing.Color.White;
-            this.btnSolicitarAlteracao.Location = new System.Drawing.Point(4, 537);
+            this.btnSolicitarAlteracao.Location = new System.Drawing.Point(4, 546);
             this.btnSolicitarAlteracao.Name = "btnSolicitarAlteracao";
             this.btnSolicitarAlteracao.Size = new System.Drawing.Size(169, 34);
             this.btnSolicitarAlteracao.TabIndex = 36;
@@ -1805,7 +1813,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnEditar.FlatAppearance.BorderSize = 0;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.ForeColor = System.Drawing.Color.White;
-            this.btnEditar.Location = new System.Drawing.Point(179, 537);
+            this.btnEditar.Location = new System.Drawing.Point(179, 546);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(169, 34);
             this.btnEditar.TabIndex = 37;
@@ -1817,7 +1825,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1095, 577);
+            this.ClientSize = new System.Drawing.Size(1095, 586);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnSolicitarAlteracao);
             this.Controls.Add(this.btnReprovar);
@@ -1828,6 +1836,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.Name = "FrmGerenciarSolicitacaoCompra";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gerenciar Solicitação de compras";
+            this.Load += new System.EventHandler(this.FrmGerenciarSolicitacaoCompra_Load);
             this.tabContainer.ResumeLayout(false);
             this.dadosGerais.ResumeLayout(false);
             this.dadosGerais.PerformLayout();
