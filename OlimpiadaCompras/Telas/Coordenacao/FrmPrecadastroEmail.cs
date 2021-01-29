@@ -1,4 +1,5 @@
 ﻿using OlimpiadaCompras.Models;
+using OlimpiadaCompras.Requests;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,45 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.usuarioLogado = usuario;
             this.idSolicitacao = idSolicitacao;
             InitializeComponent();
+        }
+
+        private async void btnSalvar_Click(object sender, EventArgs e)
+        {
+            if (VerificaCamposVazios())
+            {
+                EmailModel data = new EmailModel();
+                data.CentroResponsabilidade = txtCentroResponsabilidade.Text;
+                data.CodUnidadeOrganizacional = txtCodUnidadeOrganizacional.Text;
+                data.ClasseValor = txtClasseValor.Text;
+                data.ContaContabil = txtContaContabil.Text;
+                if (await HttpEmail.EnviarEmail(data, idSolicitacao, usuarioLogado.token))
+                    MessageBox.Show("Envio de e-mail feito com sucesso");
+                else
+                    MessageBox.Show("Erro ao enviar e-mail");
+
+            }
+
+        }
+
+        private bool VerificaCamposVazios()
+        {
+            foreach (var item in this.Controls)
+            {
+                if (item.GetType() == typeof(TextBox))
+                {
+                    TextBox txt = (TextBox)item;
+                    if (string.IsNullOrEmpty(txt.Text))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

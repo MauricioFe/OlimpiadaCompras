@@ -219,7 +219,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         {
             FrmPrecadastroEmail form = new FrmPrecadastroEmail(usuarioLogado, idSolicitacao);
             form.ShowDialog();
-            this.Dispose();
         }
 
         private async void btnReprovar_Click(object sender, EventArgs e)
@@ -675,7 +674,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                         }
                         else
                         {
-                            PreencheGridProdutoCompra(dgvProdutoCompra3, txtIdOrcamento3);
+                            await PreencheGridProdutoCompra(dgvProdutoCompra3, txtIdOrcamento3);
                         }
                         tabContainer.SelectTab(4);
                         ((Control)tabContainer.TabPages[3]).Enabled = false;

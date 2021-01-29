@@ -34,7 +34,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.label3 = new System.Windows.Forms.Label();
             this.txtCentroResponsabilidade = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtUnidadeOrganizacional = new System.Windows.Forms.TextBox();
+            this.txtContaContabil = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtClasseValor = new System.Windows.Forms.TextBox();
             this.btnSalvar = new System.Windows.Forms.Button();
@@ -84,10 +84,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             // 
             // txtUnidadeOrganizacional
             // 
-            this.txtUnidadeOrganizacional.Location = new System.Drawing.Point(143, 129);
-            this.txtUnidadeOrganizacional.Name = "txtUnidadeOrganizacional";
-            this.txtUnidadeOrganizacional.Size = new System.Drawing.Size(279, 26);
-            this.txtUnidadeOrganizacional.TabIndex = 6;
+            this.txtContaContabil.Location = new System.Drawing.Point(143, 129);
+            this.txtContaContabil.Name = "txtUnidadeOrganizacional";
+            this.txtContaContabil.Size = new System.Drawing.Size(279, 26);
+            this.txtContaContabil.TabIndex = 6;
             // 
             // label5
             // 
@@ -117,6 +117,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnSalvar.TabIndex = 10;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = false;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnCancelar
             // 
@@ -130,6 +131,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // FrmPrecadastroEmail
             // 
@@ -141,7 +143,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtClasseValor);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtUnidadeOrganizacional);
+            this.Controls.Add(this.txtContaContabil);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtCentroResponsabilidade);
             this.Controls.Add(this.label2);
@@ -161,7 +163,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtCentroResponsabilidade;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtUnidadeOrganizacional;
+        private System.Windows.Forms.TextBox txtContaContabil;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtClasseValor;
         private System.Windows.Forms.Button btnSalvar;
