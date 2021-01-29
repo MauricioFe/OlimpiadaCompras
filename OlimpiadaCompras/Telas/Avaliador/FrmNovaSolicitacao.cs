@@ -852,14 +852,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
         {
             RealizaCalculoValoresFinais(e, dgvProdutoCompra3);
         }
-        private void txtFornecedor2_Enter(object sender, EventArgs e)
-        {
-            PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
-        }
-        private void txtFornecedor3_Enter(object sender, EventArgs e)
-        {
-            PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
-        }
         private void btnSelecionar2_Click(object sender, EventArgs e)
         {
             AnexarOrcamento(txtAnexarPdf2);
@@ -933,6 +925,16 @@ namespace OlimpiadaCompras.Telas.Avaliador
         private void dgvProdutoCompra1_Leave(object sender, EventArgs e)
         {
             PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIpi1, txtValorFinal1);
+        }
+
+        private void dgvProdutoCompra2_Leave(object sender, EventArgs e)
+        {
+            PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
+        }
+
+        private void dgvProdutoCompra3_Leave(object sender, EventArgs e)
+        {
+            PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
         }
     }
 }

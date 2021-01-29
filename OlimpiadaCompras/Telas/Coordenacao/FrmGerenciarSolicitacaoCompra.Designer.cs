@@ -1161,6 +1161,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnProximo2.TabIndex = 65;
             this.btnProximo2.Text = "Próximo";
             this.btnProximo2.UseVisualStyleBackColor = false;
+            this.btnProximo2.Click += new System.EventHandler(this.btnProximo2_Click);
             // 
             // label41
             // 
@@ -1178,6 +1179,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.txtValorFrete2.Size = new System.Drawing.Size(177, 26);
             this.txtValorFrete2.TabIndex = 61;
             this.txtValorFrete2.Text = "0";
+            this.txtValorFrete2.TextChanged += new System.EventHandler(this.txtValorFrete2_TextChanged);
             // 
             // label18
             // 
@@ -1234,6 +1236,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnSelecionar2.TabIndex = 56;
             this.btnSelecionar2.Text = "Selecionar";
             this.btnSelecionar2.UseVisualStyleBackColor = true;
+            this.btnSelecionar2.Click += new System.EventHandler(this.btnSelecionar2_Click);
             // 
             // txtAnexarPdf2
             // 
@@ -1440,10 +1443,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             // 
             this.orcamento3.Controls.Add(this.groupBox9);
             this.orcamento3.Controls.Add(this.groupBox6);
-            this.orcamento3.Location = new System.Drawing.Point(4, 22);
+            this.orcamento3.Location = new System.Drawing.Point(4, 29);
             this.orcamento3.Name = "orcamento3";
             this.orcamento3.Padding = new System.Windows.Forms.Padding(3);
-            this.orcamento3.Size = new System.Drawing.Size(1084, 508);
+            this.orcamento3.Size = new System.Drawing.Size(1080, 506);
             this.orcamento3.TabIndex = 4;
             this.orcamento3.Text = "Orçamento 3";
             this.orcamento3.UseVisualStyleBackColor = true;
@@ -1499,6 +1502,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnProximo3.TabIndex = 66;
             this.btnProximo3.Text = "Próximo";
             this.btnProximo3.UseVisualStyleBackColor = false;
+            this.btnProximo3.Click += new System.EventHandler(this.btnProximo3_Click);
             // 
             // label40
             // 
@@ -1516,6 +1520,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.txtValorFrete3.Size = new System.Drawing.Size(177, 26);
             this.txtValorFrete3.TabIndex = 61;
             this.txtValorFrete3.Text = "0";
+            this.txtValorFrete3.TextChanged += new System.EventHandler(this.txtValorFrete3_TextChanged);
             // 
             // label28
             // 
@@ -1572,6 +1577,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnSelecionar3.TabIndex = 56;
             this.btnSelecionar3.Text = "Selecionar";
             this.btnSelecionar3.UseVisualStyleBackColor = true;
+            this.btnSelecionar3.Click += new System.EventHandler(this.btnSelecionar3_Click);
             // 
             // txtAnexarPdf3
             // 
@@ -1702,6 +1708,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.dgvProdutoCompra3.Name = "dgvProdutoCompra3";
             this.dgvProdutoCompra3.Size = new System.Drawing.Size(1040, 233);
             this.dgvProdutoCompra3.TabIndex = 43;
+            this.dgvProdutoCompra3.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra3_CellEndEdit);
+            this.dgvProdutoCompra3.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra3_RowLeave);
+            this.dgvProdutoCompra3.Leave += new System.EventHandler(this.dgvProdutoCompra3_Leave);
             // 
             // colCodProtheus3
             // 
