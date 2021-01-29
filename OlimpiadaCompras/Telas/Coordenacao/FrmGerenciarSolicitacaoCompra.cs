@@ -251,7 +251,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         {
             long ocupacaoId = (long)cboOcupacao.SelectedValue;
             Ocupacao ocupacao = await HttpOcupacaos.GetOcupacaoById(ocupacaoId, usuarioLogado.token);
-            dgvOcupacoes.Rows.Add(ocupacao.Numero, ocupacao.Nome, "Remove", ocupacao.Id);
+            dgvOcupacoes.Rows.Add(ocupacao.Numero, ocupacao.Nome, "Remover", ocupacao.Id);
         }
         private async void dgvOcupacoes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
