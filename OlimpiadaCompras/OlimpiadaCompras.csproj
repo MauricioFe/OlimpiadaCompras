@@ -58,8 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\ProdutoSolicitacao.cs" />
     <Compile Include="Requests\HttpAcompanhamento.cs" />
+    <Compile Include="Requests\HttpEmail.cs" />
     <Compile Include="Requests\HttpProdutoPedidoOrcamento.cs" />
     <Compile Include="Requests\HttpOrcamentos.cs" />
     <Compile Include="Requests\HttpProdutoSolicitacoes.cs" />
