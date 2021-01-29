@@ -1,37 +1,3 @@
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.exe.config
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.exe
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.pdb
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csprojAssemblyReference.cache
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmAnexarNotaFiscal.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmAreaAvaliador.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmNovaSolicitacao.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmTodasSolicitacoes.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Properties.Resources.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.FrmEditarUsuarios.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmEmailAutorizacao.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmGerenciarSolicitacaoCompra.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.FrmLogin.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.GenerateResource.cache
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.CoreCompileInputs.cache
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.exe
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compra\Projeto\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.pdb
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.exe.config
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.exe
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.pdb
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csprojAssemblyReference.cache
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmAnexarNotaFiscal.resources
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmAreaAvaliador.resources
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmNovaSolicitacao.resources
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmTodasSolicitacoes.resources
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Properties.Resources.resources
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.FrmEditarUsuarios.resources
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmEmailAutorizacao.resources
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmGerenciarSolicitacaoCompra.resources
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.FrmLogin.resources
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.GenerateResource.cache
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.CoreCompileInputs.cache
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.exe
-C:\Users\mauri\Desktop\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.pdb
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.exe.config
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.exe
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.pdb
@@ -42,38 +8,6 @@ D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\Olimpiad
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmTodasSolicitacoes.resources
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Properties.Resources.resources
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.FrmEditarUsuarios.resources
-D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmEmailAutorizacao.resources
-D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmGerenciarSolicitacaoCompra.resources
-D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.FrmLogin.resources
-D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.GenerateResource.cache
-D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.CoreCompileInputs.cache
-D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.exe
-D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.pdb
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.exe.config
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.exe
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.pdb
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csprojAssemblyReference.cache
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmAnexarNotaFiscal.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmAreaAvaliador.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmNovaSolicitacao.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmTodasSolicitacoes.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Properties.Resources.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.FrmEditarUsuarios.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmEmailAutorizacao.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmGerenciarSolicitacaoCompra.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.FrmLogin.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.GenerateResource.cache
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.CoreCompileInputs.cache
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.exe
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.pdb
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.FrmAreaCoordenacao.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroUsuarios.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroEscolas.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroGrupos.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroProdutos.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroOcupacoes.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroTipoCompra.resources
-C:\Users\mauri\Desktop\Treinamento\Projeto Solicitação de compras\Projetos\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmModalSolicitacao.resources
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroEscolas.resources
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroGrupos.resources
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroOcupacoes.resources
@@ -81,33 +15,11 @@ D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\Olimpiad
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroTipoCompra.resources
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroUsuarios.resources
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.FrmAreaCoordenacao.resources
+D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmEmailAutorizacao.resources
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmModalSolicitacao.resources
-<<<<<<< HEAD
 D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmPrecadastroEmail.resources
-=======
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.exe.config
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.exe
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\OlimpiadaCompras.pdb
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csprojAssemblyReference.cache
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmAnexarNotaFiscal.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmAreaAvaliador.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmNovaSolicitacao.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Avaliador.FrmTodasSolicitacoes.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Properties.Resources.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.FrmEditarUsuarios.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroEscolas.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroGrupos.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroOcupacoes.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroProdutos.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroTipoCompra.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.Cadastros.FrmCadastroUsuarios.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.FrmAreaCoordenacao.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmEmailAutorizacao.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmGerenciarSolicitacaoCompra.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmModalSolicitacao.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.FrmLogin.resources
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.GenerateResource.cache
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.CoreCompileInputs.cache
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.exe
-D:\drive\Treinamento\Projeto Solicitação de compras\HomeOffice\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.pdb
->>>>>>> e49a122b7f11d1c5c1e0738dc3562435e5b8a832
+D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.FrmLogin.resources
+D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.GenerateResource.cache
+D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.CoreCompileInputs.cache
+D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.exe
+D:\Estudos\Treinamento\Projeto Solicitação de compra\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.pdb
