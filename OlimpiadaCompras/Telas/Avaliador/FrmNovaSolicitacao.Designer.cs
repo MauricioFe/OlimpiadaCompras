@@ -974,7 +974,6 @@
             this.txtFornecedor1.Name = "txtFornecedor1";
             this.txtFornecedor1.Size = new System.Drawing.Size(382, 26);
             this.txtFornecedor1.TabIndex = 45;
-            this.txtFornecedor1.Enter += new System.EventHandler(this.txtFornecedor1_Enter);
             // 
             // label36
             // 
@@ -1024,6 +1023,7 @@
             this.dgvProdutoCompra1.TabIndex = 41;
             this.dgvProdutoCompra1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra1_CellEndEdit);
             this.dgvProdutoCompra1.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra1_RowLeave);
+            this.dgvProdutoCompra1.Leave += new System.EventHandler(this.dgvProdutoCompra1_Leave);
             // 
             // colCodigoProtheusProduto1
             // 

@@ -198,6 +198,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnReprovar = new System.Windows.Forms.Button();
             this.btnSolicitarAlteracao = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabContainer.SuspendLayout();
             this.dadosGerais.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -759,9 +760,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             // 
             this.orcamento1.Controls.Add(this.groupBox7);
             this.orcamento1.Controls.Add(this.groupBox4);
-            this.orcamento1.Location = new System.Drawing.Point(4, 22);
+            this.orcamento1.Location = new System.Drawing.Point(4, 29);
             this.orcamento1.Name = "orcamento1";
-            this.orcamento1.Size = new System.Drawing.Size(1084, 508);
+            this.orcamento1.Size = new System.Drawing.Size(1080, 506);
             this.orcamento1.TabIndex = 2;
             this.orcamento1.Text = "Orçamento 1";
             this.orcamento1.UseVisualStyleBackColor = true;
@@ -826,6 +827,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnProximo1.TabIndex = 63;
             this.btnProximo1.Text = "Próximo";
             this.btnProximo1.UseVisualStyleBackColor = false;
+            this.btnProximo1.Click += new System.EventHandler(this.btnProximo1_Click);
             // 
             // txtValorFrete1
             // 
@@ -834,6 +836,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.txtValorFrete1.Size = new System.Drawing.Size(177, 26);
             this.txtValorFrete1.TabIndex = 61;
             this.txtValorFrete1.Text = "0";
+            this.txtValorFrete1.TextChanged += new System.EventHandler(this.txtValorFrete1_TextChanged);
             // 
             // label37
             // 
@@ -890,6 +893,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnSelecionar1.TabIndex = 56;
             this.btnSelecionar1.Text = "Selecionar";
             this.btnSelecionar1.UseVisualStyleBackColor = true;
+            this.btnSelecionar1.Click += new System.EventHandler(this.btnSelecionar1_Click);
             // 
             // txtAnexarPdf1
             // 
@@ -992,7 +996,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.groupBox4.Controls.Add(this.dgvProdutoCompra1);
             this.groupBox4.Location = new System.Drawing.Point(8, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1073, 279);
+            this.groupBox4.Size = new System.Drawing.Size(1069, 279);
             this.groupBox4.TabIndex = 41;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Valores do produto";
@@ -1020,8 +1024,11 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.colProdutoPedidoOrcamentoId1});
             this.dgvProdutoCompra1.Location = new System.Drawing.Point(11, 23);
             this.dgvProdutoCompra1.Name = "dgvProdutoCompra1";
-            this.dgvProdutoCompra1.Size = new System.Drawing.Size(1051, 233);
+            this.dgvProdutoCompra1.Size = new System.Drawing.Size(1047, 233);
             this.dgvProdutoCompra1.TabIndex = 41;
+            this.dgvProdutoCompra1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra1_CellEndEdit);
+            this.dgvProdutoCompra1.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra1_RowLeave);
+            this.dgvProdutoCompra1.Leave += new System.EventHandler(this.dgvProdutoCompra1_Leave);
             // 
             // colCodigoProtheusProduto1
             // 
@@ -1095,10 +1102,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             // 
             this.orcamento2.Controls.Add(this.groupBox8);
             this.orcamento2.Controls.Add(this.groupBox5);
-            this.orcamento2.Location = new System.Drawing.Point(4, 22);
+            this.orcamento2.Location = new System.Drawing.Point(4, 29);
             this.orcamento2.Name = "orcamento2";
             this.orcamento2.Padding = new System.Windows.Forms.Padding(3);
-            this.orcamento2.Size = new System.Drawing.Size(1084, 508);
+            this.orcamento2.Size = new System.Drawing.Size(1080, 506);
             this.orcamento2.TabIndex = 3;
             this.orcamento2.Text = "Orçamento 2";
             this.orcamento2.UseVisualStyleBackColor = true;
@@ -1357,6 +1364,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.dgvProdutoCompra2.Name = "dgvProdutoCompra2";
             this.dgvProdutoCompra2.Size = new System.Drawing.Size(1040, 233);
             this.dgvProdutoCompra2.TabIndex = 42;
+            this.dgvProdutoCompra2.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra2_CellEndEdit);
+            this.dgvProdutoCompra2.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra2_RowLeave);
+            this.dgvProdutoCompra2.Leave += new System.EventHandler(this.dgvProdutoCompra2_Leave);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1821,6 +1831,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnEditar.UseVisualStyleBackColor = false;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // FrmGerenciarSolicitacaoCompra
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2039,5 +2053,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         private System.Windows.Forms.Button btnReprovar;
         private System.Windows.Forms.Button btnSolicitarAlteracao;
         private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

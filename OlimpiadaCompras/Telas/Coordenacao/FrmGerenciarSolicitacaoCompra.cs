@@ -464,5 +464,188 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             tabContainer.SelectTab(2);
             ((Control)tabContainer.TabPages[1]).Enabled = false;
         }
+        private void RealizaCalculoValoresFinais(DataGridViewCellEventArgs e, DataGridView dataGrid)
+        {
+            try
+            {
+                totalIpiList.Clear();
+                int quantidade = Convert.ToInt32(dataGrid.Rows[e.RowIndex].Cells[3].Value);
+                double valorUnitario = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[4].Value);
+                double desconto = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[5].Value);
+                double total = quantidade * (valorUnitario - (valorUnitario * (desconto / 100)));
+                if (dataGrid.Rows[e.RowIndex].Cells[3].Value != null &&
+                    dataGrid.Rows[e.RowIndex].Cells[4].Value != null)
+                {
+                    dataGrid.Rows[e.RowIndex].Cells[8].Value = total;
+                }
+                if (dataGrid.Columns[e.ColumnIndex].Index == 6)
+                {
+                    double ipi = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[6].Value);
+                    double totalIpi = (ipi / 100) * valorUnitario;
+                    totalIpiList.Add(totalIpi);
+                }
+            }
+            catch (Exception)
+            {
+
+
+            }
+
+        }
+        private void PreencheValoresCalculados(DataGridView dataGrid, List<Double> totalIpiList, TextBox txtTotalProdutos, TextBox txtTotalIpi, TextBox txtValorFinal)
+        {
+            double valorTotalProduto = dataGrid.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDouble(t.Cells[8].Value));
+            double valorTotalIpi = totalIpiList.Sum(item => item);
+            txtTotalProdutos.Text = valorTotalProduto.ToString("F2");
+            txtTotalIpi.Text = valorTotalIpi.ToString("F2");
+            txtValorFinal.Text = (valorTotalProduto + valorTotalIpi).ToString("F2");
+        }
+        private void CalculaFrete(TextBox txtFrete, TextBox txtValorFinal, DataGridView dgv)
+        {
+            double valorFinal = dgv.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDouble(t.Cells[8].Value)); ;
+            if (!string.IsNullOrEmpty(txtFrete.Text))
+            {
+                double frete = double.Parse(txtFrete.Text);
+                double resultado = valorFinal + frete;
+                txtValorFinal.Text = (resultado).ToString("F2");
+            }
+        }
+        private void AnexarOrcamento(TextBox txtAnexarpdf)
+        {
+            openFileDialog1.Filter = "pdf files | *.pdf";
+            openFileDialog1.InitialDirectory = $@"{Environment.SpecialFolder.Desktop}";
+            openFileDialog1.FileName = "orcamento";
+            openFileDialog1.Title = "Selecione o orçamento no formato pdf";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                txtAnexarpdf.Text = openFileDialog1.FileName;
+            }
+        }
+        private async Task EditarProdutoPedidoOrcamento(DataGridViewCellEventArgs e, int index)
+        {
+            ProdutoPedidoOrcamento produtoPedidoOrcamento = new ProdutoPedidoOrcamento();
+            produtoPedidoOrcamento.OrcamentoId = long.Parse(((TextBox)tabContainer.Controls.Find("txtIdOrcamento" + index, true)[0]).Text);
+            produtoPedidoOrcamento.ProdutoSolicitacoesId = Convert.ToInt64(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colProdutoSolicitacaoId" + index].Value);
+            produtoPedidoOrcamento.Quantidade = Convert.ToInt32(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colQuantidade" + index].Value);
+            produtoPedidoOrcamento.valor = Convert.ToDouble(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colUnitario" + index].Value);
+            produtoPedidoOrcamento.Desconto = Convert.ToDouble(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colDesconto" + index].Value);
+            produtoPedidoOrcamento.Ipi = Convert.ToDouble(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colIpi" + index].Value);
+            produtoPedidoOrcamento.Icms = Convert.ToDouble(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colICMS" + index].Value);
+            produtoPedidoOrcamento.Id = Convert.ToInt64(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colProdutoPedidoOrcamentoId" + index].Value);
+            var ProdutopedidoOrcamentoCriado = await HttpProdutoPedidoOrcamentos.Update(produtoPedidoOrcamento, produtoPedidoOrcamento.Id, usuarioLogado.token);
+            if (ProdutopedidoOrcamentoCriado == null)
+            {
+                MessageBox.Show("Deu pau");
+                return;
+            }
+
+        }
+        private void dgvProdutoCompra1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            RealizaCalculoValoresFinais(e, dgvProdutoCompra1);
+        }
+        private async void dgvProdutoCompra1_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvProdutoCompra1.Rows[e.RowIndex].Cells["colQuantidade1"].Value != null &&
+               dgvProdutoCompra1.Rows[e.RowIndex].Cells["colUnitario1"].Value != null)
+            {
+                await EditarProdutoPedidoOrcamento(e, 1);
+            }
+        }
+
+        private void dgvProdutoCompra1_Leave(object sender, EventArgs e)
+        {
+            PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIpi1, txtValorFinal1);
+        }
+
+        private void txtValorFrete1_TextChanged(object sender, EventArgs e)
+        {
+            CalculaFrete((TextBox)sender, txtValorFinal1, dgvProdutoCompra1);
+        }
+
+        private void btnSelecionar1_Click(object sender, EventArgs e)
+        {
+            AnexarOrcamento(txtAnexarPdf1);
+        }
+        private bool VerificaCamposVaziosOrcamentos(int index)
+        {
+            return string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtIdOrcamento" + index, true)[0]).Text)
+                && string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtTotalIpi" + index, true)[0]).Text)
+                && string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtTotalProdutos" + index, true)[0]).Text)
+                && string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtValorFinal" + index, true)[0]).Text)
+                && string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtValorFrete" + index, true)[0]).Text)
+                && string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtAnexarPdf" + index, true)[0]).Text)
+                && string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtCnpj" + index, true)[0]).Text)
+                && string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtFornecedor" + index, true)[0]).Text);
+        }
+        private Orcamento PreencheObjetoDosInputs(int index)
+        {
+            Orcamento orcamento = new Orcamento();
+            orcamento.Id = long.Parse(((TextBox)tabContainer.Controls.Find("txtIdOrcamento" + index, true)[0]).Text);
+            orcamento.TotalIpi = double.Parse(((TextBox)tabContainer.Controls.Find("txtTotalIpi" + index, true)[0]).Text);
+            orcamento.TotalProdutos = double.Parse(((TextBox)tabContainer.Controls.Find("txtTotalProdutos" + index, true)[0]).Text);
+            orcamento.ValorTotal = double.Parse(((TextBox)tabContainer.Controls.Find("txtValorFinal" + index, true)[0]).Text);
+            orcamento.ValorFrete = double.Parse(((TextBox)tabContainer.Controls.Find("txtValorFrete" + index, true)[0]).Text);
+            orcamento.Anexo = ((TextBox)tabContainer.Controls.Find("txtAnexarPdf" + index, true)[0]).Text;
+            orcamento.Cnpj = ((TextBox)tabContainer.Controls.Find("txtCnpj" + index, true)[0]).Text;
+            orcamento.Fornecedor = ((TextBox)tabContainer.Controls.Find("txtFornecedor" + index, true)[0]).Text;
+            orcamento.FormaPagamento = ((ComboBox)tabContainer.Controls.Find("cboFormaPagamento" + index, true)[0]).Text;
+            orcamento.Data = ((DateTimePicker)tabContainer.Controls.Find("dtpDataOrcamento" + index, true)[0]).Value;
+            return orcamento;
+        }
+        private async Task<bool> UpdateOrcamento(Orcamento orcamento)
+        {
+            if (orcamento != null)
+            {
+                var orcamentoEditado = await HttpOrcamentos.Update(orcamento, orcamento.Id, usuarioLogado.token);
+                if (orcamentoEditado == null)
+                {
+                    MessageBox.Show("Erro interno no sistema tente novamente mais tarde", "Erro interno Servidor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                return true;
+            }
+            MessageBox.Show("Erro interno no sistema tente novamente mais tarde", "Erro interno Servidor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+        private async void btnProximo1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (!VerificaCamposVaziosOrcamentos(1))
+                {
+                    Orcamento orcamento = PreencheObjetoDosInputs(1);
+                    if (await UpdateOrcamento(orcamento))
+                    {
+                        if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento2)))
+                        {
+                            MessageBox.Show("Erro interno no servidor tente mais tarde novamente");
+                            return;
+                        }
+                        else
+                        {
+                            PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
+                        }
+                    }
+                    tabContainer.SelectTab(3);
+                    ((Control)tabContainer.TabPages[2]).Enabled = false;
+                }
+            }
+        }
+
+        private void dgvProdutoCompra2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvProdutoCompra2_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvProdutoCompra2_Leave(object sender, EventArgs e)
+        {
+
+        }
     }
 }

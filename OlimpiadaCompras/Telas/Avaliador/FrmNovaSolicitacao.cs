@@ -401,18 +401,14 @@ namespace OlimpiadaCompras.Telas.Avaliador
             txtTotalIpi.Text = valorTotalIpi.ToString("F2");
             txtValorFinal.Text = (valorTotalProduto + valorTotalIpi).ToString("F2");
         }
-        private void CalculaFrete(TextBox txtFrete, TextBox txtValorFinal)
+        private void CalculaFrete(TextBox txtFrete, TextBox txtValorFinal, DataGridView dgv)
         {
-            double valorFinal = 0;
-            if (valorFinal == 0)
-            {
-                valorFinal = double.Parse(txtValorFinal.Text);
-            }
+            double valorFinal = dgv.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDouble(t.Cells[8].Value)); ;
             if (!string.IsNullOrEmpty(txtFrete.Text))
             {
                 double frete = double.Parse(txtFrete.Text);
                 double resultado = valorFinal + frete;
-                txtValorFinal1.Text = (resultado).ToString("F2");
+                txtValorFinal.Text = (resultado).ToString("F2");
             }
         }
         private void AnexarOrcamento(TextBox txtAnexarpdf)
@@ -674,8 +670,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 }
             }
         }
-
-
         private async void btnProximo2_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Você tem certeza que deseja proseguir? Caso selecione sim você não poderá alterar as informações colocadas nessa aba. ", "Confirmação de sequência", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -799,13 +793,12 @@ namespace OlimpiadaCompras.Telas.Avaliador
         }
         private void txtValorFrete1_TextChanged(object sender, EventArgs e)
         {
-            CalculaFrete((TextBox)sender, txtValorFinal1);
+            CalculaFrete((TextBox)sender, txtValorFinal1, dgvProdutoCompra1);
         }
         private void btnSelecionar1_Click(object sender, EventArgs e)
         {
             AnexarOrcamento(txtAnexarPdf1);
         }
-
         private bool VerificaCamposVaziosOrcamentos(int index)
         {
             return string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtIdOrcamento" + index, true)[0]).Text)
@@ -817,7 +810,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 && string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtCnpj" + index, true)[0]).Text)
                 && string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtFornecedor" + index, true)[0]).Text);
         }
-
         private Orcamento PreencheObjetoDosInputs(int index)
         {
             Orcamento orcamento = new Orcamento();
@@ -833,7 +825,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
             orcamento.Data = ((DateTimePicker)tabContainer.Controls.Find("dtpDataOrcamento" + index, true)[0]).Value;
             return orcamento;
         }
-
         private async Task<bool> UpdateOrcamento(Orcamento orcamento)
         {
             if (orcamento != null)
@@ -861,10 +852,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
         {
             RealizaCalculoValoresFinais(e, dgvProdutoCompra3);
         }
-        private void txtFornecedor1_Enter(object sender, EventArgs e)
-        {
-            PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIpi1, txtValorFinal1);
-        }
         private void txtFornecedor2_Enter(object sender, EventArgs e)
         {
             PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
@@ -883,11 +870,11 @@ namespace OlimpiadaCompras.Telas.Avaliador
         }
         private void txtValorFrete2_TextChanged(object sender, EventArgs e)
         {
-            CalculaFrete((TextBox)sender, txtValorFinal2);
+            CalculaFrete((TextBox)sender, txtValorFinal2, dgvProdutoCompra2);
         }
         private void txtValorFrete3_TextChanged(object sender, EventArgs e)
         {
-            CalculaFrete((TextBox)sender, txtValorFinal3);
+            CalculaFrete((TextBox)sender, txtValorFinal3, dgvProdutoCompra3);
         }
 
 
@@ -941,6 +928,11 @@ namespace OlimpiadaCompras.Telas.Avaliador
         {
             frmAreaAvaliador.AtualizaGridSolicitacoesPendentes();
             frmAreaAvaliador.AtualizaGridSolicitacoesUsuario();
+        }
+
+        private void dgvProdutoCompra1_Leave(object sender, EventArgs e)
+        {
+            PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIpi1, txtValorFinal1);
         }
     }
 }
