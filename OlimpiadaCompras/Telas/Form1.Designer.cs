@@ -41,12 +41,12 @@
             // txtEmail
             // 
             this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtEmail.Font = new System.Drawing.Font("Open Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(229, 286);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(390, 33);
+            this.txtEmail.Size = new System.Drawing.Size(390, 29);
             this.txtEmail.TabIndex = 1;
-            this.txtEmail.Text = "dcarlos@fiemg.com.br";
+            this.txtEmail.Text = "abarrado@fiemg.com.br";
             this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
             // 
             // label2
@@ -55,7 +55,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(168, 292);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 22);
+            this.label2.Size = new System.Drawing.Size(53, 20);
             this.label2.TabIndex = 4;
             this.label2.Text = "E-mail";
             // 
@@ -65,19 +65,19 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(168, 345);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 22);
+            this.label3.Size = new System.Drawing.Size(56, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "Senha";
             // 
             // txtSenha
             // 
             this.txtSenha.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtSenha.Font = new System.Drawing.Font("Open Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSenha.Location = new System.Drawing.Point(229, 339);
             this.txtSenha.Name = "txtSenha";
-            this.txtSenha.Size = new System.Drawing.Size(390, 33);
+            this.txtSenha.Size = new System.Drawing.Size(390, 29);
             this.txtSenha.TabIndex = 2;
-            this.txtSenha.Text = "avaliador123";
+            this.txtSenha.Text = "adm123";
             this.txtSenha.UseSystemPasswordChar = true;
             this.txtSenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSenha_KeyDown);
             // 
@@ -133,7 +133,7 @@
             this.Controls.Add(this.txtSenha);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtEmail);
-            this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

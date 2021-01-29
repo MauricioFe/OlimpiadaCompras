@@ -579,7 +579,15 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 if (!orcamentoCadastrado1)
                 {
                     await CriarOrcamentoDefault1();
-                    PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
+                    if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento1)))
+                    {
+                        MessageBox.Show("Erro interno no servidor tente mais tarde novamente");
+                        return;
+                    }
+                    else
+                    {
+                        PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
+                    }
                     tabContainer.SelectTab(2);
                     ((Control)tabContainer.TabPages[1]).Enabled = false;
                 }
