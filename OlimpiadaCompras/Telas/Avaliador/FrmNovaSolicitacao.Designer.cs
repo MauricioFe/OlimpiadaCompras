@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnVisualizarArquivo3 = new System.Windows.Forms.TabControl();
+            this.tabContainer = new System.Windows.Forms.TabControl();
             this.dadosGerais = new System.Windows.Forms.TabPage();
             this.txtIdSolicitacao = new System.Windows.Forms.TextBox();
             this.btnProximo = new System.Windows.Forms.Button();
@@ -160,7 +160,7 @@
             this.colProdutoPedidoOrcamentoId2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orcamento3 = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnVisualizarArquivo3 = new System.Windows.Forms.Button();
             this.txtIdOrcamento3 = new System.Windows.Forms.TextBox();
             this.btnProximo3 = new System.Windows.Forms.Button();
             this.label40 = new System.Windows.Forms.Label();
@@ -198,7 +198,7 @@
             this.colProdutoPedidoOrcamentoId3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.btnVisualizarArquivo3.SuspendLayout();
+            this.tabContainer.SuspendLayout();
             this.dadosGerais.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOcupacoes)).BeginInit();
@@ -220,21 +220,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutoCompra3)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnVisualizarArquivo3
+            // tabContainer
             // 
-            this.btnVisualizarArquivo3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tabContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVisualizarArquivo3.Controls.Add(this.dadosGerais);
-            this.btnVisualizarArquivo3.Controls.Add(this.produto);
-            this.btnVisualizarArquivo3.Controls.Add(this.orcamento1);
-            this.btnVisualizarArquivo3.Controls.Add(this.orcamento2);
-            this.btnVisualizarArquivo3.Controls.Add(this.orcamento3);
-            this.btnVisualizarArquivo3.Location = new System.Drawing.Point(1, 4);
-            this.btnVisualizarArquivo3.Name = "btnVisualizarArquivo3";
-            this.btnVisualizarArquivo3.SelectedIndex = 0;
-            this.btnVisualizarArquivo3.Size = new System.Drawing.Size(1081, 546);
-            this.btnVisualizarArquivo3.TabIndex = 32;
+            this.tabContainer.Controls.Add(this.dadosGerais);
+            this.tabContainer.Controls.Add(this.produto);
+            this.tabContainer.Controls.Add(this.orcamento1);
+            this.tabContainer.Controls.Add(this.orcamento2);
+            this.tabContainer.Controls.Add(this.orcamento3);
+            this.tabContainer.Location = new System.Drawing.Point(1, 4);
+            this.tabContainer.Name = "tabContainer";
+            this.tabContainer.SelectedIndex = 0;
+            this.tabContainer.Size = new System.Drawing.Size(1081, 546);
+            this.tabContainer.TabIndex = 32;
             // 
             // dadosGerais
             // 
@@ -265,7 +265,7 @@
             this.btnProximo.FlatAppearance.BorderSize = 0;
             this.btnProximo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximo.ForeColor = System.Drawing.Color.White;
-            this.btnProximo.Location = new System.Drawing.Point(898, 432);
+            this.btnProximo.Location = new System.Drawing.Point(901, 449);
             this.btnProximo.Name = "btnProximo";
             this.btnProximo.Size = new System.Drawing.Size(169, 34);
             this.btnProximo.TabIndex = 33;
@@ -598,7 +598,7 @@
             this.btnProximoProduto.FlatAppearance.BorderSize = 0;
             this.btnProximoProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximoProduto.ForeColor = System.Drawing.Color.White;
-            this.btnProximoProduto.Location = new System.Drawing.Point(884, 459);
+            this.btnProximoProduto.Location = new System.Drawing.Point(884, 455);
             this.btnProximoProduto.Name = "btnProximoProduto";
             this.btnProximoProduto.Size = new System.Drawing.Size(169, 34);
             this.btnProximoProduto.TabIndex = 34;
@@ -759,9 +759,9 @@
             // 
             this.orcamento1.Controls.Add(this.groupBox7);
             this.orcamento1.Controls.Add(this.groupBox4);
-            this.orcamento1.Location = new System.Drawing.Point(4, 29);
+            this.orcamento1.Location = new System.Drawing.Point(4, 22);
             this.orcamento1.Name = "orcamento1";
-            this.orcamento1.Size = new System.Drawing.Size(1073, 513);
+            this.orcamento1.Size = new System.Drawing.Size(1073, 520);
             this.orcamento1.TabIndex = 2;
             this.orcamento1.Text = "Orçamento 1";
             this.orcamento1.UseVisualStyleBackColor = true;
@@ -1118,10 +1118,10 @@
             // 
             this.orcamento2.Controls.Add(this.groupBox8);
             this.orcamento2.Controls.Add(this.groupBox5);
-            this.orcamento2.Location = new System.Drawing.Point(4, 29);
+            this.orcamento2.Location = new System.Drawing.Point(4, 22);
             this.orcamento2.Name = "orcamento2";
             this.orcamento2.Padding = new System.Windows.Forms.Padding(3);
-            this.orcamento2.Size = new System.Drawing.Size(1073, 513);
+            this.orcamento2.Size = new System.Drawing.Size(1073, 520);
             this.orcamento2.TabIndex = 3;
             this.orcamento2.Text = "Orçamento 2";
             this.orcamento2.UseVisualStyleBackColor = true;
@@ -1171,6 +1171,7 @@
             this.btnVisualizarArquivo2.Text = "Visualizar arquivo";
             this.btnVisualizarArquivo2.UseVisualStyleBackColor = false;
             this.btnVisualizarArquivo2.Visible = false;
+            this.btnVisualizarArquivo2.Click += new System.EventHandler(this.btnVisualizarArquivo2_Click);
             // 
             // txtIdOrcamento2
             // 
@@ -1485,7 +1486,7 @@
             // 
             // groupBox9
             // 
-            this.groupBox9.Controls.Add(this.button2);
+            this.groupBox9.Controls.Add(this.btnVisualizarArquivo3);
             this.groupBox9.Controls.Add(this.txtIdOrcamento3);
             this.groupBox9.Controls.Add(this.btnProximo3);
             this.groupBox9.Controls.Add(this.label40);
@@ -1514,20 +1515,21 @@
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Dados do orçamento";
             // 
-            // button2
+            // btnVisualizarArquivo3
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(135)))), ((int)(((byte)(5)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(694, 153);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(169, 34);
-            this.button2.TabIndex = 68;
-            this.button2.Text = "Visualizar arquivo";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Visible = false;
+            this.btnVisualizarArquivo3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnVisualizarArquivo3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(135)))), ((int)(((byte)(5)))));
+            this.btnVisualizarArquivo3.FlatAppearance.BorderSize = 0;
+            this.btnVisualizarArquivo3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVisualizarArquivo3.ForeColor = System.Drawing.Color.White;
+            this.btnVisualizarArquivo3.Location = new System.Drawing.Point(694, 153);
+            this.btnVisualizarArquivo3.Name = "btnVisualizarArquivo3";
+            this.btnVisualizarArquivo3.Size = new System.Drawing.Size(169, 34);
+            this.btnVisualizarArquivo3.TabIndex = 68;
+            this.btnVisualizarArquivo3.Text = "Visualizar arquivo";
+            this.btnVisualizarArquivo3.UseVisualStyleBackColor = false;
+            this.btnVisualizarArquivo3.Visible = false;
+            this.btnVisualizarArquivo3.Click += new System.EventHandler(this.btnVisualizarArquivo3_Click);
             // 
             // txtIdOrcamento3
             // 
@@ -1837,7 +1839,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1087, 548);
-            this.Controls.Add(this.btnVisualizarArquivo3);
+            this.Controls.Add(this.tabContainer);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmNovaSolicitacao";
@@ -1845,7 +1847,7 @@
             this.Text = "Nova Solicitacao";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmNovaSolicitacao_FormClosed);
             this.Load += new System.EventHandler(this.FrmNovaSolicitacao_Load);
-            this.btnVisualizarArquivo3.ResumeLayout(false);
+            this.tabContainer.ResumeLayout(false);
             this.dadosGerais.ResumeLayout(false);
             this.dadosGerais.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -1877,7 +1879,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.TabControl btnVisualizarArquivo3;
+        private System.Windows.Forms.TabControl tabContainer;
         private System.Windows.Forms.TabPage dadosGerais;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtResponsavelEntrega;
@@ -2045,7 +2047,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colProdutoPedidoOrcamentoId3;
         private System.Windows.Forms.Button btnVisualizarArquivo1;
         private System.Windows.Forms.Button btnVisualizarArquivo2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnVisualizarArquivo3;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
