@@ -1,4 +1,5 @@
-﻿using OlimpiadaCompras.Models;
+﻿using Newtonsoft.Json;
+using OlimpiadaCompras.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,7 +26,7 @@ namespace OlimpiadaCompras.Requests
                     {
 
                         var orcamentosString = await response.Content.ReadAsStringAsync();
-                        orcamentos = new JavaScriptSerializer().Deserialize<List<Orcamento>>(orcamentosString);
+                        orcamentos = JsonConvert.DeserializeObject<List<Orcamento>>(orcamentosString);
                         return orcamentos;
                     }
                     return null;
@@ -52,7 +53,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var orcamentosString = await response.Content.ReadAsStringAsync();
-                        orcamento = new JavaScriptSerializer().Deserialize<Orcamento>(orcamentosString);
+                        orcamento = JsonConvert.DeserializeObject<Orcamento>(orcamentosString);
                         return orcamento;
                     }
                     return null;
@@ -100,7 +101,7 @@ namespace OlimpiadaCompras.Requests
                         if (response.IsSuccessStatusCode)
                         {
                             var orcamentosString = await response.Content.ReadAsStringAsync();
-                            orcamentoCriado = new JavaScriptSerializer().Deserialize<Orcamento>(orcamentosString);
+                            orcamentoCriado = JsonConvert.DeserializeObject<Orcamento>(orcamentosString);
                             return orcamentoCriado;
                         }
                         return null;
@@ -149,7 +150,7 @@ namespace OlimpiadaCompras.Requests
                         if (response.IsSuccessStatusCode)
                         {
                             var orcamentosString = await response.Content.ReadAsStringAsync();
-                            orcamentoEditado = new JavaScriptSerializer().Deserialize<Orcamento>(orcamentosString);
+                            orcamentoEditado = JsonConvert.DeserializeObject<Orcamento>(orcamentosString);
                             return orcamentoEditado;
                         }
                         return null;
@@ -177,7 +178,7 @@ namespace OlimpiadaCompras.Requests
                     {
 
                         var orcamentosString = await response.Content.ReadAsStringAsync();
-                        orcamentos = new JavaScriptSerializer().Deserialize<List<Orcamento>>(orcamentosString);
+                        orcamentos = JsonConvert.DeserializeObject<List<Orcamento>>(orcamentosString);
                         return orcamentos;
                     }
                     return null;

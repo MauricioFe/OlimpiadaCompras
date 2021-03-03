@@ -1,4 +1,5 @@
-﻿using OlimpiadaCompras.Models;
+﻿using Newtonsoft.Json;
+using OlimpiadaCompras.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace OlimpiadaCompras.Requests
                     {
 
                         var solicitacaoComprasString = await response.Content.ReadAsStringAsync();
-                        solicitacaoCompras = new JavaScriptSerializer().Deserialize<List<SolicitacaoCompra>>(solicitacaoComprasString);
+                        solicitacaoCompras = JsonConvert.DeserializeObject<List<SolicitacaoCompra>>(solicitacaoComprasString);
                         return solicitacaoCompras;
                     }
                     return null;
@@ -51,7 +52,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var solicitacaoComprasString = await response.Content.ReadAsStringAsync();
-                        solicitacaoCompra = new JavaScriptSerializer().Deserialize<SolicitacaoCompra>(solicitacaoComprasString);
+                        solicitacaoCompra = JsonConvert.DeserializeObject<SolicitacaoCompra>(solicitacaoComprasString);
                         return solicitacaoCompra;
                     }
                     return null;
@@ -64,7 +65,7 @@ namespace OlimpiadaCompras.Requests
                 return null;
             }
         }
-        
+
         public static async Task<SolicitacaoCompra> Create(SolicitacaoCompra solicitacaoCompra, string token)
         {
             SolicitacaoCompra solicitacaoCompraCriado = new SolicitacaoCompra();
@@ -72,14 +73,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(solicitacaoCompra);
+                    var parseJson = JsonConvert.SerializeObject(solicitacaoCompra);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/solicitacaoCompra", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var solicitacaoComprasString = await response.Content.ReadAsStringAsync();
-                        solicitacaoCompraCriado = new JavaScriptSerializer().Deserialize<SolicitacaoCompra>(solicitacaoComprasString);
+                        solicitacaoCompraCriado = JsonConvert.DeserializeObject<SolicitacaoCompra>(solicitacaoComprasString);
                         return solicitacaoCompraCriado;
                     }
                     return null;
@@ -100,14 +101,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(solicitacaoCompra);
+                    var parseJson = JsonConvert.SerializeObject(solicitacaoCompra);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/solicitacaoCompra/{id}", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var solicitacaoComprasString = await response.Content.ReadAsStringAsync();
-                        solicitacaoCompraEditado = new JavaScriptSerializer().Deserialize<SolicitacaoCompra>(solicitacaoComprasString);
+                        solicitacaoCompraEditado = JsonConvert.DeserializeObject<SolicitacaoCompra>(solicitacaoComprasString);
                         return solicitacaoCompraEditado;
                     }
                     return null;
@@ -144,8 +145,5 @@ namespace OlimpiadaCompras.Requests
             }
 
         }
-
-        //public static async Task<bool> AnexarNotaFiscal()
-
     }
 }

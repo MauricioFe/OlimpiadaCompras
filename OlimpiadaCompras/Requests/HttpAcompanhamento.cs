@@ -1,4 +1,5 @@
-﻿using OlimpiadaCompras.Models;
+﻿using Newtonsoft.Json;
+using OlimpiadaCompras.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var acompanhamentoStr = await response.Content.ReadAsStringAsync();
-                        acompanhamentos = new JavaScriptSerializer().Deserialize<List<Acompanhamento>>(acompanhamentoStr);
+                        acompanhamentos = JsonConvert.DeserializeObject<List<Acompanhamento>>(acompanhamentoStr);
                         return acompanhamentos;
                     }
                     return null;
@@ -47,7 +48,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var acompanhamentoStr = await response.Content.ReadAsStringAsync();
-                        acompanhamentos = new JavaScriptSerializer().Deserialize<List<Acompanhamento>>(acompanhamentoStr);
+                        acompanhamentos = JsonConvert.DeserializeObject<List<Acompanhamento>>(acompanhamentoStr);
                         return acompanhamentos;
                     }
                     return null;
@@ -72,7 +73,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var acompanhamentoStr = await response.Content.ReadAsStringAsync();
-                        acompanhamentos = new JavaScriptSerializer().Deserialize<List<Acompanhamento>>(acompanhamentoStr);
+                        acompanhamentos = JsonConvert.DeserializeObject<List<Acompanhamento>>(acompanhamentoStr);
                         return acompanhamentos;
                     }
                     return null;
@@ -97,7 +98,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var acompanhamentoStr = await response.Content.ReadAsStringAsync();
-                        acompanhamento = new JavaScriptSerializer().Deserialize<Acompanhamento>(acompanhamentoStr);
+                        acompanhamento = JsonConvert.DeserializeObject<Acompanhamento>(acompanhamentoStr);
                         return acompanhamento;
                     }
                     return null;
@@ -116,14 +117,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(acompanhamento);
+                    var parseJson = JsonConvert.SerializeObject(acompanhamento);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/acompanhamento", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var acompanhamentoStr = await response.Content.ReadAsStringAsync();
-                        acompanhamentoCriado = new JavaScriptSerializer().Deserialize<Acompanhamento>(acompanhamentoStr);
+                        acompanhamentoCriado = JsonConvert.DeserializeObject<Acompanhamento>(acompanhamentoStr);
                         return acompanhamentoCriado;
                     }
                     return null;
@@ -142,14 +143,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(acompanhamento);
+                    var parseJson = JsonConvert.SerializeObject(acompanhamento);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/acompanhamento/{id}", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var acompanhamentoStr = await response.Content.ReadAsStringAsync();
-                        acompanhamentoCriado = new JavaScriptSerializer().Deserialize<Acompanhamento>(acompanhamentoStr);
+                        acompanhamentoCriado = JsonConvert.DeserializeObject<Acompanhamento>(acompanhamentoStr);
                         return acompanhamentoCriado;
                     }
                     return null;

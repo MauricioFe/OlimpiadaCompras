@@ -1,4 +1,5 @@
-﻿using OlimpiadaCompras.Models;
+﻿using Newtonsoft.Json;
+using OlimpiadaCompras.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace OlimpiadaCompras.Requests
                     {
 
                         var responsaveisString = await response.Content.ReadAsStringAsync();
-                        responsaveis = new JavaScriptSerializer().Deserialize<List<Responsavel>>(responsaveisString);
+                        responsaveis = JsonConvert.DeserializeObject<List<Responsavel>>(responsaveisString);
                         return responsaveis;
                     }
                     return null;
@@ -51,7 +52,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var responsaveisString = await response.Content.ReadAsStringAsync();
-                        responsavel = new JavaScriptSerializer().Deserialize<Responsavel>(responsaveisString);
+                        responsavel = JsonConvert.DeserializeObject<Responsavel>(responsaveisString);
                         return responsavel;
                     }
                     return null;
@@ -76,7 +77,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var responsaveisString = await response.Content.ReadAsStringAsync();
-                        responsaveis = new JavaScriptSerializer().Deserialize<List<Responsavel>>(responsaveisString);
+                        responsaveis = JsonConvert.DeserializeObject<List<Responsavel>>(responsaveisString);
                         return responsaveis;
                     }
                     return null;
@@ -96,14 +97,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(responsavel);
+                    var parseJson = JsonConvert.SerializeObject(responsavel);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/responsaveis", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var responsaveisString = await response.Content.ReadAsStringAsync();
-                        responsavelCriado = new JavaScriptSerializer().Deserialize<Responsavel>(responsaveisString);
+                        responsavelCriado = JsonConvert.DeserializeObject<Responsavel>(responsaveisString);
                         return responsavelCriado;
                     }
                     return null;
@@ -124,14 +125,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(responsavel);
+                    var parseJson = JsonConvert.SerializeObject(responsavel);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/responsaveis/{id}", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var responsaveisString = await response.Content.ReadAsStringAsync();
-                        responsavelEditado = new JavaScriptSerializer().Deserialize<Responsavel>(responsaveisString);
+                        responsavelEditado = JsonConvert.DeserializeObject<Responsavel>(responsaveisString);
                         return responsavelEditado;
                     }
                     return null;

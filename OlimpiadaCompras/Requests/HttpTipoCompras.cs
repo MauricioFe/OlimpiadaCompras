@@ -1,4 +1,5 @@
-﻿using OlimpiadaCompras.Models;
+﻿using Newtonsoft.Json;
+using OlimpiadaCompras.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace OlimpiadaCompras.Requests
                     {
 
                         var tipoComprasString = await response.Content.ReadAsStringAsync();
-                        tipoCompras = new JavaScriptSerializer().Deserialize<List<TipoCompra>>(tipoComprasString);
+                        tipoCompras = JsonConvert.DeserializeObject<List<TipoCompra>>(tipoComprasString);
                         return tipoCompras;
                     }
                     return null;
@@ -51,7 +52,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var tipoComprasString = await response.Content.ReadAsStringAsync();
-                        tipoCompra = new JavaScriptSerializer().Deserialize<TipoCompra>(tipoComprasString);
+                        tipoCompra = JsonConvert.DeserializeObject<TipoCompra>(tipoComprasString);
                         return tipoCompra;
                     }
                     return null;
@@ -76,7 +77,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var tipoComprasString = await response.Content.ReadAsStringAsync();
-                        tipoCompras = new JavaScriptSerializer().Deserialize<List<TipoCompra>>(tipoComprasString);
+                        tipoCompras = JsonConvert.DeserializeObject<List<TipoCompra>>(tipoComprasString);
                         return tipoCompras;
                     }
                     return null;
@@ -96,14 +97,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(tipoCompra);
+                    var parseJson = JsonConvert.SerializeObject(tipoCompra);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/tipoCompras", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var tipoComprasString = await response.Content.ReadAsStringAsync();
-                        tipoCompraCriado = new JavaScriptSerializer().Deserialize<TipoCompra>(tipoComprasString);
+                        tipoCompraCriado = JsonConvert.DeserializeObject<TipoCompra>(tipoComprasString);
                         return tipoCompraCriado;
                     }
                     return null;
@@ -124,14 +125,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(tipoCompra);
+                    var parseJson = JsonConvert.SerializeObject(tipoCompra);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/tipoCompras/{id}", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var tipoComprasString = await response.Content.ReadAsStringAsync();
-                        tipoCompraEditado = new JavaScriptSerializer().Deserialize<TipoCompra>(tipoComprasString);
+                        tipoCompraEditado = JsonConvert.DeserializeObject<TipoCompra>(tipoComprasString);
                         return tipoCompraEditado;
                     }
                     return null;

@@ -1,4 +1,5 @@
-﻿using OlimpiadaCompras.Models;
+﻿using Newtonsoft.Json;
+using OlimpiadaCompras.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace OlimpiadaCompras.Requests
                     {
 
                         var produtosString = await response.Content.ReadAsStringAsync();
-                        produtos = new JavaScriptSerializer().Deserialize<List<Produto>>(produtosString);
+                        produtos = JsonConvert.DeserializeObject<List<Produto>>(produtosString);
                         return produtos;
                     }
                     return null;
@@ -51,7 +52,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var produtosString = await response.Content.ReadAsStringAsync();
-                        produto = new JavaScriptSerializer().Deserialize<Produto>(produtosString);
+                        produto = JsonConvert.DeserializeObject<Produto>(produtosString);
                         return produto;
                     }
                     return null;
@@ -76,7 +77,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var produtosString = await response.Content.ReadAsStringAsync();
-                        produtos = new JavaScriptSerializer().Deserialize<List<Produto>>(produtosString);
+                        produtos = JsonConvert.DeserializeObject<List<Produto>>(produtosString);
                         return produtos;
                     }
                     return null;
@@ -96,14 +97,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(produto);
+                    var parseJson = JsonConvert.SerializeObject(produto);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/produtos", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var produtosString = await response.Content.ReadAsStringAsync();
-                        produtoCriado = new JavaScriptSerializer().Deserialize<Produto>(produtosString);
+                        produtoCriado = JsonConvert.DeserializeObject<Produto>(produtosString);
                         return produtoCriado;
                     }
                     return null;
@@ -124,14 +125,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(produto);
+                    var parseJson = JsonConvert.SerializeObject(produto);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/produtos/{id}", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var produtosString = await response.Content.ReadAsStringAsync();
-                        produtoEditado = new JavaScriptSerializer().Deserialize<Produto>(produtosString);
+                        produtoEditado = JsonConvert.DeserializeObject<Produto>(produtosString);
                         return produtoEditado;
                     }
                     return null;
@@ -181,7 +182,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var produtosString = await response.Content.ReadAsStringAsync();
-                        produto = new JavaScriptSerializer().Deserialize<Produto>(produtosString);
+                        produto = JsonConvert.DeserializeObject<Produto>(produtosString);
                         return produto;
                     }
                     return null;

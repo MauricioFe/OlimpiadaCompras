@@ -1,4 +1,5 @@
-﻿using OlimpiadaCompras.Models;
+﻿using Newtonsoft.Json;
+using OlimpiadaCompras.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace OlimpiadaCompras.Requests
                     {
 
                         var escolasString = await response.Content.ReadAsStringAsync();
-                        escolas = new JavaScriptSerializer().Deserialize<List<Escola>>(escolasString);
+                        escolas = JsonConvert.DeserializeObject<List<Escola>>(escolasString);
                         return escolas;
                     }
                     return null;
@@ -51,7 +52,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var escolasString = await response.Content.ReadAsStringAsync();
-                        escola = new JavaScriptSerializer().Deserialize<Escola>(escolasString);
+                        escola = JsonConvert.DeserializeObject<Escola>(escolasString);
                         return escola;
                     }
                     return null;
@@ -76,7 +77,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var escolasString = await response.Content.ReadAsStringAsync();
-                        escolas = new JavaScriptSerializer().Deserialize<List<Escola>>(escolasString);
+                        escolas = JsonConvert.DeserializeObject<List<Escola>>(escolasString);
                         return escolas;
                     }
                     return null;
@@ -96,14 +97,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(escola);
+                    var parseJson = JsonConvert.SerializeObject(escola);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/escolas", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var escolasString = await response.Content.ReadAsStringAsync();
-                        escolaCriado = new JavaScriptSerializer().Deserialize<Escola>(escolasString);
+                        escolaCriado = JsonConvert.DeserializeObject<Escola>(escolasString);
                         return escolaCriado;
                     }
                     return null;
@@ -124,14 +125,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(escola);
+                    var parseJson = JsonConvert.SerializeObject(escola);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/escolas/{id}", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var escolasString = await response.Content.ReadAsStringAsync();
-                        escolaEditado = new JavaScriptSerializer().Deserialize<Escola>(escolasString);
+                        escolaEditado = JsonConvert.DeserializeObject<Escola>(escolasString);
                         return escolaEditado;
                     }
                     return null;

@@ -1,4 +1,5 @@
-﻿using OlimpiadaCompras.Models;
+﻿using Newtonsoft.Json;
+using OlimpiadaCompras.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var solicitacaoStr = await response.Content.ReadAsStringAsync();
-                        produtoSolicitacoes = new JavaScriptSerializer().Deserialize<List<ProdutoSolicitacao>>(solicitacaoStr);
+                        produtoSolicitacoes = JsonConvert.DeserializeObject<List<ProdutoSolicitacao>>(solicitacaoStr);
                         return produtoSolicitacoes;
                     }
                     return null;
@@ -47,7 +48,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var produtoSolicitacaoStr = await response.Content.ReadAsStringAsync();
-                        produtoSolicitacao = new JavaScriptSerializer().Deserialize<ProdutoSolicitacao>(produtoSolicitacaoStr);
+                        produtoSolicitacao = JsonConvert.DeserializeObject<ProdutoSolicitacao>(produtoSolicitacaoStr);
                         return produtoSolicitacao;
                     }
                     return null;
@@ -72,7 +73,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var produtoSolicitacaoStr = await response.Content.ReadAsStringAsync();
-                        produtoSolicitacoes = new JavaScriptSerializer().Deserialize<List<ProdutoSolicitacao>>(produtoSolicitacaoStr);
+                        produtoSolicitacoes = JsonConvert.DeserializeObject<List<ProdutoSolicitacao>>(produtoSolicitacaoStr);
                         return produtoSolicitacoes;
                     }
                     return null;
@@ -91,13 +92,13 @@ namespace OlimpiadaCompras.Requests
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
-                    var json = new JavaScriptSerializer().Serialize(produtoSolicitacao);
+                    var json = JsonConvert.SerializeObject(produtoSolicitacao);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
                     var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/ProdutoSolicitacoes", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var produtoSolicitacaoStr = await response.Content.ReadAsStringAsync();
-                        produtoSolicitacao = new JavaScriptSerializer().Deserialize<ProdutoSolicitacao>(produtoSolicitacaoStr);
+                        produtoSolicitacao = JsonConvert.DeserializeObject<ProdutoSolicitacao>(produtoSolicitacaoStr);
                         return produtoSolicitacao;
                     }
                     return null;
@@ -116,13 +117,13 @@ namespace OlimpiadaCompras.Requests
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
-                    var json = new JavaScriptSerializer().Serialize(produtoSolicitacao);
+                    var json = JsonConvert.SerializeObject(produtoSolicitacao);
                     var content = new StringContent(json, Encoding.UTF8, "aplication/json");
                     var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/produtoSolicitacoes/{id}", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var produtoSolicitacaoStr = await response.Content.ReadAsStringAsync();
-                        produtoSolicitacao = new JavaScriptSerializer().Deserialize<ProdutoSolicitacao>(produtoSolicitacaoStr);
+                        produtoSolicitacao = JsonConvert.DeserializeObject<ProdutoSolicitacao>(produtoSolicitacaoStr);
                         return produtoSolicitacao;
                     }
                     return null;

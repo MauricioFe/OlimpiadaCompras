@@ -1,4 +1,5 @@
-﻿using OlimpiadaCompras.Models;
+﻿using Newtonsoft.Json;
+using OlimpiadaCompras.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace OlimpiadaCompras.Requests
                     {
 
                         var produtoPedidoOrcamentosString = await response.Content.ReadAsStringAsync();
-                        produtoPedidoOrcamentos = new JavaScriptSerializer().Deserialize<List<ProdutoPedidoOrcamento>>(produtoPedidoOrcamentosString);
+                        produtoPedidoOrcamentos = JsonConvert.DeserializeObject<List<ProdutoPedidoOrcamento>>(produtoPedidoOrcamentosString);
                         return produtoPedidoOrcamentos;
                     }
                     return null;
@@ -51,7 +52,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var produtoPedidoOrcamentosString = await response.Content.ReadAsStringAsync();
-                        produtoPedidoOrcamento = new JavaScriptSerializer().Deserialize<ProdutoPedidoOrcamento>(produtoPedidoOrcamentosString);
+                        produtoPedidoOrcamento = JsonConvert.DeserializeObject<ProdutoPedidoOrcamento>(produtoPedidoOrcamentosString);
                         return produtoPedidoOrcamento;
                     }
                     return null;
@@ -72,14 +73,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(produtoPedidoOrcamento);
+                    var parseJson = JsonConvert.SerializeObject(produtoPedidoOrcamento);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/produtoPedidoOrcamento", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var produtoPedidoOrcamentosString = await response.Content.ReadAsStringAsync();
-                        produtoPedidoOrcamentoCriado = new JavaScriptSerializer().Deserialize<ProdutoPedidoOrcamento>(produtoPedidoOrcamentosString);
+                        produtoPedidoOrcamentoCriado = JsonConvert.DeserializeObject<ProdutoPedidoOrcamento>(produtoPedidoOrcamentosString);
                         return produtoPedidoOrcamentoCriado;
                     }
                     return null;
@@ -99,14 +100,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(produtoPedidoOrcamento);
+                    var parseJson = JsonConvert.SerializeObject(produtoPedidoOrcamento);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/produtoPedidoOrcamento/{id}", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var produtoPedidoOrcamentosString = await response.Content.ReadAsStringAsync();
-                        produtoPedidoOrcamentoEditado = new JavaScriptSerializer().Deserialize<ProdutoPedidoOrcamento>(produtoPedidoOrcamentosString);
+                        produtoPedidoOrcamentoEditado = JsonConvert.DeserializeObject<ProdutoPedidoOrcamento>(produtoPedidoOrcamentosString);
                         return produtoPedidoOrcamentoEditado;
                     }
                     return null;
@@ -132,7 +133,7 @@ namespace OlimpiadaCompras.Requests
                     {
 
                         var produtoPedidoOrcamentosString = await response.Content.ReadAsStringAsync();
-                        produtoPedidoOrcamentos = new JavaScriptSerializer().Deserialize<List<ProdutoPedidoOrcamento>>(produtoPedidoOrcamentosString);
+                        produtoPedidoOrcamentos = JsonConvert.DeserializeObject<List<ProdutoPedidoOrcamento>>(produtoPedidoOrcamentosString);
                         return produtoPedidoOrcamentos;
                     }
                     return null;
@@ -183,7 +184,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var produtoSolicitacaoStr = await response.Content.ReadAsStringAsync();
-                        produtoPedidoOrcamento = new JavaScriptSerializer().Deserialize<List<ProdutoPedidoOrcamento>>(produtoSolicitacaoStr);
+                        produtoPedidoOrcamento = JsonConvert.DeserializeObject<List<ProdutoPedidoOrcamento>>(produtoSolicitacaoStr);
                         return produtoPedidoOrcamento;
                     }
                     return null;

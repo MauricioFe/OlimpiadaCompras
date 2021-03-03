@@ -1,4 +1,5 @@
-﻿using OlimpiadaCompras.Models;
+﻿using Newtonsoft.Json;
+using OlimpiadaCompras.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace OlimpiadaCompras.Requests
                     {
 
                         var gruposString = await response.Content.ReadAsStringAsync();
-                        grupos = new JavaScriptSerializer().Deserialize<List<Grupo>>(gruposString);
+                        grupos = JsonConvert.DeserializeObject<List<Grupo>>(gruposString);
                         return grupos;
                     }
                     return null;
@@ -51,7 +52,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var gruposString = await response.Content.ReadAsStringAsync();
-                        grupo = new JavaScriptSerializer().Deserialize<Grupo>(gruposString);
+                        grupo = JsonConvert.DeserializeObject<Grupo>(gruposString);
                         return grupo;
                     }
                     return null;
@@ -76,7 +77,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var gruposString = await response.Content.ReadAsStringAsync();
-                        grupos = new JavaScriptSerializer().Deserialize<List<Grupo>>(gruposString);
+                        grupos = JsonConvert.DeserializeObject<List<Grupo>>(gruposString);
                         return grupos;
                     }
                     return null;
@@ -96,14 +97,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(grupo);
+                    var parseJson = JsonConvert.SerializeObject(grupo);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/grupos", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var gruposString = await response.Content.ReadAsStringAsync();
-                        grupoCriado = new JavaScriptSerializer().Deserialize<Grupo>(gruposString);
+                        grupoCriado = JsonConvert.DeserializeObject<Grupo>(gruposString);
                         return grupoCriado;
                     }
                     return null;
@@ -124,14 +125,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(grupo);
+                    var parseJson = JsonConvert.SerializeObject(grupo);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/grupos/{id}", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var gruposString = await response.Content.ReadAsStringAsync();
-                        grupoEditado = new JavaScriptSerializer().Deserialize<Grupo>(gruposString);
+                        grupoEditado = JsonConvert.DeserializeObject<Grupo>(gruposString);
                         return grupoEditado;
                     }
                     return null;

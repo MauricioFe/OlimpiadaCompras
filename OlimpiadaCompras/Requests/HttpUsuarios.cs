@@ -1,4 +1,5 @@
-﻿using OlimpiadaCompras.Models;
+﻿using Newtonsoft.Json;
+using OlimpiadaCompras.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace OlimpiadaCompras.Requests
                     {
 
                         var usuariosString = await response.Content.ReadAsStringAsync();
-                        usuarios = new JavaScriptSerializer().Deserialize<List<Usuario>>(usuariosString);
+                        usuarios = JsonConvert.DeserializeObject<List<Usuario>>(usuariosString);
                         return usuarios;
                     }
                     return null;
@@ -51,7 +52,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var usuariosString = await response.Content.ReadAsStringAsync();
-                        usuario = new JavaScriptSerializer().Deserialize<Usuario>(usuariosString);
+                        usuario = JsonConvert.DeserializeObject<Usuario>(usuariosString);
                         return usuario;
                     }
                     return null;
@@ -76,7 +77,7 @@ namespace OlimpiadaCompras.Requests
                     if (response.IsSuccessStatusCode)
                     {
                         var usuariosString = await response.Content.ReadAsStringAsync();
-                        usuarios = new JavaScriptSerializer().Deserialize<List<Usuario>>(usuariosString);
+                        usuarios = JsonConvert.DeserializeObject<List<Usuario>>(usuariosString);
                         return usuarios;
                     }
                     return null;
@@ -96,13 +97,13 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(usuario);
+                    var parseJson = JsonConvert.SerializeObject(usuario);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/usuarios/login", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var usuariosString = await response.Content.ReadAsStringAsync();
-                        usuarioLogado = new JavaScriptSerializer().Deserialize<Usuario>(usuariosString);
+                        usuarioLogado = JsonConvert.DeserializeObject<Usuario>(usuariosString);
                         return usuarioLogado;
                     }
                     return null;
@@ -123,14 +124,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(usuario);
+                    var parseJson = JsonConvert.SerializeObject(usuario);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/usuarios", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var usuariosString = await response.Content.ReadAsStringAsync();
-                        usuarioCriado = new JavaScriptSerializer().Deserialize<Usuario>(usuariosString);
+                        usuarioCriado = JsonConvert.DeserializeObject<Usuario>(usuariosString);
                         return usuarioCriado;
                     }
                     return null;
@@ -151,14 +152,14 @@ namespace OlimpiadaCompras.Requests
             {
                 using (var client = new HttpClient())
                 {
-                    var parseJson = new JavaScriptSerializer().Serialize(usuario);
+                    var parseJson = JsonConvert.SerializeObject(usuario);
                     var content = new StringContent(parseJson, Encoding.UTF8, "application/json");
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                     var response = await client.PutAsync($"{ConstantesProjeto.URL_BASE}/api/usuarios/{id}", content);
                     if (response.IsSuccessStatusCode)
                     {
                         var usuariosString = await response.Content.ReadAsStringAsync();
-                        usuarioEditado = new JavaScriptSerializer().Deserialize<Usuario>(usuariosString);
+                        usuarioEditado = JsonConvert.DeserializeObject<Usuario>(usuariosString);
                         return usuarioEditado;
                     }
                     return null;

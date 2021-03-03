@@ -1,4 +1,5 @@
-﻿using OlimpiadaCompras.Models;
+﻿using Newtonsoft.Json;
+using OlimpiadaCompras.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace OlimpiadaCompras.Requests
                 using (HttpClient client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
-                    var json = new JavaScriptSerializer().Serialize(data);
+                    var json = JsonConvert.SerializeObject(data);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
                     var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/enviarEmail/{idSolicitacao}", content);
                     if (response.IsSuccessStatusCode)
