@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -51,6 +53,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
             {
                 PreencheDadosSolicitacao();
                 DisabilitaInputs();
+                btnVisualizarArquivo1.Visible = true;
+                btnVisualizarArquivo1.Enabled = true;
             }
             else if (idSolicitacao > 0 && acao == ConstantesProjeto.SALVAR)
             {
@@ -156,34 +160,34 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         {
                             orcamentoCadastrado3 = true;
                         }
-                        int row = ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows.Add();
-                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[0].Value = item.ProdutoSolicitacao.Produto.CodigoProtheus;
-                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[1].Value = item.ProdutoSolicitacao.Produto.Grupo.Descricao;
-                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[2].Value = item.ProdutoSolicitacao.Produto.Descricao;
-                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[3].Value = item.Quantidade;
-                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[4].Value = item.valor;
-                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[5].Value = item.Desconto;
-                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[6].Value = item.Ipi;
-                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[7].Value = item.Icms;
-                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[8].Value = item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)));
-                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[10].Value = item.ProdutoSolicitacao.Id;
-                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[11].Value = item.Id;
-                        ((TextBox)tabContainer.Controls.Find($"txtFornecedor{i + 1}", true)[0]).Text = orcamento.Fornecedor;
-                        ((TextBox)tabContainer.Controls.Find($"txtCnpj{i + 1}", true)[0]).Text = orcamento.Cnpj;
-                        ((DateTimePicker)tabContainer.Controls.Find($"dtpDataOrcamento{i + 1}", true)[0]).Value = orcamento.Data;
-                        ((TextBox)tabContainer.Controls.Find($"txtTotalProdutos{i + 1}", true)[0]).Text = orcamento.TotalProdutos.ToString();
-                        ((TextBox)tabContainer.Controls.Find($"txtTotalIPI{i + 1}", true)[0]).Text = orcamento.TotalIpi.ToString();
-                        ((TextBox)tabContainer.Controls.Find($"txtValorFinal{i + 1}", true)[0]).Text = orcamento.ValorTotal.ToString();
-                        ((TextBox)tabContainer.Controls.Find($"txtValorFrete{i + 1}", true)[0]).Text = orcamento.ValorFrete.ToString();
-                        ((TextBox)tabContainer.Controls.Find($"txtAnexarPdf{i + 1}", true)[0]).Text = orcamento.Anexo;
-                        ((TextBox)tabContainer.Controls.Find($"txtIdOrcamento{i + 1}", true)[0]).Text = orcamento.Id.ToString();
+                        int row = ((DataGridView)btnVisualizarArquivo3.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows.Add();
+                        ((DataGridView)btnVisualizarArquivo3.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[0].Value = item.ProdutoSolicitacao.Produto.CodigoProtheus;
+                        ((DataGridView)btnVisualizarArquivo3.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[1].Value = item.ProdutoSolicitacao.Produto.Grupo.Descricao;
+                        ((DataGridView)btnVisualizarArquivo3.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[2].Value = item.ProdutoSolicitacao.Produto.Descricao;
+                        ((DataGridView)btnVisualizarArquivo3.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[3].Value = item.Quantidade;
+                        ((DataGridView)btnVisualizarArquivo3.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[4].Value = item.valor;
+                        ((DataGridView)btnVisualizarArquivo3.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[5].Value = item.Desconto;
+                        ((DataGridView)btnVisualizarArquivo3.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[6].Value = item.Ipi;
+                        ((DataGridView)btnVisualizarArquivo3.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[7].Value = item.Icms;
+                        ((DataGridView)btnVisualizarArquivo3.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[8].Value = item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)));
+                        ((DataGridView)btnVisualizarArquivo3.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[10].Value = item.ProdutoSolicitacao.Id;
+                        ((DataGridView)btnVisualizarArquivo3.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[11].Value = item.Id;
+                        ((TextBox)btnVisualizarArquivo3.Controls.Find($"txtFornecedor{i + 1}", true)[0]).Text = orcamento.Fornecedor;
+                        ((TextBox)btnVisualizarArquivo3.Controls.Find($"txtCnpj{i + 1}", true)[0]).Text = orcamento.Cnpj;
+                        ((DateTimePicker)btnVisualizarArquivo3.Controls.Find($"dtpDataOrcamento{i + 1}", true)[0]).Value = orcamento.Data;
+                        ((TextBox)btnVisualizarArquivo3.Controls.Find($"txtTotalProdutos{i + 1}", true)[0]).Text = orcamento.TotalProdutos.ToString();
+                        ((TextBox)btnVisualizarArquivo3.Controls.Find($"txtTotalIPI{i + 1}", true)[0]).Text = orcamento.TotalIpi.ToString();
+                        ((TextBox)btnVisualizarArquivo3.Controls.Find($"txtValorFinal{i + 1}", true)[0]).Text = orcamento.ValorTotal.ToString();
+                        ((TextBox)btnVisualizarArquivo3.Controls.Find($"txtValorFrete{i + 1}", true)[0]).Text = orcamento.ValorFrete.ToString();
+                        ((TextBox)btnVisualizarArquivo3.Controls.Find($"txtAnexarPdf{i + 1}", true)[0]).Text = orcamento.Anexo;
+                        ((TextBox)btnVisualizarArquivo3.Controls.Find($"txtIdOrcamento{i + 1}", true)[0]).Text = orcamento.Id.ToString();
                         if (orcamento.FormaPagamento == "Crédito em conta")
                         {
-                            ((ComboBox)tabContainer.Controls.Find($"cboFormaPagamento{i + 1}", true)[0]).SelectedIndex = 0;
+                            ((ComboBox)btnVisualizarArquivo3.Controls.Find($"cboFormaPagamento{i + 1}", true)[0]).SelectedIndex = 0;
                         }
                         else
                         {
-                            ((ComboBox)tabContainer.Controls.Find($"cboFormaPagamento{i + 1}", true)[0]).SelectedIndex = 1;
+                            ((ComboBox)btnVisualizarArquivo3.Controls.Find($"cboFormaPagamento{i + 1}", true)[0]).SelectedIndex = 1;
                         }
                     }
                 }
@@ -191,7 +195,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
         }
         private void DisabilitaInputs()
         {
-            foreach (var item in tabContainer.Controls)
+            foreach (var item in btnVisualizarArquivo3.Controls)
             {
 
                 if (item.GetType() == typeof(TabPage))
@@ -289,8 +293,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
                                 await HttpSolicitacaoOcupacoes.Create(ocupacaoSolicitacao, usuarioLogado.token);
                             }
                             await CadastrarAcompanhamento();
-                            tabContainer.SelectTab("produto");
-                            ((Control)tabContainer.TabPages["dadosGerais"]).Enabled = false;
+                            btnVisualizarArquivo3.SelectTab("produto");
+                            ((Control)btnVisualizarArquivo3.TabPages["dadosGerais"]).Enabled = false;
                         }
                     }
                     else
@@ -320,8 +324,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
                                     await HttpSolicitacaoOcupacoes.Create(ocupacaoSolicitacao, usuarioLogado.token);
                                 }
                             }
-                            tabContainer.SelectTab("produto");
-                            ((Control)tabContainer.TabPages["dadosGerais"]).Enabled = false;
+                            btnVisualizarArquivo3.SelectTab("produto");
+                            ((Control)btnVisualizarArquivo3.TabPages["dadosGerais"]).Enabled = false;
                         }
                     }
                 }
@@ -584,8 +588,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     {
                         PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
                     }
-                    tabContainer.SelectTab(2);
-                    ((Control)tabContainer.TabPages[1]).Enabled = false;
+                    btnVisualizarArquivo3.SelectTab(2);
+                    ((Control)btnVisualizarArquivo3.TabPages[1]).Enabled = false;
                 }
                 else
                 {
@@ -598,8 +602,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     {
                         PreencheGridProdutoCompra(dgvProdutoCompra1, txtIdOrcamento1);
                     }
-                    tabContainer.SelectTab(2);
-                    ((Control)tabContainer.TabPages[1]).Enabled = false;
+                    btnVisualizarArquivo3.SelectTab(2);
+                    ((Control)btnVisualizarArquivo3.TabPages[1]).Enabled = false;
                 }
             }
         }
@@ -645,8 +649,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
                                 return;
                             }
                             PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
-                            tabContainer.SelectTab(3);
-                            ((Control)tabContainer.TabPages[2]).Enabled = false;
+                            btnVisualizarArquivo3.SelectTab(3);
+                            ((Control)btnVisualizarArquivo3.TabPages[2]).Enabled = false;
                         }
                     }
                     else
@@ -665,8 +669,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     {
                         PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
                     }
-                    tabContainer.SelectTab(3);
-                    ((Control)tabContainer.TabPages[2]).Enabled = false;
+                    btnVisualizarArquivo3.SelectTab(3);
+                    ((Control)btnVisualizarArquivo3.TabPages[2]).Enabled = false;
                 }
             }
         }
@@ -688,8 +692,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
                                 return;
                             }
                             PreencheGridProdutoCompra(dgvProdutoCompra3, txtIdOrcamento3);
-                            tabContainer.SelectTab(4);
-                            ((Control)tabContainer.TabPages[3]).Enabled = false;
+                            btnVisualizarArquivo3.SelectTab(4);
+                            ((Control)btnVisualizarArquivo3.TabPages[3]).Enabled = false;
                         }
                     }
                     else
@@ -708,8 +712,8 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     {
                         PreencheGridProdutoCompra(dgvProdutoCompra3, txtIdOrcamento3);
                     }
-                    tabContainer.SelectTab(4);
-                    ((Control)tabContainer.TabPages[3]).Enabled = false;
+                    btnVisualizarArquivo3.SelectTab(4);
+                    ((Control)btnVisualizarArquivo3.TabPages[3]).Enabled = false;
                 }
             }
         }
@@ -801,28 +805,28 @@ namespace OlimpiadaCompras.Telas.Avaliador
         }
         private bool VerificaCamposVaziosOrcamentos(int index)
         {
-            return string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtIdOrcamento" + index, true)[0]).Text)
-                && string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtTotalIpi" + index, true)[0]).Text)
-                && string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtTotalProdutos" + index, true)[0]).Text)
-                && string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtValorFinal" + index, true)[0]).Text)
-                && string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtValorFrete" + index, true)[0]).Text)
-                && string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtAnexarPdf" + index, true)[0]).Text)
-                && string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtCnpj" + index, true)[0]).Text)
-                && string.IsNullOrEmpty(((TextBox)tabContainer.Controls.Find("txtFornecedor" + index, true)[0]).Text);
+            return string.IsNullOrEmpty(((TextBox)btnVisualizarArquivo3.Controls.Find("txtIdOrcamento" + index, true)[0]).Text)
+                && string.IsNullOrEmpty(((TextBox)btnVisualizarArquivo3.Controls.Find("txtTotalIpi" + index, true)[0]).Text)
+                && string.IsNullOrEmpty(((TextBox)btnVisualizarArquivo3.Controls.Find("txtTotalProdutos" + index, true)[0]).Text)
+                && string.IsNullOrEmpty(((TextBox)btnVisualizarArquivo3.Controls.Find("txtValorFinal" + index, true)[0]).Text)
+                && string.IsNullOrEmpty(((TextBox)btnVisualizarArquivo3.Controls.Find("txtValorFrete" + index, true)[0]).Text)
+                && string.IsNullOrEmpty(((TextBox)btnVisualizarArquivo3.Controls.Find("txtAnexarPdf" + index, true)[0]).Text)
+                && string.IsNullOrEmpty(((TextBox)btnVisualizarArquivo3.Controls.Find("txtCnpj" + index, true)[0]).Text)
+                && string.IsNullOrEmpty(((TextBox)btnVisualizarArquivo3.Controls.Find("txtFornecedor" + index, true)[0]).Text);
         }
         private Orcamento PreencheObjetoDosInputs(int index)
         {
             Orcamento orcamento = new Orcamento();
-            orcamento.Id = long.Parse(((TextBox)tabContainer.Controls.Find("txtIdOrcamento" + index, true)[0]).Text);
-            orcamento.TotalIpi = double.Parse(((TextBox)tabContainer.Controls.Find("txtTotalIpi" + index, true)[0]).Text);
-            orcamento.TotalProdutos = double.Parse(((TextBox)tabContainer.Controls.Find("txtTotalProdutos" + index, true)[0]).Text);
-            orcamento.ValorTotal = double.Parse(((TextBox)tabContainer.Controls.Find("txtValorFinal" + index, true)[0]).Text);
-            orcamento.ValorFrete = double.Parse(((TextBox)tabContainer.Controls.Find("txtValorFrete" + index, true)[0]).Text);
-            orcamento.Anexo = ((TextBox)tabContainer.Controls.Find("txtAnexarPdf" + index, true)[0]).Text;
-            orcamento.Cnpj = ((TextBox)tabContainer.Controls.Find("txtCnpj" + index, true)[0]).Text;
-            orcamento.Fornecedor = ((TextBox)tabContainer.Controls.Find("txtFornecedor" + index, true)[0]).Text;
-            orcamento.FormaPagamento = ((ComboBox)tabContainer.Controls.Find("cboFormaPagamento" + index, true)[0]).Text;
-            orcamento.Data = ((DateTimePicker)tabContainer.Controls.Find("dtpDataOrcamento" + index, true)[0]).Value;
+            orcamento.Id = long.Parse(((TextBox)btnVisualizarArquivo3.Controls.Find("txtIdOrcamento" + index, true)[0]).Text);
+            orcamento.TotalIpi = double.Parse(((TextBox)btnVisualizarArquivo3.Controls.Find("txtTotalIpi" + index, true)[0]).Text);
+            orcamento.TotalProdutos = double.Parse(((TextBox)btnVisualizarArquivo3.Controls.Find("txtTotalProdutos" + index, true)[0]).Text);
+            orcamento.ValorTotal = double.Parse(((TextBox)btnVisualizarArquivo3.Controls.Find("txtValorFinal" + index, true)[0]).Text);
+            orcamento.ValorFrete = double.Parse(((TextBox)btnVisualizarArquivo3.Controls.Find("txtValorFrete" + index, true)[0]).Text);
+            orcamento.Anexo = ((TextBox)btnVisualizarArquivo3.Controls.Find("txtAnexarPdf" + index, true)[0]).Text;
+            orcamento.Cnpj = ((TextBox)btnVisualizarArquivo3.Controls.Find("txtCnpj" + index, true)[0]).Text;
+            orcamento.Fornecedor = ((TextBox)btnVisualizarArquivo3.Controls.Find("txtFornecedor" + index, true)[0]).Text;
+            orcamento.FormaPagamento = ((ComboBox)btnVisualizarArquivo3.Controls.Find("cboFormaPagamento" + index, true)[0]).Text;
+            orcamento.Data = ((DateTimePicker)btnVisualizarArquivo3.Controls.Find("dtpDataOrcamento" + index, true)[0]).Value;
             return orcamento;
         }
         private async Task<bool> UpdateOrcamento(Orcamento orcamento)
@@ -873,14 +877,14 @@ namespace OlimpiadaCompras.Telas.Avaliador
         private async Task EditarProdutoPedidoOrcamento(DataGridViewCellEventArgs e, int index)
         {
             ProdutoPedidoOrcamento produtoPedidoOrcamento = new ProdutoPedidoOrcamento();
-            produtoPedidoOrcamento.OrcamentoId = long.Parse(((TextBox)tabContainer.Controls.Find("txtIdOrcamento" + index, true)[0]).Text);
-            produtoPedidoOrcamento.ProdutoSolicitacoesId = Convert.ToInt64(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colProdutoSolicitacaoId" + index].Value);
-            produtoPedidoOrcamento.Quantidade = Convert.ToInt32(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colQuantidade" + index].Value);
-            produtoPedidoOrcamento.valor = Convert.ToDouble(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colUnitario" + index].Value);
-            produtoPedidoOrcamento.Desconto = Convert.ToDouble(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colDesconto" + index].Value);
-            produtoPedidoOrcamento.Ipi = Convert.ToDouble(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colIpi" + index].Value);
-            produtoPedidoOrcamento.Icms = Convert.ToDouble(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colICMS" + index].Value);
-            produtoPedidoOrcamento.Id = Convert.ToInt64(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colProdutoPedidoOrcamentoId" + index].Value);
+            produtoPedidoOrcamento.OrcamentoId = long.Parse(((TextBox)btnVisualizarArquivo3.Controls.Find("txtIdOrcamento" + index, true)[0]).Text);
+            produtoPedidoOrcamento.ProdutoSolicitacoesId = Convert.ToInt64(((DataGridView)btnVisualizarArquivo3.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colProdutoSolicitacaoId" + index].Value);
+            produtoPedidoOrcamento.Quantidade = Convert.ToInt32(((DataGridView)btnVisualizarArquivo3.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colQuantidade" + index].Value);
+            produtoPedidoOrcamento.valor = Convert.ToDouble(((DataGridView)btnVisualizarArquivo3.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colUnitario" + index].Value);
+            produtoPedidoOrcamento.Desconto = Convert.ToDouble(((DataGridView)btnVisualizarArquivo3.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colDesconto" + index].Value);
+            produtoPedidoOrcamento.Ipi = Convert.ToDouble(((DataGridView)btnVisualizarArquivo3.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colIpi" + index].Value);
+            produtoPedidoOrcamento.Icms = Convert.ToDouble(((DataGridView)btnVisualizarArquivo3.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colICMS" + index].Value);
+            produtoPedidoOrcamento.Id = Convert.ToInt64(((DataGridView)btnVisualizarArquivo3.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colProdutoPedidoOrcamentoId" + index].Value);
             var ProdutopedidoOrcamentoCriado = await HttpProdutoPedidoOrcamentos.Update(produtoPedidoOrcamento, produtoPedidoOrcamento.Id, usuarioLogado.token);
             if (ProdutopedidoOrcamentoCriado == null)
             {
@@ -935,6 +939,25 @@ namespace OlimpiadaCompras.Telas.Avaliador
         private void dgvProdutoCompra3_Leave(object sender, EventArgs e)
         {
             PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
+        }
+
+        private async void btnVisualizarArquivo_Click(object sender, EventArgs e)
+        {
+            var file = await HttpOrcamentos.DownloadPdfOrcamentos(txtAnexarPdf1.Text, usuarioLogado.token);
+            //define o titulo
+            saveFileDialog1.Title = "Salvar Arquivo Texto";
+            //Define as extensões permitidas
+            saveFileDialog1.Filter = "Pdf File|.pdf";
+            //define o indice do filtro
+            saveFileDialog1.FilterIndex = 0;
+            saveFileDialog1.FileName = "kabum_1.pdf";
+            //Define a extensão padrão como .txt
+            saveFileDialog1.DefaultExt = ".pdf";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllBytes(saveFileDialog1.FileName, file);
+                Process.Start(saveFileDialog1.FileName);
+            }
         }
     }
 }
