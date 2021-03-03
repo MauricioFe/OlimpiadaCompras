@@ -39,6 +39,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                     MessageBox.Show("Erro ao enviar e-mail");
 
             }
+            else
+            {
+                MessageBox.Show("Todos os campos são obrigatórios");
+            }
 
         }
 

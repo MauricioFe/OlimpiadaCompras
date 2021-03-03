@@ -49,7 +49,7 @@ namespace OlimpiadaCompras
         {
             acompanhamentos = await HttpAcompanhamento.GetSolicitacaoAcompanhamento(usuarioLogado.token);
             dgvSolicitacoes.Rows.Clear();
-            foreach (var item in acompanhamentos.OrderBy(ac => ac.StatusId))
+            foreach (var item in acompanhamentos.OrderBy(ac => ac.StatusId).Where(ac => ac.StatusId != 4))
             {
                 int n = dgvSolicitacoes.Rows.Add();
                 dgvSolicitacoes.Rows[n].Cells["colIdSolicitacao"].Value = item.SolicitacaoCompra.Id;

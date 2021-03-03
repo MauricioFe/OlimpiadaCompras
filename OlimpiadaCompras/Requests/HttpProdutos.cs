@@ -40,31 +40,31 @@ namespace OlimpiadaCompras.Requests
 
         }
 
-        public static async Task<Produto> GetProdutoById(long id, string token)
-        {
-            Produto produto = new Produto();
-            try
-            {
-                using (var client = new HttpClient())
-                {
-                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/produtos/{id}");
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var produtosString = await response.Content.ReadAsStringAsync();
-                        produto = JsonConvert.DeserializeObject<Produto>(produtosString);
-                        return produto;
-                    }
-                    return null;
-                }
-            }
-            catch (Exception)
-            {
+        //public static async Task<Produto> GetProdutoById(long id, string token)
+        //{
+        //    Produto produto = new Produto();
+        //    try
+        //    {
+        //        using (var client = new HttpClient())
+        //        {
+        //            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+        //            var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/produtos/{id}");
+        //            if (response.IsSuccessStatusCode)
+        //            {
+        //                var produtosString = await response.Content.ReadAsStringAsync();
+        //                produto = JsonConvert.DeserializeObject<Produto>(produtosString);
+        //                return produto;
+        //            }
+        //            return null;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
 
-                Console.WriteLine("Erro ao conectar com a api");
-                return null;
-            }
-        }
+        //        Console.WriteLine("Erro ao conectar com a api");
+        //        return null;
+        //    }
+        //}
         public static async Task<List<Produto>> GetProdutosBySearch(string filtro, string token)
         {
             List<Produto> produtos = new List<Produto>();

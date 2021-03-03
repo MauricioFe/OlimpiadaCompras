@@ -27,7 +27,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
             List<Acompanhamento> acompanhamentos = new List<Acompanhamento>();
             acompanhamentos = await HttpAcompanhamento.GetSolicitacaoAcompanhamento(usuarioLogado.token);
             dgvSolicitacoes.Rows.Clear();
-            foreach (var item in acompanhamentos)
+            foreach (var item in acompanhamentos.Where(a => a.StatusId != 4))
             {
                 int n = dgvSolicitacoes.Rows.Add();
                 dgvSolicitacoes.Rows[n].Cells["colMinhaIdSolicitacao"].Value = item.SolicitacaoCompra.Id;
