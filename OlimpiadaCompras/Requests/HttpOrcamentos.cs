@@ -94,6 +94,7 @@ namespace OlimpiadaCompras.Requests
                     formContent.Add(new StringContent(orcamento.ValorFrete.ToString()), "ValorFrete");
                     formContent.Add(new StringContent(orcamento.Data.ToString()), "Data");
                     formContent.Add(new StringContent(orcamento.Anexo), "anexo");
+                    formContent.Add(new StringContent(orcamento.OrderFlag.ToString()), "OrderFlag");
                     using (var client = new HttpClient())
                     {
                         client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);

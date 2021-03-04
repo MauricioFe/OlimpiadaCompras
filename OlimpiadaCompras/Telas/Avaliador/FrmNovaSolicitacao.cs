@@ -454,6 +454,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
             orcamento.TotalIpi = 0;
             orcamento.ValorFrete = 0;
             orcamento.ValorTotal = 0;
+            orcamento.OrderFlag = '1';
             var orcamentoCriado = await HttpOrcamentos.Create(orcamento, usuarioLogado.token);
             if (orcamentoCriado == null)
             {
@@ -474,6 +475,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
             orcamento.TotalIpi = 0;
             orcamento.ValorFrete = 0;
             orcamento.ValorTotal = 0;
+            orcamento.OrderFlag = '2';
             var orcamentoCriado = await HttpOrcamentos.Create(orcamento, usuarioLogado.token);
             if (orcamentoCriado == null)
             {
@@ -494,6 +496,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
             orcamento.TotalIpi = 0;
             orcamento.ValorFrete = 0;
             orcamento.ValorTotal = 0;
+            orcamento.OrderFlag = '3';
             var orcamentoCriado = await HttpOrcamentos.Create(orcamento, usuarioLogado.token);
             if (orcamentoCriado == null)
             {
@@ -860,17 +863,20 @@ namespace OlimpiadaCompras.Telas.Avaliador
             MessageBox.Show("Erro interno no sistema tente novamente mais tarde", "Erro interno Servidor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;
         }
-        private void dgvProdutoCompra1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private async void dgvProdutoCompra1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             RealizaCalculoValoresFinais(e, dgvProdutoCompra1);
+            await EditarProdutoPedidoOrcamento(e, 1);
         }
-        private void dgvProdutoCompra2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private async void dgvProdutoCompra2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             RealizaCalculoValoresFinais(e, dgvProdutoCompra2);
+            await EditarProdutoPedidoOrcamento(e, 2);
         }
-        private void dgvProdutoCompra3_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private async void dgvProdutoCompra3_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             RealizaCalculoValoresFinais(e, dgvProdutoCompra3);
+            await EditarProdutoPedidoOrcamento(e, 3);
         }
         private void btnSelecionar2_Click(object sender, EventArgs e)
         {
@@ -910,30 +916,20 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         }
 
-        private async void dgvProdutoCompra1_RowLeave(object sender, DataGridViewCellEventArgs e)
+        private  void dgvProdutoCompra1_RowLeave(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvProdutoCompra1.Rows[e.RowIndex].Cells["colQuantidade1"].Value != null &&
-                dgvProdutoCompra1.Rows[e.RowIndex].Cells["colUnitario1"].Value != null)
-            {
-                await EditarProdutoPedidoOrcamento(e, 1);
-            }
+          
+               
+            
         }
 
-        private async void dgvProdutoCompra2_RowLeave(object sender, DataGridViewCellEventArgs e)
+        private  void dgvProdutoCompra2_RowLeave(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvProdutoCompra2.Rows[e.RowIndex].Cells["colQuantidade2"].Value != null &&
-               dgvProdutoCompra2.Rows[e.RowIndex].Cells["colUnitario2"].Value != null)
-            {
-                await EditarProdutoPedidoOrcamento(e, 2);
-            }
+            
         }
-        private async void dgvProdutoCompra3_RowLeave(object sender, DataGridViewCellEventArgs e)
+        private  void dgvProdutoCompra3_RowLeave(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvProdutoCompra3.Rows[e.RowIndex].Cells["colQuantidade3"].Value != null &&
-              dgvProdutoCompra3.Rows[e.RowIndex].Cells["colUnitario3"].Value != null)
-            {
-                await EditarProdutoPedidoOrcamento(e, 3);
-            }
+            
         }
 
         private void FrmNovaSolicitacao_FormClosed(object sender, FormClosedEventArgs e)
