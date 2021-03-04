@@ -24,24 +24,28 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         int acao = 0;
         Acompanhamento acompanhamento;
         private Usuario usuarioLogado;
+        FrmAreaCoordenacao frmAreaCoordenacao;
 
-        public FrmModalSolicitacao(int acao, Acompanhamento acompanhamento, Usuario usuario)
+        public FrmModalSolicitacao(int acao, Acompanhamento acompanhamento, Usuario usuario, FrmAreaCoordenacao frmAreaCoordenacao)
         {
             InitializeComponent();
             this.acao = acao;
             this.acompanhamento = acompanhamento;
             this.usuarioLogado = usuario;
+            this.frmAreaCoordenacao = frmAreaCoordenacao;
         }
         private async void btnEntrar_Click(object sender, EventArgs e)
         {
             if (acao == ConstantesProjeto.SOLICITACAO_APROVADA)
             {
                 acompanhamento.StatusId = ConstantesProjeto.STATUS_APROVADO;
+                acompanhamento.Observacao = txtObservacao.Text;
                 var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
                 if (acompanhamentoUpdate != null)
                 {
-                    MessageBox.Show("Deu certo");
+                    MessageBox.Show("Operação realizada com sucesso", "Mensagem de sucesso", MessageBoxButtons.OK);
                     this.Dispose();
+                    frmAreaCoordenacao.AtualizaGridSolicitacoes();
                     FrmEmailAutorizacao form = new FrmEmailAutorizacao();
                     form.ShowDialog();
                 }
@@ -56,11 +60,13 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 if (!string.IsNullOrEmpty(txtObservacao.Text))
                 {
                     acompanhamento.StatusId = ConstantesProjeto.STATUS_REPROVADO;
+                    acompanhamento.Observacao = txtObservacao.Text;
                     var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
                     if (acompanhamentoUpdate != null)
                     {
-                        MessageBox.Show("Deu certo");
+                        MessageBox.Show("Operação realizada com sucesso", "Mensagem de sucesso", MessageBoxButtons.OK);
                         this.Dispose();
+                        frmAreaCoordenacao.AtualizaGridSolicitacoes();
                     }
                     else
                     {
@@ -77,11 +83,13 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 if (!string.IsNullOrEmpty(txtObservacao.Text))
                 {
                     acompanhamento.StatusId = ConstantesProjeto.STATUS_PENDENTE_ALTERACAO;
+                    acompanhamento.Observacao = txtObservacao.Text;
                     var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
                     if (acompanhamentoUpdate != null)
                     {
-                        MessageBox.Show("Deu certo");
+                        MessageBox.Show("Operação realizada com sucesso", "Mensagem de sucesso", MessageBoxButtons.OK);
                         this.Dispose();
+                        frmAreaCoordenacao.AtualizaGridSolicitacoes();
                     }
                     else
                     {

@@ -22,15 +22,17 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         List<ProdutoSolicitacao> produtosCompras = new List<ProdutoSolicitacao>();
         List<OcupacaoSolicitacaoCompra> ocupacoesSolicitacaoEditList = new List<OcupacaoSolicitacaoCompra>();
         List<double> totalIpiList = new List<double>();
+        FrmAreaCoordenacao frmAreaCoordenacao;
         public FrmGerenciarSolicitacaoCompra(Usuario usuario)
         {
             this.usuarioLogado = usuario;
             InitializeComponent();
         }
-        public FrmGerenciarSolicitacaoCompra(Usuario usuario, long idSolicitacao)
+        public FrmGerenciarSolicitacaoCompra(Usuario usuario, long idSolicitacao, FrmAreaCoordenacao frmAreaCoordenacao)
         {
             this.usuarioLogado = usuario;
             this.idSolicitacao = idSolicitacao;
+            this.frmAreaCoordenacao = frmAreaCoordenacao;
             InitializeComponent();
             ToggleHabilitaInputs(false);
         }
@@ -211,7 +213,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         private async void btnSolicitarAlteracao_Click(object sender, EventArgs e)
         {
             Acompanhamento acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
-            FrmModalSolicitacao form = new FrmModalSolicitacao(ConstantesProjeto.SOLICITAR_ALTERACAO, acompanhamento, usuarioLogado);
+            FrmModalSolicitacao form = new FrmModalSolicitacao(ConstantesProjeto.SOLICITAR_ALTERACAO, acompanhamento, usuarioLogado, frmAreaCoordenacao);
             form.ShowDialog();
         }
 
@@ -225,7 +227,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         {
 
             Acompanhamento acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
-            FrmModalSolicitacao form = new FrmModalSolicitacao(ConstantesProjeto.SOLICITACAO_REPROVADA, acompanhamento, usuarioLogado);
+            FrmModalSolicitacao form = new FrmModalSolicitacao(ConstantesProjeto.SOLICITACAO_REPROVADA, acompanhamento, usuarioLogado, frmAreaCoordenacao);
             form.ShowDialog();
         }
 

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label4 = new System.Windows.Forms.Label();
             this.txtFiltroPendentes = new System.Windows.Forms.TextBox();
             this.lblNomeUsuarioLogado = new System.Windows.Forms.Label();
@@ -42,6 +42,11 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.linkSair = new System.Windows.Forms.LinkLabel();
             this.dgvMinhasSolicitacoes = new System.Windows.Forms.DataGridView();
+            this.colMinhaIdSolicitacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMinhaData = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMinhaJustificativa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMinhaStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMinhaStatusID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvSolicitacoesPendentes = new System.Windows.Forms.DataGridView();
             this.colPendenteIdSolicitacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,11 +54,6 @@
             this.colPendenteJustificativa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPendenteStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPendenteStatusID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMinhaIdSolicitacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMinhaData = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMinhaJustificativa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMinhaStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMinhaStatusID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMinhasSolicitacoes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoesPendentes)).BeginInit();
@@ -67,7 +67,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(612, 112);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 22);
+            this.label4.Size = new System.Drawing.Size(49, 20);
             this.label4.TabIndex = 10;
             this.label4.Text = "Filtrar";
             // 
@@ -78,7 +78,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFiltroPendentes.Location = new System.Drawing.Point(673, 108);
             this.txtFiltroPendentes.Name = "txtFiltroPendentes";
-            this.txtFiltroPendentes.Size = new System.Drawing.Size(240, 29);
+            this.txtFiltroPendentes.Size = new System.Drawing.Size(240, 26);
             this.txtFiltroPendentes.TabIndex = 9;
             // 
             // lblNomeUsuarioLogado
@@ -86,7 +86,7 @@
             this.lblNomeUsuarioLogado.AutoSize = true;
             this.lblNomeUsuarioLogado.Location = new System.Drawing.Point(259, 9);
             this.lblNomeUsuarioLogado.Name = "lblNomeUsuarioLogado";
-            this.lblNomeUsuarioLogado.Size = new System.Drawing.Size(143, 22);
+            this.lblNomeUsuarioLogado.Size = new System.Drawing.Size(135, 20);
             this.lblNomeUsuarioLogado.TabIndex = 8;
             this.lblNomeUsuarioLogado.Text = "Olá, Daniel Carlos";
             this.lblNomeUsuarioLogado.Click += new System.EventHandler(this.label3_Click);
@@ -96,7 +96,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(8, 111);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(245, 22);
+            this.label2.Size = new System.Drawing.Size(231, 20);
             this.label2.TabIndex = 7;
             this.label2.Text = "Lista de solicitações pendentes";
             // 
@@ -108,7 +108,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(612, 359);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 22);
+            this.label5.Size = new System.Drawing.Size(49, 20);
             this.label5.TabIndex = 15;
             this.label5.Text = "Filtrar";
             // 
@@ -119,7 +119,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFiltroMinhas.Location = new System.Drawing.Point(673, 355);
             this.txtFiltroMinhas.Name = "txtFiltroMinhas";
-            this.txtFiltroMinhas.Size = new System.Drawing.Size(240, 29);
+            this.txtFiltroMinhas.Size = new System.Drawing.Size(240, 26);
             this.txtFiltroMinhas.TabIndex = 14;
             // 
             // label6
@@ -127,7 +127,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(8, 359);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(255, 22);
+            this.label6.Size = new System.Drawing.Size(239, 20);
             this.label6.TabIndex = 13;
             this.label6.Text = "Lista com as minhas solicitações";
             // 
@@ -182,7 +182,7 @@
             this.linkSair.AutoSize = true;
             this.linkSair.Location = new System.Drawing.Point(879, 9);
             this.linkSair.Name = "linkSair";
-            this.linkSair.Size = new System.Drawing.Size(39, 22);
+            this.linkSair.Size = new System.Drawing.Size(37, 20);
             this.linkSair.TabIndex = 21;
             this.linkSair.TabStop = true;
             this.linkSair.Text = "Sair";
@@ -210,6 +210,40 @@
             this.dgvMinhasSolicitacoes.Size = new System.Drawing.Size(901, 197);
             this.dgvMinhasSolicitacoes.TabIndex = 23;
             this.dgvMinhasSolicitacoes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMinhasSolicitacoes_CellClick);
+            // 
+            // colMinhaIdSolicitacao
+            // 
+            this.colMinhaIdSolicitacao.HeaderText = "Codigo da solicitação";
+            this.colMinhaIdSolicitacao.Name = "colMinhaIdSolicitacao";
+            this.colMinhaIdSolicitacao.ReadOnly = true;
+            // 
+            // colMinhaData
+            // 
+            this.colMinhaData.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colMinhaData.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colMinhaData.HeaderText = "Data da solicitação";
+            this.colMinhaData.Name = "colMinhaData";
+            this.colMinhaData.ReadOnly = true;
+            // 
+            // colMinhaJustificativa
+            // 
+            this.colMinhaJustificativa.HeaderText = "Justificativa";
+            this.colMinhaJustificativa.Name = "colMinhaJustificativa";
+            this.colMinhaJustificativa.ReadOnly = true;
+            // 
+            // colMinhaStatus
+            // 
+            this.colMinhaStatus.HeaderText = "Status";
+            this.colMinhaStatus.Name = "colMinhaStatus";
+            this.colMinhaStatus.ReadOnly = true;
+            // 
+            // colMinhaStatusID
+            // 
+            this.colMinhaStatusID.HeaderText = "statusID";
+            this.colMinhaStatusID.Name = "colMinhaStatusID";
+            this.colMinhaStatusID.ReadOnly = true;
+            this.colMinhaStatusID.Visible = false;
             // 
             // pictureBox1
             // 
@@ -279,40 +313,6 @@
             this.colPendenteStatusID.ReadOnly = true;
             this.colPendenteStatusID.Visible = false;
             // 
-            // colMinhaIdSolicitacao
-            // 
-            this.colMinhaIdSolicitacao.HeaderText = "Codigo da solicitação";
-            this.colMinhaIdSolicitacao.Name = "colMinhaIdSolicitacao";
-            this.colMinhaIdSolicitacao.ReadOnly = true;
-            // 
-            // colMinhaData
-            // 
-            this.colMinhaData.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.colMinhaData.DefaultCellStyle = dataGridViewCellStyle1;
-            this.colMinhaData.HeaderText = "Data da solicitação";
-            this.colMinhaData.Name = "colMinhaData";
-            this.colMinhaData.ReadOnly = true;
-            // 
-            // colMinhaJustificativa
-            // 
-            this.colMinhaJustificativa.HeaderText = "Justificativa";
-            this.colMinhaJustificativa.Name = "colMinhaJustificativa";
-            this.colMinhaJustificativa.ReadOnly = true;
-            // 
-            // colMinhaStatus
-            // 
-            this.colMinhaStatus.HeaderText = "Status";
-            this.colMinhaStatus.Name = "colMinhaStatus";
-            this.colMinhaStatus.ReadOnly = true;
-            // 
-            // colMinhaStatusID
-            // 
-            this.colMinhaStatusID.HeaderText = "statusID";
-            this.colMinhaStatusID.Name = "colMinhaStatusID";
-            this.colMinhaStatusID.ReadOnly = true;
-            this.colMinhaStatusID.Visible = false;
-            // 
             // FrmAreaAvaliador
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -332,7 +332,7 @@
             this.Controls.Add(this.txtFiltroPendentes);
             this.Controls.Add(this.lblNomeUsuarioLogado);
             this.Controls.Add(this.label2);
-            this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmAreaAvaliador";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -45,7 +45,7 @@ namespace OlimpiadaCompras
         {
             AtualizaGridSolicitacoes();
         }
-        private async void AtualizaGridSolicitacoes()
+        public async void AtualizaGridSolicitacoes()
         {
             acompanhamentos = await HttpAcompanhamento.GetSolicitacaoAcompanhamento(usuarioLogado.token);
             dgvSolicitacoes.Rows.Clear();
@@ -116,7 +116,7 @@ namespace OlimpiadaCompras
         private void dgvSolicitacoes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             idSolicitacao = Convert.ToInt64(dgvSolicitacoes.Rows[e.RowIndex].Cells[0].Value);
-            FrmGerenciarSolicitacaoCompra form = new FrmGerenciarSolicitacaoCompra(usuarioLogado, idSolicitacao);
+            FrmGerenciarSolicitacaoCompra form = new FrmGerenciarSolicitacaoCompra(usuarioLogado, idSolicitacao, this);
             form.ShowDialog();
         }
     }

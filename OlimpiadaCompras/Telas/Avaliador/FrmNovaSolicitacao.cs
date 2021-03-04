@@ -42,7 +42,18 @@ namespace OlimpiadaCompras.Telas.Avaliador
             this.acao = acao;
             this.frmAreaAvaliador = frmAreaAvaliador;
             InitializeComponent();
+            VerificaObservacoes(idSolicitacao);
         }
+
+        private async void VerificaObservacoes(long idSolicitacao)
+        {
+            Acompanhamento acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
+            if (!string.IsNullOrEmpty(acompanhamento.Observacao))
+            {
+                MessageBox.Show(acompanhamento.Observacao, "Observação para continuar com o processo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         private void FrmNovaSolicitacao_Load(object sender, EventArgs e)
         {
             PreencheCombobox(cboEscola, "Nome", "Id");
@@ -54,9 +65,9 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 PreencheDadosSolicitacao();
                 DisabilitaInputs();
                 btnVisualizarArquivo1.Visible = true;
-                btnVisualizarArquivo1.Enabled = true; 
+                btnVisualizarArquivo1.Enabled = true;
                 btnVisualizarArquivo2.Visible = true;
-                btnVisualizarArquivo2.Enabled = true; 
+                btnVisualizarArquivo2.Enabled = true;
                 btnVisualizarArquivo3.Visible = true;
                 btnVisualizarArquivo3.Enabled = true;
             }
@@ -732,6 +743,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     {
                         var acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
                         acompanhamento.StatusId = 1;
+                        acompanhamento.Observacao = null;
                         await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
                         MessageBox.Show("Você finalizou a primeira etapa para realizar sua compra com sucesso!!\n" +
                             "A coordenação irá analisar sua solicitação e irá dar um retorno assim que possível.",
