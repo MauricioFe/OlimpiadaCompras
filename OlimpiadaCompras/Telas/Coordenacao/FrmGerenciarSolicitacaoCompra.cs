@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -543,17 +545,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             }
 
         }
-        private void dgvProdutoCompra1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private async void dgvProdutoCompra1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             RealizaCalculoValoresFinais(e, dgvProdutoCompra1);
-        }
-        private async void dgvProdutoCompra1_RowLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvProdutoCompra1.Rows[e.RowIndex].Cells["colQuantidade1"].Value != null &&
-               dgvProdutoCompra1.Rows[e.RowIndex].Cells["colUnitario1"].Value != null)
-            {
-                await EditarProdutoPedidoOrcamento(e, 1);
-            }
+            await EditarProdutoPedidoOrcamento(e, 1);
         }
         private void dgvProdutoCompra1_Leave(object sender, EventArgs e)
         {
@@ -636,18 +631,12 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 }
             }
         }
-        private void dgvProdutoCompra2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private async void dgvProdutoCompra2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             RealizaCalculoValoresFinais(e, dgvProdutoCompra2);
+            await EditarProdutoPedidoOrcamento(e, 2);
         }
-        private async void dgvProdutoCompra2_RowLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvProdutoCompra2.Rows[e.RowIndex].Cells["colQuantidade2"].Value != null &&
-              dgvProdutoCompra2.Rows[e.RowIndex].Cells["colUnitario2"].Value != null)
-            {
-                await EditarProdutoPedidoOrcamento(e, 2);
-            }
-        }
+
         private void dgvProdutoCompra2_Leave(object sender, EventArgs e)
         {
             PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
@@ -688,18 +677,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 }
             }
         }
-        private void dgvProdutoCompra3_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private async void dgvProdutoCompra3_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             RealizaCalculoValoresFinais(e, dgvProdutoCompra3);
-        }
-
-        private async void dgvProdutoCompra3_RowLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvProdutoCompra3.Rows[e.RowIndex].Cells["colQuantidade3"].Value != null &&
-             dgvProdutoCompra3.Rows[e.RowIndex].Cells["colUnitario3"].Value != null)
-            {
-                await EditarProdutoPedidoOrcamento(e, 3);
-            }
+            await EditarProdutoPedidoOrcamento(e, 1);
         }
 
         private void dgvProdutoCompra3_Leave(object sender, EventArgs e)
@@ -740,5 +721,39 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 }
             }
         }
+
+        private async Task BaixarPdf(TextBox txtAnexarPdf)
+        {
+            var file = await HttpOrcamentos.DownloadPdfOrcamentos(txtAnexarPdf.Text, usuarioLogado.token);
+            //define o titulo
+            saveFileDialog1.Title = "Salvar Arquivo Texto";
+            //Define as extensões permitidas
+            saveFileDialog1.Filter = "Pdf File|.pdf";
+            //define o indice do filtro
+            saveFileDialog1.FilterIndex = 0;
+            saveFileDialog1.FileName = txtAnexarPdf.Text;
+            //Define a extensão padrão como .txt
+            saveFileDialog1.DefaultExt = ".pdf";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllBytes(saveFileDialog1.FileName, file);
+                Process.Start(saveFileDialog1.FileName);
+            }
+        }
+
+        private async void btnVisualizarArquivo_Click(object sender, EventArgs e)
+        {
+            await BaixarPdf(txtAnexarPdf1);
+        }
+        private async void btnVisualizarArquivo2_Click(object sender, EventArgs e)
+        {
+            await BaixarPdf(txtAnexarPdf2);
+        }
+
+        private async void btnVisualizarArquivo3_Click(object sender, EventArgs e)
+        {
+            await BaixarPdf(txtAnexarPdf3);
+        }
+
     }
 }

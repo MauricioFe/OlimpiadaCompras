@@ -916,22 +916,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         }
 
-        private  void dgvProdutoCompra1_RowLeave(object sender, DataGridViewCellEventArgs e)
-        {
-          
-               
-            
-        }
-
-        private  void dgvProdutoCompra2_RowLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-        private  void dgvProdutoCompra3_RowLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void FrmNovaSolicitacao_FormClosed(object sender, FormClosedEventArgs e)
         {
             frmAreaAvaliador.AtualizaGridSolicitacoesPendentes();
