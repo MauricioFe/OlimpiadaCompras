@@ -158,7 +158,6 @@ namespace OlimpiadaCompras.Requests
                     {
                         FileStream fileStream = File.OpenRead(fileName);
                         formContent.Add(new StreamContent(fileStream), "arquivo", fileName.Split('\\').Last());
-
                     }
                     catch (Exception)
                     {
@@ -167,10 +166,13 @@ namespace OlimpiadaCompras.Requests
                     using (var client = new HttpClient())
                     {
                         client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                        var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/solicitacaoCompra/"+id, formContent);
+                        var request = new HttpRequestMessage(new HttpMethod("PATCH"), $"{ConstantesProjeto.URL_BASE}/api/SolicitacaoCompra/notaFiscal/" + id)
+                        {
+                            Content = formContent,
+                        };
+                        var response = await client.SendAsync(request);
                         if (response.IsSuccessStatusCode)
                         {
-                            
                             return true;
                         }
                         return false;

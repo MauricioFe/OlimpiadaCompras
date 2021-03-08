@@ -151,7 +151,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 }
                 if (idStatus == ConstantesProjeto.STATUS_ANEXAR_NF)
                 {
-                    FrmAnexarNotaFiscal form = new FrmAnexarNotaFiscal();
+                    FrmAnexarNotaFiscal form = new FrmAnexarNotaFiscal(idSolicitacao, usuarioLogado, this);
                     form.ShowDialog();
                 }
             }
