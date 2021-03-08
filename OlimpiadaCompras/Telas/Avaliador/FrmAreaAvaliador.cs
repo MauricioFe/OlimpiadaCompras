@@ -149,6 +149,11 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 {
                     btnEditar.Enabled = false;
                 }
+                if (idStatus == ConstantesProjeto.STATUS_ANEXAR_NF)
+                {
+                    FrmAnexarNotaFiscal form = new FrmAnexarNotaFiscal();
+                    form.ShowDialog();
+                }
             }
         }
     }
