@@ -170,6 +170,7 @@
             this.btnEnviar.TabIndex = 37;
             this.btnEnviar.Text = "Enviar";
             this.btnEnviar.UseVisualStyleBackColor = false;
+            this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
             // 
             // btnCancelar
             // 

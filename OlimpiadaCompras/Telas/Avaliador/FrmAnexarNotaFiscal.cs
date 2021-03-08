@@ -33,5 +33,10 @@ namespace OlimpiadaCompras.Telas.Avaliador
         {
             this.Dispose();
         }
+
+        private void btnEnviar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

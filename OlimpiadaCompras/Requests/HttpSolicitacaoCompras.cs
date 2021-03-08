@@ -2,6 +2,7 @@
 using OlimpiadaCompras.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -135,6 +136,45 @@ namespace OlimpiadaCompras.Requests
                         return true;
                     }
                     return false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"Erro ao conectar com a api {ex.Message}");
+                return false;
+            }
+
+        }
+
+        public static async Task<bool> AnexarNotaFiscal(string fileName, long id, string token)
+        {
+            try
+            {
+                using (var formContent = new MultipartFormDataContent())
+                {
+                    formContent.Headers.ContentType.MediaType = "multipart/form-data";
+                    try
+                    {
+                        FileStream fileStream = File.OpenRead(fileName);
+                        formContent.Add(new StreamContent(fileStream), "arquivo", fileName.Split('\\').Last());
+
+                    }
+                    catch (Exception)
+                    {
+                        fileName = "null";
+                    }
+                    using (var client = new HttpClient())
+                    {
+                        client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                        var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/solicitacaoCompra/"+id, formContent);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            
+                            return true;
+                        }
+                        return false;
+                    }
                 }
             }
             catch (Exception ex)
