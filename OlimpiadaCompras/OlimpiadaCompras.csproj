@@ -184,6 +184,12 @@
     <Compile Include="Telas\Coordenacao\FrmRelatorios.Designer.cs">
       <DependentUpon>FrmRelatorios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Telas\Coordenacao\FrmVisualizarNotaFiscal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Coordenacao\FrmVisualizarNotaFiscal.Designer.cs">
+      <DependentUpon>FrmVisualizarNotaFiscal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +252,9 @@
     <EmbeddedResource Include="Telas\Coordenacao\FrmPrecadastroEmail.resx">
       <DependentUpon>FrmPrecadastroEmail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Coordenacao\FrmVisualizarNotaFiscal.resx">
+      <DependentUpon>FrmVisualizarNotaFiscal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Telas\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -276,6 +285,25 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\OCMG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

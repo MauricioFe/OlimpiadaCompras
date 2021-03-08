@@ -50,6 +50,7 @@
             this.colData = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colstatusId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlCadastros.SuspendLayout();
@@ -95,7 +96,7 @@
             // btnCadastroOcupacoes
             // 
             this.btnCadastroOcupacoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadastroOcupacoes.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastroOcupacoes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastroOcupacoes.Location = new System.Drawing.Point(0, 37);
             this.btnCadastroOcupacoes.Name = "btnCadastroOcupacoes";
             this.btnCadastroOcupacoes.Size = new System.Drawing.Size(243, 37);
@@ -107,7 +108,7 @@
             // btnCadastroGrupos
             // 
             this.btnCadastroGrupos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadastroGrupos.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastroGrupos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastroGrupos.Location = new System.Drawing.Point(0, 73);
             this.btnCadastroGrupos.Name = "btnCadastroGrupos";
             this.btnCadastroGrupos.Size = new System.Drawing.Size(243, 37);
@@ -119,7 +120,7 @@
             // btnCadastroTipoCompra
             // 
             this.btnCadastroTipoCompra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadastroTipoCompra.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastroTipoCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastroTipoCompra.Location = new System.Drawing.Point(0, 109);
             this.btnCadastroTipoCompra.Name = "btnCadastroTipoCompra";
             this.btnCadastroTipoCompra.Size = new System.Drawing.Size(243, 37);
@@ -131,7 +132,7 @@
             // btnCadastroUsuarios
             // 
             this.btnCadastroUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadastroUsuarios.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastroUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastroUsuarios.Location = new System.Drawing.Point(0, 145);
             this.btnCadastroUsuarios.Name = "btnCadastroUsuarios";
             this.btnCadastroUsuarios.Size = new System.Drawing.Size(243, 37);
@@ -143,7 +144,7 @@
             // btnCadastroEscolas
             // 
             this.btnCadastroEscolas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadastroEscolas.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastroEscolas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastroEscolas.Location = new System.Drawing.Point(0, 181);
             this.btnCadastroEscolas.Name = "btnCadastroEscolas";
             this.btnCadastroEscolas.Size = new System.Drawing.Size(243, 37);
@@ -155,7 +156,7 @@
             // btnCadastroProdutos
             // 
             this.btnCadastroProdutos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadastroProdutos.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastroProdutos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastroProdutos.Location = new System.Drawing.Point(0, 1);
             this.btnCadastroProdutos.Name = "btnCadastroProdutos";
             this.btnCadastroProdutos.Size = new System.Drawing.Size(243, 37);
@@ -191,7 +192,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(310, 67);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(160, 22);
+            this.label2.Size = new System.Drawing.Size(151, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Lista de solicitações";
             // 
@@ -200,7 +201,7 @@
             this.lblNomeUsuarioLogado.AutoSize = true;
             this.lblNomeUsuarioLogado.Location = new System.Drawing.Point(310, 9);
             this.lblNomeUsuarioLogado.Name = "lblNomeUsuarioLogado";
-            this.lblNomeUsuarioLogado.Size = new System.Drawing.Size(82, 22);
+            this.lblNomeUsuarioLogado.Size = new System.Drawing.Size(77, 20);
             this.lblNomeUsuarioLogado.TabIndex = 3;
             this.lblNomeUsuarioLogado.Text = "Olá Ariele";
             // 
@@ -211,7 +212,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFiltrar.Location = new System.Drawing.Point(803, 60);
             this.txtFiltrar.Name = "txtFiltrar";
-            this.txtFiltrar.Size = new System.Drawing.Size(230, 29);
+            this.txtFiltrar.Size = new System.Drawing.Size(230, 26);
             this.txtFiltrar.TabIndex = 4;
             // 
             // label4
@@ -222,7 +223,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(742, 64);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 22);
+            this.label4.Size = new System.Drawing.Size(49, 20);
             this.label4.TabIndex = 5;
             this.label4.Text = "Filtrar";
             // 
@@ -231,7 +232,7 @@
             this.linkSair.AutoSize = true;
             this.linkSair.Location = new System.Drawing.Point(986, 9);
             this.linkSair.Name = "linkSair";
-            this.linkSair.Size = new System.Drawing.Size(39, 22);
+            this.linkSair.Size = new System.Drawing.Size(37, 20);
             this.linkSair.TabIndex = 6;
             this.linkSair.TabStop = true;
             this.linkSair.Text = "Sair";
@@ -251,7 +252,8 @@
             this.colIdSolicitacao,
             this.colData,
             this.colUsuario,
-            this.colStatus});
+            this.colStatus,
+            this.colstatusId});
             this.dgvSolicitacoes.Location = new System.Drawing.Point(310, 95);
             this.dgvSolicitacoes.Name = "dgvSolicitacoes";
             this.dgvSolicitacoes.ReadOnly = true;
@@ -286,6 +288,13 @@
             this.colStatus.Name = "colStatus";
             this.colStatus.ReadOnly = true;
             // 
+            // colstatusId
+            // 
+            this.colstatusId.HeaderText = "statusId";
+            this.colstatusId.Name = "colstatusId";
+            this.colstatusId.ReadOnly = true;
+            this.colstatusId.Visible = false;
+            // 
             // FrmAreaCoordenacao
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -298,7 +307,7 @@
             this.Controls.Add(this.lblNomeUsuarioLogado);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pnlMenu);
-            this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmAreaCoordenacao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -337,5 +346,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colData;
         private System.Windows.Forms.DataGridViewTextBoxColumn colUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colstatusId;
     }
 }

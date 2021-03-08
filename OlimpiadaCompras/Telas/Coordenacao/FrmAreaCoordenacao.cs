@@ -56,6 +56,7 @@ namespace OlimpiadaCompras
                 dgvSolicitacoes.Rows[n].Cells["colData"].Value = item.SolicitacaoCompra.Data.ToString("dd/MM/yyyy");
                 dgvSolicitacoes.Rows[n].Cells["colUsuario"].Value = $"{item.Usuario.Nome.Split(' ')[0]} {item.Usuario.Nome.Split(' ')[1]}";
                 dgvSolicitacoes.Rows[n].Cells["colStatus"].Value = item.Status.Descricao;
+                dgvSolicitacoes.Rows[n].Cells["colStatusId"].Value = item.Status.Id;
             }
         }
         private void btnCadastroProdutos_Click(object sender, EventArgs e)
@@ -116,8 +117,17 @@ namespace OlimpiadaCompras
         private void dgvSolicitacoes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             idSolicitacao = Convert.ToInt64(dgvSolicitacoes.Rows[e.RowIndex].Cells[0].Value);
-            FrmGerenciarSolicitacaoCompra form = new FrmGerenciarSolicitacaoCompra(usuarioLogado, idSolicitacao, this);
-            form.ShowDialog();
+            long statusId = Convert.ToInt64(dgvSolicitacoes.Rows[e.RowIndex].Cells["colStatusId"].Value);
+            if (statusId == ConstantesProjeto.STATUS_EM_ANALISE_NF)
+            {
+                FrmVisualizarNotaFiscal form = new FrmVisualizarNotaFiscal(this, idSolicitacao);
+                form.ShowDialog();
+            }
+            else
+            {
+                FrmGerenciarSolicitacaoCompra form = new FrmGerenciarSolicitacaoCompra(usuarioLogado, idSolicitacao, this);
+                form.ShowDialog();
+            }
         }
     }
 }

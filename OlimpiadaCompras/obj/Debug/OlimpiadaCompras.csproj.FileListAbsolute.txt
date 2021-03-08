@@ -79,3 +79,9 @@ C:\Users\mauricio\Desktop\GitHub\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\Oli
 C:\Users\mauricio\Desktop\GitHub\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.CopyComplete
 C:\Users\mauricio\Desktop\GitHub\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.exe
 C:\Users\mauricio\Desktop\GitHub\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.pdb
+C:\Users\mauricio\Desktop\GitHub\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\Interop.AcroPDFLib.dll
+C:\Users\mauricio\Desktop\GitHub\OlimpiadaCompras\OlimpiadaCompras\bin\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\mauricio\Desktop\GitHub\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\Interop.AcroPDFLib.dll
+C:\Users\mauricio\Desktop\GitHub\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\mauricio\Desktop\GitHub\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.ResolveComReference.cache
+C:\Users\mauricio\Desktop\GitHub\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmVisualizarNotaFiscal.resources
