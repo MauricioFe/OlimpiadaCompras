@@ -15,10 +15,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao
 {
     public partial class FrmModalSolicitacao : Form
     {
-        public FrmModalSolicitacao()
-        {
-            InitializeComponent();
-        }
 
 
         int acao = 0;

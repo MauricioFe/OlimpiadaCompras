@@ -16,11 +16,13 @@ namespace OlimpiadaCompras.Telas.Coordenacao
     {
         private Usuario usuarioLogado;
         private long idSolicitacao;
-
-        public FrmPrecadastroEmail(Usuario usuario, long idSolicitacao)
+        private FrmAreaCoordenacao frmAreaCoordenacao;
+        Acompanhamento acompanhamento = null;
+        public FrmPrecadastroEmail(Usuario usuario, long idSolicitacao, FrmAreaCoordenacao frmAreaCoordenacao)
         {
             this.usuarioLogado = usuario;
             this.idSolicitacao = idSolicitacao;
+            this.frmAreaCoordenacao = frmAreaCoordenacao;
             InitializeComponent();
         }
 
@@ -33,17 +35,44 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 data.CodUnidadeOrganizacional = txtCodUnidadeOrganizacional.Text;
                 data.ClasseValor = txtClasseValor.Text;
                 data.ContaContabil = txtContaContabil.Text;
+                BloqueiaCampos();
+                this.Cursor = Cursors.WaitCursor;
                 if (await HttpEmail.EnviarEmail(data, idSolicitacao, usuarioLogado.token))
+                {
+                    acompanhamento.StatusId = ConstantesProjeto.STATUS_ANEXAR_NF;
+                    var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
+                    DesbloqueiaCampos();
+                    this.Cursor = Cursors.Arrow;
                     MessageBox.Show("Envio de e-mail feito com sucesso");
+                    if (acompanhamentoUpdate != null)
+                    {
+                        this.Dispose();
+                        frmAreaCoordenacao.AtualizaGridSolicitacoes();
+                    }
+                }
                 else
                     MessageBox.Show("Erro ao enviar e-mail");
-
             }
             else
             {
                 MessageBox.Show("Todos os campos são obrigatórios");
             }
 
+        }
+
+        private void BloqueiaCampos()
+        {
+            foreach (var item in this.Controls)
+            {
+                ((Control)item).Enabled = false;
+            }
+        }
+        private void DesbloqueiaCampos()
+        {
+            foreach (var item in this.Controls)
+            {
+                ((Control)item).Enabled = true;
+            }
         }
 
         private bool VerificaCamposVazios()
@@ -65,6 +94,11 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        private async void FrmPrecadastroEmail_Load(object sender, EventArgs e)
+        {
+            acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
         }
     }
 }

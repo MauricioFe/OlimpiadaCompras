@@ -221,7 +221,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
 
         private void btnAprovar_Click(object sender, EventArgs e)
         {
-            FrmPrecadastroEmail form = new FrmPrecadastroEmail(usuarioLogado, idSolicitacao);
+            FrmPrecadastroEmail form = new FrmPrecadastroEmail(usuarioLogado, idSolicitacao, frmAreaCoordenacao);
             form.ShowDialog();
         }
 

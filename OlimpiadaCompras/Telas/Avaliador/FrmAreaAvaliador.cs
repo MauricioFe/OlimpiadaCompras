@@ -137,15 +137,18 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private void dgvSolicitacoesPendentes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            idStatus = Convert.ToInt64(dgvSolicitacoesPendentes.Rows[e.RowIndex].Cells["colPendenteStatusID"].Value);
-            idSolicitacao = Convert.ToInt64(dgvSolicitacoesPendentes.Rows[e.RowIndex].Cells[0].Value);
-            if (idStatus == ConstantesProjeto.STATUS_PENDENTE_ALTERACAO)
+            if (e.RowIndex > -1)
             {
-                btnEditar.Enabled = true;
-            }
-            else
-            {
-                btnEditar.Enabled = false;
+                idStatus = Convert.ToInt64(dgvSolicitacoesPendentes.Rows[e.RowIndex].Cells["colPendenteStatusID"].Value);
+                idSolicitacao = Convert.ToInt64(dgvSolicitacoesPendentes.Rows[e.RowIndex].Cells[0].Value);
+                if (idStatus == ConstantesProjeto.STATUS_PENDENTE_ALTERACAO)
+                {
+                    btnEditar.Enabled = true;
+                }
+                else
+                {
+                    btnEditar.Enabled = false;
+                }
             }
         }
     }

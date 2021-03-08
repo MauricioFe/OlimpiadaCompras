@@ -82,10 +82,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.label4.TabIndex = 7;
             this.label4.Text = "Conta Contábil";
             // 
-            // txtUnidadeOrganizacional
+            // txtContaContabil
             // 
             this.txtContaContabil.Location = new System.Drawing.Point(143, 129);
-            this.txtContaContabil.Name = "txtUnidadeOrganizacional";
+            this.txtContaContabil.Name = "txtContaContabil";
             this.txtContaContabil.Size = new System.Drawing.Size(279, 26);
             this.txtContaContabil.TabIndex = 6;
             // 
@@ -111,7 +111,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnSalvar.FlatAppearance.BorderSize = 0;
             this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalvar.ForeColor = System.Drawing.Color.White;
-            this.btnSalvar.Location = new System.Drawing.Point(463, 188);
+            this.btnSalvar.Location = new System.Drawing.Point(463, 242);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(160, 39);
             this.btnSalvar.TabIndex = 10;
@@ -125,7 +125,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnCancelar.FlatAppearance.BorderSize = 0;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.ForeColor = System.Drawing.Color.White;
-            this.btnCancelar.Location = new System.Drawing.Point(297, 188);
+            this.btnCancelar.Location = new System.Drawing.Point(297, 242);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(160, 39);
             this.btnCancelar.TabIndex = 11;
@@ -137,7 +137,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(906, 251);
+            this.ClientSize = new System.Drawing.Size(906, 293);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.label5);
@@ -152,6 +152,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.Name = "FrmPrecadastroEmail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pré cadastro do E-mail";
+            this.Load += new System.EventHandler(this.FrmPrecadastroEmail_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
