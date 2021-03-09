@@ -29,6 +29,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGerenciarSolicitacaoCompra));
             this.btnAprovar = new System.Windows.Forms.Button();
             this.btnReprovar = new System.Windows.Forms.Button();
             this.btnSolicitarAlteracao = new System.Windows.Forms.Button();
@@ -1922,6 +1923,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.Controls.Add(this.btnAprovar);
             this.Controls.Add(this.tabContainer);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmGerenciarSolicitacaoCompra";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

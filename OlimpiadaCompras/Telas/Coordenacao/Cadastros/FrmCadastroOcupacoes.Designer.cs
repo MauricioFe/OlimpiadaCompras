@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastroOcupacoes));
             this.label2 = new System.Windows.Forms.Label();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.btnExcluir = new System.Windows.Forms.Button();
@@ -52,16 +53,16 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(355, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 22);
+            this.label2.Size = new System.Drawing.Size(65, 20);
             this.label2.TabIndex = 68;
             this.label2.Text = "Número";
             // 
             // txtNumero
             // 
-            this.txtNumero.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumero.Location = new System.Drawing.Point(359, 52);
             this.txtNumero.Name = "txtNumero";
-            this.txtNumero.Size = new System.Drawing.Size(378, 29);
+            this.txtNumero.Size = new System.Drawing.Size(378, 26);
             this.txtNumero.TabIndex = 2;
             // 
             // btnExcluir
@@ -97,16 +98,16 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(64, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 22);
+            this.label1.Size = new System.Drawing.Size(147, 20);
             this.label1.TabIndex = 63;
             this.label1.Text = "Nome da ocupação";
             // 
             // txtOcupacao
             // 
-            this.txtOcupacao.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOcupacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOcupacao.Location = new System.Drawing.Point(68, 52);
             this.txtOcupacao.Name = "txtOcupacao";
-            this.txtOcupacao.Size = new System.Drawing.Size(285, 29);
+            this.txtOcupacao.Size = new System.Drawing.Size(285, 26);
             this.txtOcupacao.TabIndex = 1;
             // 
             // dgvOcupacoes
@@ -158,7 +159,7 @@
             // 
             this.txtAnexos.Location = new System.Drawing.Point(6, 28);
             this.txtAnexos.Name = "txtAnexos";
-            this.txtAnexos.Size = new System.Drawing.Size(515, 29);
+            this.txtAnexos.Size = new System.Drawing.Size(515, 26);
             this.txtAnexos.TabIndex = 32;
             // 
             // btnSelecionar
@@ -175,16 +176,16 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(72, 171);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 22);
+            this.label4.Size = new System.Drawing.Size(44, 20);
             this.label4.TabIndex = 71;
             this.label4.Text = "Filtro";
             // 
             // txtFiltro
             // 
-            this.txtFiltro.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFiltro.Location = new System.Drawing.Point(127, 168);
             this.txtFiltro.Name = "txtFiltro";
-            this.txtFiltro.Size = new System.Drawing.Size(261, 29);
+            this.txtFiltro.Size = new System.Drawing.Size(261, 26);
             this.txtFiltro.TabIndex = 70;
             this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChanged);
             // 
@@ -203,7 +204,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtOcupacao);
             this.Controls.Add(this.dgvOcupacoes);
-            this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmCadastroOcupacoes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

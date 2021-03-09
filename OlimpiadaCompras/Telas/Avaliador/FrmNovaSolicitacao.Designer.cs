@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNovaSolicitacao));
             this.tabContainer = new System.Windows.Forms.TabControl();
             this.dadosGerais = new System.Windows.Forms.TabPage();
             this.txtIdSolicitacao = new System.Windows.Forms.TextBox();
@@ -1838,6 +1839,7 @@
             this.ClientSize = new System.Drawing.Size(1087, 548);
             this.Controls.Add(this.tabContainer);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmNovaSolicitacao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

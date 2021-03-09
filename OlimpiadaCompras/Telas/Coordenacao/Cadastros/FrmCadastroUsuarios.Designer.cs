@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastroUsuarios));
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.colNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -103,16 +104,16 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(28, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 22);
+            this.label1.Size = new System.Drawing.Size(51, 20);
             this.label1.TabIndex = 23;
             this.label1.Text = "Nome";
             // 
             // txtNome
             // 
-            this.txtNome.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNome.Location = new System.Drawing.Point(89, 13);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(580, 29);
+            this.txtNome.Size = new System.Drawing.Size(580, 26);
             this.txtNome.TabIndex = 1;
             // 
             // label3
@@ -120,17 +121,17 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(28, 125);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 22);
+            this.label3.Size = new System.Drawing.Size(56, 20);
             this.label3.TabIndex = 21;
             this.label3.Text = "Senha";
             // 
             // txtSenha
             // 
-            this.txtSenha.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSenha.Location = new System.Drawing.Point(89, 119);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.ShortcutsEnabled = false;
-            this.txtSenha.Size = new System.Drawing.Size(580, 29);
+            this.txtSenha.Size = new System.Drawing.Size(580, 26);
             this.txtSenha.TabIndex = 3;
             this.txtSenha.UseSystemPasswordChar = true;
             // 
@@ -139,16 +140,16 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(28, 72);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 22);
+            this.label2.Size = new System.Drawing.Size(53, 20);
             this.label2.TabIndex = 19;
             this.label2.Text = "E-mail";
             // 
             // txtEmail
             // 
-            this.txtEmail.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(89, 66);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(580, 29);
+            this.txtEmail.Size = new System.Drawing.Size(580, 26);
             this.txtEmail.TabIndex = 2;
             // 
             // btnSalvar
@@ -194,7 +195,7 @@
             // 
             this.txtAnexo.Location = new System.Drawing.Point(6, 28);
             this.txtAnexo.Name = "txtAnexo";
-            this.txtAnexo.Size = new System.Drawing.Size(484, 29);
+            this.txtAnexo.Size = new System.Drawing.Size(484, 26);
             this.txtAnexo.TabIndex = 32;
             // 
             // btnSelecionar
@@ -211,16 +212,16 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(13, 246);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 22);
+            this.label4.Size = new System.Drawing.Size(44, 20);
             this.label4.TabIndex = 37;
             this.label4.Text = "Filtro";
             // 
             // txtFiltro
             // 
-            this.txtFiltro.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFiltro.Location = new System.Drawing.Point(68, 243);
             this.txtFiltro.Name = "txtFiltro";
-            this.txtFiltro.Size = new System.Drawing.Size(261, 29);
+            this.txtFiltro.Size = new System.Drawing.Size(261, 26);
             this.txtFiltro.TabIndex = 36;
             this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChangedAsync);
             // 
@@ -241,7 +242,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.dgvUsuarios);
-            this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmCadastroUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

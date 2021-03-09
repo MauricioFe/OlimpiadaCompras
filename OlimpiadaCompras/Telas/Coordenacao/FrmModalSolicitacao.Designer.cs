@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmModalSolicitacao));
             this.txtObservacao = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnEnviar = new System.Windows.Forms.Button();
@@ -47,7 +48,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(11, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 22);
+            this.label1.Size = new System.Drawing.Size(102, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Observações";
             // 
@@ -88,7 +89,8 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtObservacao);
-            this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmModalSolicitacao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

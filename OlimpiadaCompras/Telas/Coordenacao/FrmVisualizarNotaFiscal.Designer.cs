@@ -87,6 +87,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.Controls.Add(this.btnAprovar);
             this.Controls.Add(this.pdfReader);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmVisualizarNotaFiscal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Visualizar Nota Fiscal";

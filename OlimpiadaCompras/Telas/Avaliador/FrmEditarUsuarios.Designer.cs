@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEditarUsuarios));
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -71,16 +72,16 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(66, 149);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 22);
+            this.label3.Size = new System.Drawing.Size(56, 20);
             this.label3.TabIndex = 13;
             this.label3.Text = "Senha";
             // 
             // txtSenha
             // 
-            this.txtSenha.Font = new System.Drawing.Font("Open Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSenha.Location = new System.Drawing.Point(127, 143);
             this.txtSenha.Name = "txtSenha";
-            this.txtSenha.Size = new System.Drawing.Size(390, 33);
+            this.txtSenha.Size = new System.Drawing.Size(390, 29);
             this.txtSenha.TabIndex = 12;
             this.txtSenha.UseSystemPasswordChar = true;
             // 
@@ -89,16 +90,16 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(66, 96);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 22);
+            this.label2.Size = new System.Drawing.Size(53, 20);
             this.label2.TabIndex = 11;
             this.label2.Text = "E-mail";
             // 
             // txtEmail
             // 
-            this.txtEmail.Font = new System.Drawing.Font("Open Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(127, 90);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(390, 33);
+            this.txtEmail.Size = new System.Drawing.Size(390, 29);
             this.txtEmail.TabIndex = 10;
             // 
             // label1
@@ -106,16 +107,16 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(66, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 22);
+            this.label1.Size = new System.Drawing.Size(51, 20);
             this.label1.TabIndex = 17;
             this.label1.Text = "Nome";
             // 
             // txtNome
             // 
-            this.txtNome.Font = new System.Drawing.Font("Open Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNome.Location = new System.Drawing.Point(127, 37);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(390, 33);
+            this.txtNome.Size = new System.Drawing.Size(390, 29);
             this.txtNome.TabIndex = 16;
             // 
             // FrmEditarUsuarios
@@ -131,7 +132,8 @@
             this.Controls.Add(this.txtSenha);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtEmail);
-            this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmEditarUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

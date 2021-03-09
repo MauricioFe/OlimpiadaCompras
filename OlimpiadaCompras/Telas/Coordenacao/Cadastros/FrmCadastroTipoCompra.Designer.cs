@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastroTipoCompra));
             this.label2 = new System.Windows.Forms.Label();
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.dgvTipoCompra = new System.Windows.Forms.DataGridView();
+            this.colDescricaoTipoCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIdTipoCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtAnexo = new System.Windows.Forms.TextBox();
             this.btnSelecionar = new System.Windows.Forms.Button();
-            this.colDescricaoTipoCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIdTipoCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.txtFiltro = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTipoCompra)).BeginInit();
@@ -49,16 +50,16 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(25, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 22);
+            this.label2.Size = new System.Drawing.Size(80, 20);
             this.label2.TabIndex = 68;
             this.label2.Text = "Descrição";
             // 
             // txtDescricao
             // 
-            this.txtDescricao.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescricao.Location = new System.Drawing.Point(29, 51);
             this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(669, 29);
+            this.txtDescricao.Size = new System.Drawing.Size(669, 26);
             this.txtDescricao.TabIndex = 1;
             // 
             // btnExcluir
@@ -102,6 +103,19 @@
             this.dgvTipoCompra.TabIndex = 61;
             this.dgvTipoCompra.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTipoCompra_CellClick);
             // 
+            // colDescricaoTipoCompra
+            // 
+            this.colDescricaoTipoCompra.HeaderText = "Descrição";
+            this.colDescricaoTipoCompra.Name = "colDescricaoTipoCompra";
+            this.colDescricaoTipoCompra.ReadOnly = true;
+            // 
+            // colIdTipoCompra
+            // 
+            this.colIdTipoCompra.HeaderText = "Id";
+            this.colIdTipoCompra.Name = "colIdTipoCompra";
+            this.colIdTipoCompra.ReadOnly = true;
+            this.colIdTipoCompra.Visible = false;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtAnexo);
@@ -117,7 +131,7 @@
             // 
             this.txtAnexo.Location = new System.Drawing.Point(6, 28);
             this.txtAnexo.Name = "txtAnexo";
-            this.txtAnexo.Size = new System.Drawing.Size(515, 29);
+            this.txtAnexo.Size = new System.Drawing.Size(515, 26);
             this.txtAnexo.TabIndex = 32;
             // 
             // btnSelecionar
@@ -129,34 +143,21 @@
             this.btnSelecionar.Text = "Selecionar";
             this.btnSelecionar.UseVisualStyleBackColor = true;
             // 
-            // colDescricaoTipoCompra
-            // 
-            this.colDescricaoTipoCompra.HeaderText = "Descrição";
-            this.colDescricaoTipoCompra.Name = "colDescricaoTipoCompra";
-            this.colDescricaoTipoCompra.ReadOnly = true;
-            // 
-            // colIdTipoCompra
-            // 
-            this.colIdTipoCompra.HeaderText = "Id";
-            this.colIdTipoCompra.Name = "colIdTipoCompra";
-            this.colIdTipoCompra.ReadOnly = true;
-            this.colIdTipoCompra.Visible = false;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(28, 171);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 22);
+            this.label4.Size = new System.Drawing.Size(44, 20);
             this.label4.TabIndex = 71;
             this.label4.Text = "Filtro";
             // 
             // txtFiltro
             // 
-            this.txtFiltro.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFiltro.Location = new System.Drawing.Point(83, 168);
             this.txtFiltro.Name = "txtFiltro";
-            this.txtFiltro.Size = new System.Drawing.Size(261, 29);
+            this.txtFiltro.Size = new System.Drawing.Size(261, 26);
             this.txtFiltro.TabIndex = 70;
             this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChanged);
             // 
@@ -173,7 +174,8 @@
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.dgvTipoCompra);
-            this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmCadastroTipoCompra";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
