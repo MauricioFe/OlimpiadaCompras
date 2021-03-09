@@ -142,6 +142,12 @@
     <Compile Include="Telas\Coordenacao\Cadastros\FrmCadastroTipoCompra.Designer.cs">
       <DependentUpon>FrmCadastroTipoCompra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Telas\Coordenacao\FrmEmailAutorizacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Coordenacao\FrmEmailAutorizacao.Designer.cs">
+      <DependentUpon>FrmEmailAutorizacao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\Coordenacao\FrmGerenciarSolicitacaoCompra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Coordenacao\FrmAreaCoordenacao.resx">
       <DependentUpon>FrmAreaCoordenacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Coordenacao\FrmEmailAutorizacao.resx">
+      <DependentUpon>FrmEmailAutorizacao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Coordenacao\FrmGerenciarSolicitacaoCompra.resx">
       <DependentUpon>FrmGerenciarSolicitacaoCompra.cs</DependentUpon>

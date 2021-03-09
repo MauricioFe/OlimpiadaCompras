@@ -42,8 +42,8 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                     MessageBox.Show("Operação realizada com sucesso", "Mensagem de sucesso", MessageBoxButtons.OK);
                     this.Dispose();
                     frmAreaCoordenacao.AtualizaGridSolicitacoes();
-                    //FrmEmailAutorizacao form = new FrmEmailAutorizacao();
-                    //form.ShowDialog();
+                    FrmEmailAutorizacao form = new FrmEmailAutorizacao();
+                    form.ShowDialog();
                 }
                 else
                 {

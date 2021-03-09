@@ -35,23 +35,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 data.CodUnidadeOrganizacional = txtCodUnidadeOrganizacional.Text;
                 data.ClasseValor = txtClasseValor.Text;
                 data.ContaContabil = txtContaContabil.Text;
-                BloqueiaCampos();
-                this.Cursor = Cursors.WaitCursor;
-                if (await HttpEmail.EnviarEmail(data, idSolicitacao, usuarioLogado.token))
-                {
-                    acompanhamento.StatusId = ConstantesProjeto.STATUS_ANEXAR_NF;
-                    var acompanhamentoUpdate = await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
-                    DesbloqueiaCampos();
-                    this.Cursor = Cursors.Arrow;
-                    MessageBox.Show("Envio de e-mail feito com sucesso");
-                    if (acompanhamentoUpdate != null)
-                    {
-                        this.Dispose();
-                        frmAreaCoordenacao.AtualizaGridSolicitacoes();
-                    }
-                }
-                else
-                    MessageBox.Show("Erro ao enviar e-mail");
+                FrmEmailAutorizacao form = new FrmEmailAutorizacao(data, usuarioLogado, frmAreaCoordenacao);
             }
             else
             {
