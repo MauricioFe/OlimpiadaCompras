@@ -117,17 +117,8 @@ namespace OlimpiadaCompras
         private void dgvSolicitacoes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             idSolicitacao = Convert.ToInt64(dgvSolicitacoes.Rows[e.RowIndex].Cells[0].Value);
-            long statusId = Convert.ToInt64(dgvSolicitacoes.Rows[e.RowIndex].Cells["colStatusId"].Value);
-            if (statusId == ConstantesProjeto.STATUS_EM_ANALISE_NF)
-            {
-                FrmVisualizarNotaFiscal form = new FrmVisualizarNotaFiscal(this, idSolicitacao, usuarioLogado);
-                form.ShowDialog();
-            }
-            else
-            {
-                FrmGerenciarSolicitacaoCompra form = new FrmGerenciarSolicitacaoCompra(usuarioLogado, idSolicitacao, this);
-                form.ShowDialog();
-            }
+            FrmGerenciarSolicitacaoCompra form = new FrmGerenciarSolicitacaoCompra(usuarioLogado, idSolicitacao, this);
+            form.ShowDialog();
         }
     }
 }

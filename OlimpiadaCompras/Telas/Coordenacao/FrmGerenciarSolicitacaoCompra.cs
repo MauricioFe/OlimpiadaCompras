@@ -233,7 +233,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             form.ShowDialog();
         }
 
-        private void FrmGerenciarSolicitacaoCompra_Load(object sender, EventArgs e)
+        private async void FrmGerenciarSolicitacaoCompra_Load(object sender, EventArgs e)
         {
             PreencheCombobox(cboEscola, "Nome", "Id");
             PreencheCombobox(cboOcupacao, "Nome", "Id");
@@ -242,6 +242,11 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             if (idSolicitacao > 0)
             {
                 PreencheDadosSolicitacao();
+            }
+            Acompanhamento acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
+            if (acompanhamento.StatusId == ConstantesProjeto.STATUS_EM_ANALISE_NF)
+            {
+                btnVisualizarNF.Visible = true;
             }
         }
 
@@ -755,5 +760,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             await BaixarPdf(txtAnexarPdf3);
         }
 
+        private void btnVisualizarNF_Click(object sender, EventArgs e)
+        {
+            FrmVisualizarNotaFiscal form = new FrmVisualizarNotaFiscal(frmAreaCoordenacao, idSolicitacao, usuarioLogado);
+            form.ShowDialog();
+        }
     }
 }

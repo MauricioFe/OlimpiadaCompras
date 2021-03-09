@@ -43,9 +43,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             }
 
         }
-
-       
-
         private bool VerificaCamposVazios()
         {
             foreach (var item in this.Controls)
