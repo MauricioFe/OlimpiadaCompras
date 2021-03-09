@@ -108,18 +108,6 @@
             this.label36 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvProdutoCompra1 = new System.Windows.Forms.DataGridView();
-            this.colCodigoProtheusProduto1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colGrupo1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescricaoProduto1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQuantidade1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUnitario1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDesconto1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIpi1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colICMS1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotal1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRemover1 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.colProdutoSolicitacaoId1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colProdutoPedidoOrcamentoId1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orcamento2 = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.btnVisualizarArquivo2 = new System.Windows.Forms.Button();
@@ -146,18 +134,6 @@
             this.label38 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.dgvProdutoCompra2 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQuantidade2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUnitario2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDesconto2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIpi2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colICMS2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotal2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewLinkColumn1 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.colProdutoSolicitacaoId2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colProdutoPedidoOrcamentoId2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orcamento3 = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.btnVisualizarArquivo3 = new System.Windows.Forms.Button();
@@ -184,6 +160,32 @@
             this.label39 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.dgvProdutoCompra3 = new System.Windows.Forms.DataGridView();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.colCodigoProtheusProduto1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGrupo1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescricaoProduto1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantidade1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUnitario1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDesconto1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIpi1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colICMS1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotal1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRemover1 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.colProdutoSolicitacaoId1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProdutoPedidoOrcamentoId1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantidade2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUnitario2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDesconto2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIpi2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colICMS2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotal2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRemover2 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.colProdutoSolicitacaoId2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProdutoPedidoOrcamentoId2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCodProtheus3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGrupo3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDescricao3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -193,11 +195,9 @@
             this.colIpi3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colICMS3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotal3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewLinkColumn2 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.colRemover3 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.colProdutoSolicitacaoId3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colProdutoPedidoOrcamentoId3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabContainer.SuspendLayout();
             this.dadosGerais.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -265,7 +265,7 @@
             this.btnProximo.FlatAppearance.BorderSize = 0;
             this.btnProximo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximo.ForeColor = System.Drawing.Color.White;
-            this.btnProximo.Location = new System.Drawing.Point(898, 453);
+            this.btnProximo.Location = new System.Drawing.Point(898, 446);
             this.btnProximo.Name = "btnProximo";
             this.btnProximo.Size = new System.Drawing.Size(169, 34);
             this.btnProximo.TabIndex = 33;
@@ -583,10 +583,10 @@
             this.produto.Controls.Add(this.btnProximoProduto);
             this.produto.Controls.Add(this.dgvProduto);
             this.produto.Controls.Add(this.groupBox1);
-            this.produto.Location = new System.Drawing.Point(4, 29);
+            this.produto.Location = new System.Drawing.Point(4, 22);
             this.produto.Name = "produto";
             this.produto.Padding = new System.Windows.Forms.Padding(3);
-            this.produto.Size = new System.Drawing.Size(1073, 513);
+            this.produto.Size = new System.Drawing.Size(1073, 520);
             this.produto.TabIndex = 1;
             this.produto.Text = "Produtos";
             this.produto.UseVisualStyleBackColor = true;
@@ -1042,85 +1042,18 @@
             this.dgvProdutoCompra1.Name = "dgvProdutoCompra1";
             this.dgvProdutoCompra1.Size = new System.Drawing.Size(1040, 233);
             this.dgvProdutoCompra1.TabIndex = 41;
+            this.dgvProdutoCompra1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra1_CellContentClick);
             this.dgvProdutoCompra1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra1_CellEndEdit);
             this.dgvProdutoCompra1.Leave += new System.EventHandler(this.dgvProdutoCompra1_Leave);
-            // 
-            // colCodigoProtheusProduto1
-            // 
-            this.colCodigoProtheusProduto1.HeaderText = "Código do protheus";
-            this.colCodigoProtheusProduto1.Name = "colCodigoProtheusProduto1";
-            this.colCodigoProtheusProduto1.ReadOnly = true;
-            // 
-            // colGrupo1
-            // 
-            this.colGrupo1.HeaderText = "Grupo";
-            this.colGrupo1.Name = "colGrupo1";
-            this.colGrupo1.ReadOnly = true;
-            // 
-            // colDescricaoProduto1
-            // 
-            this.colDescricaoProduto1.HeaderText = "Descrição";
-            this.colDescricaoProduto1.Name = "colDescricaoProduto1";
-            this.colDescricaoProduto1.ReadOnly = true;
-            // 
-            // colQuantidade1
-            // 
-            this.colQuantidade1.HeaderText = "Quantidade";
-            this.colQuantidade1.Name = "colQuantidade1";
-            // 
-            // colUnitario1
-            // 
-            this.colUnitario1.HeaderText = "Valor Unitário";
-            this.colUnitario1.Name = "colUnitario1";
-            // 
-            // colDesconto1
-            // 
-            this.colDesconto1.HeaderText = "Desconto";
-            this.colDesconto1.Name = "colDesconto1";
-            // 
-            // colIpi1
-            // 
-            this.colIpi1.HeaderText = "IPI";
-            this.colIpi1.Name = "colIpi1";
-            // 
-            // colICMS1
-            // 
-            this.colICMS1.HeaderText = "ICMS";
-            this.colICMS1.Name = "colICMS1";
-            // 
-            // colTotal1
-            // 
-            this.colTotal1.HeaderText = "Total";
-            this.colTotal1.Name = "colTotal1";
-            this.colTotal1.ReadOnly = true;
-            // 
-            // colRemover1
-            // 
-            this.colRemover1.HeaderText = "Remover";
-            this.colRemover1.Name = "colRemover1";
-            this.colRemover1.ReadOnly = true;
-            this.colRemover1.Visible = false;
-            // 
-            // colProdutoSolicitacaoId1
-            // 
-            this.colProdutoSolicitacaoId1.HeaderText = "produtoId";
-            this.colProdutoSolicitacaoId1.Name = "colProdutoSolicitacaoId1";
-            this.colProdutoSolicitacaoId1.Visible = false;
-            // 
-            // colProdutoPedidoOrcamentoId1
-            // 
-            this.colProdutoPedidoOrcamentoId1.HeaderText = "ProdutoPedidoOrcamentoId";
-            this.colProdutoPedidoOrcamentoId1.Name = "colProdutoPedidoOrcamentoId1";
-            this.colProdutoPedidoOrcamentoId1.Visible = false;
             // 
             // orcamento2
             // 
             this.orcamento2.Controls.Add(this.groupBox8);
             this.orcamento2.Controls.Add(this.groupBox5);
-            this.orcamento2.Location = new System.Drawing.Point(4, 22);
+            this.orcamento2.Location = new System.Drawing.Point(4, 29);
             this.orcamento2.Name = "orcamento2";
             this.orcamento2.Padding = new System.Windows.Forms.Padding(3);
-            this.orcamento2.Size = new System.Drawing.Size(1073, 520);
+            this.orcamento2.Size = new System.Drawing.Size(1073, 513);
             this.orcamento2.TabIndex = 3;
             this.orcamento2.Text = "Orçamento 2";
             this.orcamento2.UseVisualStyleBackColor = true;
@@ -1392,92 +1325,25 @@
             this.colIpi2,
             this.colICMS2,
             this.colTotal2,
-            this.dataGridViewLinkColumn1,
+            this.colRemover2,
             this.colProdutoSolicitacaoId2,
             this.colProdutoPedidoOrcamentoId2});
             this.dgvProdutoCompra2.Location = new System.Drawing.Point(11, 23);
             this.dgvProdutoCompra2.Name = "dgvProdutoCompra2";
             this.dgvProdutoCompra2.Size = new System.Drawing.Size(1040, 233);
             this.dgvProdutoCompra2.TabIndex = 42;
+            this.dgvProdutoCompra2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra2_CellContentClick);
             this.dgvProdutoCompra2.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra2_CellEndEdit);
             this.dgvProdutoCompra2.Leave += new System.EventHandler(this.dgvProdutoCompra2_Leave);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Código do protheus";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Grupo";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Descrição";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // colQuantidade2
-            // 
-            this.colQuantidade2.HeaderText = "Quantidade";
-            this.colQuantidade2.Name = "colQuantidade2";
-            // 
-            // colUnitario2
-            // 
-            this.colUnitario2.HeaderText = "Valor Unitário";
-            this.colUnitario2.Name = "colUnitario2";
-            // 
-            // colDesconto2
-            // 
-            this.colDesconto2.HeaderText = "Desconto";
-            this.colDesconto2.Name = "colDesconto2";
-            // 
-            // colIpi2
-            // 
-            this.colIpi2.HeaderText = "IPI";
-            this.colIpi2.Name = "colIpi2";
-            // 
-            // colICMS2
-            // 
-            this.colICMS2.HeaderText = "ICMS";
-            this.colICMS2.Name = "colICMS2";
-            // 
-            // colTotal2
-            // 
-            this.colTotal2.HeaderText = "Total";
-            this.colTotal2.Name = "colTotal2";
-            this.colTotal2.ReadOnly = true;
-            // 
-            // dataGridViewLinkColumn1
-            // 
-            this.dataGridViewLinkColumn1.HeaderText = "Remover";
-            this.dataGridViewLinkColumn1.Name = "dataGridViewLinkColumn1";
-            this.dataGridViewLinkColumn1.ReadOnly = true;
-            this.dataGridViewLinkColumn1.Visible = false;
-            // 
-            // colProdutoSolicitacaoId2
-            // 
-            this.colProdutoSolicitacaoId2.HeaderText = "produtoId";
-            this.colProdutoSolicitacaoId2.Name = "colProdutoSolicitacaoId2";
-            this.colProdutoSolicitacaoId2.Visible = false;
-            // 
-            // colProdutoPedidoOrcamentoId2
-            // 
-            this.colProdutoPedidoOrcamentoId2.HeaderText = "ProdutoPedidoOrcamentoId";
-            this.colProdutoPedidoOrcamentoId2.Name = "colProdutoPedidoOrcamentoId2";
-            this.colProdutoPedidoOrcamentoId2.Visible = false;
             // 
             // orcamento3
             // 
             this.orcamento3.Controls.Add(this.groupBox9);
             this.orcamento3.Controls.Add(this.groupBox6);
-            this.orcamento3.Location = new System.Drawing.Point(4, 22);
+            this.orcamento3.Location = new System.Drawing.Point(4, 29);
             this.orcamento3.Name = "orcamento3";
             this.orcamento3.Padding = new System.Windows.Forms.Padding(3);
-            this.orcamento3.Size = new System.Drawing.Size(1073, 520);
+            this.orcamento3.Size = new System.Drawing.Size(1073, 513);
             this.orcamento3.TabIndex = 4;
             this.orcamento3.Text = "Orçamento 3";
             this.orcamento3.UseVisualStyleBackColor = true;
@@ -1749,15 +1615,154 @@
             this.colIpi3,
             this.colICMS3,
             this.colTotal3,
-            this.dataGridViewLinkColumn2,
+            this.colRemover3,
             this.colProdutoSolicitacaoId3,
             this.colProdutoPedidoOrcamentoId3});
             this.dgvProdutoCompra3.Location = new System.Drawing.Point(11, 23);
             this.dgvProdutoCompra3.Name = "dgvProdutoCompra3";
             this.dgvProdutoCompra3.Size = new System.Drawing.Size(1040, 233);
             this.dgvProdutoCompra3.TabIndex = 43;
+            this.dgvProdutoCompra3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra3_CellContentClick);
             this.dgvProdutoCompra3.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra3_CellEndEdit);
             this.dgvProdutoCompra3.Leave += new System.EventHandler(this.dgvProdutoCompra3_Leave);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // colCodigoProtheusProduto1
+            // 
+            this.colCodigoProtheusProduto1.HeaderText = "Código do protheus";
+            this.colCodigoProtheusProduto1.Name = "colCodigoProtheusProduto1";
+            this.colCodigoProtheusProduto1.ReadOnly = true;
+            // 
+            // colGrupo1
+            // 
+            this.colGrupo1.HeaderText = "Grupo";
+            this.colGrupo1.Name = "colGrupo1";
+            this.colGrupo1.ReadOnly = true;
+            // 
+            // colDescricaoProduto1
+            // 
+            this.colDescricaoProduto1.HeaderText = "Descrição";
+            this.colDescricaoProduto1.Name = "colDescricaoProduto1";
+            this.colDescricaoProduto1.ReadOnly = true;
+            // 
+            // colQuantidade1
+            // 
+            this.colQuantidade1.HeaderText = "Quantidade";
+            this.colQuantidade1.Name = "colQuantidade1";
+            // 
+            // colUnitario1
+            // 
+            this.colUnitario1.HeaderText = "Valor Unitário";
+            this.colUnitario1.Name = "colUnitario1";
+            // 
+            // colDesconto1
+            // 
+            this.colDesconto1.HeaderText = "Desconto";
+            this.colDesconto1.Name = "colDesconto1";
+            // 
+            // colIpi1
+            // 
+            this.colIpi1.HeaderText = "IPI";
+            this.colIpi1.Name = "colIpi1";
+            // 
+            // colICMS1
+            // 
+            this.colICMS1.HeaderText = "ICMS";
+            this.colICMS1.Name = "colICMS1";
+            // 
+            // colTotal1
+            // 
+            this.colTotal1.HeaderText = "Total";
+            this.colTotal1.Name = "colTotal1";
+            this.colTotal1.ReadOnly = true;
+            // 
+            // colRemover1
+            // 
+            this.colRemover1.HeaderText = "Remover";
+            this.colRemover1.Name = "colRemover1";
+            this.colRemover1.ReadOnly = true;
+            // 
+            // colProdutoSolicitacaoId1
+            // 
+            this.colProdutoSolicitacaoId1.HeaderText = "produtoId";
+            this.colProdutoSolicitacaoId1.Name = "colProdutoSolicitacaoId1";
+            this.colProdutoSolicitacaoId1.Visible = false;
+            // 
+            // colProdutoPedidoOrcamentoId1
+            // 
+            this.colProdutoPedidoOrcamentoId1.HeaderText = "ProdutoPedidoOrcamentoId";
+            this.colProdutoPedidoOrcamentoId1.Name = "colProdutoPedidoOrcamentoId1";
+            this.colProdutoPedidoOrcamentoId1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Código do protheus";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Grupo";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Descrição";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // colQuantidade2
+            // 
+            this.colQuantidade2.HeaderText = "Quantidade";
+            this.colQuantidade2.Name = "colQuantidade2";
+            // 
+            // colUnitario2
+            // 
+            this.colUnitario2.HeaderText = "Valor Unitário";
+            this.colUnitario2.Name = "colUnitario2";
+            // 
+            // colDesconto2
+            // 
+            this.colDesconto2.HeaderText = "Desconto";
+            this.colDesconto2.Name = "colDesconto2";
+            // 
+            // colIpi2
+            // 
+            this.colIpi2.HeaderText = "IPI";
+            this.colIpi2.Name = "colIpi2";
+            // 
+            // colICMS2
+            // 
+            this.colICMS2.HeaderText = "ICMS";
+            this.colICMS2.Name = "colICMS2";
+            // 
+            // colTotal2
+            // 
+            this.colTotal2.HeaderText = "Total";
+            this.colTotal2.Name = "colTotal2";
+            this.colTotal2.ReadOnly = true;
+            // 
+            // colRemover2
+            // 
+            this.colRemover2.HeaderText = "Remover";
+            this.colRemover2.Name = "colRemover2";
+            this.colRemover2.ReadOnly = true;
+            // 
+            // colProdutoSolicitacaoId2
+            // 
+            this.colProdutoSolicitacaoId2.HeaderText = "produtoId";
+            this.colProdutoSolicitacaoId2.Name = "colProdutoSolicitacaoId2";
+            this.colProdutoSolicitacaoId2.Visible = false;
+            // 
+            // colProdutoPedidoOrcamentoId2
+            // 
+            this.colProdutoPedidoOrcamentoId2.HeaderText = "ProdutoPedidoOrcamentoId";
+            this.colProdutoPedidoOrcamentoId2.Name = "colProdutoPedidoOrcamentoId2";
+            this.colProdutoPedidoOrcamentoId2.Visible = false;
             // 
             // colCodProtheus3
             // 
@@ -1808,12 +1813,11 @@
             this.colTotal3.Name = "colTotal3";
             this.colTotal3.ReadOnly = true;
             // 
-            // dataGridViewLinkColumn2
+            // colRemover3
             // 
-            this.dataGridViewLinkColumn2.HeaderText = "Remover";
-            this.dataGridViewLinkColumn2.Name = "dataGridViewLinkColumn2";
-            this.dataGridViewLinkColumn2.ReadOnly = true;
-            this.dataGridViewLinkColumn2.Visible = false;
+            this.colRemover3.HeaderText = "Remover";
+            this.colRemover3.Name = "colRemover3";
+            this.colRemover3.ReadOnly = true;
             // 
             // colProdutoSolicitacaoId3
             // 
@@ -1826,10 +1830,6 @@
             this.colProdutoPedidoOrcamentoId3.HeaderText = "ProdutoPedidoOrcamentoId";
             this.colProdutoPedidoOrcamentoId3.Name = "colProdutoPedidoOrcamentoId3";
             this.colProdutoPedidoOrcamentoId3.Visible = false;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // FrmNovaSolicitacao
             // 
@@ -2006,6 +2006,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colIdProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGrupoId;
         private System.Windows.Forms.DataGridViewTextBoxColumn colProdutoSolicitacaoId;
+        private System.Windows.Forms.Button btnVisualizarArquivo1;
+        private System.Windows.Forms.Button btnVisualizarArquivo2;
+        private System.Windows.Forms.Button btnVisualizarArquivo3;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCodigoProtheusProduto1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGrupo1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDescricaoProduto1;
@@ -2027,7 +2031,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colIpi2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colICMS2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotal2;
-        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn1;
+        private System.Windows.Forms.DataGridViewLinkColumn colRemover2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colProdutoSolicitacaoId2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colProdutoPedidoOrcamentoId2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCodProtheus3;
@@ -2039,12 +2043,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colIpi3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colICMS3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotal3;
-        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn2;
+        private System.Windows.Forms.DataGridViewLinkColumn colRemover3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colProdutoSolicitacaoId3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colProdutoPedidoOrcamentoId3;
-        private System.Windows.Forms.Button btnVisualizarArquivo1;
-        private System.Windows.Forms.Button btnVisualizarArquivo2;
-        private System.Windows.Forms.Button btnVisualizarArquivo3;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

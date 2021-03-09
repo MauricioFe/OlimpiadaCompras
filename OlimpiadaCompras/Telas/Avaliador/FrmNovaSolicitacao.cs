@@ -187,6 +187,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[8].Value = item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)));
                         ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[10].Value = item.ProdutoSolicitacao.Id;
                         ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[11].Value = item.Id;
+                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[9].Value = "Remover";
                         ((TextBox)tabContainer.Controls.Find($"txtFornecedor{i + 1}", true)[0]).Text = orcamento.Fornecedor;
                         ((TextBox)tabContainer.Controls.Find($"txtCnpj{i + 1}", true)[0]).Text = orcamento.Cnpj;
                         ((DateTimePicker)tabContainer.Controls.Find($"dtpDataOrcamento{i + 1}", true)[0]).Value = orcamento.Data;
@@ -382,6 +383,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 dgv.Rows[n].Cells[8].Value = item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)));
                 dgv.Rows[n].Cells[10].Value = item.ProdutoSolicitacoesId;
                 dgv.Rows[n].Cells[11].Value = item.Id;
+                dgv.Rows[n].Cells[9].Value = "Remover";
             }
         }
         private void RealizaCalculoValoresFinais(DataGridViewCellEventArgs e, DataGridView dataGrid)
@@ -969,6 +971,66 @@ namespace OlimpiadaCompras.Telas.Avaliador
         private async void btnVisualizarArquivo3_Click(object sender, EventArgs e)
         {
             await BaixarPdf(txtAnexarPdf3);
+        }
+
+        private async void dgvProdutoCompra1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvProdutoCompra1.Columns[e.ColumnIndex].Name == "colRemover1")
+            {
+                long produtoPedidoOrcamentoId = (long)dgvProdutoCompra1.Rows[e.RowIndex].Cells["colProdutoPedidoOrcamentoId1"].Value;
+                if (MessageBox.Show("Tem certeza que deseja remover esse registro da lista?", "Remover registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (await HttpProdutoPedidoOrcamentos.Delete(produtoPedidoOrcamentoId, usuarioLogado.token))
+                    {
+                        dgvProdutoCompra1.Rows.Remove(dgvProdutoCompra1.Rows[e.RowIndex]);
+                        MessageBox.Show("Removido com sucesso");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao realizar exclusão, tente novamente mais tarde", "Erro ao tentar excluir", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private async void dgvProdutoCompra2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvProdutoCompra2.Columns[e.ColumnIndex].Name == "colRemover2")
+            {
+                long produtoPedidoOrcamentoId = (long)dgvProdutoCompra2.Rows[e.RowIndex].Cells["colProdutoPedidoOrcamentoId2"].Value;
+                if (MessageBox.Show("Tem certeza que deseja remover esse registro da lista?", "Remover registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (await HttpProdutoPedidoOrcamentos.Delete(produtoPedidoOrcamentoId, usuarioLogado.token))
+                    {
+                        dgvProdutoCompra2.Rows.Remove(dgvProdutoCompra2.Rows[e.RowIndex]);
+                        MessageBox.Show("Removido com sucesso");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao realizar exclusão, tente novamente mais tarde", "Erro ao tentar excluir", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private async void dgvProdutoCompra3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvProdutoCompra3.Columns[e.ColumnIndex].Name == "colRemover3")
+            {
+                long produtoPedidoOrcamentoId = (long)dgvProdutoCompra3.Rows[e.RowIndex].Cells["colProdutoPedidoOrcamentoId3"].Value;
+                if (MessageBox.Show("Tem certeza que deseja remover esse registro da lista?", "Remover registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (await HttpProdutoPedidoOrcamentos.Delete(produtoPedidoOrcamentoId, usuarioLogado.token))
+                    {
+                        dgvProdutoCompra3.Rows.Remove(dgvProdutoCompra3.Rows[e.RowIndex]);
+                        MessageBox.Show("Removido com sucesso");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao realizar exclusão, tente novamente mais tarde", "Erro ao tentar excluir", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

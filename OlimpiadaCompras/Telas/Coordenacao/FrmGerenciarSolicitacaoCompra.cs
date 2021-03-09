@@ -37,6 +37,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.frmAreaCoordenacao = frmAreaCoordenacao;
             InitializeComponent();
             ToggleHabilitaInputs(false);
+            btnVisualizarArquivo1.Enabled = true;
+            btnVisualizarArquivo2.Enabled = true;
+            btnVisualizarArquivo3.Enabled = true;
         }
         private void ToggleHabilitaInputs(bool estaHabilitado)
         {
@@ -764,6 +767,66 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         {
             FrmVisualizarNotaFiscal form = new FrmVisualizarNotaFiscal(frmAreaCoordenacao, idSolicitacao, usuarioLogado);
             form.ShowDialog();
+        }
+
+        private async void dgvProdutoCompra1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvProdutoCompra1.Columns[e.ColumnIndex].Name == "colRemover1")
+            {
+                long produtoPedidoOrcamentoId = (long)dgvProdutoCompra1.Rows[e.RowIndex].Cells["colProdutoPedidoOrcamentoId1"].Value;
+                if (MessageBox.Show("Tem certeza que deseja remover esse registro da lista?", "Remover registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (await HttpProdutoPedidoOrcamentos.Delete(produtoPedidoOrcamentoId, usuarioLogado.token))
+                    {
+                        dgvProdutoCompra1.Rows.Remove(dgvProdutoCompra1.Rows[e.RowIndex]);
+                        MessageBox.Show("Removido com sucesso");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao realizar exclusão, tente novamente mais tarde", "Erro ao tentar excluir", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private async void dgvProdutoCompra2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvProdutoCompra2.Columns[e.ColumnIndex].Name == "colRemover2")
+            {
+                long produtoPedidoOrcamentoId = (long)dgvProdutoCompra2.Rows[e.RowIndex].Cells["colProdutoPedidoOrcamentoId2"].Value;
+                if (MessageBox.Show("Tem certeza que deseja remover esse registro da lista?", "Remover registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (await HttpProdutoPedidoOrcamentos.Delete(produtoPedidoOrcamentoId, usuarioLogado.token))
+                    {
+                        dgvProdutoCompra2.Rows.Remove(dgvProdutoCompra2.Rows[e.RowIndex]);
+                        MessageBox.Show("Removido com sucesso");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao realizar exclusão, tente novamente mais tarde", "Erro ao tentar excluir", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private async void dgvProdutoCompra3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvProdutoCompra3.Columns[e.ColumnIndex].Name == "colRemover3")
+            {
+                long produtoPedidoOrcamentoId = (long)dgvProdutoCompra3.Rows[e.RowIndex].Cells["colProdutoPedidoOrcamentoId3"].Value;
+                if (MessageBox.Show("Tem certeza que deseja remover esse registro da lista?", "Remover registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (await HttpProdutoPedidoOrcamentos.Delete(produtoPedidoOrcamentoId, usuarioLogado.token))
+                    {
+                        dgvProdutoCompra3.Rows.Remove(dgvProdutoCompra3.Rows[e.RowIndex]);
+                        MessageBox.Show("Removido com sucesso");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao realizar exclusão, tente novamente mais tarde", "Erro ao tentar excluir", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }
