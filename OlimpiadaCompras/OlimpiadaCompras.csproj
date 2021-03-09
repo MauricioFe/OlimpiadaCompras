@@ -154,12 +154,6 @@
     <Compile Include="Telas\Coordenacao\FrmAreaCoordenacao.Designer.cs">
       <DependentUpon>FrmAreaCoordenacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\Coordenacao\FrmEmailAutorizacao.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Telas\Coordenacao\FrmEmailAutorizacao.Designer.cs">
-      <DependentUpon>FrmEmailAutorizacao.cs</DependentUpon>
-    </Compile>
     <Compile Include="Telas\Coordenacao\FrmModalSolicitacao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,9 +233,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Coordenacao\FrmAreaCoordenacao.resx">
       <DependentUpon>FrmAreaCoordenacao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Coordenacao\FrmEmailAutorizacao.resx">
-      <DependentUpon>FrmEmailAutorizacao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Coordenacao\FrmGerenciarSolicitacaoCompra.resx">
       <DependentUpon>FrmGerenciarSolicitacaoCompra.cs</DependentUpon>

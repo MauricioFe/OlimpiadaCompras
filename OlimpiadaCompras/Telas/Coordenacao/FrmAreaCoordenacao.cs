@@ -120,7 +120,7 @@ namespace OlimpiadaCompras
             long statusId = Convert.ToInt64(dgvSolicitacoes.Rows[e.RowIndex].Cells["colStatusId"].Value);
             if (statusId == ConstantesProjeto.STATUS_EM_ANALISE_NF)
             {
-                FrmVisualizarNotaFiscal form = new FrmVisualizarNotaFiscal(this, idSolicitacao);
+                FrmVisualizarNotaFiscal form = new FrmVisualizarNotaFiscal(this, idSolicitacao, usuarioLogado);
                 form.ShowDialog();
             }
             else

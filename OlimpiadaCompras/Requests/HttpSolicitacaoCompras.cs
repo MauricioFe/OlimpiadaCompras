@@ -187,5 +187,27 @@ namespace OlimpiadaCompras.Requests
             }
 
         }
+        public static async Task<byte[]> DownloadNotaFiscal(string fileName, string token)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                    var response = await client.GetAsync($"{ConstantesProjeto.URL_BASE}/api/solicitacaoCompra/download?arquivo={fileName}");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var file = await response.Content.ReadAsByteArrayAsync();
+                        return file;
+                    }
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erro ao conectar com a api " + e.Message);
+                return null;
+            }
+        }
     }
 }

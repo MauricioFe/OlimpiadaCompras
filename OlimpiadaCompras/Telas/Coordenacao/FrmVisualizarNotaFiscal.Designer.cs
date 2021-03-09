@@ -33,6 +33,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.pdfReader = new AxAcroPDFLib.AxAcroPDF();
             this.btnAprovar = new System.Windows.Forms.Button();
             this.btnReprovar = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pdfReader)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,6 +62,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnAprovar.TabIndex = 36;
             this.btnAprovar.Text = "Aprovar";
             this.btnAprovar.UseVisualStyleBackColor = false;
+            this.btnAprovar.Click += new System.EventHandler(this.btnAprovar_Click);
             // 
             // btnReprovar
             // 
@@ -75,6 +77,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnReprovar.TabIndex = 37;
             this.btnReprovar.Text = "Reprovar";
             this.btnReprovar.UseVisualStyleBackColor = false;
+            this.btnReprovar.Click += new System.EventHandler(this.btnReprovar_Click);
             // 
             // FrmVisualizarNotaFiscal
             // 
@@ -87,6 +90,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.Name = "FrmVisualizarNotaFiscal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Visualizar Nota Fiscal";
+            this.Load += new System.EventHandler(this.FrmVisualizarNotaFiscal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pdfReader)).EndInit();
             this.ResumeLayout(false);
 
@@ -97,5 +101,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         private AxAcroPDFLib.AxAcroPDF pdfReader;
         private System.Windows.Forms.Button btnAprovar;
         private System.Windows.Forms.Button btnReprovar;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
