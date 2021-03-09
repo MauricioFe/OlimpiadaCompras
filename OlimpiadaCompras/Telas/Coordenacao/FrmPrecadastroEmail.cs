@@ -17,7 +17,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         private Usuario usuarioLogado;
         private long idSolicitacao;
         private FrmAreaCoordenacao frmAreaCoordenacao;
-        Acompanhamento acompanhamento = null;
         public FrmPrecadastroEmail(Usuario usuario, long idSolicitacao, FrmAreaCoordenacao frmAreaCoordenacao)
         {
             this.usuarioLogado = usuario;
@@ -26,7 +25,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             InitializeComponent();
         }
 
-        private async void btnSalvar_Click(object sender, EventArgs e)
+        private void btnSalvar_Click(object sender, EventArgs e)
         {
             if (VerificaCamposVazios())
             {
@@ -35,7 +34,8 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 data.CodUnidadeOrganizacional = txtCodUnidadeOrganizacional.Text;
                 data.ClasseValor = txtClasseValor.Text;
                 data.ContaContabil = txtContaContabil.Text;
-                FrmEmailAutorizacao form = new FrmEmailAutorizacao(data, usuarioLogado, frmAreaCoordenacao);
+                FrmEmailAutorizacao form = new FrmEmailAutorizacao(data, usuarioLogado, frmAreaCoordenacao, idSolicitacao, this);
+                form.ShowDialog();
             }
             else
             {
@@ -44,20 +44,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
 
         }
 
-        private void BloqueiaCampos()
-        {
-            foreach (var item in this.Controls)
-            {
-                ((Control)item).Enabled = false;
-            }
-        }
-        private void DesbloqueiaCampos()
-        {
-            foreach (var item in this.Controls)
-            {
-                ((Control)item).Enabled = true;
-            }
-        }
+       
 
         private bool VerificaCamposVazios()
         {
@@ -78,11 +65,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Dispose();
-        }
-
-        private async void FrmPrecadastroEmail_Load(object sender, EventArgs e)
-        {
-            acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
         }
     }
 }

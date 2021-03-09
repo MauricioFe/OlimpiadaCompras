@@ -33,5 +33,30 @@ namespace OlimpiadaCompras.Requests
                 return false;
             }
         }
+
+        public static async Task<byte[]> DownloadEmail(EmailModel data, long idSolicitacao, string token)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+                    var json = JsonConvert.SerializeObject(data);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    var response = await client.PostAsync($"{ConstantesProjeto.URL_BASE}/api/enviarEmail/download/email/{idSolicitacao}", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var file = await response.Content.ReadAsByteArrayAsync();
+                        return file;
+                    }
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
     }
 }

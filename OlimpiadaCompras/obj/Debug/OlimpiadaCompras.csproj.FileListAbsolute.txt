@@ -84,3 +84,4 @@ C:\Users\mauricio\Desktop\GitHub\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\Int
 C:\Users\mauricio\Desktop\GitHub\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\AxInterop.AcroPDFLib.dll
 C:\Users\mauricio\Desktop\GitHub\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.csproj.ResolveComReference.cache
 C:\Users\mauricio\Desktop\GitHub\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmVisualizarNotaFiscal.resources
+C:\Users\mauricio\Desktop\GitHub\OlimpiadaCompras\OlimpiadaCompras\obj\Debug\OlimpiadaCompras.Telas.Coordenacao.FrmEmailAutorizacao.resources

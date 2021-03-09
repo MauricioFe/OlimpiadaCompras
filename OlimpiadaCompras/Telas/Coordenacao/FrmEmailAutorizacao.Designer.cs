@@ -47,8 +47,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnReprovar.Name = "btnReprovar";
             this.btnReprovar.Size = new System.Drawing.Size(169, 34);
             this.btnReprovar.TabIndex = 40;
-            this.btnReprovar.Text = "Reprovar";
+            this.btnReprovar.Text = "Não enviar";
             this.btnReprovar.UseVisualStyleBackColor = false;
+            this.btnReprovar.Click += new System.EventHandler(this.btnReprovar_Click);
             // 
             // btnAprovar
             // 
@@ -61,8 +62,9 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnAprovar.Name = "btnAprovar";
             this.btnAprovar.Size = new System.Drawing.Size(169, 34);
             this.btnAprovar.TabIndex = 39;
-            this.btnAprovar.Text = "Aprovar";
+            this.btnAprovar.Text = "Enviar e-mail";
             this.btnAprovar.UseVisualStyleBackColor = false;
+            this.btnAprovar.Click += new System.EventHandler(this.btnAprovar_Click);
             // 
             // pdfReader
             // 
@@ -70,7 +72,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pdfReader.Enabled = true;
-            this.pdfReader.Location = new System.Drawing.Point(0, 4);
+            this.pdfReader.Location = new System.Drawing.Point(0, 0);
             this.pdfReader.Name = "pdfReader";
             this.pdfReader.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("pdfReader.OcxState")));
             this.pdfReader.Size = new System.Drawing.Size(848, 438);
@@ -86,7 +88,8 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FrmEmailAutorizacao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmEmailAutorizacao";
+            this.Text = "Visualizar e-mail de autorizacao";
+            this.Load += new System.EventHandler(this.FrmEmailAutorizacao_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pdfReader)).EndInit();
             this.ResumeLayout(false);
 

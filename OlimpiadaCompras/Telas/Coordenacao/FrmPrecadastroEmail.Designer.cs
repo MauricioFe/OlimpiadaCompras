@@ -152,7 +152,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.Name = "FrmPrecadastroEmail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pré cadastro do E-mail";
-            this.Load += new System.EventHandler(this.FrmPrecadastroEmail_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
