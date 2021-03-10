@@ -12,7 +12,8 @@ namespace OlimpiadaCompras
         //url remota
         //public static string URL_BASE = "http://177.74.238.210:5000";
         //url local
-        public static string URL_BASE = $"http://localhost:5000";
+        //public static string URL_BASE = $"http://localhost:5000";
+        public static string URL_BASE = $"http://192.168.0.109:5000";
         public const string MENSAGEM_ERRO_SERVIDOR = "Erro interno no servidor, tente em novamente em outro momento";
         public const string MENSAGEM_PREENCHER_CAMPOS = "Todos os campos são obrigatórios";
         public const string CONFIRMACAO_EXLUSAO = "Você realmente deseja excluir esse registro?";

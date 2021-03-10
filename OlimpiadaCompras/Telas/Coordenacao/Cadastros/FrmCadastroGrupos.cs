@@ -23,7 +23,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
         {
             this.usuarioLogado = usuario;
             InitializeComponent();
-            AtualizaGrid();
         }
 
         private async Task AtualizaGridByFiltro()
@@ -38,7 +37,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 dgvGrupos.Rows[n].Cells[2].Value = grupo.Id;
             }
         }
-        private async void AtualizaGrid()
+        private async Task AtualizaGrid()
         {
             grupos = await HttpGrupos.GetAllGrupos(usuarioLogado.token);
             dgvGrupos.Rows.Clear();
@@ -54,7 +53,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 
         private async void txtFiltro_TextChangedAsync(object sender, EventArgs e)
         {
-            await AtualizaGridByFiltro();
+            //await AtualizaGridByFiltro();
         }
 
         private void dgvGrupos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -89,7 +88,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 }
                 else
                 {
-                    AtualizaGrid();
+                    await AtualizaGrid();
                     MessageBox.Show("Grupo de produto adicionado com sucesso");
                     ManipulaFormGenericoUtil.LimpaCampos(this);
                 }
@@ -116,7 +115,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     }
                     else
                     {
-                        AtualizaGrid();
+                        await AtualizaGrid();
                         MessageBox.Show("Grupo de produto editado com sucesso");
                         ManipulaFormGenericoUtil.LimpaCampos(this);
                     }
@@ -138,7 +137,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 if (id != 0)
                 {
                     await HttpGrupos.Delete(id, usuarioLogado.token);
-                    AtualizaGrid();
+                    await AtualizaGrid ();
                     MessageBox.Show("Grupo de produto excluído com sucesso");
                     ManipulaFormGenericoUtil.LimpaCampos(this);
                 }
@@ -147,6 +146,11 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                     MessageBox.Show("Selecione um Grupo de produto da lista");
                 }
             }
+        }
+
+        private async void FrmCadastroGrupos_Load(object sender, EventArgs e)
+        {
+            await AtualizaGrid();
         }
     }
 }

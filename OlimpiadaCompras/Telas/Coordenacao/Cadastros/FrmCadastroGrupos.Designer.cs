@@ -95,6 +95,8 @@
             // 
             // dgvGrupos
             // 
+            this.dgvGrupos.AllowUserToAddRows = false;
+            this.dgvGrupos.AllowUserToDeleteRows = false;
             this.dgvGrupos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvGrupos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGrupos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -103,6 +105,7 @@
             this.colIdGrupo});
             this.dgvGrupos.Location = new System.Drawing.Point(68, 199);
             this.dgvGrupos.Name = "dgvGrupos";
+            this.dgvGrupos.ReadOnly = true;
             this.dgvGrupos.Size = new System.Drawing.Size(669, 176);
             this.dgvGrupos.TabIndex = 50;
             this.dgvGrupos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrupos_CellClick);
@@ -209,6 +212,7 @@
             this.Name = "FrmCadastroGrupos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastrar Grupos";
+            this.Load += new System.EventHandler(this.FrmCadastroGrupos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrupos)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
