@@ -82,7 +82,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 }
             }
             else
+            {
                 MessageBox.Show("Erro ao enviar e-mail");
+                this.Dispose();
+            }
 
         }
 

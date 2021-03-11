@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,8 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         public FrmGerenciarSolicitacaoCompra(Usuario usuario)
         {
             this.usuarioLogado = usuario;
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pt-BR");
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("pt-BR");
             InitializeComponent();
         }
         public FrmGerenciarSolicitacaoCompra(Usuario usuario, long idSolicitacao, FrmAreaCoordenacao frmAreaCoordenacao)

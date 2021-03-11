@@ -364,7 +364,6 @@
             this.txtNomeEscola.Name = "txtNomeEscola";
             this.txtNomeEscola.Size = new System.Drawing.Size(418, 26);
             this.txtNomeEscola.TabIndex = 1;
-            this.txtNomeEscola.Text = "Escola teste";
             // 
             // label1
             // 
@@ -393,7 +392,6 @@
             this.txtLogradouro.Name = "txtLogradouro";
             this.txtLogradouro.Size = new System.Drawing.Size(286, 26);
             this.txtLogradouro.TabIndex = 3;
-            this.txtLogradouro.Text = "Rua bacon";
             // 
             // label8
             // 
@@ -412,7 +410,6 @@
             this.txtCep.Name = "txtCep";
             this.txtCep.Size = new System.Drawing.Size(150, 26);
             this.txtCep.TabIndex = 2;
-            this.txtCep.Text = "3216549874";
             // 
             // txtBairro
             // 
@@ -421,7 +418,6 @@
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(237, 26);
             this.txtBairro.TabIndex = 4;
-            this.txtBairro.Text = "Porquinho de sá";
             // 
             // label10
             // 
@@ -440,7 +436,6 @@
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(149, 26);
             this.txtNumero.TabIndex = 5;
-            this.txtNumero.Text = "222";
             // 
             // label11
             // 
@@ -455,6 +450,7 @@
             // cboEstado
             // 
             this.cboEstado.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cboEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboEstado.FormattingEnabled = true;
             this.cboEstado.Items.AddRange(new object[] {
             "AC",
@@ -488,7 +484,6 @@
             this.cboEstado.Name = "cboEstado";
             this.cboEstado.Size = new System.Drawing.Size(200, 28);
             this.cboEstado.TabIndex = 6;
-            this.cboEstado.Text = "MG";
             // 
             // label12
             // 
@@ -507,7 +502,6 @@
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(261, 26);
             this.txtCidade.TabIndex = 7;
-            this.txtCidade.Text = "Bh";
             // 
             // FrmCadastroEscolas
             // 

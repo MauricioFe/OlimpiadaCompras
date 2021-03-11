@@ -167,6 +167,7 @@
             // 
             // cboGrupo
             // 
+            this.cboGrupo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboGrupo.FormattingEnabled = true;
             this.cboGrupo.Location = new System.Drawing.Point(315, 32);
             this.cboGrupo.Name = "cboGrupo";

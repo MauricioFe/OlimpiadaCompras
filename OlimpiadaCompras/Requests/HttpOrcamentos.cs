@@ -133,7 +133,7 @@ namespace OlimpiadaCompras.Requests
                     }
                     catch (Exception)
                     {
-                        orcamento.Anexo = "null";
+                       
                     }
                     formContent.Add(new StringContent(orcamento.Fornecedor), "Fornecedor");
                     formContent.Add(new StringContent(orcamento.FormaPagamento), "FormaPagamento");
@@ -143,7 +143,11 @@ namespace OlimpiadaCompras.Requests
                     formContent.Add(new StringContent(orcamento.TotalProdutos.ToString()), "TotalProdutos");
                     formContent.Add(new StringContent(orcamento.ValorFrete.ToString()), "ValorFrete");
                     formContent.Add(new StringContent(orcamento.Data.ToString()), "Data");
-                    formContent.Add(new StringContent(orcamento.Anexo), "anexo");
+                    if (orcamento.Anexo != null)
+                    {
+                        formContent.Add(new StringContent(orcamento.Anexo), "anexo");
+                    }
+                    formContent.Add(new StringContent(orcamento.OrderFlag.ToString()), "OrderFlag");
                     using (var client = new HttpClient())
                     {
                         client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
