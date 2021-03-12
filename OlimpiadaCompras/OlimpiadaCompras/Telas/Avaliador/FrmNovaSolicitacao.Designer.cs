@@ -266,7 +266,7 @@
             this.btnProximo.FlatAppearance.BorderSize = 0;
             this.btnProximo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximo.ForeColor = System.Drawing.Color.White;
-            this.btnProximo.Location = new System.Drawing.Point(898, 446);
+            this.btnProximo.Location = new System.Drawing.Point(898, 453);
             this.btnProximo.Name = "btnProximo";
             this.btnProximo.Size = new System.Drawing.Size(169, 34);
             this.btnProximo.TabIndex = 33;
@@ -588,10 +588,10 @@
             this.produto.Controls.Add(this.btnProximoProduto);
             this.produto.Controls.Add(this.dgvProduto);
             this.produto.Controls.Add(this.groupBox1);
-            this.produto.Location = new System.Drawing.Point(4, 22);
+            this.produto.Location = new System.Drawing.Point(4, 29);
             this.produto.Name = "produto";
             this.produto.Padding = new System.Windows.Forms.Padding(3);
-            this.produto.Size = new System.Drawing.Size(1073, 520);
+            this.produto.Size = new System.Drawing.Size(1073, 513);
             this.produto.TabIndex = 1;
             this.produto.Text = "Produtos";
             this.produto.UseVisualStyleBackColor = true;

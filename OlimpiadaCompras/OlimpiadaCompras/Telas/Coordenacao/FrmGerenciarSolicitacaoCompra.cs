@@ -24,7 +24,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         long idGrupo;
         List<ProdutoSolicitacao> produtosCompras = new List<ProdutoSolicitacao>();
         List<OcupacaoSolicitacaoCompra> ocupacoesSolicitacaoEditList = new List<OcupacaoSolicitacaoCompra>();
-        List<double> totalIpiList = new List<double>();
+        List<decimal> totalIpiList = new List<decimal>();
         FrmAreaCoordenacao frmAreaCoordenacao;
         public FrmGerenciarSolicitacaoCompra(Usuario usuario)
         {
@@ -485,10 +485,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             try
             {
                 totalIpiList.Clear();
-                int quantidade = Convert.ToInt32(dataGrid.Rows[e.RowIndex].Cells[3].Value);
-                double valorUnitario = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[4].Value);
-                double desconto = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[5].Value);
-                double total = quantidade * (valorUnitario - (valorUnitario * (desconto / 100)));
+                decimal quantidade = Convert.ToDecimal(dataGrid.Rows[e.RowIndex].Cells[3].Value);
+                decimal valorUnitario = Convert.ToDecimal(dataGrid.Rows[e.RowIndex].Cells[4].Value);
+                decimal desconto = Convert.ToDecimal(dataGrid.Rows[e.RowIndex].Cells[5].Value);
+                decimal total = quantidade * (valorUnitario - (valorUnitario * (desconto / 100)));
                 if (dataGrid.Rows[e.RowIndex].Cells[3].Value != null &&
                     dataGrid.Rows[e.RowIndex].Cells[4].Value != null)
                 {
@@ -496,8 +496,8 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 }
                 if (dataGrid.Columns[e.ColumnIndex].Index == 6)
                 {
-                    double ipi = Convert.ToDouble(dataGrid.Rows[e.RowIndex].Cells[6].Value);
-                    double totalIpi = (ipi / 100) * valorUnitario;
+                    decimal ipi = Convert.ToDecimal(dataGrid.Rows[e.RowIndex].Cells[6].Value);
+                    decimal totalIpi = (ipi / 100) * valorUnitario;
                     totalIpiList.Add(totalIpi);
                 }
             }
@@ -508,21 +508,21 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             }
 
         }
-        private void PreencheValoresCalculados(DataGridView dataGrid, List<Double> totalIpiList, TextBox txtTotalProdutos, TextBox txtTotalIpi, TextBox txtValorFinal)
+        private void PreencheValoresCalculados(DataGridView dataGrid, List<Decimal> totalIpiList, TextBox txtTotalProdutos, TextBox txtTotalIpi, TextBox txtValorFinal)
         {
-            double valorTotalProduto = dataGrid.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDouble(t.Cells[8].Value));
-            double valorTotalIpi = totalIpiList.Sum(item => item);
+            decimal valorTotalProduto = dataGrid.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDecimal(t.Cells[8].Value));
+            decimal valorTotalIpi = totalIpiList.Sum(item => item);
             txtTotalProdutos.Text = valorTotalProduto.ToString("F2");
             txtTotalIpi.Text = valorTotalIpi.ToString("F2");
             txtValorFinal.Text = (valorTotalProduto + valorTotalIpi).ToString("F2");
         }
         private void CalculaFrete(TextBox txtFrete, TextBox txtValorFinal, DataGridView dgv)
         {
-            double valorFinal = dgv.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDouble(t.Cells[8].Value)); ;
+            decimal valorFinal = dgv.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDecimal(t.Cells[8].Value)); ;
             if (!string.IsNullOrEmpty(txtFrete.Text))
             {
-                double frete = double.Parse(txtFrete.Text);
-                double resultado = valorFinal + frete;
+                decimal frete = decimal.Parse(txtFrete.Text);
+                decimal resultado = valorFinal + frete;
                 txtValorFinal.Text = (resultado).ToString("F2");
             }
         }
@@ -543,10 +543,10 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             produtoPedidoOrcamento.OrcamentoId = long.Parse(((TextBox)tabContainer.Controls.Find("txtIdOrcamento" + index, true)[0]).Text);
             produtoPedidoOrcamento.ProdutoSolicitacoesId = Convert.ToInt64(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colProdutoSolicitacaoId" + index].Value);
             produtoPedidoOrcamento.Quantidade = Convert.ToInt32(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colQuantidade" + index].Value);
-            produtoPedidoOrcamento.valor = Convert.ToDouble(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colUnitario" + index].Value);
-            produtoPedidoOrcamento.Desconto = Convert.ToDouble(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colDesconto" + index].Value);
-            produtoPedidoOrcamento.Ipi = Convert.ToDouble(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colIpi" + index].Value);
-            produtoPedidoOrcamento.Icms = Convert.ToDouble(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colICMS" + index].Value);
+            produtoPedidoOrcamento.valor = Convert.ToDecimal(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colUnitario" + index].Value);
+            produtoPedidoOrcamento.Desconto = Convert.ToDecimal(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colDesconto" + index].Value);
+            produtoPedidoOrcamento.Ipi = Convert.ToDecimal(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colIpi" + index].Value);
+            produtoPedidoOrcamento.Icms = Convert.ToDecimal(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colICMS" + index].Value);
             produtoPedidoOrcamento.Id = Convert.ToInt64(((DataGridView)tabContainer.Controls.Find("dgvProdutoCompra" + index, true)[0]).Rows[e.RowIndex].Cells["colProdutoPedidoOrcamentoId" + index].Value);
             var ProdutopedidoOrcamentoCriado = await HttpProdutoPedidoOrcamentos.Update(produtoPedidoOrcamento, produtoPedidoOrcamento.Id, usuarioLogado.token);
             if (ProdutopedidoOrcamentoCriado == null)

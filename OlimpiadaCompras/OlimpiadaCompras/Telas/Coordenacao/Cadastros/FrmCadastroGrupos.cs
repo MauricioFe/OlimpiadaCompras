@@ -51,7 +51,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
 
         }
 
-        private async void txtFiltro_TextChangedAsync(object sender, EventArgs e)
+        private void txtFiltro_TextChangedAsync(object sender, EventArgs e)
         {
             //await AtualizaGridByFiltro();
         }
@@ -137,7 +137,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao.Cadastros
                 if (id != 0)
                 {
                     await HttpGrupos.Delete(id, usuarioLogado.token);
-                    await AtualizaGrid ();
+                    await AtualizaGrid();
                     MessageBox.Show("Grupo de produto excluído com sucesso");
                     ManipulaFormGenericoUtil.LimpaCampos(this);
                 }

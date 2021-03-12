@@ -154,7 +154,7 @@
             this.btnNovaSolicitacao.FlatAppearance.BorderSize = 0;
             this.btnNovaSolicitacao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNovaSolicitacao.ForeColor = System.Drawing.Color.White;
-            this.btnNovaSolicitacao.Location = new System.Drawing.Point(744, 592);
+            this.btnNovaSolicitacao.Location = new System.Drawing.Point(744, 593);
             this.btnNovaSolicitacao.Name = "btnNovaSolicitacao";
             this.btnNovaSolicitacao.Size = new System.Drawing.Size(169, 34);
             this.btnNovaSolicitacao.TabIndex = 17;
