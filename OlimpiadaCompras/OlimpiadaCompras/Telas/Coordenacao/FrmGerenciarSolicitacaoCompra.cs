@@ -559,6 +559,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         private async void dgvProdutoCompra1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             RealizaCalculoValoresFinais(e, dgvProdutoCompra1);
+            PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIpi1, txtValorFinal1);
             await EditarProdutoPedidoOrcamento(e, 1);
         }
         private void dgvProdutoCompra1_Leave(object sender, EventArgs e)
@@ -645,6 +646,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         private async void dgvProdutoCompra2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             RealizaCalculoValoresFinais(e, dgvProdutoCompra2);
+            PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
             await EditarProdutoPedidoOrcamento(e, 2);
         }
 
@@ -691,6 +693,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         private async void dgvProdutoCompra3_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             RealizaCalculoValoresFinais(e, dgvProdutoCompra3);
+            PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
             await EditarProdutoPedidoOrcamento(e, 1);
         }
 

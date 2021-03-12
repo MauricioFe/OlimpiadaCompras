@@ -266,7 +266,7 @@
             this.btnProximo.FlatAppearance.BorderSize = 0;
             this.btnProximo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximo.ForeColor = System.Drawing.Color.White;
-            this.btnProximo.Location = new System.Drawing.Point(898, 453);
+            this.btnProximo.Location = new System.Drawing.Point(898, 455);
             this.btnProximo.Name = "btnProximo";
             this.btnProximo.Size = new System.Drawing.Size(169, 34);
             this.btnProximo.TabIndex = 33;
@@ -603,7 +603,7 @@
             this.btnProximoProduto.FlatAppearance.BorderSize = 0;
             this.btnProximoProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximoProduto.ForeColor = System.Drawing.Color.White;
-            this.btnProximoProduto.Location = new System.Drawing.Point(884, 463);
+            this.btnProximoProduto.Location = new System.Drawing.Point(884, 467);
             this.btnProximoProduto.Name = "btnProximoProduto";
             this.btnProximoProduto.Size = new System.Drawing.Size(169, 34);
             this.btnProximoProduto.TabIndex = 34;
@@ -1049,6 +1049,7 @@
             this.dgvProdutoCompra1.TabIndex = 41;
             this.dgvProdutoCompra1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra1_CellContentClick);
             this.dgvProdutoCompra1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra1_CellEndEdit);
+            this.dgvProdutoCompra1.Leave += new System.EventHandler(this.dgvProdutoCompra1_Leave);
             // 
             // colCodigoProtheusProduto1
             // 
@@ -1405,6 +1406,7 @@
             this.dgvProdutoCompra2.TabIndex = 42;
             this.dgvProdutoCompra2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra2_CellContentClick);
             this.dgvProdutoCompra2.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra2_CellEndEdit);
+            this.dgvProdutoCompra2.Leave += new System.EventHandler(this.dgvProdutoCompra2_Leave);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1761,6 +1763,7 @@
             this.dgvProdutoCompra3.TabIndex = 43;
             this.dgvProdutoCompra3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra3_CellContentClick);
             this.dgvProdutoCompra3.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutoCompra3_CellEndEdit);
+            this.dgvProdutoCompra3.Leave += new System.EventHandler(this.dgvProdutoCompra3_Leave);
             // 
             // colCodProtheus3
             // 

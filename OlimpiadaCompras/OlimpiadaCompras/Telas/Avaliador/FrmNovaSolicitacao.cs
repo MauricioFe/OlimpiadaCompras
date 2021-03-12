@@ -191,10 +191,10 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         ((TextBox)tabContainer.Controls.Find($"txtFornecedor{i + 1}", true)[0]).Text = orcamento.Fornecedor;
                         ((TextBox)tabContainer.Controls.Find($"txtCnpj{i + 1}", true)[0]).Text = orcamento.Cnpj;
                         ((DateTimePicker)tabContainer.Controls.Find($"dtpDataOrcamento{i + 1}", true)[0]).Value = orcamento.Data;
-                        ((TextBox)tabContainer.Controls.Find($"txtTotalProdutos{i + 1}", true)[0]).Text = orcamento.TotalProdutos.ToString();
-                        ((TextBox)tabContainer.Controls.Find($"txtTotalIPI{i + 1}", true)[0]).Text = orcamento.TotalIpi.ToString();
-                        ((TextBox)tabContainer.Controls.Find($"txtValorFinal{i + 1}", true)[0]).Text = orcamento.ValorTotal.ToString();
-                        ((TextBox)tabContainer.Controls.Find($"txtValorFrete{i + 1}", true)[0]).Text = orcamento.ValorFrete.ToString();
+                        ((TextBox)tabContainer.Controls.Find($"txtTotalProdutos{i + 1}", true)[0]).Text = orcamento.TotalProdutos.ToString("F2");
+                        ((TextBox)tabContainer.Controls.Find($"txtTotalIPI{i + 1}", true)[0]).Text = orcamento.TotalIpi.ToString("F2");
+                        ((TextBox)tabContainer.Controls.Find($"txtValorFinal{i + 1}", true)[0]).Text = orcamento.ValorTotal.ToString("F2");
+                        ((TextBox)tabContainer.Controls.Find($"txtValorFrete{i + 1}", true)[0]).Text = orcamento.ValorFrete.ToString("F2");
                         ((TextBox)tabContainer.Controls.Find($"txtAnexarPdf{i + 1}", true)[0]).Text = orcamento.Anexo;
                         ((TextBox)tabContainer.Controls.Find($"txtIdOrcamento{i + 1}", true)[0]).Text = orcamento.Id.ToString();
                         if (orcamento.FormaPagamento == "Crédito em conta")
@@ -208,6 +208,9 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     }
                 }
             }
+            PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIpi1, txtValorFinal1);
+            PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
+            PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
         }
         private void DisabilitaInputs()
         {
@@ -380,7 +383,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 dgv.Rows[n].Cells[5].Value = item.Desconto;
                 dgv.Rows[n].Cells[6].Value = item.Ipi;
                 dgv.Rows[n].Cells[7].Value = item.Icms;
-                dgv.Rows[n].Cells[8].Value = item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)));
+                dgv.Rows[n].Cells[8].Value = (item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)))).ToString("F2");
                 dgv.Rows[n].Cells[10].Value = item.ProdutoSolicitacoesId;
                 dgv.Rows[n].Cells[11].Value = item.Id;
                 dgv.Rows[n].Cells[9].Value = "Remover";
@@ -398,7 +401,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 if (dataGrid.Rows[e.RowIndex].Cells[3].Value != null &&
                     dataGrid.Rows[e.RowIndex].Cells[4].Value != null)
                 {
-                    dataGrid.Rows[e.RowIndex].Cells[8].Value = total;
+                    dataGrid.Rows[e.RowIndex].Cells[8].Value = total.ToString("F2");
                 }
                 if (dataGrid.Columns[e.ColumnIndex].Index == 6)
                 {
@@ -668,13 +671,14 @@ namespace OlimpiadaCompras.Telas.Avaliador
                             {
                                 return;
                             }
-                            if (decimal.Parse(txtValorFinal1.Text) > 5000)
+                            if (decimal.Parse(txtValorFinal1.Text) < 5000)
                             {
-                                if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 5000, deseja encerrar a solicitação de compras") == DialogResult.Yes)
+                                if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 5000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                                 {
                                     await FinalizaSolicitacao();
+                                    return;
                                 }
-                                
+
                             }
                             PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
                             tabContainer.SelectTab(3);
@@ -688,6 +692,15 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 }
                 else
                 {
+                    if (decimal.Parse(txtValorFinal1.Text) < 5000)
+                    {
+                        if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 5000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação",MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                        {
+                            await FinalizaSolicitacao();
+                            return;
+                        }
+
+                    }
                     if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento2)))
                     {
                         MessageBox.Show("Erro interno no servidor tente mais tarde novamente");
@@ -719,11 +732,12 @@ namespace OlimpiadaCompras.Telas.Avaliador
                             {
                                 return;
                             }
-                            if (decimal.Parse(txtValorFinal1.Text) > 5000)
+                            if (decimal.Parse(txtValorFinal2.Text) < 5000)
                             {
-                                if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 5000, deseja encerrar a solicitação de compras") == DialogResult.Yes)
+                                if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 5000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                                 {
                                     await FinalizaSolicitacao();
+                                    return;
                                 }
 
                             }
@@ -739,6 +753,15 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 }
                 else
                 {
+                    if (decimal.Parse(txtValorFinal2.Text) < 5000)
+                    {
+                        if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 5000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                        {
+                            await FinalizaSolicitacao();
+                            return;
+                        }
+
+                    }
                     if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento3)))
                     {
                         MessageBox.Show("Erro interno no servidor tente mais tarde novamente");
@@ -1040,6 +1063,21 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     }
                 }
             }
+        }
+
+        private void dgvProdutoCompra1_Leave(object sender, EventArgs e)
+        {
+            PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIpi1, txtValorFinal1);
+        }
+
+        private void dgvProdutoCompra2_Leave(object sender, EventArgs e)
+        {
+            PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
+        }
+
+        private void dgvProdutoCompra3_Leave(object sender, EventArgs e)
+        {
+            PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
         }
     }
 }
