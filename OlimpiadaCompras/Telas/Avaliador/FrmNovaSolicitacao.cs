@@ -868,16 +868,19 @@ namespace OlimpiadaCompras.Telas.Avaliador
         private async void dgvProdutoCompra1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             RealizaCalculoValoresFinais(e, dgvProdutoCompra1);
+            PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIpi1, txtValorFinal1);
             await EditarProdutoPedidoOrcamento(e, 1);
         }
         private async void dgvProdutoCompra2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             RealizaCalculoValoresFinais(e, dgvProdutoCompra2);
+            PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
             await EditarProdutoPedidoOrcamento(e, 2);
         }
         private async void dgvProdutoCompra3_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             RealizaCalculoValoresFinais(e, dgvProdutoCompra3);
+            PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
             await EditarProdutoPedidoOrcamento(e, 3);
         }
         private void btnSelecionar2_Click(object sender, EventArgs e)
@@ -923,22 +926,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
             frmAreaAvaliador.AtualizaGridSolicitacoesPendentes();
             frmAreaAvaliador.AtualizaGridSolicitacoesUsuario();
         }
-
-        private void dgvProdutoCompra1_Leave(object sender, EventArgs e)
-        {
-            PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIpi1, txtValorFinal1);
-        }
-
-        private void dgvProdutoCompra2_Leave(object sender, EventArgs e)
-        {
-            PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
-        }
-
-        private void dgvProdutoCompra3_Leave(object sender, EventArgs e)
-        {
-            PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
-        }
-
         private async void btnVisualizarArquivo_Click(object sender, EventArgs e)
         {
             await BaixarPdf(txtAnexarPdf1);
