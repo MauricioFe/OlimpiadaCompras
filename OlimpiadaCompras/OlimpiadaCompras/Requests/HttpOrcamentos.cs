@@ -92,7 +92,7 @@ namespace OlimpiadaCompras.Requests
                     formContent.Add(new StringContent(orcamento.TotalIpi.ToString()), "TotalIpi");
                     formContent.Add(new StringContent(orcamento.TotalProdutos.ToString()), "TotalProdutos");
                     formContent.Add(new StringContent(orcamento.ValorFrete.ToString()), "ValorFrete");
-                    formContent.Add(new StringContent(orcamento.Data.ToString()), "Data");
+                    formContent.Add(new StringContent(orcamento.Data.ToString("dd/MM/yyyy")), "Data");
                     formContent.Add(new StringContent(orcamento.Anexo), "anexo");
                     formContent.Add(new StringContent(orcamento.OrderFlag.ToString()), "OrderFlag");
                     using (var client = new HttpClient())
@@ -142,7 +142,7 @@ namespace OlimpiadaCompras.Requests
                     formContent.Add(new StringContent(orcamento.TotalIpi.ToString()), "TotalIpi");
                     formContent.Add(new StringContent(orcamento.TotalProdutos.ToString()), "TotalProdutos");
                     formContent.Add(new StringContent(orcamento.ValorFrete.ToString()), "ValorFrete");
-                    formContent.Add(new StringContent(orcamento.Data.ToString()), "Data");
+                    formContent.Add(new StringContent(orcamento.Data.ToString("dd/MM/yyyy")), "Data");
                     if (orcamento.Anexo != null)
                     {
                         formContent.Add(new StringContent(orcamento.Anexo), "anexo");
