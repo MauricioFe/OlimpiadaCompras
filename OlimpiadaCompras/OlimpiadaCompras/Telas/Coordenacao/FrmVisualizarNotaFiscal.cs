@@ -53,15 +53,19 @@ namespace OlimpiadaCompras.Telas.Coordenacao
 
         private async void FrmVisualizarNotaFiscal_Load(object sender, EventArgs e)
         {
-            string bacon = await dowloadNotaFiscal(idSolicitacao);
-            pdfReader.LoadFile(bacon);
+            string fileName = (await HttpSolicitacaoCompras.GetSolicitacaoCompraById(idSolicitacao, usuarioLogado.token)).Anexo;
+            string fileSavePcName = $@"{AppDomain.CurrentDomain.BaseDirectory}notasFiscais";
+            var file = await HttpSolicitacaoCompras.DownloadNotaFiscal(fileName, usuarioLogado.token);
+            File.WriteAllBytes(fileSavePcName, file);
+            pdfReader.LoadFile(fileSavePcName);
         }
 
         private async void btnReprovar_Click(object sender, EventArgs e)
         {
+            this.Dispose();
             Acompanhamento acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
             FrmModalSolicitacao modal = new FrmModalSolicitacao(ConstantesProjeto.SOLICITACAO_REPROVADA, acompanhamento, usuarioLogado, form);
-            modal.Show();
+            modal.ShowDialog();
         }
 
         private async void btnAprovar_Click(object sender, EventArgs e)
@@ -77,6 +81,11 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 this.Dispose();
             }
 
+        }
+
+        private async void btnBaixar_Click(object sender, EventArgs e)
+        {
+            await dowloadNotaFiscal(idSolicitacao);
         }
     }
 }

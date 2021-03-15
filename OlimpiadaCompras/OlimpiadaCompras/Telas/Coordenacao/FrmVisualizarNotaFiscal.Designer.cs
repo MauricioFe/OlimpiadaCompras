@@ -34,6 +34,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnAprovar = new System.Windows.Forms.Button();
             this.btnReprovar = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.btnBaixar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pdfReader)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,10 +80,26 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.btnReprovar.UseVisualStyleBackColor = false;
             this.btnReprovar.Click += new System.EventHandler(this.btnReprovar_Click);
             // 
+            // btnBaixar
+            // 
+            this.btnBaixar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnBaixar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(135)))), ((int)(((byte)(5)))));
+            this.btnBaixar.FlatAppearance.BorderSize = 0;
+            this.btnBaixar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBaixar.ForeColor = System.Drawing.Color.White;
+            this.btnBaixar.Location = new System.Drawing.Point(12, 446);
+            this.btnBaixar.Name = "btnBaixar";
+            this.btnBaixar.Size = new System.Drawing.Size(169, 34);
+            this.btnBaixar.TabIndex = 71;
+            this.btnBaixar.Text = "Baixar arquivo";
+            this.btnBaixar.UseVisualStyleBackColor = false;
+            this.btnBaixar.Click += new System.EventHandler(this.btnBaixar_Click);
+            // 
             // FrmVisualizarNotaFiscal
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(848, 489);
+            this.Controls.Add(this.btnBaixar);
             this.Controls.Add(this.btnReprovar);
             this.Controls.Add(this.btnAprovar);
             this.Controls.Add(this.pdfReader);
@@ -103,5 +120,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         private System.Windows.Forms.Button btnAprovar;
         private System.Windows.Forms.Button btnReprovar;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button btnBaixar;
     }
 }
