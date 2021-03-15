@@ -116,7 +116,18 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 ocupacaoSolicitacaoCompra.OcupacaoId = ocupacao.Id;
                 ocupacaoSolicitacaoCompra.SolicitacaoId = idSolicitacao;
                 ocupacoesSolicitacaoEditList.Add(ocupacaoSolicitacaoCompra);
-
+                cboEscola.SelectedValue = item.SolicitacaoCompra.Escola.Id;
+                txtResponsavelEntrega.Text = item.SolicitacaoCompra.ResponsavelEntrega;
+                txtJusticativa.Text = item.SolicitacaoCompra.Justificativa;
+                dtpDataSolicitacao.Value = item.SolicitacaoCompra.Data;
+                cboTipoCompra.SelectedValue = item.SolicitacaoCompra.TipoCompraId;
+                txtCep.Text = item.SolicitacaoCompra.Escola.Cep;
+                txtLogradouro.Text = item.SolicitacaoCompra.Escola.Logradouro;
+                txtBairro.Text = item.SolicitacaoCompra.Escola.Bairro;
+                txtNumero.Text = item.SolicitacaoCompra.Escola.Numero;
+                txtCidade.Text = item.SolicitacaoCompra.Escola.Cidade;
+                txtEstado.Text = item.SolicitacaoCompra.Escola.Estado;
+                txtIdSolicitacao.Text = item.SolicitacaoCompra.Id.ToString();
             }
             List<ProdutoSolicitacao> produtoSolicitacoes = await HttpProdutoSolicitacoes.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
             foreach (var inputs in produtoSolicitacoes)
@@ -139,7 +150,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 dgvProduto.Rows[n].Cells[2].Value = inputs.Produto.Descricao;
                 dgvProduto.Rows[n].Cells[3].Value = "Remover";
                 dgvProduto.Rows[n].Cells[4].Value = inputs.Produto.Id;
-                dgvProduto.Rows[n].Cells[5].Value = inputs.Produto.Grupo.Id;
                 dgvProduto.Rows[n].Cells[6].Value = inputs.Id;
             }
             List<ProdutoPedidoOrcamento> produtoPedidoOrcamentos = await HttpProdutoPedidoOrcamentos.GetByIdSolicitacao(idSolicitacao, usuarioLogado.token);
@@ -160,14 +170,19 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                         ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[5].Value = item.Desconto;
                         ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[6].Value = item.Ipi;
                         ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[7].Value = item.Icms;
-                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[8].Value = item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)));
+                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[8].Value = (item.Quantidade * (item.valor - (item.valor * (item.Desconto / 100)))).ToString("F2");
                         ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[10].Value = item.ProdutoSolicitacao.Id;
+                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[11].Value = item.Id;
+                        ((DataGridView)tabContainer.Controls.Find($"dgvProdutoCompra{i + 1}", true)[0]).Rows[row].Cells[9].Value = "Remover";
                         ((TextBox)tabContainer.Controls.Find($"txtFornecedor{i + 1}", true)[0]).Text = orcamento.Fornecedor;
                         ((TextBox)tabContainer.Controls.Find($"txtCnpj{i + 1}", true)[0]).Text = orcamento.Cnpj;
                         ((DateTimePicker)tabContainer.Controls.Find($"dtpDataOrcamento{i + 1}", true)[0]).Value = orcamento.Data;
                         ((TextBox)tabContainer.Controls.Find($"txtTotalProdutos{i + 1}", true)[0]).Text = orcamento.TotalProdutos.ToString("F2");
                         ((TextBox)tabContainer.Controls.Find($"txtTotalIPI{i + 1}", true)[0]).Text = orcamento.TotalIpi.ToString("F2");
                         ((TextBox)tabContainer.Controls.Find($"txtValorFinal{i + 1}", true)[0]).Text = orcamento.ValorTotal.ToString("F2");
+                        ((TextBox)tabContainer.Controls.Find($"txtValorFrete{i + 1}", true)[0]).Text = orcamento.ValorFrete.ToString("F2");
+                        ((TextBox)tabContainer.Controls.Find($"txtAnexarPdf{i + 1}", true)[0]).Text = orcamento.Anexo;
+                        ((TextBox)tabContainer.Controls.Find($"txtIdOrcamento{i + 1}", true)[0]).Text = orcamento.Id.ToString();
                         if (orcamento.FormaPagamento == "Crédito em conta")
                         {
                             ((ComboBox)tabContainer.Controls.Find($"cboFormaPagamento{i + 1}", true)[0]).SelectedIndex = 0;
@@ -176,13 +191,12 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                         {
                             ((ComboBox)tabContainer.Controls.Find($"cboFormaPagamento{i + 1}", true)[0]).SelectedIndex = 1;
                         }
-                        ((TextBox)tabContainer.Controls.Find($"txtValorFrete{i + 1}", true)[0]).Text = orcamento.ValorFrete.ToString("F2");
-                        ((TextBox)tabContainer.Controls.Find($"txtAnexarPdf{i + 1}", true)[0]).Text = orcamento.Anexo;
-                        ((TextBox)tabContainer.Controls.Find($"txtIdOrcamento{i + 1}", true)[0]).Text = orcamento.Id.ToString();
                     }
                 }
-
             }
+            PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIpi1, txtValorFinal1);
+            PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
+            PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
         }
         public async void PreencheCombobox(ComboBox cbo, string displayMember, string valueMember)
         {
