@@ -208,12 +208,12 @@ namespace OlimpiadaCompras.Telas.Avaliador
                     }
                 }
             }
-            PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIpi1, txtValorFinal1);
-            PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
-            PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
             RealizaCalculoValoresFinais(dgvProdutoCompra1);
+            PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIpi1, txtValorFinal1);
             RealizaCalculoValoresFinais(dgvProdutoCompra2);
+            PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
             RealizaCalculoValoresFinais(dgvProdutoCompra3);
+            PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
         }
         private void DisabilitaInputs()
         {
@@ -669,9 +669,9 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         Orcamento orcamento = PreencheObjetoDosInputs(1);
                         if (await UpdateOrcamento(orcamento))
                         {
-                            if (decimal.Parse(txtValorFinal1.Text) < 5000)
+                            if (decimal.Parse(txtValorFinal1.Text) < 3000)
                             {
-                                if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 5000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                                if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 3000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                                 {
                                     await FinalizaSolicitacao();
                                     return;
@@ -696,9 +696,9 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 }
                 else
                 {
-                    if (decimal.Parse(txtValorFinal1.Text) < 5000)
+                    if (decimal.Parse(txtValorFinal1.Text) < 3000)
                     {
-                        if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 5000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                        if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 3000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                         {
                             await FinalizaSolicitacao();
                             return;
@@ -731,9 +731,9 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         Orcamento orcamento = PreencheObjetoDosInputs(2);
                         if (await UpdateOrcamento(orcamento))
                         {
-                            if (decimal.Parse(txtValorFinal2.Text) < 5000)
+                            if (decimal.Parse(txtValorFinal2.Text) < 3000)
                             {
-                                if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 5000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                                if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 3000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                                 {
                                     await FinalizaSolicitacao();
                                     return;
@@ -758,9 +758,9 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 }
                 else
                 {
-                    if (decimal.Parse(txtValorFinal2.Text) < 5000)
+                    if (decimal.Parse(txtValorFinal2.Text) < 3000)
                     {
-                        if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 5000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                        if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 3000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                         {
                             await FinalizaSolicitacao();
                             return;
@@ -925,7 +925,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
 
         private void NormalizarValoresNumericos()
         {
-            
+
         }
 
         private async void dgvProdutoCompra2_CellEndEdit(object sender, DataGridViewCellEventArgs e)

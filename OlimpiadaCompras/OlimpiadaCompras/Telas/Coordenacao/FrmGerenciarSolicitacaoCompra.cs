@@ -99,6 +99,8 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 }
             }
         }
+
+
         private async void PreencheDadosSolicitacao()
         {
             List<OcupacaoSolicitacaoCompra> ocupacaoSolicitacaoCompras = await HttpSolicitacaoOcupacoes.GetSolicitacao(idSolicitacao, usuarioLogado.token);
@@ -194,8 +196,11 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                     }
                 }
             }
+            RealizaCalculoValoresFinais(dgvProdutoCompra1);
             PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIpi1, txtValorFinal1);
+            RealizaCalculoValoresFinais(dgvProdutoCompra2);
             PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
+            RealizaCalculoValoresFinais(dgvProdutoCompra3);
             PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
         }
         public async void PreencheCombobox(ComboBox cbo, string displayMember, string valueMember)
@@ -494,31 +499,31 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             tabContainer.SelectTab(2);
             ((Control)tabContainer.TabPages[1]).Enabled = false;
         }
-        private void RealizaCalculoValoresFinais(DataGridViewCellEventArgs e, DataGridView dataGrid)
+        private void RealizaCalculoValoresFinais(DataGridView dataGrid)
         {
+            totalIpiList.Clear();
             try
             {
-                totalIpiList.Clear();
-                decimal quantidade = Convert.ToDecimal(dataGrid.Rows[e.RowIndex].Cells[3].Value);
-                decimal valorUnitario = Convert.ToDecimal(dataGrid.Rows[e.RowIndex].Cells[4].Value);
-                decimal desconto = Convert.ToDecimal(dataGrid.Rows[e.RowIndex].Cells[5].Value);
-                decimal total = quantidade * (valorUnitario - (valorUnitario * (desconto / 100)));
-                if (dataGrid.Rows[e.RowIndex].Cells[3].Value != null &&
-                    dataGrid.Rows[e.RowIndex].Cells[4].Value != null)
+                for (int i = 0; i < dataGrid.Rows.Count; i++)
                 {
-                    dataGrid.Rows[e.RowIndex].Cells[8].Value = total;
-                }
-                if (dataGrid.Columns[e.ColumnIndex].Index == 6)
-                {
-                    decimal ipi = Convert.ToDecimal(dataGrid.Rows[e.RowIndex].Cells[6].Value);
-                    decimal totalIpi = (ipi / 100) * valorUnitario;
+                    decimal quantidade = Convert.ToDecimal(dataGrid.Rows[i].Cells[3].Value);
+                    decimal valorUnitario = Convert.ToDecimal(dataGrid.Rows[i].Cells[4].Value);
+                    decimal desconto = Convert.ToDecimal(dataGrid.Rows[i].Cells[5].Value);
+                    decimal total = quantidade * (valorUnitario - (valorUnitario * (desconto / 100)));
+                    if (dataGrid.Rows[i].Cells[3].Value != null &&
+                        dataGrid.Rows[i].Cells[4].Value != null)
+                    {
+                        dataGrid.Rows[i].Cells[8].Value = total.ToString("F2");
+                    }
+                    decimal ipi = Convert.ToDecimal(dataGrid.Rows[i].Cells[6].Value);
+                    decimal totalIpi = ((ipi / 100) * Convert.ToDecimal(dataGrid.Rows[i].Cells[4].Value)) * Convert.ToDecimal(dataGrid.Rows[i].Cells[3].Value);
                     totalIpiList.Add(totalIpi);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-
+                Console.WriteLine("Erro ao realizar cálculo", e.Message);
             }
 
         }
@@ -572,7 +577,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         }
         private async void dgvProdutoCompra1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            RealizaCalculoValoresFinais(e, dgvProdutoCompra1);
+            RealizaCalculoValoresFinais(dgvProdutoCompra1);
             PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIpi1, txtValorFinal1);
             await EditarProdutoPedidoOrcamento(e, 1);
         }
@@ -681,7 +686,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
 
         private async void dgvProdutoCompra2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            RealizaCalculoValoresFinais(e, dgvProdutoCompra2);
+            RealizaCalculoValoresFinais(dgvProdutoCompra2);
             PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
             await EditarProdutoPedidoOrcamento(e, 2);
         }
@@ -737,7 +742,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         }
         private async void dgvProdutoCompra3_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            RealizaCalculoValoresFinais(e, dgvProdutoCompra3);
+            RealizaCalculoValoresFinais(dgvProdutoCompra3);
             PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
             await EditarProdutoPedidoOrcamento(e, 1);
         }
