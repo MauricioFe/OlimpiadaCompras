@@ -638,6 +638,15 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                     Orcamento orcamento = PreencheObjetoDosInputs(1);
                     if (await UpdateOrcamento(orcamento))
                     {
+                        if (decimal.Parse(txtValorFinal1.Text) < 5000)
+                        {
+                            if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 5000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                            {
+                                await FinalizaSolicitacao();
+                                return;
+                            }
+
+                        }
                         if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento2)))
                         {
                             MessageBox.Show("Erro interno no servidor tente mais tarde novamente");
@@ -657,6 +666,19 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 }
             }
         }
+        private async Task FinalizaSolicitacao()
+        {
+            var acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
+            acompanhamento.StatusId = 1;
+            acompanhamento.Observacao = null;
+            await HttpAcompanhamento.Update(acompanhamento, acompanhamento.Id, usuarioLogado.token);
+            MessageBox.Show("Você finalizou a primeira etapa para realizar sua compra com sucesso!!\n" +
+                "A coordenação irá analisar sua solicitação e irá dar um retorno assim que possível.",
+                "Finalizar processo de compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Dispose();
+            frmAreaCoordenacao.AtualizaGridSolicitacoes();
+        }
+
         private async void dgvProdutoCompra2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             RealizaCalculoValoresFinais(e, dgvProdutoCompra2);
@@ -685,6 +707,15 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                     Orcamento orcamento = PreencheObjetoDosInputs(2);
                     if (await UpdateOrcamento(orcamento))
                     {
+                        if (decimal.Parse(txtValorFinal1.Text) < 5000)
+                        {
+                            if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 5000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                            {
+                                await FinalizaSolicitacao();
+                                return;
+                            }
+
+                        }
                         if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento3)))
                         {
                             MessageBox.Show("Erro interno no servidor tente mais tarde novamente");

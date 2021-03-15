@@ -62,7 +62,6 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             Acompanhamento acompanhamento = await HttpAcompanhamento.GetBySolicitacaoId(idSolicitacao, usuarioLogado.token);
             FrmModalSolicitacao modal = new FrmModalSolicitacao(ConstantesProjeto.SOLICITACAO_REPROVADA, acompanhamento, usuarioLogado, form);
             modal.Show();
-            this.Dispose();
         }
 
         private async void btnAprovar_Click(object sender, EventArgs e)

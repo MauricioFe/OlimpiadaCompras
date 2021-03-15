@@ -211,6 +211,9 @@ namespace OlimpiadaCompras.Telas.Avaliador
             PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIpi1, txtValorFinal1);
             PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
             PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
+            RealizaCalculoValoresFinais(dgvProdutoCompra1);
+            RealizaCalculoValoresFinais(dgvProdutoCompra2);
+            RealizaCalculoValoresFinais(dgvProdutoCompra3);
         }
         private void DisabilitaInputs()
         {
@@ -389,31 +392,31 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 dgv.Rows[n].Cells[9].Value = "Remover";
             }
         }
-        private void RealizaCalculoValoresFinais(DataGridViewCellEventArgs e, DataGridView dataGrid)
+        private void RealizaCalculoValoresFinais(DataGridView dataGrid)
         {
+            totalIpiList.Clear();
             try
             {
-                totalIpiList.Clear();
-                decimal quantidade = Convert.ToDecimal(dataGrid.Rows[e.RowIndex].Cells[3].Value);
-                decimal valorUnitario = Convert.ToDecimal(dataGrid.Rows[e.RowIndex].Cells[4].Value);
-                decimal desconto = Convert.ToDecimal(dataGrid.Rows[e.RowIndex].Cells[5].Value);
-                decimal total = quantidade * (valorUnitario - (valorUnitario * (desconto / 100)));
-                if (dataGrid.Rows[e.RowIndex].Cells[3].Value != null &&
-                    dataGrid.Rows[e.RowIndex].Cells[4].Value != null)
+                for (int i = 0; i < dataGrid.Rows.Count; i++)
                 {
-                    dataGrid.Rows[e.RowIndex].Cells[8].Value = total.ToString("F2");
-                }
-                if (dataGrid.Columns[e.ColumnIndex].Index == 6)
-                {
-                    decimal ipi = Convert.ToDecimal(dataGrid.Rows[e.RowIndex].Cells[6].Value);
-                    decimal totalIpi = (ipi / 100) * valorUnitario;
+                    decimal quantidade = Convert.ToDecimal(dataGrid.Rows[i].Cells[3].Value);
+                    decimal valorUnitario = Convert.ToDecimal(dataGrid.Rows[i].Cells[4].Value);
+                    decimal desconto = Convert.ToDecimal(dataGrid.Rows[i].Cells[5].Value);
+                    decimal total = quantidade * (valorUnitario - (valorUnitario * (desconto / 100)));
+                    if (dataGrid.Rows[i].Cells[3].Value != null &&
+                        dataGrid.Rows[i].Cells[4].Value != null)
+                    {
+                        dataGrid.Rows[i].Cells[8].Value = total.ToString("F2");
+                    }
+                    decimal ipi = Convert.ToDecimal(dataGrid.Rows[i].Cells[6].Value);
+                    decimal totalIpi = ((ipi / 100) * Convert.ToDecimal(dataGrid.Rows[i].Cells[4].Value)) * Convert.ToDecimal(dataGrid.Rows[i].Cells[3].Value);
                     totalIpiList.Add(totalIpi);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-
+                Console.WriteLine("Erro ao realizar cálculo", e.Message);
             }
 
         }
@@ -666,11 +669,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         Orcamento orcamento = PreencheObjetoDosInputs(1);
                         if (await UpdateOrcamento(orcamento))
                         {
-                            await CriarOrcamentoDafault2();
-                            if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento2)))
-                            {
-                                return;
-                            }
                             if (decimal.Parse(txtValorFinal1.Text) < 5000)
                             {
                                 if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 5000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
@@ -680,6 +678,12 @@ namespace OlimpiadaCompras.Telas.Avaliador
                                 }
 
                             }
+                            await CriarOrcamentoDafault2();
+                            if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento2)))
+                            {
+                                return;
+                            }
+
                             PreencheGridProdutoCompra(dgvProdutoCompra2, txtIdOrcamento2);
                             tabContainer.SelectTab(3);
                             ((Control)tabContainer.TabPages[2]).Enabled = false;
@@ -694,7 +698,7 @@ namespace OlimpiadaCompras.Telas.Avaliador
                 {
                     if (decimal.Parse(txtValorFinal1.Text) < 5000)
                     {
-                        if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 5000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação",MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                        if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 5000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                         {
                             await FinalizaSolicitacao();
                             return;
@@ -727,11 +731,6 @@ namespace OlimpiadaCompras.Telas.Avaliador
                         Orcamento orcamento = PreencheObjetoDosInputs(2);
                         if (await UpdateOrcamento(orcamento))
                         {
-                            await CriarOrcamentoDafault3();
-                            if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento3)))
-                            {
-                                return;
-                            }
                             if (decimal.Parse(txtValorFinal2.Text) < 5000)
                             {
                                 if (MessageBox.Show("O valor final desse orçamento é menor ou igual a 5000, deseja encerrar a solicitação de compras", "Deseja finalizar solicaitação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
@@ -741,6 +740,12 @@ namespace OlimpiadaCompras.Telas.Avaliador
                                 }
 
                             }
+                            await CriarOrcamentoDafault3();
+                            if (!(await CriarProdutoPedidoOrcamentoDefault(txtIdOrcamento3)))
+                            {
+                                return;
+                            }
+
                             PreencheGridProdutoCompra(dgvProdutoCompra3, txtIdOrcamento3);
                             tabContainer.SelectTab(4);
                             ((Control)tabContainer.TabPages[3]).Enabled = false;
@@ -912,19 +917,26 @@ namespace OlimpiadaCompras.Telas.Avaliador
         }
         private async void dgvProdutoCompra1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            RealizaCalculoValoresFinais(e, dgvProdutoCompra1);
+            NormalizarValoresNumericos();
+            RealizaCalculoValoresFinais(dgvProdutoCompra1);
             PreencheValoresCalculados(dgvProdutoCompra1, totalIpiList, txtTotalProdutos1, txtTotalIpi1, txtValorFinal1);
             await EditarProdutoPedidoOrcamento(e, 1);
         }
+
+        private void NormalizarValoresNumericos()
+        {
+            
+        }
+
         private async void dgvProdutoCompra2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            RealizaCalculoValoresFinais(e, dgvProdutoCompra2);
+            RealizaCalculoValoresFinais(dgvProdutoCompra2);
             PreencheValoresCalculados(dgvProdutoCompra2, totalIpiList, txtTotalProdutos2, txtTotalIpi2, txtValorFinal2);
             await EditarProdutoPedidoOrcamento(e, 2);
         }
         private async void dgvProdutoCompra3_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            RealizaCalculoValoresFinais(e, dgvProdutoCompra3);
+            RealizaCalculoValoresFinais(dgvProdutoCompra3);
             PreencheValoresCalculados(dgvProdutoCompra3, totalIpiList, txtTotalProdutos3, txtTotalIpi3, txtValorFinal3);
             await EditarProdutoPedidoOrcamento(e, 3);
         }
@@ -979,14 +991,10 @@ namespace OlimpiadaCompras.Telas.Avaliador
         private async Task BaixarPdf(TextBox txtAnexarPdf)
         {
             var file = await HttpOrcamentos.DownloadPdfOrcamentos(txtAnexarPdf.Text, usuarioLogado.token);
-            //define o titulo
-            saveFileDialog1.Title = "Salvar Arquivo Texto";
-            //Define as extensões permitidas
+            saveFileDialog1.Title = "Salvar Arquivo Pdf";
             saveFileDialog1.Filter = "Pdf File|.pdf";
-            //define o indice do filtro
             saveFileDialog1.FilterIndex = 0;
             saveFileDialog1.FileName = txtAnexarPdf.Text;
-            //Define a extensão padrão como .txt
             saveFileDialog1.DefaultExt = ".pdf";
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {

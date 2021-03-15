@@ -79,7 +79,6 @@ namespace OlimpiadaCompras.Requests
                     {
                         FileStream fileStream = File.OpenRead(orcamento.Anexo);
                         formContent.Add(new StreamContent(fileStream), "arquivo", orcamento.Anexo.Split('\\').Last());
-
                     }
                     catch (Exception)
                     {
@@ -92,7 +91,7 @@ namespace OlimpiadaCompras.Requests
                     formContent.Add(new StringContent(orcamento.TotalIpi.ToString()), "TotalIpi");
                     formContent.Add(new StringContent(orcamento.TotalProdutos.ToString()), "TotalProdutos");
                     formContent.Add(new StringContent(orcamento.ValorFrete.ToString()), "ValorFrete");
-                    formContent.Add(new StringContent(orcamento.Data.ToString("dd/MM/yyyy")), "Data");
+                    formContent.Add(new StringContent(orcamento.Data.ToString("yyyy-MM-dd")), "Data");
                     formContent.Add(new StringContent(orcamento.Anexo), "anexo");
                     formContent.Add(new StringContent(orcamento.OrderFlag.ToString()), "OrderFlag");
                     using (var client = new HttpClient())
@@ -142,7 +141,7 @@ namespace OlimpiadaCompras.Requests
                     formContent.Add(new StringContent(orcamento.TotalIpi.ToString()), "TotalIpi");
                     formContent.Add(new StringContent(orcamento.TotalProdutos.ToString()), "TotalProdutos");
                     formContent.Add(new StringContent(orcamento.ValorFrete.ToString()), "ValorFrete");
-                    formContent.Add(new StringContent(orcamento.Data.ToString("dd/MM/yyyy")), "Data");
+                    formContent.Add(new StringContent(orcamento.Data.ToString("yyyy-MM-dd")), "Data");
                     if (orcamento.Anexo != null)
                     {
                         formContent.Add(new StringContent(orcamento.Anexo), "anexo");

@@ -266,7 +266,7 @@
             this.btnProximo.FlatAppearance.BorderSize = 0;
             this.btnProximo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximo.ForeColor = System.Drawing.Color.White;
-            this.btnProximo.Location = new System.Drawing.Point(898, 455);
+            this.btnProximo.Location = new System.Drawing.Point(898, 448);
             this.btnProximo.Name = "btnProximo";
             this.btnProximo.Size = new System.Drawing.Size(169, 34);
             this.btnProximo.TabIndex = 33;
@@ -438,7 +438,8 @@
             // 
             // dtpDataSolicitacao
             // 
-            this.dtpDataSolicitacao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataSolicitacao.CustomFormat = "dd/MM/yyyy";
+            this.dtpDataSolicitacao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDataSolicitacao.Location = new System.Drawing.Point(382, 110);
             this.dtpDataSolicitacao.Name = "dtpDataSolicitacao";
             this.dtpDataSolicitacao.Size = new System.Drawing.Size(165, 26);
@@ -603,7 +604,7 @@
             this.btnProximoProduto.FlatAppearance.BorderSize = 0;
             this.btnProximoProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProximoProduto.ForeColor = System.Drawing.Color.White;
-            this.btnProximoProduto.Location = new System.Drawing.Point(884, 467);
+            this.btnProximoProduto.Location = new System.Drawing.Point(884, 463);
             this.btnProximoProduto.Name = "btnProximoProduto";
             this.btnProximoProduto.Size = new System.Drawing.Size(169, 34);
             this.btnProximoProduto.TabIndex = 34;
@@ -891,7 +892,8 @@
             // 
             // dtpDataOrcamento1
             // 
-            this.dtpDataOrcamento1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataOrcamento1.CustomFormat = "dd/MM/yyyy";
+            this.dtpDataOrcamento1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDataOrcamento1.Location = new System.Drawing.Point(174, 105);
             this.dtpDataOrcamento1.Name = "dtpDataOrcamento1";
             this.dtpDataOrcamento1.Size = new System.Drawing.Size(180, 26);
@@ -1250,7 +1252,8 @@
             // 
             // dtpDataOrcamento2
             // 
-            this.dtpDataOrcamento2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataOrcamento2.CustomFormat = "dd/MM/yyyy";
+            this.dtpDataOrcamento2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDataOrcamento2.Location = new System.Drawing.Point(174, 105);
             this.dtpDataOrcamento2.Name = "dtpDataOrcamento2";
             this.dtpDataOrcamento2.Size = new System.Drawing.Size(180, 26);
@@ -1607,7 +1610,8 @@
             // 
             // dtpDataOrcamento3
             // 
-            this.dtpDataOrcamento3.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataOrcamento3.CustomFormat = "dd/MM/yyyy";
+            this.dtpDataOrcamento3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDataOrcamento3.Location = new System.Drawing.Point(174, 105);
             this.dtpDataOrcamento3.Name = "dtpDataOrcamento3";
             this.dtpDataOrcamento3.Size = new System.Drawing.Size(180, 26);
