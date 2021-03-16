@@ -32,7 +32,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
                 EmailModel data = new EmailModel();
                 data.CentroResponsabilidade = txtCentroResponsabilidade.Text;
                 data.CodUnidadeOrganizacional = txtCodUnidadeOrganizacional.Text;
-                data.ClasseValor = txtClasseValor.Text;
+                data.projeto = txtProjeto.Text;
                 data.ContaContabil = txtContaContabil.Text;
                 FrmEmailAutorizacao form = new FrmEmailAutorizacao(data, usuarioLogado, frmAreaCoordenacao, idSolicitacao, this);
                 form.ShowDialog();

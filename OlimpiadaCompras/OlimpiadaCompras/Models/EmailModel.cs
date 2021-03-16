@@ -10,7 +10,7 @@ namespace OlimpiadaCompras.Models
     {
         public string CodUnidadeOrganizacional { get; set; }
         public string CentroResponsabilidade { get; set; }
-        public string ClasseValor { get; set; }
+        public string projeto { get; set; }
         public string UnidadeOrganizacional { get; set; }
         public string ContaContabil { get; set; }
         public List<Responsavel> Responsaveis { get; set; }

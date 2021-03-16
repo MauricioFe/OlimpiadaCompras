@@ -37,7 +37,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.label4 = new System.Windows.Forms.Label();
             this.txtContaContabil = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtClasseValor = new System.Windows.Forms.TextBox();
+            this.txtProjeto = new System.Windows.Forms.TextBox();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -99,12 +99,12 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.label5.TabIndex = 9;
             this.label5.Text = "Projeto";
             // 
-            // txtClasseValor
+            // txtProjeto
             // 
-            this.txtClasseValor.Location = new System.Drawing.Point(463, 129);
-            this.txtClasseValor.Name = "txtClasseValor";
-            this.txtClasseValor.Size = new System.Drawing.Size(279, 26);
-            this.txtClasseValor.TabIndex = 8;
+            this.txtProjeto.Location = new System.Drawing.Point(463, 129);
+            this.txtProjeto.Name = "txtProjeto";
+            this.txtProjeto.Size = new System.Drawing.Size(279, 26);
+            this.txtProjeto.TabIndex = 8;
             // 
             // btnSalvar
             // 
@@ -142,7 +142,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtClasseValor);
+            this.Controls.Add(this.txtProjeto);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtContaContabil);
             this.Controls.Add(this.label3);
@@ -167,7 +167,7 @@ namespace OlimpiadaCompras.Telas.Coordenacao
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtContaContabil;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtClasseValor;
+        private System.Windows.Forms.TextBox txtProjeto;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnCancelar;
     }
